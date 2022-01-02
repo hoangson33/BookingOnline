@@ -39,6 +39,7 @@ public class Account implements java.io.Serializable {
 	private Set<GuestRating> guestRatings = new HashSet<GuestRating>(0);
 	private Set<Bill> bills = new HashSet<Bill>(0);
 	private Set<Roles> roleses = new HashSet<Roles>(0);
+	
 
 	public Account() {
 	}

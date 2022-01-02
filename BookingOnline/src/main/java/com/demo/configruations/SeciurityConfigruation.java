@@ -22,11 +22,19 @@ public class SeciurityConfigruation extends WebSecurityConfigurerAdapter{
 		
 	}
 	
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
+		
+		
+	}
 	
-
 	@Bean
 	public BCryptPasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	
+
+
 	
 }

@@ -55,9 +55,9 @@ type="java.lang.String"%>
 						<a href="index.html" class="menuzord-brand custom-logo-link"><img
 							src="${pageContext.request.contextPath }/resources/user/images/logo.png" class="custom-logo" alt="logo"></a>
 						<ul class="menuzord-menu">
-							<li class="active"><a href="${pageContext.request.contextPath }/home">Home</a>
+							<li class="active"><a href="${pageContext.request.contextPath }/home/index">Home</a>
 							<ul class="dropdown">
-									<li><a href="${pageContext.request.contextPath }/home2"">Home-2</a></li>
+									<li><a href="${pageContext.request.contextPath }/home2/index"">Home-2</a></li>
 								</ul></li>
 							<li><a href="#">Room</a>
 							<ul class="dropdown">
@@ -66,12 +66,9 @@ type="java.lang.String"%>
 								</ul></li>
 							<li><a href="${pageContext.request.contextPath }/aboutus">About Us</a></li>
 							<li><a href="${pageContext.request.contextPath }/spa">Spa</a></li>
-							<li><a href="#">News</a>
-							<ul class="dropdown">
-									<li><a href="${pageContext.request.contextPath }/blog">Blog</a></li>
-									<li><a href="${pageContext.request.contextPath }/blogdetails">Blog Details</a></li>
-								</ul></li>
 							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>
+							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>
+							
 						</ul>
 					</div>
 					<!--/menuzord-->

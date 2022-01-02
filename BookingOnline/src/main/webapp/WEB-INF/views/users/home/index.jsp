@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 
 <mt:layout_user title="Home">
@@ -167,29 +168,30 @@
 	</section>
 	<!-- =======================================         ==End welcome section==      =======================================-->
 	<!-- =======================================         ==Start room carousel section==       =======================================-->
+	
+	
+	
 	<section class="room-carousel section-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="room-carousel-wrapper pos-relative">
 						<div class="room-info-wrapper carousel-info-v1">
+						<c:forEach var="roomlist" items="${roomlists }" >
 							<div class="room-info">
-								<span class="color-1c text-uppercase tag">Relaxation</span>
+								<span class="color-1c text-uppercase tag">${roomlist.account.name }</span>
 								<h4 class="color-33 playfair">Luxurious Room for Family</h4>
 								<span class="divider"></span>
-								<p>Pellentesque nulla magna, accumsan sed ante quis, gravida
-									feugiat turpis. Vivamus et fringilla ligula. Pellentesque nulla</p>
+								<p>${roomlist.desc }</p>
 								<ul class="mb-40">
-									<li>Swmming Pool</li>
-									<li>Internet Wifi</li>
-									<li>Air Condition</li>
-									<li>Hd Tv Facilities</li>
-									<li>Breakfast</li>
-									<li>24 Hours parking</li>
+									
+									<li>${roomlist.roomHighlight }</li>
 								</ul>
 								<a href="#" class="btn-default book-now">Book Now <i
 									class="ion-android-arrow-dropright"></i></a>
 							</div>
+						</c:forEach>
+							
 							<div class="room-info">
 								<span class="color-1c text-uppercase tag">Relaxation</span>
 								<h4 class="color-33 playfair">Luxurious Room for Family-2</h4>
@@ -255,6 +257,8 @@
 			</div>
 		</div>
 	</section>
+	
+	
 	<!-- =======================================         ==End room carousel section==      =======================================-->
 	<!-- =======================================         ==Start room carousel-2 section==       =======================================-->
 	<section class="room-carousel reverse section-padding">
