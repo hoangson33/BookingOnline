@@ -5,7 +5,7 @@ type="java.lang.String"%>
 <%@ attribute name="content" fragment="true"%>
 <%@ taglib prefix="mt" uri="http://mytags.vn" %>
 
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
@@ -68,7 +68,9 @@ type="java.lang.String"%>
 							<li><a href="${pageContext.request.contextPath }/aboutus">About Us</a></li>
 							<li><a href="${pageContext.request.contextPath }/spa">Spa</a></li>
 							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>			
+							<c:if test="${pageContext.request.userPrincipal.name == null }">
 							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>	
+							</c:if>
 					
 							<s:authorize access="hasRole('ROLE_CUSTOMER') or hasRole('ROLE_ENTERPRISE')">
 							<li><a></a></li>
@@ -79,6 +81,8 @@ type="java.lang.String"%>
 							</ul>
 			
 							</s:authorize>
+							
+							
 						</ul>
 					</div>
 					<!--/menuzord-->
