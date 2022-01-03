@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 1, 2022, 12:13:20 AM by Hibernate Tools 5.1.10.Final
+// Generated Jan 3, 2022, 8:11:28 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;

@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 1, 2022, 12:13:20 AM by Hibernate Tools 5.1.10.Final
+// Generated Jan 3, 2022, 7:50:26 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -39,7 +39,6 @@ public class Account implements java.io.Serializable {
 	private Set<GuestRating> guestRatings = new HashSet<GuestRating>(0);
 	private Set<Bill> bills = new HashSet<Bill>(0);
 	private Set<Roles> roleses = new HashSet<Roles>(0);
-	
 
 	public Account() {
 	}

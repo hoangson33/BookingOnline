@@ -302,6 +302,8 @@
 <div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<span>&nbsp;</span>
                             <input style="color: black;" type="submit" value="Submit" class="submit " id="submit" name="submit" />
+                            <s:hidden path="idAcc"/>
+                            <s:hidden path="idRole"/>
 </div>
 
 <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Discard

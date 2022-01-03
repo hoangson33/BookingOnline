@@ -111,9 +111,37 @@ public class AdminController {
 		return "redirect:/admin/role-management";
 	}
 	
+	
+	
+	@RequestMapping(value =  "editAcc/{id}", method = RequestMethod.GET)
+	public String editAcc(@PathVariable("id") String id,ModelMap modelMap) {
+		modelMap.put("account", accountService.findIdAcc(id));
+		return "admin/account_edit";
+	}
+	
+	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
+	public String editAcc(@ModelAttribute("account") Account account) {
+		account.setDatecreated(new Date());
+		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
+		System.out.println(hash);
+		account.setPassword(hash);
+		String idRole =  account.getIdRole();
+		account.setIdRole(idRole);
+		account.setStatus(true);
+		accountService.save(account);
+		return "redirect:/admin/account-management";
+	}
+	
 	@RequestMapping(value =  "delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") int id) {
 		roleService.delete(id);
 		return "redirect:/admin/role-management";
+	}
+	
+	
+	@RequestMapping(value =  "deleteAcc/{id}", method = RequestMethod.GET)
+	public String deleteAcc(@PathVariable("id") String id) {
+		accountService.deleteById(id);
+		return "redirect:/admin/account-management";
 	}
 }

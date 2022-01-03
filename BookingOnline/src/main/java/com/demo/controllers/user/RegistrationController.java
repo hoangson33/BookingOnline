@@ -57,6 +57,7 @@ public class RegistrationController {
 		System.out.println(hash);
 		account.setPassword(hash);
 		account.setAvatar("abc1.png");
+		
 		registrationService.save(account);
 		return "redirect:/registration/index";
 	}

@@ -1,6 +1,7 @@
 package com.demo.services;
 
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.demo.models.Account;
@@ -12,8 +13,8 @@ public interface AccountService extends UserDetailsService {
 	
 	public Account save(Account account);
 	
-	public Account find(int id);
+	public Account findIdAcc(String idAcc);
 	
-	public void delete(int id);
+	public void deleteById(String id);
 
 }

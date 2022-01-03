@@ -203,7 +203,6 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Image</th>
-                                    <th>Date created</th>
                                     <th>ID Role</th>
                                     
                                     <th>Setting</th>
@@ -218,7 +217,6 @@
                                     <td>${account.email }</td>
                                     <td>${account.phone }</td>
                                     <td>${account.avatar }</td>
-                                    <td><button class="ps-setting">${account.datecreated }</button></td>
                                     <td>${account.idRole }</td>
                                     
                                     <td>

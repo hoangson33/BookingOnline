@@ -33,24 +33,20 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.save(account);
 	}
 
-	@Override
-	public Account find(int id) {
-		return accountRepository.findById(id).get();
-	}
+
 	
 	@Override
-	public void delete(int id) {
+	public void deleteById(String id) {
 		accountRepository.deleteById(id);
 	}
 	
-	@Autowired
-	private AccountRepository accountRepositor;
+
 	
 	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Account account = accountRepositor.findByUsername(username);
+		Account account = accountRepository.findByUsername(username);
 		if(account == null) {
 			throw new UsernameNotFoundException("Username Not Found");
 		}else {
@@ -61,6 +57,11 @@ public class AccountServiceImpl implements AccountService {
 			return new User(account.getUsername(), account.getPassword(), grantedAuthorities);
 		}
 		
+	}
+
+	@Override
+	public Account findIdAcc(String idAcc) {
+		return accountRepository.findIdAcc(idAcc);
 	}
 
 
