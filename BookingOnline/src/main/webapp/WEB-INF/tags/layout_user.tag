@@ -1,4 +1,5 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <%@ attribute name="title" required="true" rtexprvalue="true"
 type="java.lang.String"%>
 <%@ attribute name="content" fragment="true"%>
@@ -46,7 +47,7 @@ type="java.lang.String"%>
 		</div>
 	</div>
 	<!-- =======================================         ==Start Header section==      =======================================-->
-	
+
 	<header class="hotel-header transparent">
 		<div class="container-fluid">
 			<div class="row">
@@ -66,14 +67,18 @@ type="java.lang.String"%>
 								</ul></li>
 							<li><a href="${pageContext.request.contextPath }/aboutus">About Us</a></li>
 							<li><a href="${pageContext.request.contextPath }/spa">Spa</a></li>
-							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>
+							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>			
+							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>	
+					
+							<s:authorize access="hasRole('ROLE_CUSTOMER') or hasRole('ROLE_ENTERPRISE')">
 							<li><a></a></li>
 							<li><a></a></li>
 							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-								<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
-							
+							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
+							</ul>
+			
+							</s:authorize>
 						</ul>
 					</div>
 					<!--/menuzord-->
@@ -84,7 +89,7 @@ type="java.lang.String"%>
 		</div>
 	</header>
 
-			
+		
 			
 
 

@@ -29,7 +29,7 @@ public class SeciurityConfigruation extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("/customer/**").access("hasRole('ROLE_CUSTOMER')") // chặn đường dẫn khi chưa login vào
+		.antMatchers("/customer/**").access("hasRole('ROLE_CUSTOMER') or hasRole('ROLE_ENTERPRISE ')") // chặn đường dẫn khi chưa login vào
 		.antMatchers("/enterprise/**").access("hasRole('ROLE_ENTERPRISE') or hasRole('ROLE_SUPERADMIN ')")
 		.antMatchers("/superadmin/**").access("hasRole('ROLE_SUPERADMIN')")// chặn đường dẫn khi chưa login vào
 		
@@ -43,6 +43,8 @@ public class SeciurityConfigruation extends WebSecurityConfigurerAdapter{
 		.and()
 		.logout().logoutUrl("/login/logout")
 		.logoutSuccessUrl("/login/index?logout")
+//		.and()
+//		.exceptionHandling().accessDeniedPage("/login/accessDenied")
 		;
 	}
 	

@@ -27,16 +27,18 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<a class="mb-4 text-center" href="${pageContext.request.contextPath }/registration/add"><h3>Have an account?</h3></a>
-		      	<form action="#" class="signin-form">
+		      	<form method="post" action="${pageContext.request.contextPath }/login/process-login" class="signin-form">
+		      	${msg }
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="Username" required>
+		      			<input type="text" class="form-control" name="username" placeholder="Username" required>
 		      		</div>
 	            <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Password" required>
+	              <input id="password-field" type="password" name="password" class="form-control" placeholder="Password" required>
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
-	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+	 	${msgs }
+	            	<input type="submit" class="form-control btn btn-primary submit px-3" value="Sign In">
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">

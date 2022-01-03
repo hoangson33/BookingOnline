@@ -1,11 +1,14 @@
 package com.demo.controllers.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.demo.models.Account;
 import com.demo.services.RoomService;
 
 @Controller
@@ -14,12 +17,24 @@ public class LoginController {
 
 
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
-	public String index(ModelMap modelMap) {
+	public String index(@RequestParam(value = "error", required = false) String eroor,
+			@RequestParam(value = "logout", required = false) String logout,
+			ModelMap modelMap) {
+		
+		if(eroor != null) {
+			modelMap.put("msgs", "Incorrect account or password ?"); 
+		}
+		if(logout != null) {
+			modelMap.put("msg", "Logout Succeccfully");
+		}
 		return "login/index";
 	}
 	
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)
-	public String index() {
+	public String welcome(Authentication authentication) {
+		System.out.println("username " + authentication.getName());
 		return "users/home/index";
 	}
+	
+	
 }
