@@ -48,18 +48,11 @@ public class RegistrationController {
 	
 	@RequestMapping(value = "add" , method = RequestMethod.POST)
 	public String add(@ModelAttribute("account") Account account) {
-		
-		
-		
 		String idRole = roleService.findRoleByNameRole(account.getIdRole());
 		account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
 		account.setIdRole(idRole);
-		
-		
-		
 		account.setStatus(true);
 		account.setDatecreated(new Date());
-		
 		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
 		System.out.println(hash);
 		account.setPassword(hash);
