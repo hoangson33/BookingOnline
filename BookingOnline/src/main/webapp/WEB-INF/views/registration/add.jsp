@@ -75,8 +75,8 @@
                             <div class="select-list">
                                 <s:select style="color: white;" path="idRole">
                                     <s:option style="color: black;" value="">Role</s:option>
-                                    <s:option style="color: black;" value="enterprise">Enterprise</s:option>
-                                    <s:option style="color: black;" value="customer">Customer</s:option>
+                                    <s:option style="color: black;" value="ROLE_ENTERPRISE">Enterprise</s:option>
+                                    <s:option style="color: black;" value="ROLE_CUSTOMER">Customer</s:option>
                                 </s:select>
                             </div>
                         </div>
