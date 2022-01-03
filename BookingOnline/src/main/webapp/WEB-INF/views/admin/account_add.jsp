@@ -287,8 +287,8 @@
 
 <s:select path="idRole" class="form-control pro-edt-select form-control-primary">
  <s:option value="">Role</s:option>
- <s:option value="enterprise">Enterprise</s:option>
- <s:option value="customer">Customer</s:option>
+ <s:option value="ROLE_ENTERPRISE">Enterprise</s:option>
+ <s:option value="ROLE_CUSTOMER">Customer</s:option>
 </s:select>
 
 
