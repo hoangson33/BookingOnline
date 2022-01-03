@@ -32,6 +32,16 @@ public class RoleServiceImpl implements RoleService {
 	public Roles save(Roles role) {
 		return roleRepository.save(role);
 	}
+
+	@Override
+	public Roles find(int id) {
+		return roleRepository.findById(id).get();
+	}
+	
+	@Override
+	public void delete(int id) {
+		roleRepository.deleteById(id);
+	}
 	
 	
 

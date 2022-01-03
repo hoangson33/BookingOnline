@@ -18,6 +18,8 @@ type="java.lang.String"%>
 
 <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/layout_admin/img/favicon.ico">
 
+
+
 <style id="" media="all">/* cyrillic-ext */
 @font-face {
   font-family: 'Roboto';
@@ -1102,6 +1104,8 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 
   gtag('config', 'UA-23581568-13');
 </script>
+
+
 
 </body>
 </html>

@@ -68,6 +68,11 @@ type="java.lang.String"%>
 							<li><a href="${pageContext.request.contextPath }/spa">Spa</a></li>
 							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>
+							<li><a></a></li>
+							<li><a></a></li>
+							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
+							<ul class="dropdown">
+								<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							
 						</ul>
 					</div>

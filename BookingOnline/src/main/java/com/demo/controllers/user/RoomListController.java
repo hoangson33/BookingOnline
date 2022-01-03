@@ -1,15 +1,15 @@
-package com.demo.controllers;
+package com.demo.controllers.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "blogdetails")
-public class BlogDetailsController {
-	@RequestMapping(value = {"","blogdetails"}, method = RequestMethod.GET)
+@RequestMapping(value = "roomlist")
+public class RoomListController {
+	@RequestMapping(value = {"","roomlist"}, method = RequestMethod.GET)
 	public String index() {
 		
-		return "users/news/blogdetails";
+		return "users/room/room_list";
 	}
 }

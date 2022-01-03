@@ -1,4 +1,4 @@
-package com.demo.controllers;
+package com.demo.controllers.user;
 
 import java.util.Date;
 import java.util.HashMap;

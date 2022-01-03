@@ -13,5 +13,9 @@ public interface RoleService {
 	public Iterable<Roles> findAllRole();
 	
 	public Roles save(Roles role);
+	
+	public Roles find(int id);
+	
+	public void delete(int id);
 
 }

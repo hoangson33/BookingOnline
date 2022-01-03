@@ -204,8 +204,8 @@
                                     <td>${role.idRole }</td>
                                     <td><button class="ps-setting">${role.nameRole }</button></td>
                                     <td>
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <a  href="${pageContext.request.contextPath }/admin/edit/${role.idRole}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a href="${pageContext.request.contextPath }/admin/delete/${role.idRole}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                                 
