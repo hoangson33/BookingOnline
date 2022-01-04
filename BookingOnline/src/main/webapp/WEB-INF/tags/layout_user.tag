@@ -72,16 +72,39 @@ type="java.lang.String"%>
 							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>	
 							</c:if>
 					
-							<s:authorize access="hasRole('ROLE_CUSTOMER') or hasRole('ROLE_ENTERPRISE')">
+					
+					
+						<s:authorize access="hasRole('ROLE_CUSTOMER')">
 							<li><a></a></li>
 							<li><a></a></li>
 							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
-			
+							</s:authorize>
+						
+						
+						
+							<s:authorize access="hasRole('ROLE_ENTERPRISE')">
+							<li><a></a></li>
+							<li><a></a></li>
+							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
+							<ul class="dropdown">
+							<li><a href="#">Add room</a></li>
+							<li><a href="#">Personal page</a></li>
+							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
+							</ul>
 							</s:authorize>
 							
+							
+							<s:authorize access="hasRole('ROLE_SUPERADMIN')">
+							<li><a></a></li>
+							<li><a></a></li>
+							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
+							<ul class="dropdown">
+							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
+							</ul>
+							</s:authorize>
 							
 						</ul>
 					</div>
