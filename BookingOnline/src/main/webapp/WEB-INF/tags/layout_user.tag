@@ -91,7 +91,7 @@ type="java.lang.String"%>
 							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/enterprise">Add room</a></li>
-							<li><a href="#">Personal page</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/updateprofile">Personal page</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>
