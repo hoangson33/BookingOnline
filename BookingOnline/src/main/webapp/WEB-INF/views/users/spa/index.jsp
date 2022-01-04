@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 
-<mt:layout_user title="Aboutus">
+<mt:layout_user title="Spa">
 
 	<jsp:attribute name="content">
 	
