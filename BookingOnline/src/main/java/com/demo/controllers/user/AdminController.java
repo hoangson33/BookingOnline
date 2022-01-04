@@ -86,9 +86,11 @@ public class AdminController {
 	@RequestMapping(value = "addAcc" , method = RequestMethod.POST)
 	public String addAcc(@ModelAttribute("account") Account account) {
 		String idRole = roleService.findRoleByNameRole(account.getIdRole());
+		int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
 		account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
 		account.setIdRole(idRole);
 		account.setStatus(true);
+		account.getRoleses().add(roleService.find(idRole2));
 		account.setDatecreated(new Date());
 		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
 		System.out.println(hash);
@@ -121,6 +123,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account") Account account) {
+		
 		account.setDatecreated(new Date());
 		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
 		System.out.println(hash);
