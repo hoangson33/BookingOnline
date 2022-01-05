@@ -69,5 +69,10 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findAvatar(idAcc);
 	}
 
+	@Override
+	public String findEmail(String idAcc) {
+		return accountRepository.findEmail(idAcc);
+	}
+
 
 }

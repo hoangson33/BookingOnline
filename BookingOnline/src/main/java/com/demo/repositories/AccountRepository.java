@@ -22,6 +22,10 @@ public interface AccountRepository extends CrudRepository<Account, Integer>{
 	public String findAvatar(@Param("idAcc") String idAcc);
 	
 	
+	@Query("select email from Account where idAcc = :idAcc")
+	public String findEmail(@Param("idAcc") String idAcc);
+	
+	
 	
 	@Transactional
 	@Modifying

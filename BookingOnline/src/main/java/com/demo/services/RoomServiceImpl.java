@@ -14,7 +14,33 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public Iterable<InfoRoom> findAllRoom() {
-		return roomRepository.findAll();
+		return roomRepository.findAllRoom();
+	}
+
+	@Override
+	public Iterable<InfoRoom> findRoomApproval() {
+		return roomRepository.findRoomApproval();
+	}
+
+	@Override
+	public InfoRoom save(InfoRoom infoRoom) {
+		return roomRepository.save(infoRoom);
+	}
+
+	@Override
+	public void delete(int id) {
+		roomRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public String findAccId(int idRoom) {
+		return roomRepository.findAccId(idRoom);
+	}
+
+	@Override
+	public InfoRoom roomInfo(int idRoom) {
+		return roomRepository.roomInfo(idRoom);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.demo.controllers.user;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -15,11 +16,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.demo.email.SmtpMailSender;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
+import com.demo.models.InfoRoom;
 import com.demo.models.Roles;
 import com.demo.services.AccountService;
 import com.demo.services.RoleService;
@@ -27,9 +31,15 @@ import com.demo.services.RoomService;
 
 @Controller
 @RequestMapping(value = {"","admin"})
-public class AdminController {
+public class AdminController implements ServletContextAware {
 	
 	private ServletContext servletContext;
+	
+	@Autowired
+	private SmtpMailSender smtpMailSender;
+	
+	@Autowired
+	private RoomService roomService;
 	
 	@Autowired
 	private RoleService roleService;
@@ -45,7 +55,14 @@ public class AdminController {
 	
 	@RequestMapping(value = {"","room-list"}, method = RequestMethod.GET)
 	public String roomList(ModelMap modelMap) {
+		modelMap.put("roomlists", roomService.findAllRoom());
 		return "admin/room_list";
+	}
+	
+	@RequestMapping(value = {"","room-list-approval"}, method = RequestMethod.GET)
+	public String roomListApproval(ModelMap modelMap) {
+		modelMap.put("roomlists", roomService.findRoomApproval());
+		return "admin/room_list_approval";
 	}
 	
 	@RequestMapping(value = {"","account-management"}, method = RequestMethod.GET)
@@ -105,19 +122,7 @@ public class AdminController {
 		System.out.println(hash);
 		account.setPassword(hash);
 		account.setAvatar("anhmacdinh.png");
-		
-		
-		
-		
-//		String fileName = UUID.randomUUID().toString().replace("-", "");
-//		String fileNameUpload = UploadHelper.upload(servletContext, file);
-//		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
-//		if(fileNameUpload != null) {
-//			account.setAvatar(fileNameUpload);
-//		}else {
-//			account.setAvatar("anhmacdinh.png");
-//		}
-		
+	
 		accountService.save(account);
 		return "redirect:/admin/account-management";
 	}
@@ -147,7 +152,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
-	public String editAcc(@ModelAttribute("account") Account account) {
+	public String editAcc(@ModelAttribute("account") Account account,
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes) {
 		
 		account.setDatecreated(new Date());
 		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
@@ -156,6 +162,14 @@ public class AdminController {
 		String idRole =  account.getIdRole();
 		account.setIdRole(idRole);
 		account.setStatus(true);
+		
+		
+		String fileName = UUID.randomUUID().toString().replace("-", "");
+		String fileNameUpload = UploadHelper.upload(servletContext, file);
+		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+		if(fileNameUpload != null) {
+			account.setAvatar(fileNameUpload);
+		}
 		accountService.save(account);
 		return "redirect:/admin/account-management";
 	}
@@ -173,18 +187,31 @@ public class AdminController {
 		return "redirect:/admin/account-management";
 	}
 	
+	@RequestMapping(value =  "deleteRoom/{id}", method = RequestMethod.GET)
+	public String deleteRoom(@PathVariable("id") int id, String desc) throws MessagingException {
+		String idAcc = roomService.findAccId(id);
+		String email = accountService.findEmail(idAcc);
+		InfoRoom infoRoom = roomService.roomInfo(id);
+		String body = "<p>We would like to inform you that your request to register your business on the 'BookingHotel' website has been rejected for the following reasons: </p>" + desc +"<br>";
+		body += "Infomation of room : " + "<br>" + "It's " + infoRoom.getRoomCategory() + " room" +"<br>";
+		body += "Quantity of room : " + infoRoom.getQuantityRoom() + "<br>";
+		body += "Quantity of guests : " + infoRoom.getQuantityGuest() + "<br>" + "Price : " + infoRoom.getPrice() + "<br>";
+		body += "Detail address : " + infoRoom.getLocationDetails() + "<br>";
+		body += "Time check in: " + infoRoom.getCheckIn() + ", Time check out: " + infoRoom.getCheckOut() + "<br>";
+		body += "Is required to register on : " + infoRoom.getCreated() + "<br>" + "Thank you" + "<br>" +"The BookingHotel Team";
+		smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
+		roomService.delete(id);
+		
+		return "redirect:/admin/room-list-approval";
+	}
 	
 	
-	@RequestMapping(value = "singleupload" ,  method = RequestMethod.POST)
-	public String singleupload(@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes) {
-		System.out.println("file name : " + file.getOriginalFilename());
-		System.out.println("file type : " + file.getContentType());
-		System.out.println("file size : " + file.getSize());
-		String fileName = UUID.randomUUID().toString().replace("-", "");
-		System.out.println("file name : " + fileName);
-		String fileNameUpload = UploadHelper.upload(servletContext, file); 
-		System.out.println("fileNameUpload : " + fileNameUpload);
-		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);// session flash de xuong ham phia duoi 1 lan roi xoa bo
-		return "redirect:/demo/upload";
+
+	
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
+		
 	}
 }

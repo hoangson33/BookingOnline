@@ -282,9 +282,10 @@
 </div>
 
 <div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
-<img src="${pageContext.request.contextPath }/webapp/assets/uploads/${avatar}"  class="form-control" /> 
+<span class="input-group-addon"></span>
+<img id="school_img" src="${pageContext.request.contextPath }/webapp/assets/uploads/${avatar}"  width="150px"/> 
 </div>
+
 
 
 
@@ -307,8 +308,9 @@
                             <s:hidden path="idRole"/>
 </div>
 
-<button type="button" class="btn btn-ctl-bt waves-effect waves-light">Discard
-</button>
+<div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
+                        	<input type="file" name="file" onchange="show(this)">
+</div>
 </div>
 </div>
 </div>
@@ -319,4 +321,18 @@
  </s:form>
        
        	</jsp:attribute>
+
 </mt:layout_admin>
+
+<script type="text/javascript">
+
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#school_img').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

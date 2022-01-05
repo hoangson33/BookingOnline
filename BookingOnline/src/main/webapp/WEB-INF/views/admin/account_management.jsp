@@ -195,28 +195,26 @@
                             <div>
                             <table >
                                 <tr>
-                                    <th>ID Account</th>
+                                    <th>Image</th>
                                     <th>Username</th>
                                     <th>Name</th>
                                     <th>Status</th>
                                     <th>Gender</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Image</th>
                                     <th>ID Role</th>
                                     
                                     <th>Setting</th>
                                 </tr>
                                 <c:forEach var="account" items="${accounts }" >
                                 <tr>
-                                    <td>${account.idAcc }</td>
+                                    <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}"  width="150px"/></td>
                                     <td>${account.username }</td>
                                     <td>${account.name }</td>
                                     <td><button class="pd-setting">${account.status }</button></td>
                                     <td>${account.gender }</td>
                                     <td>${account.email }</td>
                                     <td>${account.phone }</td>
-                                    <td>${account.avatar }</td>
                                     <td>${account.idRole }</td>
                                     
                                     <td>
