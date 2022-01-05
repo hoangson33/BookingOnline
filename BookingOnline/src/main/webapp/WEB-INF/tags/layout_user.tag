@@ -39,6 +39,8 @@ type="java.lang.String"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/color-1.css">
 <!--responsive css-->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/responsive.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/enterprise/css.css">
 </head>
 <body>
 	<div id="loading">
