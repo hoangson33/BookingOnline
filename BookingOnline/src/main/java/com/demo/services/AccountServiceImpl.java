@@ -79,5 +79,11 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findByUsername(username);
 	}
 
+	@Override
+	public void update(Account account) {
+		accountRepository.save(account);
+		
+	}
+
 
 }

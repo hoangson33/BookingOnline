@@ -22,5 +22,7 @@ public interface AccountService extends UserDetailsService {
 	public String findAvatar(String idAcc);
 	
 	public String findEmail (String idAcc);
+	
+	public void update(Account account);
 
 }

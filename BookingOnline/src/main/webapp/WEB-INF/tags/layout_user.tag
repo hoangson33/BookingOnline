@@ -113,8 +113,7 @@ type="java.lang.String"%>
 				                
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/customer/index">Add room</a></li>
-							<li><a href="${pageContext.request.contextPath }/customer/updateprofile">Personal page</a></li>
+							<li><a href="${pageContext.request.contextPath }/customer">Profile's Customer</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>
