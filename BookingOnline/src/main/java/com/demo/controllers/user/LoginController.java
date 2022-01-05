@@ -39,6 +39,7 @@ public class LoginController {
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)
 	public String welcome(Authentication authentication , ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
+		
 
 		return "users/home/index";
 	}

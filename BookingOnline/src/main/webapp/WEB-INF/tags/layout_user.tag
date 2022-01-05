@@ -41,6 +41,37 @@ type="java.lang.String"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/responsive.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/enterprise/css.css">
+
+
+
+
+
+
+
+<style>
+.avatar {
+  font-size: 1rem;
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #adb5bd;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.avatar-sm {
+  font-size: .875rem;
+  width: 36px;
+  height: 36px;
+}
+</style>
 </head>
 <body>
 	<div id="loading">
@@ -77,10 +108,13 @@ type="java.lang.String"%>
 					
 					
 						<s:authorize access="hasRole('ROLE_CUSTOMER')">
-							<li><a></a></li>
-							<li><a></a></li>
-							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
+							<li><span class="avatar avatar-sm rounded-circle">
+				                  <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg">
+				                
+				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
+							<li><a href="${pageContext.request.contextPath }/customer/index">Add room</a></li>
+							<li><a href="${pageContext.request.contextPath }/customer/updateprofile">Personal page</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>
@@ -88,22 +122,29 @@ type="java.lang.String"%>
 						
 						
 							<s:authorize access="hasRole('ROLE_ENTERPRISE')">
-							<li><a></a></li>
-							<li><a></a></li>
-							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
+							
+							
+							
+							<li><span class="avatar avatar-sm rounded-circle">
+				                  <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg">
+				                
+				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/enterprise">Add room</a></li>
-							<li><a href="${pageContext.request.contextPath }/enterprise/updateprofile">Personal page</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/profile">Profile's Enterprise</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>
 							
 							
 							<s:authorize access="hasRole('ROLE_SUPERADMIN')">
-							<li><a></a></li>
-							<li><a></a></li>
-							<li><a href="#">Username : ${pageContext.request.userPrincipal.name }</a>
+							<li><span class="avatar avatar-sm rounded-circle">
+				                  <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg">
+				                
+				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
+							<li><a href="${pageContext.request.contextPath }/admin">Add room</a></li>
+							<li><a href="${pageContext.request.contextPath }/admin/updateprofile">Personal page</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>
@@ -130,22 +171,7 @@ type="java.lang.String"%>
 
 	
 	<div class="hotel-footer dark">
-		<div class="bigsocial-link">
-			<ul class="clearfix">
-				<li><a href="#" title="Facebook" target="_blank"><i
-						class="fa fa-facebook"></i></a></li>
-				<li><a href="#" title="Twitter" target="_blank"><i
-						class="fa fa-twitter"></i></a></li>
-				<li><a href="#" title="Google plus" target="_blank"><i
-						class="fa fa-google-plus"></i></a></li>
-				<li><a href="#" title="Vemio" target="_blank"><i
-						class="fa fa-vimeo"></i></a></li>
-				<li><a href="#" title="Behance" target="_blank"><i
-						class="fa fa-behance"></i></a></li>
-				<li><a href="#" title="Dribbble" target="_blank"><i
-						class="fa fa-dribbble"></i></a></li>
-			</ul>
-		</div>
+		
 		<footer class="footer-widget">
 			<div class="container">
 				<div class="row">

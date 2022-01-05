@@ -11,6 +11,8 @@ public interface AccountService extends UserDetailsService {
 	
 	public Iterable<Account> findAllAccount();
 	
+	public Iterable<Account> findByUsername(String username);
+	
 	public Account save(Account account);
 	
 	public Account findIdAcc(String idAcc);

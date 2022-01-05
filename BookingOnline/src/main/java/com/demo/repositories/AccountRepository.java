@@ -13,7 +13,10 @@ import com.demo.models.InfoRoom;
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Integer>{
 	@Query("from Account where username = :username")
-	public Account findByUsername(@Param("username") String username);
+	public Iterable<Account> findByUsername(@Param("username") String username);
+	
+	@Query("from Account where username = :username")
+	public Account findByUsername2(@Param("username") String username);
 	
 	@Query("from Account where idAcc = :idAcc")
 	public Account findIdAcc(@Param("idAcc") String idAcc);

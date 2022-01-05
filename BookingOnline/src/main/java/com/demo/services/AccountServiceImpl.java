@@ -46,7 +46,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Account account = accountRepository.findByUsername(username);
+		Account account = accountRepository.findByUsername2(username);
 		if(account == null) {
 			throw new UsernameNotFoundException("Username Not Found");
 		}else {
@@ -72,6 +72,11 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public String findEmail(String idAcc) {
 		return accountRepository.findEmail(idAcc);
+	}
+
+	@Override
+	public Iterable<Account> findByUsername(String username) {
+		return accountRepository.findByUsername(username);
 	}
 
 
