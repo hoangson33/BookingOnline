@@ -35,7 +35,7 @@ public class HighlightRoom implements java.io.Serializable {
 	@Id
 	@GeneratedValue(generator = "generator")
 
-	@Column(name = "idRoom", unique = true, nullable = false)
+	@Column(name = "idroom", unique = true, nullable = false)
 	public int getIdRoom() {
 		return this.idRoom;
 	}
