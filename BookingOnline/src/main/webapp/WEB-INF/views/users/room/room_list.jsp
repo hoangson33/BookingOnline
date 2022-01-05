@@ -53,7 +53,7 @@
 				</div>
 				<div class="col-lg-7 order-1 order-lg-2">
 					<div class="room-img">
-						<img src="${pageContext.request.contextPath }/resources/user/images/featured-room.jpg" alt="carousel img"
+						<img src="${pageContext.request.contextPath }/webapp/static/user/images/featured-room.jpg" alt="carousel img"
 							class="img-fluid">
 						<h3 class="price color-22">
 							$120.00 <span>/ Per Night</span>
@@ -78,7 +78,7 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img1.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img1.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Residential</a>
@@ -97,7 +97,7 @@
 				<!--room-2-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img2.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img2.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Luxurious</a>
@@ -116,7 +116,7 @@
 				<!--room-3-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img3.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img3.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Delux</a>
@@ -135,7 +135,7 @@
 				<!--room-4-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img4.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img4.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Family Room</a>
@@ -154,7 +154,7 @@
 				<!--room-5-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img5.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img5.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Double Bed Room</a>
@@ -173,7 +173,7 @@
 				<!--room-6-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img6.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img6.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Single Bed Room</a>
@@ -192,7 +192,7 @@
 				<!--room-7-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img7.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img7.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Twinn Bed Room</a>
@@ -211,7 +211,7 @@
 				<!--room-8-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img8.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img8.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Double Delux</a>
@@ -230,7 +230,7 @@
 				<!--room-9-->
 				<div class="col-md-4 col-sm-6">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img9.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img9.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15 playfair">
 							<a href="#">Single Delux</a>

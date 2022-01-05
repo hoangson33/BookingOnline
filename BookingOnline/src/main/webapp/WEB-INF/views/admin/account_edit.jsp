@@ -9,7 +9,7 @@
 	<jsp:attribute name="content">
             
             
-<s:form method="post" modelAttribute="account"
+<s:form method="post" modelAttribute="account" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/admin/editAcc">            
 
            <div class="mobile-menu-area">
@@ -283,7 +283,7 @@
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
-<s:input path="avatar" type="text" class="form-control" placeholder="Avatar"/>
+<img src="${pageContext.request.contextPath }/webapp/assets/uploads/${avatar}"  class="form-control" /> 
 </div>
 
 

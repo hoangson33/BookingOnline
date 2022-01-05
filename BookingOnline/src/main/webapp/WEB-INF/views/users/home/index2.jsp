@@ -14,25 +14,25 @@
 <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 <title>Home-2 | Hotel Booking</title>
 <!--favicon icon-->
-<link rel="icon" href="${pageContext.request.contextPath }/resources/user/images/favicon.png">
+<link rel="icon" href="${pageContext.request.contextPath }/webapp/static/user/images/favicon.png">
 <!-- font awesome css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/theme.fonts.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/theme.fonts.css">
 <!--bootstrap min css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/bootstrap.min.css">
 <!--animate css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/animate.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/animate.min.css">
 <!--jquery ui css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/jquery-ui.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/jquery-ui.min.css">
 <!--plugin style css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/plugin.style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/plugin.style.css">
 <!-- global style css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/global.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/global.css">
 <!-- style css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css">
 <!--color css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/color-2.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/color-2.css">
 <!--responsive css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/responsive.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/responsive.css">
 </head>
 <body>
 	<div id="loading">
@@ -96,7 +96,7 @@
 					<div class="col-12">
 						<div id="menuzord" class="menuzord p-0">
 							<a href="index.html" class="menuzord-brand custom-logo-link"><img
-								src="${pageContext.request.contextPath }/resources/user/images/logo-white-v2.png" class="custom-logo" alt="logo"></a>
+								src="${pageContext.request.contextPath }/webapp/static/user/images/logo-white-v2.png" class="custom-logo" alt="logo"></a>
 							<ul class="menuzord-menu">
 								<li class="active"><a href="${pageContext.request.contextPath }/home">Home</a>
 								<ul class="dropdown">
@@ -147,7 +147,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="img-area pos-relative">
-						<img src="${pageContext.request.contextPath }/resources/user/images/welcome-img1.jpg" alt="welcome img"
+						<img src="${pageContext.request.contextPath }/webapp/static/user/images/welcome-img1.jpg" alt="welcome img"
 							class="img-fluid img1">
 					</div>
 				</div>
@@ -155,7 +155,7 @@
 			<div class="row memebership-wrapper">
 				<div class="col-lg-4">
 					<div class="img-area">
-						<img src="${pageContext.request.contextPath }/resources/user/images/welcome-img2.jpg" alt="welcom img"
+						<img src="${pageContext.request.contextPath }/webapp/static/user/images/welcome-img2.jpg" alt="welcom img"
 							class="img-fluid">
 					</div>
 				</div>
@@ -170,7 +170,7 @@
 				</div>
 				<div class="col-lg-4">
 					<div class="img-area">
-						<img src="${pageContext.request.contextPath }/resources/user/images/welcome-img3.jpg" alt="welcom img"
+						<img src="${pageContext.request.contextPath }/webapp/static/user/images/welcome-img3.jpg" alt="welcom img"
 							class="img-fluid">
 					</div>
 				</div>
@@ -192,7 +192,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img1.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img1.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15">
 							<a href="#">Residential</a>
@@ -210,7 +210,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img2.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img2.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15">
 							<a href="#">Luxurious</a>
@@ -228,7 +228,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img3.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img3.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15">
 							<a href="#">Delux</a>
@@ -305,15 +305,15 @@
 						</div>
 						<div class="room-img-wrapper carousel-img-v1">
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img7.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img7.jpg" alt="carousel img"
 									class="img-fluid">
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img1.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img1.jpg" alt="carousel img"
 									class="img-fluid">
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img2.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img2.jpg" alt="carousel img"
 									class="img-fluid">
 							</div>
 						</div>
@@ -362,15 +362,15 @@
 						</div>
 						<div class="room-img-wrapper carousel-img-v2">
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img8.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img8.jpg" alt="carousel img"
 									class="img-fluid">
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img5.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img5.jpg" alt="carousel img"
 									class="img-fluid">
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img6.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img6.jpg" alt="carousel img"
 									class="img-fluid">
 							</div>
 						</div>
@@ -385,11 +385,11 @@
 	<!-- =======================================         ==Start related service section==      =======================================-->
 	<section class="dining-service align-row-left-center">
 		<div class="img-area pos-relative">
-			<img src="${pageContext.request.contextPath }/resources/user/images/dining-service-img1.jpg" alt="service img"
+			<img src="${pageContext.request.contextPath }/webapp/static/user/images/dining-service-img1.jpg" alt="service img"
 				class="img-fluid">
 		</div>
 		<div class="img-area pos-relative">
-			<img src="${pageContext.request.contextPath }/resources/user/images/dining-service-img2.jpg" alt="service img"
+			<img src="${pageContext.request.contextPath }/webapp/static/user/images/dining-service-img2.jpg" alt="service img"
 				class="img-fluid">
 		</div>
 		<div class="dining-content pos-relative">
@@ -447,7 +447,7 @@
 								<h5 class="title-20 text-uppercase color-10 fw-600">David
 									Finch</h5>
 								<div class="author-img radius-100p pos-relative">
-									<img src="${pageContext.request.contextPath }/resources/user/images/testimonial-author3.jpg" class="radius-100p"
+									<img src="${pageContext.request.contextPath }/webapp/static/user/images/testimonial-author3.jpg" class="radius-100p"
 										alt="author">
 								</div>
 								<span class="color-66 fw-600">Co-founder</span>
@@ -463,7 +463,7 @@
 								<h5 class="title-20 text-uppercase color-10 fw-600">David
 									Finch</h5>
 								<div class="author-img radius-100p pos-relative">
-									<img src="${pageContext.request.contextPath }/resources/user/images/testimonial-author3.jpg" class="radius-100p"
+									<img src="${pageContext.request.contextPath }/webapp/static/user/images/testimonial-author3.jpg" class="radius-100p"
 										alt="author">
 								</div>
 								<span class="color-66 fw-600">Co-founder</span>
@@ -498,7 +498,7 @@
 					<div class="single-blog-post">
 						<div class="img-area pos-relative">
 							<a class="display-block" href="blog-details.html"><img
-								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/resources/user/images/blog-img1.jpg"></a><span
+								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/webapp/static/user/images/blog-img1.jpg"></a><span
 								class="date d-block color-00 text-capitalize">07 <br>may
 							</span>
 						</div>
@@ -519,7 +519,7 @@
 					<div class="single-blog-post">
 						<div class="img-area pos-relative">
 							<a class="display-block" href="blog-details.html"><img
-								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/resources/user/images/blog-img2.jpg"></a><span
+								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/webapp/static/user/images/blog-img2.jpg"></a><span
 								class="date d-block color-00 text-capitalize">05 <br>may
 							</span>
 						</div>
@@ -587,21 +587,21 @@
 								</div>
 								<ul class="payment-method display-inline pt-15">
 									<li><a href="#" title="PayPal" target="_blank"><img
-											src="${pageContext.request.contextPath }/resources/user/images/payment-01.png" alt="payment logo"></a></li>
+											src="${pageContext.request.contextPath }/webapp/static/user/images/payment-01.png" alt="payment logo"></a></li>
 									<li><a href="#" title="Master Card" target="_blank"><img
-											src="${pageContext.request.contextPath }/resources/user/images/payment-02.png" alt="payment logo"></a></li>
+											src="${pageContext.request.contextPath }/webapp/static/user/images/payment-02.png" alt="payment logo"></a></li>
 									<li><a href="#" title="Visa" target="_blank"><img
-											src="${pageContext.request.contextPath }/resources/user/images/payment-03.png" alt="payment logo"></a></li>
+											src="${pageContext.request.contextPath }/webapp/static/user/images/payment-03.png" alt="payment logo"></a></li>
 									<li><a href="#" title="American Express" target="_blank"><img
-											src="${pageContext.request.contextPath }/resources/user/images/payment-04.png" alt="payment logo"></a></li>
+											src="${pageContext.request.contextPath }/webapp/static/user/images/payment-04.png" alt="payment logo"></a></li>
 									<li><a href="#" title="Discover" target="_blank"><img
-											src="${pageContext.request.contextPath }/resources/user/images/payment-05.png" alt="payment logo"></a></li>
+											src="${pageContext.request.contextPath }/webapp/static/user/images/payment-05.png" alt="payment logo"></a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-xl-4 offset-xl-2 col-md-5">
 							<div class="single-widget widget1 text-center">
-								<img src="${pageContext.request.contextPath }/resources/user/images/logo-white-v2.png" class="footer-logo"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/logo-white-v2.png" class="footer-logo"
 									alt="footer-logo">
 								<ul class="social-connect display-inline">
 									<li><a href="#" title="Facebook" target="_blank"><i
@@ -636,19 +636,19 @@
 	</div>
 	<!-- =======================================        ==End scroll top==      =======================================-->
 	<!-- jQuary library -->
-	<script src="${pageContext.request.contextPath }/resources/user/js/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/jquery-3.2.1.min.js"></script>
 	<!--bootstrap js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath }/resources/user/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/bootstrap.min.js"></script>
 	<!--owl carousel js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/owl.carousel.min.js"></script>
 	<!--slick js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/slick.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/slick.js"></script>
 	<!--jquery ui js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/jquery-ui.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/jquery-ui.min.js"></script>
 	<!--all plugin js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/plugin.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/plugin.js"></script>
 	<!-- all jQuary activation code here and always it will be bottom of all script tag -->
-	<script src="${pageContext.request.contextPath }/resources/user/js/main.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/main.js"></script>
 </body>
 </html>

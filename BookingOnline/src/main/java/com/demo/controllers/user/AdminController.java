@@ -1,6 +1,9 @@
 package com.demo.controllers.user;
 
 import java.util.Date;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.Roles;
 import com.demo.services.AccountService;
@@ -21,6 +28,8 @@ import com.demo.services.RoomService;
 @Controller
 @RequestMapping(value = {"","admin"})
 public class AdminController {
+	
+	private ServletContext servletContext;
 	
 	@Autowired
 	private RoleService roleService;
@@ -95,7 +104,20 @@ public class AdminController {
 		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
 		System.out.println(hash);
 		account.setPassword(hash);
-		account.setAvatar("abc1.png");
+		account.setAvatar("anhmacdinh.png");
+		
+		
+		
+		
+//		String fileName = UUID.randomUUID().toString().replace("-", "");
+//		String fileNameUpload = UploadHelper.upload(servletContext, file);
+//		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+//		if(fileNameUpload != null) {
+//			account.setAvatar(fileNameUpload);
+//		}else {
+//			account.setAvatar("anhmacdinh.png");
+//		}
+		
 		accountService.save(account);
 		return "redirect:/admin/account-management";
 	}
@@ -118,6 +140,9 @@ public class AdminController {
 	@RequestMapping(value =  "editAcc/{id}", method = RequestMethod.GET)
 	public String editAcc(@PathVariable("id") String id,ModelMap modelMap) {
 		modelMap.put("account", accountService.findIdAcc(id));
+		modelMap.addAttribute("avatar", accountService.findAvatar(id));
+		String avatar = accountService.findAvatar(id);
+		System.out.println("avatar  : " + avatar);
 		return "admin/account_edit";
 	}
 	
@@ -146,5 +171,20 @@ public class AdminController {
 	public String deleteAcc(@PathVariable("id") String id) {
 		accountService.deleteById(id);
 		return "redirect:/admin/account-management";
+	}
+	
+	
+	
+	@RequestMapping(value = "singleupload" ,  method = RequestMethod.POST)
+	public String singleupload(@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes) {
+		System.out.println("file name : " + file.getOriginalFilename());
+		System.out.println("file type : " + file.getContentType());
+		System.out.println("file size : " + file.getSize());
+		String fileName = UUID.randomUUID().toString().replace("-", "");
+		System.out.println("file name : " + fileName);
+		String fileNameUpload = UploadHelper.upload(servletContext, file); 
+		System.out.println("fileNameUpload : " + fileNameUpload);
+		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);// session flash de xuong ham phia duoi 1 lan roi xoa bo
+		return "redirect:/demo/upload";
 	}
 }

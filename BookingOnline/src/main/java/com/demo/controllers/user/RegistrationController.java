@@ -58,7 +58,7 @@ public class RegistrationController {
 		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
 		System.out.println(hash);
 		account.setPassword(hash);
-		account.setAvatar("abc1.png");
+		account.setAvatar("anhmacdinh.png");
 		
 		registrationService.save(account);
 		return "redirect:/registration/index";

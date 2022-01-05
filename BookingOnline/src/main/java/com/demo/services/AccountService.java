@@ -16,5 +16,7 @@ public interface AccountService extends UserDetailsService {
 	public Account findIdAcc(String idAcc);
 	
 	public void deleteById(String id);
+	
+	public String findAvatar(String idAcc);
 
 }

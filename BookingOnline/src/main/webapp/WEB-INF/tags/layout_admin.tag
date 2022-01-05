@@ -16,7 +16,7 @@ type="java.lang.String"%>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/layout_admin/img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath }/webapp/static/layout_admin/img/favicon.ico">
 
 
 
@@ -302,39 +302,39 @@ type="java.lang.String"%>
 }
 </style>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/nalika-icon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/nalika-icon.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/owl.carousel.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/owl.theme.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/owl.transitions.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/owl.carousel.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/owl.theme.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/owl.transitions.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/animate.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/normalize.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/normalize.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/meanmenu.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/meanmenu.min.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/main.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/morrisjs/morris.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/morrisjs/morris.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/scrollbar/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/scrollbar/jquery.mCustomScrollbar.min.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/metisMenu/metisMenu.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/metisMenu/metisMenu-vertical.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/metisMenu/metisMenu.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/metisMenu/metisMenu-vertical.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/calendar/fullcalendar.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/calendar/fullcalendar.print.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/calendar/fullcalendar.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/calendar/fullcalendar.print.min.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/style.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_admin/css/responsive.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_admin/css/responsive.css">
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/vendor/modernizr-2.8.3.min.js"></script>
 <meta name="robots" content="noindex, nofollow">
 <script>(function(w,d){!function(e,t,r,a,s){e[r]=e[r]||{},e[r].executed=[],e.zaraz={deferred:[]};var n=t.getElementsByTagName("title")[0];e[r].c=t.cookie,n&&(e[r].t=t.getElementsByTagName("title")[0].text),e[r].w=e.screen.width,e[r].h=e.screen.height,e[r].j=e.innerHeight,e[r].e=e.innerWidth,e[r].l=e.location.href,e[r].r=t.referrer,e[r].k=e.screen.colorDepth,e[r].n=t.characterSet,e[r].o=(new Date).getTimezoneOffset(),//
 e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([t,r]),e[s].push({"zaraz.start":(new Date).getTime()});var i=t.getElementsByTagName(a)[0],o=t.createElement(a);o.defer=!0,o.src="/cdn-cgi/zaraz/s.js?"+new URLSearchParams(e[r]).toString(),i.parentNode.insertBefore(o,i)}(w,d,"zarazData","script","dataLayer");})(window,document);</script></head>
@@ -345,12 +345,12 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <div class="left-sidebar-pro">
 <nav id="sidebar" class="">
 <div class="sidebar-header">
-<a href="index.html"><img class="main-logo" src="${pageContext.request.contextPath }/resources/layout_admin/img/logo/logo.png" alt="" /></a>
-<strong><img src="${pageContext.request.contextPath }/resources/layout_admin/img/logo/logosn.png" alt="" /></strong>
+<a href="index.html"><img class="main-logo" src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/logo/logo.png" alt="" /></a>
+<strong><img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/logo/logosn.png" alt="" /></strong>
 </div>
 <div class="nalika-profile">
 <div class="profile-dtl">
-<a href="#"><img src="${pageContext.request.contextPath }/resources/layout_admin/img/notification/4.jpg" alt="" /></a>
+<a href="#"><img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/notification/4.jpg" alt="" /></a>
 <h2>Lakian <span class="min-dtn">Das</span></h2>
 </div>
 <div class="profile-social-dtl">
@@ -474,7 +474,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <div class="row">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="logo-pro">
-<a href="index.html"><img class="main-logo" src="${pageContext.request.contextPath }/resources/layout_admin/img/logo/logo.png" alt="" /></a>
+<a href="index.html"><img class="main-logo" src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/logo/logo.png" alt="" /></a>
 </div>
 </div>
 </div>
@@ -516,7 +516,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <li>
 <a href="#">
 <div class="message-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/1.jpg" alt="">
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/1.jpg" alt="">
 </div>
 <div class="message-content">
 <span class="message-date">16 Sept</span>
@@ -528,7 +528,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <li>
 <a href="#">
 <div class="message-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/4.jpg" alt="">
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/4.jpg" alt="">
 </div>
 <div class="message-content">
 <span class="message-date">16 Sept</span>
@@ -540,7 +540,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <li>
 <a href="#">
 <div class="message-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/3.jpg" alt="">
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/3.jpg" alt="">
 </div>
 <div class="message-content">
 <span class="message-date">16 Sept</span>
@@ -552,7 +552,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
  <li>
 <a href="#">
 <div class="message-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/2.jpg" alt="">
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/2.jpg" alt="">
 </div>
 <div class="message-content">
 <span class="message-date">16 Sept</span>
@@ -669,7 +669,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/4.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/4.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -682,7 +682,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
  <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/1.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/1.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -695,7 +695,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/2.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/2.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -708,7 +708,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/3.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/3.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -721,7 +721,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
  <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/4.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/4.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -734,7 +734,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/1.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/1.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -747,7 +747,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/2.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/2.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -760,7 +760,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/1.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/1.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -773,7 +773,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/2.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/2.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -786,7 +786,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <a href="#">
 <div class="notes-list-flow">
 <div class="notes-img">
-<img src="${pageContext.request.contextPath }/resources/layout_admin/img/contact/3.jpg" alt="" />
+<img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/contact/3.jpg" alt="" />
 </div>
 <div class="notes-content">
 <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -1058,43 +1058,43 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 </div>
 </div>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/vendor/jquery-1.12.4.min.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/bootstrap.min.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/wow.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/wow.min.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/jquery-price-slider.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/jquery-price-slider.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/jquery.meanmenu.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/jquery.meanmenu.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/owl.carousel.min.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/jquery.sticky.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/jquery.sticky.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/jquery.scrollUp.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/jquery.scrollUp.min.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/scrollbar/mCustomScrollbar-active.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/scrollbar/mCustomScrollbar-active.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/metisMenu/metisMenu.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/metisMenu/metisMenu-active.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/metisMenu/metisMenu.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/metisMenu/metisMenu-active.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/sparkline/jquery.sparkline.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/sparkline/jquery.charts-sparkline.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/sparkline/jquery.sparkline.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/sparkline/jquery.charts-sparkline.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/calendar/moment.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/calendar/fullcalendar.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/calendar/fullcalendar-active.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/calendar/moment.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/calendar/fullcalendar.min.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/calendar/fullcalendar-active.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/flot/jquery.flot.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/flot/jquery.flot.resize.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/flot/curvedLines.js"></script>
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/flot/flot-active.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/flot/jquery.flot.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/flot/jquery.flot.resize.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/flot/curvedLines.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/flot/flot-active.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/plugins.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/plugins.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/layout_admin/js/main.js"></script>
+<script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/main.js"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>

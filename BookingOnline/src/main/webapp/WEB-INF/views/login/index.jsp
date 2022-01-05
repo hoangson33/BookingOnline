@@ -12,10 +12,10 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_login/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_login/css/style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(${pageContext.request.contextPath }/resources/layout_login/images/bg.jpg);">
+	<body class="img js-fullheight" style="background-image: url(${pageContext.request.contextPath }/webapp/static/layout_login/images/bg.jpg);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -63,10 +63,10 @@
 		</div>
 	</section>
 
-	<script src="${pageContext.request.contextPath }/resources/layout_login/js/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/layout_login/js/popper.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/layout_login/js/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/layout_login/js/main.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/layout_login/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath }/webapp/static/layout_login/js/popper.js"></script>
+  <script src="${pageContext.request.contextPath }/webapp/static/layout_login/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath }/webapp/static/layout_login/js/main.js"></script>
 
 	</body>
 </html>

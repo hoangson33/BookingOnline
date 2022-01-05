@@ -18,6 +18,9 @@ public interface AccountRepository extends CrudRepository<Account, Integer>{
 	@Query("from Account where idAcc = :idAcc")
 	public Account findIdAcc(@Param("idAcc") String idAcc);
 	
+	@Query("select avatar from Account where idAcc = :idAcc")
+	public String findAvatar(@Param("idAcc") String idAcc);
+	
 	
 	
 	@Transactional

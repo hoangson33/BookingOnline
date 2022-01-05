@@ -22,23 +22,23 @@ type="java.lang.String"%>
 <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 <title>Home | Hotel Booking</title>
 <!--favicon icon-->
-<link rel="icon" href="${pageContext.request.contextPath }/resources/user/images/favicon.png">
+<link rel="icon" href="${pageContext.request.contextPath }/webapp/static/user/images/favicon.png">
 <!-- font awesome css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/theme.fonts.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/theme.fonts.css">
 <!--bootstrap min css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/bootstrap.min.css">
 <!--jquery ui css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/jquery-ui.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/jquery-ui.min.css">
 <!--plugin style css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/plugin.style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/plugin.style.css">
 <!-- global style css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/global.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/global.css">
 <!-- style css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/style.css">
 <!--color css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/color-1.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/color-1.css">
 <!--responsive css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/responsive.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/responsive.css">
 </head>
 <body>
 	<div id="loading">
@@ -54,7 +54,7 @@ type="java.lang.String"%>
 				<div class="col-12">
 					<div id="menuzord" class="menuzord p-0">
 						<a href="index.html" class="menuzord-brand custom-logo-link"><img
-							src="${pageContext.request.contextPath }/resources/user/images/logo.png" class="custom-logo" alt="logo"></a>
+							src="${pageContext.request.contextPath }/webapp/static/user/images/logo.png" class="custom-logo" alt="logo"></a>
 						<ul class="menuzord-menu">
 							<li class="active"><a href="${pageContext.request.contextPath }/home/index">Home</a>
 							<ul class="dropdown">
@@ -148,7 +148,7 @@ type="java.lang.String"%>
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
-						<img src="${pageContext.request.contextPath }/resources/user/images/logo.png" class="footer-logo" alt="footer-logo">
+						<img src="${pageContext.request.contextPath }/webapp/static/user/images/logo.png" class="footer-logo" alt="footer-logo">
 						<div class="contact-address clearfix pt-30">
 							<p class="address">
 								<i class="flaticon-placeholder"></i><span class="text-uppercase">ADDRESS:</span>28
@@ -198,19 +198,19 @@ type="java.lang.String"%>
 	</div>
 	<!-- =======================================        ==End scroll top==      =======================================-->
 	<!-- jQuary library -->
-	<script src="${pageContext.request.contextPath }/resources/user/js/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/jquery-3.2.1.min.js"></script>
 	<!--bootstrap js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath }/resources/user/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/bootstrap.min.js"></script>
 	<!--owl carousel js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/owl.carousel.min.js"></script>
 	<!--slick js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/slick.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/slick.js"></script>
 	<!--jquery ui js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/jquery-ui.min.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/jquery-ui.min.js"></script>
 	<!--all plugin js-->
-	<script src="${pageContext.request.contextPath }/resources/user/js/plugin.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/plugin.js"></script>
 	<!-- all jQuary activation code here and always it will be bottom of all script tag -->
-	<script src="${pageContext.request.contextPath }/resources/user/js/main.js"></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/main.js"></script>
 </body>
 </html>

@@ -84,7 +84,7 @@
 	</div>
 	<section class="hotel-service">
 		<div class="single-service">
-			<img src="${pageContext.request.contextPath }/resources/user/images/hotel-service1.jpg" class="img-fluid"
+			<img src="${pageContext.request.contextPath }/webapp/static/user/images/hotel-service1.jpg" class="img-fluid"
 				alt="service image">
 			<div class="service-content text-center pos-relative">
 				<h4 class="color-2d pb-15 text-capitalize">Online Room Booking</h4>
@@ -97,7 +97,7 @@
 			</div>
 		</div>
 		<div class="single-service">
-			<img src="${pageContext.request.contextPath }/resources/user/images/hotel-service2.jpg" class="img-fluid"
+			<img src="${pageContext.request.contextPath }/webapp/static/user/images/hotel-service2.jpg" class="img-fluid"
 				alt="service image">
 			<div class="service-content text-center pos-relative">
 				<h4 class="color-2d pb-15 text-capitalize">Experience staffs</h4>
@@ -110,7 +110,7 @@
 			</div>
 		</div>
 		<div class="single-service">
-			<img src="${pageContext.request.contextPath }/resources/user/images/hotel-service3.jpg" class="img-fluid"
+			<img src="${pageContext.request.contextPath }/webapp/static/user/images/hotel-service3.jpg" class="img-fluid"
 				alt="service image">
 			<div class="service-content text-center pos-relative">
 				<h4 class="color-2d pb-15 text-capitalize">Car Rentals Service</h4>
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 		<div class="single-service">
-			<img src="${pageContext.request.contextPath }/resources/user/images/hotel-service4.jpg" class="img-fluid"
+			<img src="${pageContext.request.contextPath }/webapp/static/user/images/hotel-service4.jpg" class="img-fluid"
 				alt="service image">
 			<div class="service-content text-center pos-relative">
 				<h4 class="color-2d pb-15 text-capitalize">Delicious Food</h4>
@@ -143,10 +143,10 @@
 			<div class="row align-items-lg-center">
 				<div class="col-md-6">
 					<div class="img-area pos-relative">
-						<img src="${pageContext.request.contextPath }/resources/user/images/welcome-img1.jpg" alt="welcome img"
-							class="img-fluid img1"><img src="${pageContext.request.contextPath }/resources/user/images/welcome-img2.jpg"
+						<img src="${pageContext.request.contextPath }/webapp/static/user/images/welcome-img1.jpg" alt="welcome img"
+							class="img-fluid img1"><img src="${pageContext.request.contextPath }/webapp/static/user/images/welcome-img2.jpg"
 							alt="welcome img" class="img-fluid img2"><img
-							src="${pageContext.request.contextPath }/resources/user/images/welcome-img3.jpg" alt="welcome img"
+							src="${pageContext.request.contextPath }/webapp/static/user/images/welcome-img3.jpg" alt="welcome img"
 							class="img-fluid img3">
 					</div>
 				</div>
@@ -229,21 +229,21 @@
 						</div>
 						<div class="room-img-wrapper carousel-img-v1">
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img3.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img3.jpg" alt="carousel img"
 									class="img-fluid">
 								<h3 class="price color-22">
 									$120.00 <span>/ Per Night</span>
 								</h3>
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img1.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img1.jpg" alt="carousel img"
 									class="img-fluid">
 								<h3 class="price color-22">
 									$80.00 <span>/ Per Night</span>
 								</h3>
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img2.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img2.jpg" alt="carousel img"
 									class="img-fluid">
 								<h3 class="price color-22">
 									$180.00 <span>/ Per Night</span>
@@ -321,21 +321,21 @@
 						</div>
 						<div class="room-img-wrapper carousel-img-v2">
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img4.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img4.jpg" alt="carousel img"
 									class="img-fluid">
 								<h3 class="price color-22">
 									$120.00 <span>/ Per Night</span>
 								</h3>
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img5.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img5.jpg" alt="carousel img"
 									class="img-fluid">
 								<h3 class="price color-22">
 									$80.00 <span>/ Per Night</span>
 								</h3>
 							</div>
 							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/resources/user/images/room-carousel-img6.jpg" alt="carousel img"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img6.jpg" alt="carousel img"
 									class="img-fluid">
 								<h3 class="price color-22">
 									$180.00 <span>/ Per Night</span>
@@ -364,7 +364,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img1.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img1.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15">
 							<a href="#">Residential</a>
@@ -382,7 +382,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img2.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img2.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15">
 							<a href="#">Luxurious</a>
@@ -400,7 +400,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/resources/user/images/room-img3.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img3.jpg"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15">
 							<a href="#">Delux</a>
@@ -446,17 +446,17 @@
 	<!-- =======================================         ==Start related service section==      =======================================-->
 	<section class="related-service">
 		<div class="single-service pos-relative">
-			<a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/related-service-img1.jpg"
+			<a href="#"><img src="${pageContext.request.contextPath }/webapp/static/user/images/related-service-img1.jpg"
 				alt="service img" class="img-fluid"></a>
 			<h5 class="color-21">Dining Service</h5>
 		</div>
 		<div class="single-service pos-relative">
-			<a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/related-service-img2.jpg"
+			<a href="#"><img src="${pageContext.request.contextPath }/webapp/static/user/images/related-service-img2.jpg"
 				alt="service img" class="img-fluid"></a>
 			<h5 class="color-21">Spa and Beauty Center</h5>
 		</div>
 		<div class="single-service pos-relative">
-			<a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/related-service-img3.jpg"
+			<a href="#"><img src="${pageContext.request.contextPath }/webapp/static/user/images/related-service-img3.jpg"
 				alt="service img" class="img-fluid"></a>
 			<h5 class="color-21">Swmming Pool</h5>
 		</div>
@@ -482,7 +482,7 @@
 				</div>
 				<div class="col-md-5">
 					<div class="img-area">
-						<img src="${pageContext.request.contextPath }/resources/user/images/iphoneX.png" alt="iphone img" class="img-fluid">
+						<img src="${pageContext.request.contextPath }/webapp/static/user/images/iphoneX.png" alt="iphone img" class="img-fluid">
 					</div>
 				</div>
 			</div>
@@ -527,7 +527,7 @@
 					<div class="testimonial-wrapper owl-carousel">
 						<div class="single-testimonial pos-relative">
 							<div class="author-img radius-100p pos-relative">
-								<img src="${pageContext.request.contextPath }/resources/user/images/testimonial-author7.jpg" class="radius-100p"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/testimonial-author7.jpg" class="radius-100p"
 									alt="author">
 							</div>
 							<p class="author-comment color-77 pos-relative">Praesent
@@ -541,7 +541,7 @@
 						<!--testimonial-2-->
 						<div class="single-testimonial pos-relative">
 							<div class="author-img radius-100p pos-relative">
-								<img src="${pageContext.request.contextPath }/resources/user/images/testimonial-author3.jpg" class="radius-100p"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/testimonial-author3.jpg" class="radius-100p"
 									alt="author">
 							</div>
 							<p class="author-comment color-77 pos-relative">Praesent
@@ -555,7 +555,7 @@
 						<!--testimonial-3-->
 						<div class="single-testimonial pos-relative">
 							<div class="author-img radius-100p pos-relative">
-								<img src="${pageContext.request.contextPath }/resources/user/images/testimonial-author4.jpg" class="radius-100p"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/testimonial-author4.jpg" class="radius-100p"
 									alt="author">
 							</div>
 							<p class="author-comment color-77 pos-relative">Praesent
@@ -569,7 +569,7 @@
 						<!--testimonial-4-->
 						<div class="single-testimonial pos-relative">
 							<div class="author-img radius-100p pos-relative">
-								<img src="${pageContext.request.contextPath }/resources/user/images/testimonial-author5.jpg" class="radius-100p"
+								<img src="${pageContext.request.contextPath }/webapp/static/user/images/testimonial-author5.jpg" class="radius-100p"
 									alt="author">
 							</div>
 							<p class="author-comment color-77 pos-relative">Praesent
@@ -645,7 +645,7 @@
 					<div class="single-blog-post">
 						<div class="img-area pos-relative">
 							<a class="display-block" href="blog-details.html"><img
-								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/resources/user/images/blog-img1.jpg"></a><span
+								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/webapp/static/user/images/blog-img1.jpg"></a><span
 								class="date d-block color-00 text-capitalize">07 <br>may
 							</span>
 						</div>
@@ -666,7 +666,7 @@
 					<div class="single-blog-post">
 						<div class="img-area pos-relative">
 							<a class="display-block" href="blog-details.html"><img
-								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/resources/user/images/blog-img2.jpg"></a><span
+								alt="blog post img" class="img-fluid" src="${pageContext.request.contextPath }/webapp/static/user/images/blog-img2.jpg"></a><span
 								class="date d-block color-00 text-capitalize">05 <br>may
 							</span>
 						</div>

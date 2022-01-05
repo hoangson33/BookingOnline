@@ -12,10 +12,10 @@
     <title>Sign Up Form</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_registration/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_registration/fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/layout_registration/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_registration/css/style.css">
     
     	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<style>
@@ -26,7 +26,7 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript" ></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript" ></script>
-	<script src="${pageContext.request.contextPath }/resources/layout_registration/auto-complete.js" type="text/javascript" ></script>
+	<script src="${pageContext.request.contextPath }/webapp/static/layout_registration/auto-complete.js" type="text/javascript" ></script>
 </head>
 <body>
 
@@ -35,7 +35,7 @@
         <div class="container">
             <div class="booking-content">
                 <div class="booking-image">
-                    <img class="booking-img" src="${pageContext.request.contextPath }/resources/layout_registration/images/form-img.jpg" alt="Booking Image">
+                    <img class="booking-img" src="${pageContext.request.contextPath }/webapp/static/layout_registration/images/form-img.jpg" alt="Booking Image">
                 </div>
                 <div class="booking-form">
                     <s:form id="booking-form" method="post" modelAttribute="account" 
@@ -100,8 +100,8 @@
     </div>
 
     <!-- JS -->
-    <script src="${pageContext.request.contextPath }/resources/layout_registration/vendor/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath }/resources/layout_registration/js/main.js"></script>
+    <script src="${pageContext.request.contextPath }/webapp/static/layout_registration/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/webapp/static/layout_registration/js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVSJqJj8rUJ4BRT56Q2kouF_ZP3hvNu8s&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 
