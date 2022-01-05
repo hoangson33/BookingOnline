@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 3, 2022, 8:11:28 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 5, 2022, 9:32:17 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -10,6 +10,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +36,8 @@ public class InfoRoom implements java.io.Serializable {
 	private String roomHighlight;
 	private Date created;
 	private boolean status;
+	private ImageRoom imageRoom;
+	private HighlightRoom highlightRoom;
 
 	public InfoRoom() {
 	}
@@ -55,6 +58,26 @@ public class InfoRoom implements java.io.Serializable {
 		this.roomHighlight = roomHighlight;
 		this.created = created;
 		this.status = status;
+	}
+
+	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuest,
+			double price, String locationDetails, String imgRoom, Date checkIn, Date checkOut, String roomHighlight,
+			Date created, boolean status, ImageRoom imageRoom, HighlightRoom highlightRoom) {
+		this.account = account;
+		this.desc = desc;
+		this.roomCategory = roomCategory;
+		this.quantityRoom = quantityRoom;
+		this.quantityGuest = quantityGuest;
+		this.price = price;
+		this.locationDetails = locationDetails;
+		this.imgRoom = imgRoom;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.roomHighlight = roomHighlight;
+		this.created = created;
+		this.status = status;
+		this.imageRoom = imageRoom;
+		this.highlightRoom = highlightRoom;
 	}
 
 	@Id
@@ -162,7 +185,7 @@ public class InfoRoom implements java.io.Serializable {
 		this.checkOut = checkOut;
 	}
 
-	@Column(name = "room_highlight", nullable = false, length = 250)
+	@Column(name = "room_highlight", nullable = false, length = 1000)
 	public String getRoomHighlight() {
 		return this.roomHighlight;
 	}
@@ -188,6 +211,24 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "infoRoom")
+	public ImageRoom getImageRoom() {
+		return this.imageRoom;
+	}
+
+	public void setImageRoom(ImageRoom imageRoom) {
+		this.imageRoom = imageRoom;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "infoRoom")
+	public HighlightRoom getHighlightRoom() {
+		return this.highlightRoom;
+	}
+
+	public void setHighlightRoom(HighlightRoom highlightRoom) {
+		this.highlightRoom = highlightRoom;
 	}
 
 }
