@@ -5,12 +5,14 @@ import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
+import javax.validation.Valid;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +30,18 @@ import com.demo.models.Roles;
 import com.demo.services.AccountService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
+import com.demo.validators.AccountValidator;
+import com.demo.validators.RolesValidator;
 
 @Controller
 @RequestMapping(value = {"","admin"})
 public class AdminController implements ServletContextAware {
+	@Autowired
+	private RolesValidator rolesValidator;
+	
+	
+	@Autowired
+	private AccountValidator accountValidator;
 	
 	private ServletContext servletContext;
 	
@@ -94,10 +104,16 @@ public class AdminController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "add" , method = RequestMethod.POST)
-	public String add(@ModelAttribute("role") Roles role) {
-		System.out.println("asdsad : " + role.getNameRole());
-		roleService.save(role);
-		return "redirect:/admin/role-management";
+	public String add(@ModelAttribute("role")@Valid Roles role, BindingResult bindingResult) {
+		rolesValidator.validate(role, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "admin/role_add";
+		}else {
+			System.out.println("asdsad : " + role.getNameRole());
+			roleService.save(role);
+			return "redirect:/admin/role-management";
+		}
+		
 	}
 	
 	
@@ -110,21 +126,27 @@ public class AdminController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "addAcc" , method = RequestMethod.POST)
-	public String addAcc(@ModelAttribute("account") Account account) {
-		String idRole = roleService.findRoleByNameRole(account.getIdRole());
-		int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
-		account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
-		account.setIdRole(idRole);
-		account.setStatus(true);
-		account.getRoleses().add(roleService.find(idRole2));
-		account.setDatecreated(new Date());
-		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
-		System.out.println(hash);
-		account.setPassword(hash);
-		account.setAvatar("anhmacdinh.png");
-	
-		accountService.save(account);
-		return "redirect:/admin/account-management";
+	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult) {
+		accountValidator.validate(account, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "admin/account_add";
+		}else {
+			String idRole = roleService.findRoleByNameRole(account.getIdRole());
+			int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
+			account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
+			account.setIdRole(idRole);
+			account.setStatus(true);
+			account.getRoleses().add(roleService.find(idRole2));
+			account.setDatecreated(new Date());
+			String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
+			System.out.println(hash);
+			account.setPassword(hash);
+			account.setAvatar("anhmacdinh.png");
+		
+			accountService.save(account);
+			return "redirect:/admin/account-management";
+		}
+		
 	}
 	
 	

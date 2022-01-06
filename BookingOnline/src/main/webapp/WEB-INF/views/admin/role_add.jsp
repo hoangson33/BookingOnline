@@ -8,10 +8,10 @@
 
 	<jsp:attribute name="content">
             
-            
+             <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 <s:form method="post" modelAttribute="role" 
 	action="${pageContext.request.contextPath }/admin/add">            
-
+   	
             <div class="mobile-menu-area">
 <div class="container">
 <div class="row">
@@ -236,7 +236,9 @@
 			<span class="input-group-addon"><i class="fa fa-edit"
 																		aria-hidden="true"></i></span>
 			<s:input path="nameRole" type="text" class="form-control" placeholder="Enter name role" />
+				
 			</div>
+			<s:errors path="nameRole" cssClass="format"></s:errors>
 		</div>
 		</div>
 		</div>

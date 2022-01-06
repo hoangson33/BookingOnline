@@ -144,8 +144,8 @@ type="java.lang.String"%>
 				                
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/admin">Add room</a></li>
-							<li><a href="${pageContext.request.contextPath }/admin/updateprofile">Personal page</a></li>
+							<li><a href="${pageContext.request.contextPath }/admin/index">Dashboard</a></li>
+							
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>

@@ -227,7 +227,8 @@
 <span class="input-group-addon"><i class="fa fa-envelope"
 																aria-hidden="true"></i></span>
 <s:input path="email" type="text" class="form-control"
-																placeholder="Email" />
+																placeholder="Email"  />
+																	
 </div>
 
 

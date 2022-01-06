@@ -11,7 +11,7 @@
             
 <s:form method="post" modelAttribute="account"
 			action="${pageContext.request.contextPath }/admin/addAcc">            
-
+   	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
            <div class="mobile-menu-area">
 <div class="container">
 <div class="row">
@@ -220,6 +220,7 @@
 																aria-hidden="true"></i></span>
 <s:input path="username" type="text" class="form-control"
 																placeholder="Username" />
+																<s:errors path="username" cssClass="format"></s:errors>
 </div>
 
 
@@ -229,6 +230,7 @@
 																aria-hidden="true"></i></span>
 <s:input path="password" type="password" class="form-control"
 																placeholder="Password" />
+																<s:errors path="password" cssClass="format"></s:errors>
 </div>
 
 
@@ -238,6 +240,7 @@
 																aria-hidden="true"></i></span>
 <s:input path="email" type="text" class="form-control"
 																placeholder="Email" />
+																<s:errors path="email" cssClass="format"></s:errors>
 </div>
 
 
@@ -247,6 +250,7 @@
 																aria-hidden="true"></i></span>
 <s:input path="name" type="text" class="form-control"
 																placeholder="First Name And Last Name" />
+																<s:errors path="name" cssClass="format"></s:errors>
 </div>
 
 
@@ -255,6 +259,7 @@
  <s:option value="male">Male</s:option>
  <s:option value="female">Female</s:option>
  <s:option value="orthers">Orthers</s:option>
+  <s:errors path="gender" cssClass="format"></s:errors>
 </s:select>
 
 
@@ -272,6 +277,7 @@
 <span class="input-group-addon"><i class="icon nalika-user"
 																aria-hidden="true"></i></span>
 <s:input path="location" type="text" class="form-control" placeholder="Address"/>
+<s:errors path="location" cssClass="format"></s:errors>
 </div>
 
 
