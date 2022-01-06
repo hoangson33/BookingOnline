@@ -82,30 +82,24 @@
 							class="contact-title text-uppercase fw-600 color-22 pos-relative playfair d-inline">Drop
 							us a Line</h3>
 						<div class="abform-area clearfix pos-relative">
-							<form action="#" method="post">
-								<div class="abinput-group name float-left">
-									<label for="name3">Name :</label><input type="text" name="name"
-										id="name3">
-								</div>
+							<form action="${pageContext.request.contextPath }/contact/send" method="post">
+							
 								<div class="abinput-group email float-left">
-									<label for="email3">Email :</label><input type="email"
-										name="email" id="email3">
+									<label for="email3">To :</label><input type="email"
+										name="to" id="email3">
 								</div>
 								<div class="abinput-group subject float-left">
 									<label for="sub3">Subject :</label><input type="text"
 										name="subject" id="sub3">
 								</div>
-								<div class="abinput-group phone float-left">
-									<label for="phone3">Phone :</label><input type="tel"
-										name="phone" id="phone3">
-								</div>
+								
 								<div class="abinput-group msg">
-									<label for="msg3">Message :</label>
-									<textarea name="msg" id="msg3"></textarea>
+									<label for="msg3">Content :</label>
+									<textarea name="content" id="msg3"></textarea>
 								</div>
-								<button type="submit" class="text-uppercase fw-700 color-ff">
-									Send Message<i class="fa fa-long-arrow-right"></i>
-								</button>
+								<input type="submit" class="text-uppercase fw-700 color-ff"
+									value=" Send Message"<i class="fa fa-long-arrow-right"></i>
+								/>
 							</form>
 							<!--/form-->
 						</div>
