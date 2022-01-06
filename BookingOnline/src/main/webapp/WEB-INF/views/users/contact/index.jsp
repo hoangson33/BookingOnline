@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
-
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <mt:layout_user title="Contact">
 
 	<jsp:attribute name="content">
@@ -26,6 +26,7 @@
 	</section>
 	<!-- =======================================         ==End Breadcrumbs section==      =======================================-->
 	<!-- =======================================         ==Start google map section==      =======================================-->
+
 	<section class="google_map_section">
 		<div id="map" class="mapHome1">
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.282674386518!2d106.69299481535633!3d10.789648561898538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528cb4e091365%3A0xa7efabed68ed397b!2zMjQgUGhhbiBMacOqbSwgxJBhIEthbywgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1641438177384!5m2!1sen!2s" class="col-sm-12"  height="700" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -75,6 +76,7 @@
 	</section>
 	<!-- =======================================         ==End contact info section==      =======================================-->
 	<!-- =======================================         ==Start contact form section==      =======================================-->
+	<c:if test="${pageContext.request.userPrincipal.name != null }">	
 	<section class="luxary-trip-contact section-padding">
 		<div class="container">
 			<div class="row ">
@@ -86,22 +88,21 @@
 						<div class="abform-area clearfix pos-relative">
 							<form action="${pageContext.request.contextPath }/contact/send" method="post">
 							
-								<div class="abinput-group email float-left">
-									<label for="email3">To :</label><input type="email"
-										name="to" id="email3">
-								</div>
+								
+								
 								<div class="abinput-group subject float-left">
 									<label for="sub3">Subject :</label><input type="text"
 										name="subject" id="sub3">
-								</div>
-								
+								</div>	
 								<div class="abinput-group msg">
 									<label for="msg3">Content :</label>
 									<textarea name="content" id="msg3"></textarea>
 								</div>
+									
 								<button type="submit" class="text-uppercase fw-700 color-ff "
 									value=" ">Send Message<i class="fa fa-long-arrow-right"></i>
 								</button>
+								
 							</form>
 							<!--/form-->
 						</div>
@@ -111,6 +112,53 @@
 			</div>
 		</div>
 	</section>
+	</c:if>
+	
+	
+	
+	
+	
+	
+	<c:if test="${pageContext.request.userPrincipal.name == null }">	
+	<section class="luxary-trip-contact section-padding">
+		<div class="container">
+			<div class="row ">
+				<div class="col-12">
+					<div class="wrapper">
+						<h3
+							class="contact-title text-uppercase fw-600 color-22 pos-relative playfair d-inline">Drop
+							us a Line</h3>
+						<div class="abform-area clearfix pos-relative">
+							<form  action="#">
+							
+								
+								
+								<div class="abinput-group subject float-left">
+									<label for="sub3">Subject :</label><input type="text"
+										name="subject" id="sub3">
+								</div>	
+								<div class="abinput-group msg">
+									<label for="msg3">Content :</label>
+									<textarea name="content" id="msg3"></textarea>
+								</div>
+									
+								<button type="submit" class="text-uppercase fw-700 color-ff "
+									value=" ">Send Message<i class="fa fa-long-arrow-right"></i>
+								</button>
+								
+							</form>
+							<!--/form-->
+						</div>
+					</div>
+				</div>
+				<!--/col-->
+			</div>
+		</div>
+	</section>
+	</c:if>
+	
+	
+	
 	<!-- =======================================         ==End contact form section==      =======================================-->
 	<!-- =======================================         ==Start fact section==      =======================================-->
 	<!-- =======================================         ==End fact section==      =======================================-->
@@ -137,8 +185,8 @@
 	</section>
 	<!-- =======================================         ==End about cta section==      =======================================-->
 	<!-- =======================================         ==Start footer section==      =======================================-->
-	<div class="hotel-footer dark">
+
 	
-	
+
 	</jsp:attribute>
 </mt:layout_user>

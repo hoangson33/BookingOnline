@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_registration/css/style.css">
     
     	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 	<style>
 	.container {
 	  margin-top: 20px;
@@ -43,22 +44,28 @@
                         <h2 style="color: white;">The best service for your tour!</h2>
                         <div class="form-group form-input">
                             <s:input path="name" style="color: white;" type="text" name="name"/>
+                            	<s:errors path="name" cssClass="format"></s:errors>
                             <label for="name" class="form-label">Your name</label>
+                            
                         </div>
                         <div class="form-group form-input">
                             <s:input path="username" style="color: white;" type="text" name="username"  />
+                            	<s:errors path="username" cssClass="format"></s:errors>
                             <label for="name" class="form-label">Username</label>
                         </div>
                         <div class="form-group form-input">
                             <s:input path="password" style="color: white;" type="password" name="name"  />
+                            	<s:errors path="password" cssClass="format"></s:errors>
                             <label for="name" class="form-label">Password</label>
                         </div>
                         <div class="form-group form-input">
                             <s:input path="email" style="color: white;" type="text" name="email"  />
+                            	<s:errors path="email" cssClass="format"></s:errors>
                             <label for="email" class="form-label">Email</label>
                         </div>
                         <div class="form-group form-input">
                             <s:input path="phone" type="number" name="phone" id="phone" value=""  />
+                           
                             <label for="phone" class="form-label">Your phone number</label>
                         </div>
                         <div class="form-group">
@@ -68,6 +75,7 @@
                                     <s:option style="color: black;" value="male">Male</s:option>
                                     <s:option style="color: black;" value="female">Female</s:option>
                                     <s:option style="color: black;" value="orthers">Orthers</s:option>
+                                    <s:errors path="gender" cssClass="format"></s:errors>
                                 </s:select>
                             </div>
                         </div>
@@ -83,7 +91,7 @@
                         
                         <div class="form-group form-input">
                             <s:input path="location" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control" />
-                            
+                            	<s:errors path="location" cssClass="format"></s:errors>
                         </div>
   
                         

@@ -100,7 +100,9 @@ type="java.lang.String"%>
 								</ul></li>
 							<li><a href="${pageContext.request.contextPath }/aboutus">About Us</a></li>
 							<li><a href="${pageContext.request.contextPath }/spa">Spa</a></li>
-							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>			
+						
+							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>		
+								
 							<c:if test="${pageContext.request.userPrincipal.name == null }">
 							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>	
 							</c:if>
