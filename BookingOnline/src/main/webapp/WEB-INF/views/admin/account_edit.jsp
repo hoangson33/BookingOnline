@@ -215,21 +215,11 @@
 <div class="review-content-section">
 
 
-<div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"><i class="icon nalika-user"
-																aria-hidden="true"></i></span>
-<s:input path="username" type="text" class="form-control"
-																placeholder="Username" />
-</div>
 
 
 
-<div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"><i class="icon nalika-edit"
-																aria-hidden="true"></i></span>
-<s:input path="password" type="password" class="form-control"
-																placeholder="Password" />
-</div>
+
+
 
 
 
@@ -243,19 +233,22 @@
 
 
 <div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"><i class="icon nalika-new-file"
+<span class="input-group-addon"><i class="fa fa-user"
 																aria-hidden="true"></i></span>
 <s:input path="name" type="text" class="form-control"
 																placeholder="First Name And Last Name" />
 </div>
 
 
+<div class="input-group mg-b-pro-edt">
+<span class="input-group-addon"><i class="fa fa-transgender" aria-hidden="true"></i></span>
 <s:select path="gender" class="form-control pro-edt-select form-control-primary">
  <s:option value="">Gender</s:option>
  <s:option value="male">Male</s:option>
  <s:option value="female">Female</s:option>
  <s:option value="orthers">Orthers</s:option>
 </s:select>
+</div>
 
 
 
@@ -269,7 +262,7 @@
 
 
 <div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"><i class="icon nalika-user"
+<span class="input-group-addon"><i class="fa fa-book "
 																aria-hidden="true"></i></span>
 <s:input path="location" type="text" class="form-control" placeholder="Address"/>
 </div>
@@ -277,7 +270,7 @@
 
 
 <div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
+<span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
 <s:input path="phone" type="text" class="form-control" placeholder="Phone"/>
 </div>
 

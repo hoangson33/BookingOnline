@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.services.AccountService;
+import com.demo.services.RoleService;
 
 
 
@@ -31,6 +32,9 @@ import com.demo.services.AccountService;
 public class EnterpriseController implements ServletContextAware {
 	
 	private ServletContext servletContext;
+	
+	@Autowired
+	private RoleService roleService;
 
 	@Autowired
 	private AccountService accountService;
@@ -73,6 +77,8 @@ public class EnterpriseController implements ServletContextAware {
 		String idRole =  account.getIdRole();
 		account.setIdRole(idRole);
 		account.setStatus(true);
+		
+		account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
 		
 		
 		String fileName = UUID.randomUUID().toString().replace("-", "");

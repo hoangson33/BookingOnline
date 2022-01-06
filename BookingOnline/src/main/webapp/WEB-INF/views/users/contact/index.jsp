@@ -27,7 +27,9 @@
 	<!-- =======================================         ==End Breadcrumbs section==      =======================================-->
 	<!-- =======================================         ==Start google map section==      =======================================-->
 	<section class="google_map_section">
-		<div id="map" class="mapHome1"></div>
+		<div id="map" class="mapHome1">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.282674386518!2d106.69299481535633!3d10.789648561898538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528cb4e091365%3A0xa7efabed68ed397b!2zMjQgUGhhbiBMacOqbSwgxJBhIEthbywgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1641438177384!5m2!1sen!2s" class="col-sm-12"  height="700" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+		</div>
 	</section>
 	<!-- =======================================         ==End google map section==      =======================================-->
 	<!-- =======================================         ==Start contact info section==      =======================================-->
@@ -97,9 +99,9 @@
 									<label for="msg3">Content :</label>
 									<textarea name="content" id="msg3"></textarea>
 								</div>
-								<input type="submit" class="text-uppercase fw-700 color-ff"
-									value=" Send Message"<i class="fa fa-long-arrow-right"></i>
-								/>
+								<button type="submit" class="text-uppercase fw-700 color-ff "
+									value=" ">Send Message<i class="fa fa-long-arrow-right"></i>
+								</button>
 							</form>
 							<!--/form-->
 						</div>

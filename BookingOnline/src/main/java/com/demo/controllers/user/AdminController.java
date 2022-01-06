@@ -154,21 +154,27 @@ public class AdminController implements ServletContextAware {
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account") Account account,
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes) {
+		Account accountOld = accountService.findIdAcc(account.getIdAcc());
+		
+		
+		
 		
 		account.setDatecreated(new Date());
-		String hash  = new BCryptPasswordEncoder().encode(account.getPassword());
-		System.out.println(hash);
-		account.setPassword(hash);
-		String idRole =  account.getIdRole();
-		account.setIdRole(idRole);
-		account.setStatus(true);
 		
+		account.setPassword(accountOld.getPassword());
+		String idRole2  = accountOld.getIdRole();
+		System.out.println("idRole2 :  " + idRole2);
+		account.setIdRole(idRole2);
+		account.setStatus(true);
+		account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
 		
 		String fileName = UUID.randomUUID().toString().replace("-", "");
 		String fileNameUpload = UploadHelper.upload(servletContext, file);
 		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
 		if(fileNameUpload != null) {
 			account.setAvatar(fileNameUpload);
+		}else {
+			account.setAvatar(accountOld.getAvatar());
 		}
 		accountService.save(account);
 		return "redirect:/admin/account-management";
