@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 5, 2022, 9:32:17 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 7, 2022, 1:07:20 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -27,8 +27,10 @@ public class InfoRoom implements java.io.Serializable {
 	private String desc;
 	private String roomCategory;
 	private int quantityRoom;
-	private int quantityGuest;
+	private int quantityGuestAdult;
+	private int quantityGuestChildren;
 	private double price;
+	private double priceSale;
 	private String locationDetails;
 	private String imgRoom;
 	private Date checkIn;
@@ -42,15 +44,17 @@ public class InfoRoom implements java.io.Serializable {
 	public InfoRoom() {
 	}
 
-	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuest,
-			double price, String locationDetails, String imgRoom, Date checkIn, Date checkOut, String roomHighlight,
-			Date created, boolean status) {
+	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuestAdult,
+			int quantityGuestChildren, double price, double priceSale, String locationDetails, String imgRoom,
+			Date checkIn, Date checkOut, String roomHighlight, Date created, boolean status) {
 		this.account = account;
 		this.desc = desc;
 		this.roomCategory = roomCategory;
 		this.quantityRoom = quantityRoom;
-		this.quantityGuest = quantityGuest;
+		this.quantityGuestAdult = quantityGuestAdult;
+		this.quantityGuestChildren = quantityGuestChildren;
 		this.price = price;
+		this.priceSale = priceSale;
 		this.locationDetails = locationDetails;
 		this.imgRoom = imgRoom;
 		this.checkIn = checkIn;
@@ -60,15 +64,18 @@ public class InfoRoom implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuest,
-			double price, String locationDetails, String imgRoom, Date checkIn, Date checkOut, String roomHighlight,
-			Date created, boolean status, ImageRoom imageRoom, HighlightRoom highlightRoom) {
+	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuestAdult,
+			int quantityGuestChildren, double price, double priceSale, String locationDetails, String imgRoom,
+			Date checkIn, Date checkOut, String roomHighlight, Date created, boolean status, ImageRoom imageRoom,
+			HighlightRoom highlightRoom) {
 		this.account = account;
 		this.desc = desc;
 		this.roomCategory = roomCategory;
 		this.quantityRoom = quantityRoom;
-		this.quantityGuest = quantityGuest;
+		this.quantityGuestAdult = quantityGuestAdult;
+		this.quantityGuestChildren = quantityGuestChildren;
 		this.price = price;
+		this.priceSale = priceSale;
 		this.locationDetails = locationDetails;
 		this.imgRoom = imgRoom;
 		this.checkIn = checkIn;
@@ -129,13 +136,22 @@ public class InfoRoom implements java.io.Serializable {
 		this.quantityRoom = quantityRoom;
 	}
 
-	@Column(name = "quantity_guest", nullable = false)
-	public int getQuantityGuest() {
-		return this.quantityGuest;
+	@Column(name = "quantity_guest_adult", nullable = false)
+	public int getQuantityGuestAdult() {
+		return this.quantityGuestAdult;
 	}
 
-	public void setQuantityGuest(int quantityGuest) {
-		this.quantityGuest = quantityGuest;
+	public void setQuantityGuestAdult(int quantityGuestAdult) {
+		this.quantityGuestAdult = quantityGuestAdult;
+	}
+
+	@Column(name = "quantity_guest_children", nullable = false)
+	public int getQuantityGuestChildren() {
+		return this.quantityGuestChildren;
+	}
+
+	public void setQuantityGuestChildren(int quantityGuestChildren) {
+		this.quantityGuestChildren = quantityGuestChildren;
 	}
 
 	@Column(name = "price", nullable = false, precision = 22, scale = 0)
@@ -145,6 +161,15 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	@Column(name = "price_sale", nullable = false, precision = 22, scale = 0)
+	public double getPriceSale() {
+		return this.priceSale;
+	}
+
+	public void setPriceSale(double priceSale) {
+		this.priceSale = priceSale;
 	}
 
 	@Column(name = "location_details", nullable = false, length = 250)

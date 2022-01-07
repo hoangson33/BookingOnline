@@ -196,14 +196,14 @@
 							<p class="color-22 text-center">Book with Stuck Hotel</p>
 							<span class="divider"></span>
 							<div class="group checkin">
-								<label for="booking-checkin">CHECK IN Date</label><input
+								<label for="booking-checkin">CHECK IN Date</label><s:input path="checkIn"
 									type="text" id="booking-checkin" placeholder="MM/DD/YY"
-									readonly>
+									readonly/>
 							</div>
 							<div class="group checkout">
-								<label for="booking-checkout">CHECK OUT Date</label><input
+								<label for="booking-checkout">CHECK OUT Date</label><s:input path="checkOut"
 									type="text" id="booking-checkout" placeholder="MM/DD/YY"
-									readonly>
+									readonly/>
 							</div>
 							<div class="group children">
 								<label for="children">Children</label><input type="text"
