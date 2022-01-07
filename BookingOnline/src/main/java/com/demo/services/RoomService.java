@@ -19,6 +19,7 @@ public interface RoomService {
 	public String findAccId(int idRoom);
 	
 	public InfoRoom roomInfo(int idRoom);
+
 	
 	
 

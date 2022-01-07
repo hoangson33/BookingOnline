@@ -195,8 +195,10 @@
                                     <th>Image</th>
                                     <th>Room Category</th>
                                     <th>Total number of rooms</th>
-                                    <th>Total number of guests</th>
-                                    <th>Product sales</th>
+                                    <th>Total number of adult</th>
+                                    <th>Total number of childrens</th>
+                                    <th>Price Sale</th>
+                                    <th>Price</th>
                                     <th>Detail Address</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
@@ -209,7 +211,9 @@
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
                                     <td>${roomlist.quantityRoom }</td>
-                                    <td>${roomlist.quantityGuest }</td>
+                                    <td>${roomlist.quantityGuestAdult }</td>
+                                    <td>${roomlist.quantityGuestChildren }</td>
+                                    <td>% ${roomlist.priceSale }</td>
                                     <td>$ ${roomlist.price }</td>
                                     <td>${roomlist.locationDetails }</td>
                                     <td>${roomlist.checkIn }</td>

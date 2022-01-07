@@ -353,7 +353,7 @@ function validateForm() {
         if (input.files && input.files[0]) {
             var filerdr = new FileReader();
             filerdr.onload = function (e) {
-                $('#school_img').attr('src', e.target.result);
+                $('#school_img').attr('src', e.target.result).width(150).height(150);
             }
             filerdr.readAsDataURL(input.files[0]);
         }

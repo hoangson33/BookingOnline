@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 7, 2022, 1:22:10 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 7, 2022, 7:06:18 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -10,7 +10,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,64 +23,40 @@ public class InfoRoom implements java.io.Serializable {
 
 	private Integer idRoom;
 	private Account account;
-	private String desc;
-	private String roomCategory;
-	private int quantityRoom;
-	private int quantityGuestAdult;
-	private int quantityGuestChildren;
-	private double price;
-	private double priceSale;
-	private String locationDetails;
-	private String imgRoom;
 	private Date checkIn;
 	private Date checkOut;
+	private int guestChildren;
+	private int guestAdult;
+	private String description;
+	private String roomCategory;
+	private int quantityRoom;
+	private double price;
+	private double salePrice;
+	private String locationDetail;
+	private String imgRoom;
 	private Date created;
 	private boolean status;
-	private ImageRoom imageRoom;
-	private HighlightRoom highlightRoom;
 
 	public InfoRoom() {
 	}
 
-	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuestAdult,
-			int quantityGuestChildren, double price, double priceSale, String locationDetails, String imgRoom,
-			Date checkIn, Date checkOut, Date created, boolean status) {
+	public InfoRoom(Account account, Date checkIn, Date checkOut, int guestChildren, int guestAdult, String description,
+			String roomCategory, int quantityRoom, double price, double salePrice, String locationDetail,
+			String imgRoom, Date created, boolean status) {
 		this.account = account;
-		this.desc = desc;
-		this.roomCategory = roomCategory;
-		this.quantityRoom = quantityRoom;
-		this.quantityGuestAdult = quantityGuestAdult;
-		this.quantityGuestChildren = quantityGuestChildren;
-		this.price = price;
-		this.priceSale = priceSale;
-		this.locationDetails = locationDetails;
-		this.imgRoom = imgRoom;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
-		this.created = created;
-		this.status = status;
-	}
-
-	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuestAdult,
-			int quantityGuestChildren, double price, double priceSale, String locationDetails, String imgRoom,
-			Date checkIn, Date checkOut, Date created, boolean status, ImageRoom imageRoom,
-			HighlightRoom highlightRoom) {
-		this.account = account;
-		this.desc = desc;
+		this.guestChildren = guestChildren;
+		this.guestAdult = guestAdult;
+		this.description = description;
 		this.roomCategory = roomCategory;
 		this.quantityRoom = quantityRoom;
-		this.quantityGuestAdult = quantityGuestAdult;
-		this.quantityGuestChildren = quantityGuestChildren;
 		this.price = price;
-		this.priceSale = priceSale;
-		this.locationDetails = locationDetails;
+		this.salePrice = salePrice;
+		this.locationDetail = locationDetail;
 		this.imgRoom = imgRoom;
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
 		this.created = created;
 		this.status = status;
-		this.imageRoom = imageRoom;
-		this.highlightRoom = highlightRoom;
 	}
 
 	@Id
@@ -97,94 +72,13 @@ public class InfoRoom implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "account_id", nullable = false)
+	@JoinColumn(name = "id_acc", nullable = false)
 	public Account getAccount() {
 		return this.account;
 	}
 
 	public void setAccount(Account account) {
 		this.account = account;
-	}
-
-	@Column(name = "desc", nullable = false)
-	public String getDesc() {
-		return this.desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-
-	@Column(name = "room_category", nullable = false, length = 250)
-	public String getRoomCategory() {
-		return this.roomCategory;
-	}
-
-	public void setRoomCategory(String roomCategory) {
-		this.roomCategory = roomCategory;
-	}
-
-	@Column(name = "quantity_room", nullable = false)
-	public int getQuantityRoom() {
-		return this.quantityRoom;
-	}
-
-	public void setQuantityRoom(int quantityRoom) {
-		this.quantityRoom = quantityRoom;
-	}
-
-	@Column(name = "quantity_guest_adult", nullable = false)
-	public int getQuantityGuestAdult() {
-		return this.quantityGuestAdult;
-	}
-
-	public void setQuantityGuestAdult(int quantityGuestAdult) {
-		this.quantityGuestAdult = quantityGuestAdult;
-	}
-
-	@Column(name = "quantity_guest_children", nullable = false)
-	public int getQuantityGuestChildren() {
-		return this.quantityGuestChildren;
-	}
-
-	public void setQuantityGuestChildren(int quantityGuestChildren) {
-		this.quantityGuestChildren = quantityGuestChildren;
-	}
-
-	@Column(name = "price", nullable = false, precision = 22, scale = 0)
-	public double getPrice() {
-		return this.price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	@Column(name = "price_sale", nullable = false, precision = 22, scale = 0)
-	public double getPriceSale() {
-		return this.priceSale;
-	}
-
-	public void setPriceSale(double priceSale) {
-		this.priceSale = priceSale;
-	}
-
-	@Column(name = "location_details", nullable = false, length = 250)
-	public String getLocationDetails() {
-		return this.locationDetails;
-	}
-
-	public void setLocationDetails(String locationDetails) {
-		this.locationDetails = locationDetails;
-	}
-
-	@Column(name = "img_room", nullable = false, length = 65535)
-	public String getImgRoom() {
-		return this.imgRoom;
-	}
-
-	public void setImgRoom(String imgRoom) {
-		this.imgRoom = imgRoom;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -207,6 +101,87 @@ public class InfoRoom implements java.io.Serializable {
 		this.checkOut = checkOut;
 	}
 
+	@Column(name = "guest_children", nullable = false)
+	public int getGuestChildren() {
+		return this.guestChildren;
+	}
+
+	public void setGuestChildren(int guestChildren) {
+		this.guestChildren = guestChildren;
+	}
+
+	@Column(name = "guest_adult", nullable = false)
+	public int getGuestAdult() {
+		return this.guestAdult;
+	}
+
+	public void setGuestAdult(int guestAdult) {
+		this.guestAdult = guestAdult;
+	}
+
+	@Column(name = "description", nullable = false, length = 1000)
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Column(name = "room_category", nullable = false, length = 50)
+	public String getRoomCategory() {
+		return this.roomCategory;
+	}
+
+	public void setRoomCategory(String roomCategory) {
+		this.roomCategory = roomCategory;
+	}
+
+	@Column(name = "quantity_room", nullable = false)
+	public int getQuantityRoom() {
+		return this.quantityRoom;
+	}
+
+	public void setQuantityRoom(int quantityRoom) {
+		this.quantityRoom = quantityRoom;
+	}
+
+	@Column(name = "price", nullable = false, precision = 22, scale = 0)
+	public double getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Column(name = "sale_price", nullable = false, precision = 22, scale = 0)
+	public double getSalePrice() {
+		return this.salePrice;
+	}
+
+	public void setSalePrice(double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	@Column(name = "location_detail", nullable = false, length = 250)
+	public String getLocationDetail() {
+		return this.locationDetail;
+	}
+
+	public void setLocationDetail(String locationDetail) {
+		this.locationDetail = locationDetail;
+	}
+
+	@Column(name = "img_room", nullable = false, length = 65535)
+	public String getImgRoom() {
+		return this.imgRoom;
+	}
+
+	public void setImgRoom(String imgRoom) {
+		this.imgRoom = imgRoom;
+	}
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created", nullable = false, length = 10)
 	public Date getCreated() {
@@ -224,24 +199,6 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "infoRoom")
-	public ImageRoom getImageRoom() {
-		return this.imageRoom;
-	}
-
-	public void setImageRoom(ImageRoom imageRoom) {
-		this.imageRoom = imageRoom;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "infoRoom")
-	public HighlightRoom getHighlightRoom() {
-		return this.highlightRoom;
-	}
-
-	public void setHighlightRoom(HighlightRoom highlightRoom) {
-		this.highlightRoom = highlightRoom;
 	}
 
 }

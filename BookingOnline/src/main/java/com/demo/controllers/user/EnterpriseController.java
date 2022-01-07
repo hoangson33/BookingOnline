@@ -1,16 +1,20 @@
 package com.demo.controllers.user;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +26,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
+import com.demo.models.InfoRoom;
 import com.demo.services.AccountService;
 import com.demo.services.RoleService;
+import com.demo.services.RoomService;
 
 
 
@@ -35,6 +41,11 @@ public class EnterpriseController implements ServletContextAware {
 	
 	@Autowired
 	private RoleService roleService;
+	
+
+	
+	@Autowired
+	private RoomService roomService;
 
 	@Autowired
 	private AccountService accountService;
@@ -99,6 +110,73 @@ public class EnterpriseController implements ServletContextAware {
 		
 
 		return "users/home/index";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "addRoom", method = RequestMethod.GET)
+	public String addRoom(ModelMap modelMap,Authentication authentication) {
+		InfoRoom infoRoom = new InfoRoom();
+		String name = authentication.getName();
+		
+		Account account = accountService.findByUsername2(name);
+		modelMap.put("idAcc", account.getIdAcc());
+		modelMap.put("infoRoom", infoRoom);
+		return "users/enterprise/addroom";
+	}
+
+	
+	@RequestMapping(value = "addRoom" , method = RequestMethod.POST)
+	public String addRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom, @RequestParam(value = "file") MultipartFile file, Authentication authentication, RedirectAttributes redirectAttributes ) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String CheckIn =  String.valueOf(infoRoom.getCheckIn()) ;
+		String CheckOut =  String.valueOf(infoRoom.getCheckOut()) ;
+		try {
+			
+			
+			String fileName = UUID.randomUUID().toString().replace("-", "");
+			String fileNameUpload = UploadHelper.upload(servletContext, file);
+			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+			if(fileNameUpload != null) {
+				infoRoom.setImgRoom(fileNameUpload);
+			}
+			infoRoom.setCreated(new Date());
+			
+			infoRoom.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
+			infoRoom.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
+			String name = authentication.getName();
+			
+			Account account = accountService.findByUsername2(name);	
+			System.out.println("********************* : " +infoRoom.getAccount().getIdAcc());
+			
+			
+			
+			infoRoom.setStatus(false);
+			
+			
+			
+			
+			
+//			else {
+//				
+//				for(MultipartFile file :files) {
+//					System.out.println("file name : " + file.getOriginalFilename());
+//					System.out.println("file type : " + file.getContentType());
+//					System.out.println("file size : " + file.getSize());
+//					String fileNameUploads = UploadHelper.upload(servletContext, file);
+//					imageRoom.setImage(fileNameUploads);
+//					imageRoomService.save(imageRoom);
+//				}
+//			}
+		} catch (ParseException e) {
+			System.err.println(e.getMessage());
+		}
+		
+				roomService.save(infoRoom);
+				return "redirect:/enterprise/addRoom";
+		
+		
 	}
 	
 	

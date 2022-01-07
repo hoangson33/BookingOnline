@@ -131,7 +131,7 @@ type="java.lang.String"%>
 				                
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/enterprise/addroom">Add room</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/addRoom">Add Room</a></li>
 							<li><a href="${pageContext.request.contextPath }/enterprise/profile">Profile's Enterprise</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>

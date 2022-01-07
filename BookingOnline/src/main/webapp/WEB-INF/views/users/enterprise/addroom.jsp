@@ -145,7 +145,9 @@
 	<jsp:attribute name="content">
 	
 	
-	
+
+			
+				
 	
 	<!-- =======================================         ==End Header section==      =======================================-->
 	<!-- =======================================         ==Start Breadcrumbs section==      =======================================-->
@@ -166,32 +168,31 @@
 		</div>
 	</section>
 		<!-- =======================================         ==End Breadcrumbs section==      =======================================-->
+	
 	<!-- =======================================         ==Start details info section==      =======================================-->
+	
+		<s:form method="post" modelAttribute="infoRoom" enctype="multipart/form-data"
+			action="${pageContext.request.contextPath }/enterprise/addRoom"> 
 	<section class="details-info section-padding">
 		<div class="container">
 			<div class="row">
+			
 				<div class="col-lg-8">
-					<div class="pro-img-details">
-                  <img src="https://via.placeholder.com/550x380/FFB6C1/000000" alt="">
-              </div>
-              <div class="pro-img-list">
-                  <a href="#">
-                      <img src="https://via.placeholder.com/115x100/87CEFA/000000" alt="">
-                  </a>
-                  <a href="#">
-                      <img src="https://via.placeholder.com/115x100/FF7F50/000000" alt="">
-                  </a>
-                  <a href="#">
-                      <img src="https://via.placeholder.com/115x100/20B2AA/000000" alt="">
-                  </a>
-                  <a href="#">
-                      <img src="https://via.placeholder.com/120x100/20B2AA/000000" alt="">
-                  </a>
-              </div>
+				
+				<input  onchange="show(this)" type="file" name="file" multiple="multiple" id="firstimg" style="display:none; visibility: none;"/> 
+				
+					
+					<div class="room-img"><label for="firstimg"><img id="school_img" src="images/room-details-img1.jpg" alt="room img" class="img-fluid rounded"></label>
+					
+					</div>
+                
+              
+              	
 				</div>
+				
 				<div class="col-lg-4">
 					<div class="booking-form">
-						<form action="#">
+						
 							<h4 class="color-22 text-center playfair">Reserve Your Room</h4>
 							<p class="color-22 text-center">Book with Stuck Hotel</p>
 							<span class="divider"></span>
@@ -206,22 +207,19 @@
 									readonly="true"/>
 							</div>
 							<div class="group children">
-								<label for="children">Children</label><s:input type="text" path="quantityGuestChildren"
+								<label for="children">Children</label><s:input type="text" path="guestChildren"
 									name="children" id="children" value="1" readonly="true"/><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
 							</div>
 							<div class="group adult">
-								<label for="children">Adult</label><s:input type="text" path="quantityGuestAdult"
+								<label for="children">Adult</label><s:input type="text" path="guestAdult"
 									name="children" id="adult" value="1" readonly="true"/><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
 							</div>
-							<button type="submit"
-								class="btn-default solid-bg-btn pos-relative">
-								<span>Book now</span>
-							</button>
-						</form>
+							
+						
 					</div>
 				</div>
 				
@@ -231,10 +229,10 @@
                     <h3 class="box-title mt-5">Detail Info</h3>
                     <div class="table-responsive">
                         <table class="table table-striped table-product">
-                            <tbody>
+                            <tbody >
                                 <tr>
                                     <td width="390">Description about the room</td>
-                                    <td><s:textarea path="desc" rows="5" cols=""/></td>
+                                    <td width="1200"><s:textarea path="description" rows="5" cols=""/></td>
                                 </tr>
                                 <tr>
                                     <td>Room Category</td>
@@ -242,7 +240,7 @@
                                 </tr>
                                 <tr>
                                     <td>Room Quantiy</td>
-                                    <td><s:input path="roomQuantity"/></td>
+                                    <td><s:input path="quantityRoom"/></td>
                                 </tr>
                                 <tr>
                                     <td>Price(/1night)</td>
@@ -250,60 +248,52 @@
                                 </tr>
                                 <tr>
                                     <td>Sale(%)</td>
-                                    <td><s:input path="priceSale"/></td>
+                                    <td><s:input path="salePrice"/></td>
                                 </tr>
                                 <tr>
                                     <td>Location detail</td>
-                                    <td><s:input path="locationDetails"/></td>
+                                    <td><s:input path="locationDetail"/></td>
+                                    <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
                                 </tr>
-                                <tr>
-                                    <td>Room highlights</td>
-                                    <td><s:input path="locationDetails"/></td>
-                                    <td><s:input path="locationDetails"/></td>
-                                    <td><s:input path="locationDetails"/></td>
-                                    <td><s:input path="locationDetails"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Upholstery Type</td>
-                                    <td>Cushion</td>
-                                </tr>
-                                <tr>
-                                    <td>Head Support</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Suitable For</td>
-                                    <td>Study&amp;Home Office</td>
-                                </tr>
-                                <tr>
-                                    <td>Adjustable Height</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Model Number</td>
-                                    <td>F01020701-00HT744A06</td>
-                                </tr>
-                                <tr>
-                                    <td>Armrest Included</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Care Instructions</td>
-                                    <td>Handle With Care,Keep In Dry Place,Do Not Apply Any Chemical For Cleaning.</td>
-                                </tr>
-                                <tr>
-                                    <td>Finish Type</td>
-                                    <td>Matte</td>
-                                </tr>
+                                
+                                
+                                
+                                
                             </tbody>
                         </table>
+                        <div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
+                        	<span>&nbsp;</span>
+                            <input style="color: black;" type="submit" value="Submit" class="submit " id="submit" name="submit" />
+                            
+	</div>
+                       
                     </div>
                 </div>
 			</div>
 		</div>
 	</section>
+	</s:form>
 	<!-- =======================================         ==End details info section==      =======================================-->
 	<!-- =======================================         ==Start hotel view section==      =======================================-->
+			
+
+	
+
+	
 	
 	</jsp:attribute>
+	
 </mt:layout_user>
+	<script type="text/javascript">
+
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#school_img').attr('src', e.target.result).width(700).height(700);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+

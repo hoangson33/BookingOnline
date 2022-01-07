@@ -190,7 +190,7 @@
                         <div class="product-status-wrap">
                             <h4>Account Management</h4>
                             <div class="add-product">
-                                <a href="${pageContext.request.contextPath }/admin/addAcc"">Add</a>
+                                <a href="${pageContext.request.contextPath }/admin/addAcc">Add</a>
                             </div>
                             <div>
                             <table >
