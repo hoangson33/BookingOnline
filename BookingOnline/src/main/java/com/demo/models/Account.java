@@ -16,7 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -46,7 +49,13 @@ public class Account implements java.io.Serializable {
 	@Length(min = 3, max = 100)
 	private String location;
 
+	
+
+	
 	private int phone;
+	
+	
+	
 	private boolean status;
 	private String avatar;
 	private Date datecreated;

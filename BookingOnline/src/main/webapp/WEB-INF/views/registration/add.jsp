@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group form-input">
                             <s:input path="phone" type="number" name="phone" id="phone" value=""  />
-                           
+                    
                             <label for="phone" class="form-label">Your phone number</label>
                         </div>
                         <div class="form-group">
