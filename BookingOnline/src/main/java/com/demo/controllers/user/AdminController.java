@@ -215,7 +215,7 @@ public class AdminController implements ServletContextAware {
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
 		
 		
-		
+		account.setUsername (accountOld.getUsername());
 		
 		account.setDatecreated(new Date());
 		

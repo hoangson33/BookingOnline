@@ -65,30 +65,21 @@ public class CustomerController implements ServletContextAware{
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap ) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
-
 		modelMap.put("accounts", accountService.findByUsername(name));
-
 		
 		
 			Account accountOld = accountService.findIdAcc(account.getIdAcc());
-
 			System.out.println("id acc : " + accountOld);
+		
 			
 			account.setDatecreated(new Date());
 			account.setGender(accountOld.getGender());
 			account.setPassword(accountOld.getPassword());
 			String idRole =  account.getIdRole();
-			
 			account.setIdRole(idRole);
-			
 			System.out.println("id role : " + idRole);
 			account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
-			
-			
-			
 			account.setStatus(true);
-			
-			
 			String fileName = UUID.randomUUID().toString().replace("-", "");
 			String fileNameUpload = UploadHelper.upload(servletContext, file);
 			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);

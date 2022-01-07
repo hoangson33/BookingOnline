@@ -31,7 +31,7 @@ import org.hibernate.validator.constraints.Length;
 public class Account implements java.io.Serializable {
 
 	private String idAcc;
-	@NotEmpty
+
 	@Length(min = 3, max = 20)
 	private String username;
 	
