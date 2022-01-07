@@ -3,13 +3,42 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+ <script>
+function validateForm() {
+  let email = document.forms["myForm"]["email"].value;
+  let name = document.forms["myForm"]["name"].value;
+  let location = document.forms["myForm"]["location"].value;
+  let phone = document.forms["myForm"]["phone"].value;
 
+ 
+  if (email == "") {
+    alert(" Email must be filled out");
+    return false;
+  }else
+  if (name == "") {
+	    alert("Full Name must be filled out");
+	    return false;
+	  }
+  
+	  else
+			  if (location == "") {
+				    alert("Location must be filled out");
+				    return false;
+				  }
+			 	else
+					  if (phone == "") {
+						    alert("Phone must be filled out");
+						    return false;
+						  }	 
+  
+}
+</script>
 <mt:layout_admin title="Index">
 
 	<jsp:attribute name="content">
+           
             
-            
-<s:form method="post" modelAttribute="account" enctype="multipart/form-data"
+<s:form name="myForm" onsubmit="return validateForm()"  method="post" modelAttribute="account" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/admin/editAcc">            
 
            <div class="mobile-menu-area">
@@ -226,7 +255,7 @@
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-envelope"
 																aria-hidden="true"></i></span>
-<s:input path="email" type="text" class="form-control"
+<s:input path="email" name="email" type="text" class="form-control"
 																placeholder="Email"  />
 																	
 </div>
@@ -236,7 +265,7 @@
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-user"
 																aria-hidden="true"></i></span>
-<s:input path="name" type="text" class="form-control"
+<s:input path="name" name="name" type="text" class="form-control"
 																placeholder="First Name And Last Name" />
 </div>
 
@@ -265,14 +294,14 @@
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-book "
 																aria-hidden="true"></i></span>
-<s:input path="location" type="text" class="form-control" placeholder="Address"/>
+<s:input path="location" name="location" type="text" class="form-control" placeholder="Address"/>
 </div>
 
 
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-<s:input path="phone" type="text" class="form-control" placeholder="Phone"/>
+<s:input path="phone" name="phone" type="number" class="form-control" placeholder="Phone"/>
 </div>
 
 <div class="input-group mg-b-pro-edt">

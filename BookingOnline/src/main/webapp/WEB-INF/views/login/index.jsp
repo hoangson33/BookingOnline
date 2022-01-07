@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
-
+  <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_login/css/style.css">
-
+ 	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 	</head>
 	<body class="img js-fullheight" style="background-image: url(${pageContext.request.contextPath }/webapp/static/layout_login/images/bg.jpg);">
 	<section class="ftco-section">
@@ -37,7 +37,8 @@
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
-	 	${msgs }
+	           ${msgs }
+	 
 	            	<input type="submit" class="form-control btn btn-primary submit px-3" value="Sign In">
 	            </div>
 	            <div class="form-group d-md-flex">

@@ -3,13 +3,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
+ <script>
+function validateForm() {
+  let nameRole = document.forms["myForm"]["nameRole"].value;
 
+
+  if (nameRole == "") {
+    alert("NameRole must be filled out");
+    return false;
+  }
+  
+}
+</script>
 <mt:layout_admin title="Index">
 
 	<jsp:attribute name="content">
             
             
-<s:form method="post" modelAttribute="role" 
+<s:form name="myForm" onsubmit="return validateForm()"  method="post" modelAttribute="role" 
 	action="${pageContext.request.contextPath }/admin/edit">            
 
             <div class="mobile-menu-area">
@@ -198,18 +209,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="single-product-tab-area mg-b-30">
 
 <div class="single-pro-review-area">
@@ -235,7 +234,7 @@
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i class="fa fa-edit"
 																		aria-hidden="true"></i></span>
-			<s:input path="nameRole" type="text" class="form-control" placeholder="Enter name role" />
+			<s:input path="nameRole" name="nameRole" type="text" class="form-control" placeholder="Enter name role" />
 			</div>
 		</div>
 		</div>
