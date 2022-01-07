@@ -31,8 +31,8 @@ public class Account implements java.io.Serializable {
 	@NotEmpty
 	@Length(min = 3, max = 20)
 	private String username;
-	@NotEmpty
-	@Length(min = 3, max = 20)
+	
+	
 	private String password;
 	@NotEmpty
 	@Email

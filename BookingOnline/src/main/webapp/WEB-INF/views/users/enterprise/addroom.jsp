@@ -1,10 +1,151 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+/*product list*/
 
+.prod-cat li a{
+    border-bottom: 1px dashed #d9d9d9;
+}
+
+.prod-cat li a {
+    color: #3b3b3b;
+}
+
+.prod-cat li ul {
+    margin-left: 30px;
+}
+
+.prod-cat li ul li a{
+    border-bottom:none;
+}
+.prod-cat li ul li a:hover,.prod-cat li ul li a:focus, .prod-cat li ul li.active a , .prod-cat li a:hover,.prod-cat li a:focus, .prod-cat li a.active{
+    background: none;
+    color: #ff7261;
+}
+
+.pro-lab{
+    margin-right: 20px;
+    font-weight: normal;
+}
+
+.pro-sort {
+    padding-right: 20px;
+    float: left;
+}
+
+.pro-page-list {
+    margin: 5px 0 0 0;
+}
+
+.product-list img{
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+}
+
+.product-list .pro-img-box {
+    position: relative;
+}
+.adtocart {
+    background: #fc5959;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    border: 3px solid #fff;
+    left: 45%;
+    bottom: -25px;
+    position: absolute;
+}
+
+.adtocart i{
+    color: #fff;
+    font-size: 25px;
+    line-height: 42px;
+}
+
+.pro-title {
+    color: #5A5A5A;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.product-list .price {
+    color:#fc5959 ;
+    font-size: 15px;
+}
+
+.pro-img-details {
+    margin-left: -15px;
+}
+
+.pro-img-details img {
+    width: 100%;
+}
+
+.pro-d-title {
+    font-size: 16px;
+    margin-top: 0;
+}
+
+.product_meta {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    margin: 15px 0;
+}
+
+.product_meta span {
+    display: block;
+    margin-bottom: 10px;
+}
+.product_meta a, .pro-price{
+    color:#fc5959 ;
+}
+
+.pro-price, .amount-old {
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+.amount-old {
+    text-decoration: line-through;
+}
+
+.quantity {
+    width: 120px;
+}
+
+.pro-img-list {
+    margin: 10px 0 0 -15px;
+    width: 100%;
+    display: inline-block;
+}
+
+.pro-img-list a {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.pro-d-head {
+    font-size: 18px;
+    font-weight: 300;
+}
+</style>
 <mt:layout_user title="Add Room">
 
 	<jsp:attribute name="content">
+	
+	
+	
 	
 	<!-- =======================================         ==End Header section==      =======================================-->
 	<!-- =======================================         ==Start Breadcrumbs section==      =======================================-->
@@ -30,10 +171,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="room-img">
-						<img src="${pageContext.request.contextPath }/resources/user/images/room-details-img1.jpg" alt="room img"
-							class="img-fluid">
-					</div>
+					<div class="pro-img-details">
+                  <img src="https://via.placeholder.com/550x380/FFB6C1/000000" alt="">
+              </div>
+              <div class="pro-img-list">
+                  <a href="#">
+                      <img src="https://via.placeholder.com/115x100/87CEFA/000000" alt="">
+                  </a>
+                  <a href="#">
+                      <img src="https://via.placeholder.com/115x100/FF7F50/000000" alt="">
+                  </a>
+                  <a href="#">
+                      <img src="https://via.placeholder.com/115x100/20B2AA/000000" alt="">
+                  </a>
+                  <a href="#">
+                      <img src="https://via.placeholder.com/120x100/20B2AA/000000" alt="">
+                  </a>
+              </div>
 				</div>
 				<div class="col-lg-4">
 					<div class="booking-form">
@@ -70,44 +224,78 @@
 						</form>
 					</div>
 				</div>
-				<div class="col-12">
-					<div class="details-text">
-						<h3 class="playfair color-33 mb-30">Delux Room</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-							congue, urna nec rhoncus consequat, elit dui ullamcorper eros, id
-							mollis urna dolor at elit. Ut pulvinar eu urna et laoreet. Nullam
-							arcu lorem, mollis at aliquet sed, sollicitudin eu tortor.
-							Aliquam id lectus ac sapien consectetur posuere sit amet eu enim.
-							Nulla id mauris mi. Nulla volutpat varius urna, eget scelerisque
-							eros placerat eu. Etiam eu turpis nec neque mollis placerat id
-							luctus nibh. <br />
-							<br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Etiam congue, urna nec rhoncus consequat, elit dui ullamcorper
-							eros, id mollis urna dolor at elit. Ut pulvinar eu urna et
-							laoreet. Nullam arcu lorem, mollis at aliquet sed, sollicitudin
-							eu tortor. Aliquam id lectus ac sapien<br />
-							<br /> Etiam neque libero, tincidunt non magna at, varius
-							pretium elit. Nulla dui ante, gravida et luctus nec, venenatis et
-							tellus. Suspendisse a turpis ut urna bibendum mollis vitae sit
-							amet metus. Nam cursus dolor a viverra condimentum. Nunc
-							fermentum elit sit amet est dictum eleifend. Nunc in massa et
-							tellus consectetur molestie. Nam euismod, nunc id tincidunt
-							dignissim, neque risus malesuada eros, eget dapibus elit eros id
-							magna. Donec rhoncus eleifend euismod. Duis sed lorem ligula.
-							Vestibulum vel auctor nisl. In hac habitasse platea dictumst.
-							Donec pulvinar metus nec orci lobortis commodo.
-						</p>
-						<ul class="doc-info align-row-spacebetween">
-							<li class="title"><h5
-									class="title-20 text-uppercase color-44 fw-700">Hotel
-									Details Documents</h5></li>
-							<li class="file"><i class="fa fa-file-pdf-o"></i>Luxary-trip-details-docement</li>
-							<li class="download-btn"><a href="#"
-								class="btn-default pos-relative solid-bg-btn"><span>Download</span></a></li>
-						</ul>
-					</div>
-				</div>
+				
+				
+				
+				<div class="col-lg-12 col-md-12 col-sm-12">
+                    <h3 class="box-title mt-5">General Info</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td width="390">Description about the room</td>
+                                    <td><s:textarea path="desc" rows="5" cols=""/></td>
+                                </tr>
+                                <tr>
+                                    <td>Room Category</td>
+                                    <td><s:input path="roomCategory"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Room Quantiy</td>
+                                    <td><s:input path="roomQuantity"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>Office Chair</td>
+                                </tr>
+                                <tr>
+                                    <td>Style</td>
+                                    <td>Contemporary&amp;Modern</td>
+                                </tr>
+                                <tr>
+                                    <td>Wheels Included</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Upholstery Included</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Upholstery Type</td>
+                                    <td>Cushion</td>
+                                </tr>
+                                <tr>
+                                    <td>Head Support</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td>Suitable For</td>
+                                    <td>Study&amp;Home Office</td>
+                                </tr>
+                                <tr>
+                                    <td>Adjustable Height</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Model Number</td>
+                                    <td>F01020701-00HT744A06</td>
+                                </tr>
+                                <tr>
+                                    <td>Armrest Included</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Care Instructions</td>
+                                    <td>Handle With Care,Keep In Dry Place,Do Not Apply Any Chemical For Cleaning.</td>
+                                </tr>
+                                <tr>
+                                    <td>Finish Type</td>
+                                    <td>Matte</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</section>

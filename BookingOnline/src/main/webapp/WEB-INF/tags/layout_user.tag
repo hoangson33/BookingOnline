@@ -88,10 +88,10 @@ type="java.lang.String"%>
 					<div id="menuzord" class="menuzord p-0">
 						<a href="index.html" class="menuzord-brand custom-logo-link"><img
 							src="${pageContext.request.contextPath }/webapp/static/user/images/logo.png" class="custom-logo" alt="logo"></a>
-						<ul class="menuzord-menu">
-							<li class="active"><a href="${pageContext.request.contextPath }/home/index">Home</a>
+						<ul  class="menuzord-menu">
+							<li  class="active"><a href="${pageContext.request.contextPath }/home/index">Home</a>
 							<ul class="dropdown">
-									<li><a href="${pageContext.request.contextPath }/home2/index"">Home-2</a></li>
+									<li><a  href="${pageContext.request.contextPath }/home2/index"">Home-2</a></li>
 								</ul></li>
 							<li><a href="#">Room</a>
 							<ul class="dropdown">
@@ -131,7 +131,7 @@ type="java.lang.String"%>
 				                
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/enterprise">Add room</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/addroom">Add room</a></li>
 							<li><a href="${pageContext.request.contextPath }/enterprise/profile">Profile's Enterprise</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>

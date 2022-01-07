@@ -40,8 +40,8 @@ public class EnterpriseController implements ServletContextAware {
 	private AccountService accountService;
 	
 	
-	@RequestMapping(value = {"","enterprise"}, method = RequestMethod.GET)
-	public String index() {
+	@RequestMapping(value = {"","addroom"}, method = RequestMethod.GET)
+	public String addroom() {
 		
 		return "users/enterprise/addroom";
 	}
@@ -90,7 +90,15 @@ public class EnterpriseController implements ServletContextAware {
 			account.setAvatar(accountOld.getAvatar());
 		}
 		accountService.save(account);
-		return "redirect:/enterprise/profile";
+		return "users/home/index";
+	}
+	
+	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)
+	public String welcome(Authentication authentication , ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		
+
+		return "users/home/index";
 	}
 	
 	
