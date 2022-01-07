@@ -198,22 +198,22 @@
 							<div class="group checkin">
 								<label for="booking-checkin">CHECK IN Date</label><s:input path="checkIn"
 									type="text" id="booking-checkin" placeholder="MM/DD/YY"
-									readonly/>
+									readonly="true"/>
 							</div>
 							<div class="group checkout">
 								<label for="booking-checkout">CHECK OUT Date</label><s:input path="checkOut"
 									type="text" id="booking-checkout" placeholder="MM/DD/YY"
-									readonly/>
+									readonly="true"/>
 							</div>
 							<div class="group children">
-								<label for="children">Children</label><input type="text"
-									name="children" id="children" value="1" readonly><span
+								<label for="children">Children</label><s:input type="text" path="quantityGuestChildren"
+									name="children" id="children" value="1" readonly="true"/><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
 							</div>
 							<div class="group adult">
-								<label for="children">Adult</label><input type="text"
-									name="children" id="adult" value="1" readonly><span
+								<label for="children">Adult</label><s:input type="text" path="quantityGuestAdult"
+									name="children" id="adult" value="1" readonly="true"/><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
 							</div>
@@ -228,7 +228,7 @@
 				
 				
 				<div class="col-lg-12 col-md-12 col-sm-12">
-                    <h3 class="box-title mt-5">General Info</h3>
+                    <h3 class="box-title mt-5">Detail Info</h3>
                     <div class="table-responsive">
                         <table class="table table-striped table-product">
                             <tbody>
@@ -245,20 +245,23 @@
                                     <td><s:input path="roomQuantity"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Type</td>
-                                    <td>Office Chair</td>
+                                    <td>Price(/1night)</td>
+                                    <td><s:input path="price"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Style</td>
-                                    <td>Contemporary&amp;Modern</td>
+                                    <td>Sale(%)</td>
+                                    <td><s:input path="priceSale"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Wheels Included</td>
-                                    <td>Yes</td>
+                                    <td>Location detail</td>
+                                    <td><s:input path="locationDetails"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Upholstery Included</td>
-                                    <td>Yes</td>
+                                    <td>Room highlights</td>
+                                    <td><s:input path="locationDetails"/></td>
+                                    <td><s:input path="locationDetails"/></td>
+                                    <td><s:input path="locationDetails"/></td>
+                                    <td><s:input path="locationDetails"/></td>
                                 </tr>
                                 <tr>
                                     <td>Upholstery Type</td>

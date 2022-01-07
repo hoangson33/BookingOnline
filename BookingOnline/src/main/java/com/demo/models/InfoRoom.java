@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 7, 2022, 1:07:20 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 7, 2022, 1:22:10 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -35,7 +35,6 @@ public class InfoRoom implements java.io.Serializable {
 	private String imgRoom;
 	private Date checkIn;
 	private Date checkOut;
-	private String roomHighlight;
 	private Date created;
 	private boolean status;
 	private ImageRoom imageRoom;
@@ -46,7 +45,7 @@ public class InfoRoom implements java.io.Serializable {
 
 	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuestAdult,
 			int quantityGuestChildren, double price, double priceSale, String locationDetails, String imgRoom,
-			Date checkIn, Date checkOut, String roomHighlight, Date created, boolean status) {
+			Date checkIn, Date checkOut, Date created, boolean status) {
 		this.account = account;
 		this.desc = desc;
 		this.roomCategory = roomCategory;
@@ -59,14 +58,13 @@ public class InfoRoom implements java.io.Serializable {
 		this.imgRoom = imgRoom;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
-		this.roomHighlight = roomHighlight;
 		this.created = created;
 		this.status = status;
 	}
 
 	public InfoRoom(Account account, String desc, String roomCategory, int quantityRoom, int quantityGuestAdult,
 			int quantityGuestChildren, double price, double priceSale, String locationDetails, String imgRoom,
-			Date checkIn, Date checkOut, String roomHighlight, Date created, boolean status, ImageRoom imageRoom,
+			Date checkIn, Date checkOut, Date created, boolean status, ImageRoom imageRoom,
 			HighlightRoom highlightRoom) {
 		this.account = account;
 		this.desc = desc;
@@ -80,7 +78,6 @@ public class InfoRoom implements java.io.Serializable {
 		this.imgRoom = imgRoom;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
-		this.roomHighlight = roomHighlight;
 		this.created = created;
 		this.status = status;
 		this.imageRoom = imageRoom;
@@ -208,15 +205,6 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setCheckOut(Date checkOut) {
 		this.checkOut = checkOut;
-	}
-
-	@Column(name = "room_highlight", nullable = false, length = 1000)
-	public String getRoomHighlight() {
-		return this.roomHighlight;
-	}
-
-	public void setRoomHighlight(String roomHighlight) {
-		this.roomHighlight = roomHighlight;
 	}
 
 	@Temporal(TemporalType.DATE)
