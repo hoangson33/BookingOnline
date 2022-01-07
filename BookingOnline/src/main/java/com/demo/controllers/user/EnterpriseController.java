@@ -78,7 +78,13 @@ public class EnterpriseController implements ServletContextAware {
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account") Account account,
-			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes) {
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		
+		
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
 		
 		

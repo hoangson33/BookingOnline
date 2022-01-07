@@ -56,14 +56,18 @@ public class CustomerController implements ServletContextAware{
 		modelMap.addAttribute("avatar", accountService.findAvatar(id));
 		String avatar = accountService.findAvatar(id);
 		System.out.println("avatar  : " + avatar);
-	
+		
 		return "users/customer/profile_editcus";
 	}
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account") Account account,
-			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes ) {
-	
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap ) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+
 		
 		
 			Account accountOld = accountService.findIdAcc(account.getIdAcc());

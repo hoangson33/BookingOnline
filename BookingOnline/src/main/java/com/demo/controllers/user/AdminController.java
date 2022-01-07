@@ -62,6 +62,9 @@ public class AdminController implements ServletContextAware {
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Authentication authentication) {
 		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		
 		return "admin/index";
 	}
@@ -79,16 +82,26 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = {"","account-management"}, method = RequestMethod.GET)
-	public String accountManagement(ModelMap modelMap) {
+	public String accountManagement(ModelMap modelMap,Authentication authentication) {
 		
 		modelMap.put("accounts", accountService.findAllAccount());
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		
 		return "admin/account_management";
 	}
 	
 	@RequestMapping(value = {"","role-management"}, method = RequestMethod.GET)
-	public String roleManagement(ModelMap modelMap) {
+	public String roleManagement(ModelMap modelMap,Authentication authentication) {
 		modelMap.put("roles", roleService.findAllRole());
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		return "admin/role_management";
 	}
 	
@@ -98,9 +111,14 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add(ModelMap modelMap) {
+	public String add(ModelMap modelMap,Authentication authentication) {
 		Roles role = new Roles();
 		modelMap.put("role", role);
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		return "admin/role_add";
 	}
 	
@@ -121,9 +139,14 @@ public class AdminController implements ServletContextAware {
 	
 	
 	@RequestMapping(value = "addAcc", method = RequestMethod.GET)
-	public String addAcc(ModelMap modelMap) {
+	public String addAcc(ModelMap modelMap,Authentication authentication) {
 		Account account = new Account();
 		modelMap.put("account", account);
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		return "admin/account_add";
 	}
 
@@ -154,8 +177,13 @@ public class AdminController implements ServletContextAware {
 	
 	
 	@RequestMapping(value =  "edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") int id,ModelMap modelMap) {
+	public String edit(@PathVariable("id") int id,ModelMap modelMap,Authentication authentication) {
 		modelMap.put("role", roleService.find(id));
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		return "admin/role_edit";
 	}
 	
@@ -168,11 +196,16 @@ public class AdminController implements ServletContextAware {
 	
 	
 	@RequestMapping(value =  "editAcc/{id}", method = RequestMethod.GET)
-	public String editAcc(@PathVariable("id") String id,ModelMap modelMap) {
+	public String editAcc(@PathVariable("id") String id,ModelMap modelMap,Authentication authentication) {
 		modelMap.put("account", accountService.findIdAcc(id));
 		modelMap.addAttribute("avatar", accountService.findAvatar(id));
 		String avatar = accountService.findAvatar(id);
 		System.out.println("avatar  : " + avatar);
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		return "admin/account_edit";
 	}
 	

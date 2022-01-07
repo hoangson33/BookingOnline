@@ -350,8 +350,10 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 </div>
 <div class="nalika-profile">
 <div class="profile-dtl">
-<a href="#"><img src="${pageContext.request.contextPath }/webapp/static/layout_admin/img/notification/4.jpg" alt="" /></a>
-<h2>Lakian <span class="min-dtn">Das</span></h2>
+<c:forEach var="account" items="${accountss }" >
+<a href="#"><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}" alt="" /></a>
+  </c:forEach>
+<h2>	<span class="min-dtn">${pageContext.request.userPrincipal.name }</span></h2>
 </div>
 <div class="profile-social-dtl">
 <ul class="dtl-social">
