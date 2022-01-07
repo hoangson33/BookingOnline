@@ -111,8 +111,9 @@ type="java.lang.String"%>
 					
 						<s:authorize access="hasRole('ROLE_CUSTOMER')">
 							<li><span class="avatar avatar-sm rounded-circle">
-				                  <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg">
-				                
+							<c:forEach var="account" items="${accounts }" >
+				                  <img alt="Image placeholder" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
+				                </c:forEach>
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/customer">Profile's Customer</a></li>
@@ -127,8 +128,10 @@ type="java.lang.String"%>
 							
 							
 							<li><span class="avatar avatar-sm rounded-circle">
-				                  <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg">
-				                
+							
+				                 	<c:forEach var="account" items="${accounts }" >
+				                  <img alt="Image placeholder" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
+				                </c:forEach>				                
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/enterprise/addRoom">Add Room</a></li>
@@ -140,8 +143,9 @@ type="java.lang.String"%>
 							
 							<s:authorize access="hasRole('ROLE_SUPERADMIN')">
 							<li><span class="avatar avatar-sm rounded-circle">
-				                  <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg">
-				                
+				                    	<c:forEach var="account" items="${accounts }" >
+				                  <img alt="Image placeholder" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
+				                </c:forEach>				                
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/admin/index">Dashboard</a></li>

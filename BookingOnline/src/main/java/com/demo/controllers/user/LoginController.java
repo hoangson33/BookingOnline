@@ -19,7 +19,8 @@ import com.demo.services.AccountService;
 @RequestMapping(value = {"","login"})
 public class LoginController {
 
-
+	@Autowired
+	private AccountService accountService;
 
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
 	public String index(@RequestParam(value = "error", required = false) String eroor,
@@ -39,7 +40,9 @@ public class LoginController {
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)
 	public String welcome(Authentication authentication , ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
-		
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
 
 		return "users/home/index";
 	}

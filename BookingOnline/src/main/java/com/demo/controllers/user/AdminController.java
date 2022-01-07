@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -59,7 +60,9 @@ public class AdminController implements ServletContextAware {
 
 
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
-	public String index(ModelMap modelMap) {
+	public String index(ModelMap modelMap, Authentication authentication) {
+		System.out.println("username " + authentication.getName());
+		
 		return "admin/index";
 	}
 	

@@ -3,7 +3,7 @@
 type="java.lang.String"%>
 <%@ attribute name="content" fragment="true"%>
 <%@ taglib prefix="mt" uri="http://mytags.vn" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
@@ -370,7 +370,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <span class="mini-click-non">Ecommerce</span>
 </a>
 <ul class="submenu-angle" aria-expanded="true">
-<li><a title="Dashboard v.1" href="${pageContext.request.contextPath }/home/index"><span class="mini-sub-pro">Dashboard - Home</span></a></li>
+<li><a title="Dashboard v.1" href="${pageContext.request.contextPath }/login/welcome"><span class="mini-sub-pro">Dashboard - Home</span></a></li>
 <li><a title="Dashboard v.2" href="${pageContext.request.contextPath }/admin/account-management">Account List</span></a></li>
 <li><a title="Dashboard v.3" href="${pageContext.request.contextPath }/admin/role-management"> <span class="mini-sub-pro">Role List</span></a></li>
 <li><a title="Product List" href="${pageContext.request.contextPath }/admin/room-list"><span class="mini-sub-pro">Room List</span></a></li>
@@ -630,7 +630,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <li class="nav-item">
 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
 <i class="fa fa-user"></i>
-<span class="admin-name">Advanda Cro</span>
+<span class="admin-name">${pageContext.request.userPrincipal.name }</span>
 <i class="fa fa-angle-down"></i>
 </a>
 <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -642,7 +642,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 </li>
  <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
 </li>
-<li><a href="login.html"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
+<li><a href="${pageContext.request.contextPath }/login/logout"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
 </li>
 </ul>
 </li>
