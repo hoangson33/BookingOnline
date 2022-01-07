@@ -269,8 +269,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                     <th>Image</th>
                                     <th>Room Category</th>
                                     <th>Total number of rooms</th>
-                                    <th>Total number of guests</th>
-                                    <th>Product sales</th>
+                                    <th>Total number of Children</th>
+                                     <th>Total number of Adult</th>
+                                    <th>Price</th>
+                                    <th>Price sales</th>
                                     <th>Detail Address</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
@@ -283,9 +285,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
                                     <td>${roomlist.quantityRoom }</td>
-                                    <td>${roomlist.quantityGuest }</td>
+                                    <td>${roomlist.guestChildren }</td>
+                                    <td>${roomlist.guestAdult }</td>
                                     <td>$ ${roomlist.price }</td>
-                                    <td>${roomlist.locationDetails }</td>
+                                     <td>$ ${roomlist.salePrice }</td>
+                                    <td>${roomlist.locationDetail }</td>
                                     <td>${roomlist.checkIn }</td>
                                     <td>${roomlist.checkOut }</td>
                                     <td><button class="pd-setting">${roomlist.status }</button></td>
