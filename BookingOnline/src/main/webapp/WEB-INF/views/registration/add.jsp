@@ -24,7 +24,15 @@
 	  margin-top: 20px;
 	}
 	</style>
-	
+	<script>
+function validateForm() {
+  let phone = document.forms["myForm"]["phone"].value;
+  if (phone == "") {
+    alert("Phone must be filled out");
+    return false;
+  }
+}
+</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript" ></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript" ></script>
 	<script src="${pageContext.request.contextPath }/webapp/static/layout_registration/auto-complete.js" type="text/javascript" ></script>
@@ -39,7 +47,7 @@
                     <img class="booking-img" src="${pageContext.request.contextPath }/webapp/static/layout_registration/images/form-img.jpg" alt="Booking Image">
                 </div>
                 <div class="booking-form">
-                    <s:form id="booking-form" method="post" modelAttribute="account" 
+                    <s:form  name="myForm" onsubmit="return validateForm()" id="booking-form" method="post" modelAttribute="account" 
 	action="${pageContext.request.contextPath }/registration/add">
                         <h2 style="color: white;">The best service for your tour!</h2>
                         <div class="form-group form-input">

@@ -17,12 +17,45 @@
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/css/style.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script>
+function validateForm() {
+  let name = document.forms["myForm"]["name"].value;
+  let username = document.forms["myForm"]["username"].value;
+  let phone = document.forms["myForm"]["phone"].value;
+  let email = document.forms["myForm"]["email"].value;
+  let location = document.forms["myForm"]["location"].value;
+  if (username == "") {
+    alert(" Username must be filled out");
+    return false;
+  }else
+  if (name == "") {
+	    alert("Full Name must be filled out");
+	    return false;
+	  }
+  else
+	  if (phone == "") {
+		    alert("Phone must be filled out");
+		    return false;
+		  }	 
+	  else
+		  if (email == "") {
+			    alert("Email must be filled out");
+			    return false;
+			  }
+		  else
+			  if (location == "") {
+				    alert("Location must be filled out");
+				    return false;
+				  }
+  
+}
+</script>
 	</head>
 <body>
 
 
 
-<s:form method="post" modelAttribute="account" enctype="multipart/form-data"
+<s:form name="myForm" onsubmit="return validateForm()" method="post" modelAttribute="account" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/enterprise/editAcc">       
 
 <div class="wrapper">
@@ -46,21 +79,21 @@
 							</div>
 							<div class="form-group">
 								<div class="form-holder active">
-									<s:input path="username" type="text" placeholder="Username" class="form-control"/>
+									<s:input path="username" name="username" type="text" placeholder="Username" class="form-control"/>
 								</div>
 								<div class="form-holder">
-									<s:input path="name" type="text" placeholder="Fullname's enterprise" class="form-control"/>
+									<s:input path="name" name="name"  type="text" placeholder="Fullname's enterprise" class="form-control"/>
 								</div>
 								<div class="form-holder">
-									<s:input path="phone" type="text" placeholder="Phone" class="form-control"/>
+									<s:input path="phone"  name="phone" type="number" placeholder="Phone" class="form-control"/>
 								</div>
 							</div>
 	                	</div>
 	                	<div class="form-holder">
-							<s:input path="email" type="text" placeholder="Email" class="form-control"/>
+							<s:input path="email"  name="email" type="text" placeholder="Email" class="form-control"/>
 						</div>
 						<div class="form-holder">
-							<s:input path="location" type="text" placeholder="Address" class="form-control"/>
+							<s:input path="location"  name="location" type="text" placeholder="Address" class="form-control"/>
 						</div>
 						<div class=" btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<span>&nbsp;</span>

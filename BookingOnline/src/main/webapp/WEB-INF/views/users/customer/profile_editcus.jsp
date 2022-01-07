@@ -4,177 +4,219 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/css/style.css">
+    
+    <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Edit Profile</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="colorlib.com">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
 
-<mt:layout_user title="Profile Edit Customer">
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/css/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	<script>
+function validateForm() {
+  let name = document.forms["myForm"]["name"].value;
+  let username = document.forms["myForm"]["username"].value;
+  let phone = document.forms["myForm"]["phone"].value;
+  let email = document.forms["myForm"]["email"].value;
+  let location = document.forms["myForm"]["location"].value;
+  if (username == "") {
+    alert(" Username must be filled out");
+    return false;
+  }else
+  if (name == "") {
+	    alert("Full Name must be filled out");
+	    return false;
+	  }
+  else
+	  if (phone == "") {
+		    alert("Phone must be filled out");
+		    return false;
+		  }	 
+	  else
+		  if (email == "") {
+			    alert("Email must be filled out");
+			    return false;
+			  }
+		  else
+			  if (location == "") {
+				    alert("Location must be filled out");
+				    return false;
+				  }
+  
+}
+</script>
+	</head>
+<body>
 
-	<jsp:attribute name="content">
 
-<s:form method="post" modelAttribute="account" enctype="multipart/form-data"
+
+<s:form name="myForm" onsubmit="return validateForm()"  method="post" modelAttribute="account" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/customer/editAcc">       
 
-	<div class="main-content">
-	    
-	    <!-- Header -->
-	    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-	      <!-- Mask -->
-	      <span class="mask bg-gradient-default opacity-8"></span>
-	      <!-- Header container -->
-	      <div class="container-fluid d-flex align-items-center">
-	        <div class="row">
-	          <div class="col-lg-7 col-md-10">
-	            <h1 class="display-2 text-white">Hello ${pageContext.request.userPrincipal.name }</h1>
-	            <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-	            
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	    <!-- Page content -->
-	    <div class="container-fluid mt--7">
-	      <div class="row">
-	        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-	          <div class="card card-profile shadow">
-	            <div class="row justify-content-center">
-	              <div class="col-lg-3 order-lg-2">
-	                <div class="card-profile-image">
-	                  <a href="#">
-	                    <img id="school_img" src="${pageContext.request.contextPath }/webapp/assets/uploads/${avatar}" class="rounded-circle">
-	                  </a>
-	                </div>
-	                
-	              </div>
-	              
-	            </div>
-	            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-	              <div class="d-flex justify-content-between">
-	                <input type="file" name="file" onchange="show(this)" >
-	                <a href="#" class="btn btn-sm btn-default float-right">Message</a>
-	              </div>
-	            </div>
-	            
-	            <div class="card-body pt-0 pt-md-4">
-	            
-	              <div class="row">
-	                <div class="col">
-	                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-	                    <div>
-	                      <span class="heading">22</span>
-	                      <span class="description">Friends</span>
-	                    </div>
-	                    <div>
-	                      <span class="heading">10</span>
-	                      <span class="description">Photos</span>
-	                    </div>
-	                    <div>
-	                      <span class="heading">89</span>
-	                      <span class="description">Comments</span>
-	                    </div>
-	                  </div>
-	                </div>
-	              </div>
-	              <div class="text-center">
-	                <h3>
-	                  Jessica Jones<span class="font-weight-light">, 27</span>
-	                </h3>
-	                <div class="h5 font-weight-300">
-	                  <i class="ni location_pin mr-2"></i>Bucharest, Romania
-	                </div>
-	                <div class="h5 mt-4">
-	                  <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-	                </div>
-	                <div>
-	                  <i class="ni education_hat mr-2"></i>University of Computer Science
-	                </div>
-	                <hr class="my-4">
-	                <p>Ryan the name taken by Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and records all of his own music.</p>
-	                <a href="#">Show more</a>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	        
-	        
-	        
-	        
-		        <div class="col-xl-8 order-xl-1">
-		          <div class="card bg-secondary shadow">
-		            <div class="card-header bg-white border-0">
-		              <div class="row align-items-center">
-		                <div class="col-8">
-		                  <h3 class="mb-0">Update My Account Customer</h3>
-		                </div>
-		                <div class="col-4 text-right">
-		                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-		                </div>
-		              </div>
-		            </div>
-		            <div class="card-body">
-		            
-		              <form>
-		                <div class="pl-lg-4">
-		                  <div class="row">
-		                    <div class="col-lg-6">
-		                      <div class="form-group focused">
-		                        <label class="form-control-label" for="input-username">Username</label>
-		                        <s:input readonly="true"  type="text"  class="form-control form-control-alternative" path="username" />
-		                      </div>
-		                    </div>
-		                    <div class="col-lg-6">
-		                      <div class="form-group">
-		                        <label class="form-control-label" for="input-email">Email address</label>
-		                        <s:input type="email" class="form-control form-control-alternative" path="email"/>
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <div class="row">
-		                    <div class="col-lg-6">
-		                      <div class="form-group focused">
-		                        <label class="form-control-label" for="input-first-name">Fullname's Customer</label>
-		                        <s:input type="text" class="form-control form-control-alternative" path="name"/>
-		                      </div>
-		                    </div>
-		                    <div class="col-lg-6">
-		                      <div class="form-group focused">
-		                        <label class="form-control-label" for="input-last-name">Phone numer</label>
-		                        <s:input type="text" class="form-control form-control-alternative" path="phone"/>
-		                      </div>
-		                    </div>
-		                  </div>
-		                </div>
-		                <hr class="my-4">
-		                <!-- Address -->
-		                <div class="pl-lg-4">
-		                  <div class="row">
-		                    <div class="col-md-12">
-		                      <div class="form-group focused">
-		                        <label class="form-control-label" for="input-address">Address</label>
-		                        <s:input class="form-control form-control-alternative" path="location" type="text"/>
-		                      </div>
-		                    </div>
-		                  </div>
-		                  
-		                </div>
-		                <div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
+<div class="wrapper">
+            <form action="">
+            	<div id="wizard">
+            		<!-- SECTION 1 -->
+	                <h4></h4>
+	                <section>
+	                	<div class="form-header">
+	                		<div class="avartar">
+								<a href="#">
+									<img id="school_img" class="rounded-circle" src="${pageContext.request.contextPath }/webapp/assets/uploads/${avatar}" >
+								</a>
+								<div class="avartar-picker">
+									<input type="file" name="file" id="file-1" class="inputfile"  onchange="show(this)" />
+									<label for="file-1">
+										<i class="zmdi zmdi-camera"></i>
+										<span>Choose Picture</span>
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-holder active">
+									<s:input name="username" path="username" type="text" placeholder="Username" class="form-control" />
+							
+								</div>
+								<div class="form-holder">
+									<s:input path="name" name="name"  type="text" placeholder="Fullname's enterprise" class="form-control" />
+										
+								</div>
+								<div class="form-holder">
+									<s:input path="phone" name="phone" type="number" placeholder="Phone" class="form-control"  />
+								</div>
+							</div>
+	                	</div>
+	                	<div class="form-holder">
+							<s:input path="email" type="text" name="email" placeholder="Email" class="form-control"/>
+						</div>
+						<div class="form-holder">
+							<s:input path="location" name="location" type="text" placeholder="Address" class="form-control"/>
+						</div>
+						<div class=" btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<span>&nbsp;</span>
-                            <input style="color: black;" type="submit" value="Submit" class="submit " id="submit" name="submit" />
+                            <input type="submit" value="Submit" class="btn btn-primary " id="submit" name="submit" />
                             <s:hidden path="idAcc"/>
                             <s:hidden path="idRole"/>
 						</div>
-		                
-		              </form>
-		              
-		            </div>
-		          </div>
-	        
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+	                </section>
+	                
+					
+					<!-- SECTION 2 -->
+	                <h4></h4>
+	                <section>
+                		<div class="grid">
+                			<div class="row">
+                				<a href="#" class="grid-item" style="background-image: url(${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/programming-bg.jpg);">
+	                				<div class="inner">
+	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/programming.png" alt="">
+	                					<span>Programming</span>
+	                				</div>
+	                			</a>
+	                			<a href="#" class="grid-item" style="background-image: url('${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/research-bg.jpg');">
+	                				<div class="inner">
+	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/research.png" alt="">
+	                					<span>Research</span>
+	                				</div>
+	                				
+	                			</a>
+	                			<a href="#" class="grid-item" style="background-image: url('${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/teacher-bg.jpg');">
+	                				<div class="inner">
+	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/teacher.png" alt="">
+	                					<span>Teacher</span>
+	                				</div>
+	                				
+	                			</a>
+                			</div>
+                			<div class="row">
+                				<a href="#" class="grid-item" style="background-image: url('${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/tour-guide-bg.jpg');">
+	                				<div class="inner">
+	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/tour-guide.png" alt="">
+	                					<span>Tour Guide</span>
+	                				</div>
+	                			</a>
+	                			<a href="#" class="grid-item" style="background-image: url('${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/business-bg.jpg');">
+	                				<div class="inner">
+	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/business.png" alt="">
+	                					<span>Business</span>
+	                				</div>
+	                			</a>
+	                			<a href="#" class="grid-item" style="background-image: url('${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/artist-bg.jpg');">
+	                				<div class="inner">
+	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/artist.png" alt="">
+	                					<span>Artist</span>
+	                				</div>
+	                			</a>
+                			</div>
+                		</div>
+	                </section>
+
+	                
+            	</div>
+            </form>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 </s:form>
-	</jsp:attribute>
-</mt:layout_user>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/js/jquery-3.3.1.min.js"></script>
+
+		<!-- JQUERY STEP -->
+		<script src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/js/jquery.steps.js"></script>
+
+		<script src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/js/main.js"></script>
+
 
 <script type="text/javascript">
 
@@ -188,3 +230,7 @@
         }
     }
 </script>
+</body>
+</html>
+
+
