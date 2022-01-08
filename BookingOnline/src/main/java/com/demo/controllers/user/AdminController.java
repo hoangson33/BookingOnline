@@ -70,14 +70,24 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = {"","room-list"}, method = RequestMethod.GET)
-	public String roomList(ModelMap modelMap) {
+	public String roomList(ModelMap modelMap, Authentication authentication) {
 		modelMap.put("roomlists", roomService.findAllRoom());
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
+		
 		return "admin/room_list";
 	}
 	
 	@RequestMapping(value = {"","room-list-approval"}, method = RequestMethod.GET)
-	public String roomListApproval(ModelMap modelMap) {
+	public String roomListApproval(ModelMap modelMap, Authentication authentication) {
 		modelMap.put("roomlists", roomService.findRoomApproval());
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		return "admin/room_list_approval";
 	}
 	

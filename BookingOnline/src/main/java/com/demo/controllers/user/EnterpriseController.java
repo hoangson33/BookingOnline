@@ -112,7 +112,8 @@ public class EnterpriseController implements ServletContextAware {
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)
 	public String welcome(Authentication authentication , ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
-		
+		String name = authentication.getName();
+		modelMap.put("accounts", accountService.findByUsername(name));
 
 		return "users/home/index";
 	}
@@ -124,6 +125,9 @@ public class EnterpriseController implements ServletContextAware {
 		
 		
 		modelMap.put("roomlists",  roomService.findRoomOfAcc(account.getIdAcc()));
+		
+		System.out.println("username " + authentication.getName());
+		modelMap.put("accounts", accountService.findByUsername(name));
 		return "users/enterprise/room_list";
 	}
 	
