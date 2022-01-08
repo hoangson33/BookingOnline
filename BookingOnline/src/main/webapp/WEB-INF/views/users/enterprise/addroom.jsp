@@ -3,6 +3,8 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/checkbox/css/style.css">
 <style>
 /*product list*/
 
@@ -212,6 +214,12 @@
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
 							</div>
+							<button type="submit"
+								class="btn-default solid-bg-btn pos-relative">
+								<span>Submit</span>
+								<span>&nbsp;</span>
+                            
+							</button>
 							
 						
 					</div>
@@ -255,24 +263,62 @@
                                 
                             </tbody>
                         </table>
-                        <div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
-                        	<span>&nbsp;</span>
-                            <input style="color: black;" type="submit" value="Submit" class="submit " id="submit" name="submit" />
-                            
-						</div>
+                        
                        
                     </div>
                 </div>
 			</div>
 		</div>
 	</section>
-	</s:form>
+	
 	<!-- =======================================         ==End details info section==      =======================================-->
 	<!-- =======================================         ==Start hotel view section==      =======================================-->
 			
+<section class="room-facilities single section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-title text-center">
+						<h2 class="color-1c pos-relative">Delux Room Facilities</h2>
+						<p class="color-1c text-uppercase">Laxury Trip will Give Best
+							Service</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="container">
+						  <ul class="ks-cboxtags form-inline">
+						 
+						 
+						  	<li><input name="checkHighlight" type="checkbox" value="Lawn"><label >Lawn</label></li>
+						     <li><input name="checkHighlight"  type="checkbox" value="Air Conditioning" ><label>Air Conditioning</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Swimming Pool" ><label >Swimming Pool</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Sauna"><label >Sauna</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Microwave"><label >Microwave</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Barbeque" ><label >Barbeque
+						                    </label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="TV Cable"><label >TV Cable</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Laundry"><label >Laundry</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Outdoor Shower"><label>Outdoor Shower
+						                    </label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Dryer"><label >Dryer</label></li>
+						    <li class="ks-selected"><input type="checkbox" name="checkHighlight" value="Washer"><label>Washer</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Window Coverings"><label >Window Coverings</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Refrigerator"><label >Refrigerator</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="Gym"><label >Gym</label></li>
+						    <li><input type="checkbox" name="checkHighlight" value="WiFi"><label>WiFi</label></li>
+						  
+						  </ul>
 
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</section>
 	
-
+</s:form>
 	
 	
 	</jsp:attribute>

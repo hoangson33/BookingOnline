@@ -3,7 +3,9 @@ package com.demo.controllers.user;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -29,6 +31,7 @@ import com.demo.models.Account;
 import com.demo.models.InfoRoom;
 import com.demo.models.Roles;
 import com.demo.services.AccountService;
+import com.demo.services.HighlightService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
 
@@ -50,6 +53,9 @@ public class EnterpriseController implements ServletContextAware {
 
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private HighlightService highlightService;
 	
 	
 
@@ -141,7 +147,7 @@ public class EnterpriseController implements ServletContextAware {
 		Account account = accountService.findByUsername2(name);
 		modelMap.put("idAcc", account.getIdAcc());
 		modelMap.put("infoRoom", infoRoom);
-		
+		modelMap.put("highlights", highlightService.findAllHighLight());
 		
 		System.out.println("username " + authentication.getName());
 		modelMap.put("accounts", accountService.findByUsername(name));
@@ -156,6 +162,7 @@ public class EnterpriseController implements ServletContextAware {
 			String name = authentication.getName();
 			InfoRoom infoRoom = roomService.roomInfo(idRoom);
 			Account account = accountService.findByUsername2(name);
+			
 			modelMap.put("idAcc", account.getIdAcc());
 			
 			modelMap.put("imgRoom", infoRoom.getImgRoom());
@@ -186,7 +193,8 @@ public class EnterpriseController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "addRoom" , method = RequestMethod.POST)
-	public String addRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom, @RequestParam(value = "file") MultipartFile file, Authentication authentication, RedirectAttributes redirectAttributes ) {
+	public String addRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom, @RequestParam(value = "file") MultipartFile file, Authentication authentication, 
+			RedirectAttributes redirectAttributes, @RequestParam(value = "checkHighlight") String[] highlights) {
 	
 		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -205,12 +213,14 @@ public class EnterpriseController implements ServletContextAware {
 			
 			infoRoom.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
 			infoRoom.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
-			String name = authentication.getName();
+//			String name = authentication.getName();
+//			
+//			Account account = accountService.findByUsername2(name);	
+//			System.out.println("********************* : " +infoRoom.getAccount().getIdAcc());
 			
-			Account account = accountService.findByUsername2(name);	
-			System.out.println("********************* : " +infoRoom.getAccount().getIdAcc());
-			
-			
+			for(int i=0;i<highlights.length;i++) {
+				System.out.println("hightlight choose is : " + highlights[i]+",");
+			}
 			
 			infoRoom.setStatus(false);
 			

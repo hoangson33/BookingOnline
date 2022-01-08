@@ -254,6 +254,7 @@
                                 
                                 
                                 
+                                
                             </tbody>
                         </table>
                        
@@ -321,23 +322,7 @@
 				<div class="col-12">
 					<div class="container">
 						  <ul class="ks-cboxtags">
-						    <li><input type="checkbox" id="checkboxOne" value="Lawn"><label for="checkboxOne">Lawn</label></li>
-						    <li><input type="checkbox" id="checkboxTwo" value="Air Conditioning" checked><label for="checkboxTwo">Air Conditioning</label></li>
-						    <li><input type="checkbox" id="checkboxThree" value="Swimming Pool" checked><label for="checkboxThree">Swimming Pool</label></li>
-						    <li><input type="checkbox" id="checkboxFour" value="Sauna"><label for="checkboxFour">Sauna</label></li>
-						    <li><input type="checkbox" id="checkboxFive" value="Microwave"><label for="checkboxFive">Microwave</label></li>
-						    <li><input type="checkbox" id="checkboxSix" value="Barbeque" checked><label for="checkboxSix">Barbeque
-						                    </label></li>
-						    <li><input type="checkbox" id="checkboxSeven" value="TV Cable"><label for="checkboxSeven">TV Cable</label></li>
-						    <li><input type="checkbox" id="checkboxEight" value="Laundry"><label for="checkboxEight">Laundry</label></li>
-						    <li><input type="checkbox" id="checkboxNine" value="Outdoor Shower"><label for="checkboxNine">Outdoor Shower
-						                    </label></li>
-						    <li><input type="checkbox" id="checkboxTen" value="Dryer"><label for="checkboxTen">Dryer</label></li>
-						    <li class="ks-selected"><input type="checkbox" id="checkboxEleven" value="Washer"><label for="checkboxEleven">Washer</label></li>
-						    <li><input type="checkbox" id="checkboxTwelve" value="Window Coverings"><label for="checkboxTwelve">Window Coverings</label></li>
-						    <li><input type="checkbox" id="checkboxThirteen" value="Refrigerator"><label for="checkboxThirteen">Refrigerator</label></li>
-						    <li><input type="checkbox" id="checkboxFourteen" value="Gym"><label for="checkboxFourteen">Gym</label></li>
-						    <li><input type="checkbox" id="checkboxFifteen" value="WiFi"><label for="checkboxFifteen">WiFi</label></li>
+						  
 						  </ul>
 
 					</div>
