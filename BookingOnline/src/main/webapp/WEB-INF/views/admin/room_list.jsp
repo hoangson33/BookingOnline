@@ -211,11 +211,11 @@
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
                                     <td>${roomlist.quantityRoom }</td>
-                                    <td>${roomlist.quantityGuestAdult }</td>
-                                    <td>${roomlist.quantityGuestChildren }</td>
-                                    <td>% ${roomlist.priceSale }</td>
+                                    <td>${roomlist.guestAdult }</td>
+                                    <td>${roomlist.guestChildren }</td>
+                                    <td>% ${roomlist.salePrice }</td>
                                     <td>$ ${roomlist.price }</td>
-                                    <td>${roomlist.locationDetails }</td>
+                                    <td>${roomlist.locationDetail }</td>
                                     <td>${roomlist.checkIn }</td>
                                     <td>${roomlist.checkOut }</td>
                                     <td><button class="pd-setting">${roomlist.status }</button></td>

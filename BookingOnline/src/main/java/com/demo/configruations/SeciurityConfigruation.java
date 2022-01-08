@@ -35,7 +35,7 @@ public class SeciurityConfigruation extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin().loginPage("/login/index")
 		.loginProcessingUrl("/login/process-login")
-		.defaultSuccessUrl("/home/index")
+		.defaultSuccessUrl("/home/welcome")
 		.failureUrl("/login/index?error")
 		.usernameParameter("username")
 		.passwordParameter("password")
