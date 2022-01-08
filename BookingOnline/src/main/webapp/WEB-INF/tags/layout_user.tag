@@ -89,6 +89,7 @@ type="java.lang.String"%>
 						<a href="index.html" class="menuzord-brand custom-logo-link"><img
 							src="${pageContext.request.contextPath }/webapp/static/user/images/logo.png" class="custom-logo" alt="logo"></a>
 						<ul  class="menuzord-menu">
+						<c:if test="${pageContext.request.userPrincipal.name == null }">
 							<li  class="active"><a href="${pageContext.request.contextPath }/home/index">Home</a>
 							<ul class="dropdown">
 									<li><a  href="${pageContext.request.contextPath }/home2/index"">Home-2</a></li>
@@ -98,16 +99,31 @@ type="java.lang.String"%>
 									<li><a href="${pageContext.request.contextPath }/roomlist">Room List</a></li>
 									<li><a href="${pageContext.request.contextPath }/roomdetails">Room Details</a></li>
 								</ul></li>
+								
 							<li><a href="${pageContext.request.contextPath }/aboutus">About Us</a></li>
 							<li><a href="${pageContext.request.contextPath }/spa">Spa</a></li>
 						
-							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>		
-								
-							<c:if test="${pageContext.request.userPrincipal.name == null }">
-							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>	
+							<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>	
+							<li><a href="${pageContext.request.contextPath }/login/index">Sign in/Sign up</a></li>		
 							</c:if>
-					
-					
+							
+							
+							<c:if test="${pageContext.request.userPrincipal.name != null }">
+									<li  class="active"><a href="${pageContext.request.contextPath }/home/welcome">Home</a>
+							<ul class="dropdown">
+									<li><a  href="${pageContext.request.contextPath }/home2/welcome"">Home-2</a></li>
+								</ul></li>
+							<li><a href="#">Room</a>
+							<ul class="dropdown">
+									<li><a href="${pageContext.request.contextPath }/roomlist/welcome">Room List</a></li>
+									<li><a href="${pageContext.request.contextPath }/roomdetails/welcome">Room Details</a></li>
+								</ul></li>
+							<li><a href="${pageContext.request.contextPath }/aboutus/welcome">About Us</a></li>
+								<li><a href="${pageContext.request.contextPath }/spa/welcome">Spa</a></li>
+							<li><a href="${pageContext.request.contextPath }/contact/welcome">Contact</a></li>	
+							</c:if>
+							
+
 					
 						<s:authorize access="hasRole('ROLE_CUSTOMER')">
 							<li><span class="avatar avatar-sm rounded-circle">

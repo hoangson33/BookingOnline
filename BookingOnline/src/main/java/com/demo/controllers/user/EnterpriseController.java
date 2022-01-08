@@ -129,12 +129,18 @@ public class EnterpriseController implements ServletContextAware {
 		Account account = accountService.findByUsername2(name);
 		modelMap.put("idAcc", account.getIdAcc());
 		modelMap.put("infoRoom", infoRoom);
+		
+		
+		System.out.println("username " + authentication.getName());
+		modelMap.put("accounts", accountService.findByUsername(name));
 		return "users/enterprise/addroom";
 	}
 
 	
 	@RequestMapping(value = "addRoom" , method = RequestMethod.POST)
 	public String addRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom, @RequestParam(value = "file") MultipartFile file, Authentication authentication, RedirectAttributes redirectAttributes ) {
+	
+		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		String CheckIn =  String.valueOf(infoRoom.getCheckIn()) ;
 		String CheckOut =  String.valueOf(infoRoom.getCheckOut()) ;

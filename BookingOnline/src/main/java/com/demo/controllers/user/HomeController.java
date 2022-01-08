@@ -20,15 +20,25 @@ public class HomeController {
 	private RoomService roomService;
 	
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
-	public String index(ModelMap modelMap,Authentication authentication) {
-		System.out.println("username " + authentication.getName());
-		String name = authentication.getName();
+	public String index(ModelMap modelMap) {
+	
 
-		modelMap.put("accounts", accountService.findByUsername(name));
+		
 		
 		modelMap.put("roomlists", roomService.findAllRoom());
 		return "users/home/index";
 	}
+	
+	@RequestMapping(value = "welcome", method = RequestMethod.GET)
+	public String welcome(Authentication authentication , ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("roomlists", roomService.findAllRoom());
+		return "users/home/index";
+	}
+	
 	
 	@RequestMapping(value = {"","home2"}, method = RequestMethod.GET)
 	public String index2() {

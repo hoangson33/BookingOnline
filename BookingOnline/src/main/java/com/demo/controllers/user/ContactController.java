@@ -26,7 +26,7 @@ public class ContactController {
 	@Autowired
 	private AccountService accountService;
 	@RequestMapping(value = {"","contact"}, method = RequestMethod.GET)
-	public String index(Authentication authentication	,ModelMap modelMap) {
+	public String index() {
 //		System.out.println("username " + authentication.getName());
 //		String name = authentication.getName();
 //
@@ -34,7 +34,14 @@ public class ContactController {
 		return "users/contact/index";
 	}
 	
-	
+	@RequestMapping(value = "welcome", method = RequestMethod.GET)
+	public String index2(Authentication authentication	,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		return "users/contact/index";
+	}
 	
 
 	@RequestMapping(value = "send", method = RequestMethod.POST)
@@ -52,7 +59,7 @@ public class ContactController {
 	
 		javaMailSender.send(msg);
 		
-		return "redirect:/contact";
+		return "redirect:/contact/welcomecontact";
 	}
 			
 		

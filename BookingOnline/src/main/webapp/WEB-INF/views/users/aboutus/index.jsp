@@ -44,7 +44,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="about-img">
-						<img src="${pageContext.request.contextPath }/resources/user/images/about-img.jpg" alt="about img" class="img-fluid">
+						<img src="${pageContext.request.contextPath }/webapp/user/images/about-img.jpg" alt="about img" class="img-fluid">
 					</div>
 				</div>
 			</div>
