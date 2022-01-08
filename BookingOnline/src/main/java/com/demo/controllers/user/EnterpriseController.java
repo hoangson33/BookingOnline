@@ -106,7 +106,7 @@ public class EnterpriseController implements ServletContextAware {
 			account.setAvatar(accountOld.getAvatar());
 		}
 		accountService.save(account);
-		return "users/home/index";
+		return "redirect:/enterprise/profile";
 	}
 	
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)
