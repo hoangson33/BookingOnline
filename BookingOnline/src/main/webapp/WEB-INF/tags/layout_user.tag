@@ -132,7 +132,7 @@ type="java.lang.String"%>
 				                </c:forEach>
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/customer">Profile's Customer</a></li>
+							<li><a href="${pageContext.request.contextPath }/customer">Profile's customer</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>
@@ -150,8 +150,9 @@ type="java.lang.String"%>
 				                </c:forEach>				                
 				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/enterprise/addRoom">Add Room</a></li>
-							<li><a href="${pageContext.request.contextPath }/enterprise/profile">Profile's Enterprise</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/addRoom?name=${pageContext.request.userPrincipal.name }">Add room</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/profile">Profile's enterprise</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/room-list">Room list</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
 							</s:authorize>

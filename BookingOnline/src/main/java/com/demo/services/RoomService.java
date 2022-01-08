@@ -16,6 +16,8 @@ public interface RoomService {
 	
 	public void delete(int id);
 	
+	public Iterable<InfoRoom> findRoomOfAcc(String idAcc);
+	
 	public String findAccId(int idRoom);
 	
 	public InfoRoom roomInfo(int idRoom);

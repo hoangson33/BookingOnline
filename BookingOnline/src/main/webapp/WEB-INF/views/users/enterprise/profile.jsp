@@ -62,7 +62,7 @@
 	                <section>
                 		<div class="grid">
                 			<div class="row">
-                				<a href="${pageContext.request.contextPath }/enterprise/addroom" class="grid-item" style="background-image: url(${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/programming-bg.jpg);">
+                				<a href="${pageContext.request.contextPath }/enterprise/addRoom" class="grid-item" style="background-image: url(${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/programming-bg.jpg);">
 	                				<div class="inner">
 	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/business.png"" alt="">
 	                					<span>ADD ROOM</span>

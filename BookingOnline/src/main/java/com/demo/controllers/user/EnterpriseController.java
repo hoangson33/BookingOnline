@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.InfoRoom;
+import com.demo.models.Roles;
 import com.demo.services.AccountService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
@@ -51,16 +52,13 @@ public class EnterpriseController implements ServletContextAware {
 	private AccountService accountService;
 	
 	
-	@RequestMapping(value = {"","addroom"}, method = RequestMethod.GET)
-	public String addroom() {
-		
-		return "users/enterprise/addroom";
-	}
+
 	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String profile(Authentication authentication,ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
+		
 
 		modelMap.put("accounts", accountService.findByUsername(name));
 		return "users/enterprise/profile";
@@ -68,11 +66,12 @@ public class EnterpriseController implements ServletContextAware {
 	
 	
 	@RequestMapping(value =  "editAcc/{id}", method = RequestMethod.GET)
-	public String editAcc(@PathVariable("id") String id,ModelMap modelMap) {
+	public String editAcc(@PathVariable("id") String id,ModelMap modelMap,Authentication authentication) {
 		modelMap.put("account", accountService.findIdAcc(id));
 		modelMap.addAttribute("avatar", accountService.findAvatar(id));
 		String avatar = accountService.findAvatar(id);
 		System.out.println("avatar  : " + avatar);
+		
 		return "users/enterprise/profile_edit";
 	}
 	
@@ -118,6 +117,16 @@ public class EnterpriseController implements ServletContextAware {
 		return "users/home/index";
 	}
 	
+	@RequestMapping(value = "room-list", method = RequestMethod.GET)
+	public String roomList(Authentication authentication , ModelMap modelMap) {
+		String name = authentication.getName();
+		Account account =  accountService.findByUsername2(name);
+		
+		
+		modelMap.put("roomlists",  roomService.findRoomOfAcc(account.getIdAcc()));
+		return "users/enterprise/room_list";
+	}
+	
 	
 	
 	
@@ -125,7 +134,6 @@ public class EnterpriseController implements ServletContextAware {
 	public String addRoom(ModelMap modelMap,Authentication authentication) {
 		InfoRoom infoRoom = new InfoRoom();
 		String name = authentication.getName();
-		
 		Account account = accountService.findByUsername2(name);
 		modelMap.put("idAcc", account.getIdAcc());
 		modelMap.put("infoRoom", infoRoom);
@@ -134,6 +142,42 @@ public class EnterpriseController implements ServletContextAware {
 		System.out.println("username " + authentication.getName());
 		modelMap.put("accounts", accountService.findByUsername(name));
 		return "users/enterprise/addroom";
+	}
+	
+	
+	@RequestMapping(value =  "edit-room/{idRoom}", method = RequestMethod.GET)
+	public String editRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap
+			,Authentication authentication) {
+		
+			String name = authentication.getName();
+			InfoRoom infoRoom = roomService.roomInfo(idRoom);
+			Account account = accountService.findByUsername2(name);
+			modelMap.put("idAcc", account.getIdAcc());
+			
+			modelMap.put("imgRoom", infoRoom.getImgRoom());
+			
+			
+		modelMap.put("roomlist", roomService.roomInfo(idRoom));
+		return "users/enterprise/room_edit";
+	}
+	
+	@RequestMapping(value = "edit-room", method = RequestMethod.POST )
+	public String editRoom(@ModelAttribute("roomlist") InfoRoom infoRoom,
+			@RequestParam(value = "file") MultipartFile file,RedirectAttributes redirectAttributes, @RequestParam(value = "idRoom") int idRoom) {
+		InfoRoom infoRoomOld = roomService.roomInfo(idRoom);
+		String fileName = UUID.randomUUID().toString().replace("-", "");
+		String fileNameUpload = UploadHelper.upload(servletContext, file);
+		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+		if(fileNameUpload != null) {
+			infoRoom.setImgRoom(fileNameUpload);
+		}else {
+			infoRoom.setImgRoom(infoRoomOld.getImgRoom());
+		}
+		
+		infoRoom.setCreated(new Date());
+		infoRoom.setStatus(false);
+		roomService.save(infoRoom);
+		return "redirect:/enterprise/room-list";
 	}
 
 	

@@ -141,13 +141,7 @@
 }
 </style>
 <mt:layout_user title="Add Room">
-
 	<jsp:attribute name="content">
-	
-	
-
-			
-				
 	
 	<!-- =======================================         ==End Header section==      =======================================-->
 	<!-- =======================================         ==Start Breadcrumbs section==      =======================================-->
@@ -182,7 +176,7 @@
 				<input  onchange="show(this)" type="file" name="file" multiple="multiple" id="firstimg" style="display:none; visibility: none;"/> 
 				
 					
-					<div class="room-img"><label for="firstimg"><img id="school_img" src="images/room-details-img1.jpg" alt="room img" class="img-fluid rounded"></label>
+					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img id="school_img" src="images/room-details-img1.jpg" alt="room img" class="img-fluid rounded"></label>
 					
 					</div>
                 
@@ -265,7 +259,7 @@
                         	<span>&nbsp;</span>
                             <input style="color: black;" type="submit" value="Submit" class="submit " id="submit" name="submit" />
                             
-	</div>
+						</div>
                        
                     </div>
                 </div>

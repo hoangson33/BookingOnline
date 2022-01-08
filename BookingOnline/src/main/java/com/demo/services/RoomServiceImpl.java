@@ -43,4 +43,11 @@ public class RoomServiceImpl implements RoomService {
 		return roomRepository.roomInfo(idRoom);
 	}
 
+	@Override
+	public Iterable<InfoRoom> findRoomOfAcc(String idAcc) {
+		return roomRepository.findRoomOfAcc(idAcc);
+	}
+
+
+
 }

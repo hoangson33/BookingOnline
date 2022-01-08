@@ -41,7 +41,7 @@ public class LoginController {
 	public String welcome(Authentication authentication , ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
-
+		
 		modelMap.put("accounts", accountService.findByUsername(name));
 
 		return "users/home/index";

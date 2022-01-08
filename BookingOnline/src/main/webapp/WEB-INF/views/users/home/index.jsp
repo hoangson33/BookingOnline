@@ -174,26 +174,27 @@
 	<section class="room-carousel section-padding">
 		<div class="container">
 			<div class="row">
+			<c:forEach var="roomlist" items="${roomlists }" >
 				<div class="col-12">
 					<div class="room-carousel-wrapper pos-relative">
 						<div class="room-info-wrapper carousel-info-v1">
-						<c:forEach var="roomlist" items="${roomlists }" >
+						
 							<div class="room-info">
 								<span class="color-1c text-uppercase tag">${roomlist.account.name }</span>
 								<h4 class="color-33 playfair">Luxurious Room for Family</h4>
 								<span class="divider"></span>
-								<p>${roomlist.desc }</p>
+								<p>${roomlist.description }</p>
 								<ul class="mb-40">
 									
-									<li>${roomlist.roomHighlight }</li>
+									<li>${roomlist.checkIn }</li>
 								</ul>
 								<a href="#" class="btn-default book-now">Book Now <i
 									class="ion-android-arrow-dropright"></i></a>
 							</div>
-						</c:forEach>
+						
 							
 							<div class="room-info">
-								<span class="color-1c text-uppercase tag">Relaxation</span>
+								<span class="color-1c text-uppercase tag">ÁDASDAS</span>
 								<h4 class="color-33 playfair">Luxurious Room for Family-2</h4>
 								<span class="divider"></span>
 								<p>Pellentesque nulla magna, accumsan sed ante quis, gravida
@@ -228,11 +229,11 @@
 							</div>
 						</div>
 						<div class="room-img-wrapper carousel-img-v1">
-							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img3.jpg" alt="carousel img"
+							<div  class="room-img">
+								<img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}" alt="carousel img"
 									class="img-fluid">
 								<h3 class="price color-22">
-									$120.00 <span>/ Per Night</span>
+									$${roomlist.price } <span>/ Per Night</span>
 								</h3>
 							</div>
 							<div class="room-img">
@@ -253,6 +254,7 @@
 					</div>
 					<!--/carousel-wrapper-->
 				</div>
+			</c:forEach>	
 				<!--/col-->
 			</div>
 		</div>
