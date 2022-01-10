@@ -142,11 +142,83 @@
     font-size: 18px;
     font-weight: 300;
 }
+
+
+
+/* The container */
+.container2 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  right:300;
+  height: 25px;
+  width: 25px;
+  background-color: #4b4e4a;
+}
+
+/* On mouse-over, add a grey background color */
+.container2:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container2 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container2 .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 </style>
 <mt:layout_user title="Room edit">
 	<jsp:attribute name="content">
 	
-  
+<s:form method="post" modelAttribute="roomlist" enctype="multipart/form-data"
+			action="${pageContext.request.contextPath }/enterprise/edit-room">   
       <!-- =======================================         ==End Header section==      =======================================-->
 	<!-- =======================================         ==Start Breadcrumbs section==      =======================================-->
 	<section class="hotel-breadcrumbs pos-relative">
@@ -167,18 +239,16 @@
 		</div>
 	</section>
 	<!-- =======================================         ==End Breadcrumbs section==      =======================================-->
-<s:form method="post" modelAttribute="roomlist" enctype="multipart/form-data"
-			action="${pageContext.request.contextPath }/enterprise/edit-room"> 
 
 	<!-- =======================================         ==Start details info section==      =======================================-->
 	<section class="details-info section-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<input  onchange="show(this)" type="file" name="file" multiple="multiple" id="firstimg" style="display:none; visibility: none;"/> 
+					<input  onchange="showMainImg(this)" type="file" name="mainImage" id="firstimg" style="display:none; visibility: none;"/> 
 				
 					
-					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img width="1000" height="1000" id="school_img" src="${pageContext.request.contextPath }/webapp/assets/uploads/${imgRoom}" alt="room img" class="img-fluid rounded"></label>
+					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img width="700" height="700" id="mainImg" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}" alt="room img" class="img-fluid rounded"></label>
 					
 					</div>
 				</div>
@@ -250,10 +320,7 @@
                                     <td><s:input path="locationDetail"/></td>
                                     <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
                                 </tr>
-                                
-                                
-                                
-                                
+                   
                                 
                             </tbody>
                         </table>
@@ -265,7 +332,7 @@
 		</div>
 	</section>
 	<!-- =======================================         ==End details info section==      =======================================-->
-</s:form>	
+	
 	
 	<!-- =======================================         ==Start hotel view section==      =======================================-->
 	<section class="hotel-view section-padding">
@@ -284,22 +351,23 @@
 							consectetur molestie.</p>
 					</div>
 				</div>
+				
 				<div class="col-md-6">
 					<div class="img-area">
-						<img src="${pageContext.request.contextPath }/webapp/static/user/images/hotel-view-img1.jpg" alt="hotel view"
-							class="img-fluid">
+						<input  onchange="showExtraImg1(this)" type="file" name="extraImage" id="extraImg1" style="display:none; visibility: none;"/> 
+						<label for="extraImg1" ><i class="fa fa-plus "></i><img id="previewExtraImg1" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.extraImg1}" alt="Extra Image 1" class="img-fluid rounded"></label>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="img-area">
-						<img src="${pageContext.request.contextPath }/webapp/static/user/images/hotel-view-img2.jpg" alt="hotel view"
-							class="img-fluid">
+						<input  onchange="showExtraImg2(this)" type="file" name="extraImage" id="extraImg2" style="display:none; visibility: none;"/> 
+						<label for="extraImg2" ><i class="fa fa-plus "></i><img id="previewExtraImg2" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.extraImg2}" alt="Extra Image 1" class="img-fluid rounded"></label>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="img-area">
-						<img src="${pageContext.request.contextPath }/webapp/static/user/images/hotel-view-img3.jpg" alt="hotel view"
-							class="img-fluid">
+						<input  onchange="showExtraImg3(this)" type="file" name="extraImage" id="extraImg3" style="display:none; visibility: none;"/> 
+						<label for="extraImg3" ><i class="fa fa-plus "></i><img id="previewExtraImg3" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.extraImg3}" alt="Extra Image 1" class="img-fluid rounded"></label>
 					</div>
 				</div>
 			</div>
@@ -319,13 +387,19 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-12">
-					<div class="container">
-						  <ul class="ks-cboxtags">
-						  
-						  </ul>
-
-					</div>
+				
+				
+				<div class=" col-12 text-center">
+					
+			
+				<c:forEach var="highlight" items="${highlightS }">
+					<label class="container2 color-1c text-uppercase">${highlight.nameHighlight }
+								
+						<s:checkbox path="highlightRoom" value="${highlight.nameHighlight }" />
+					<span class="checkmark"></span>	
+					</label>			
+				</c:forEach>
+					
 				</div>
 			</div>
 		</div>
@@ -405,20 +479,52 @@
 	<!-- =======================================         ==End Popular room section==      =======================================-->
 	<!-- =======================================         ==Start footer section==      =======================================-->
 	
-	
+	</s:form>
 	
 	</jsp:attribute>
 	
 </mt:layout_user>
 		<script type="text/javascript">
 
-    function show(input) {
-        if (input.files && input.files[0]) {
-            var filerdr = new FileReader();
-            filerdr.onload = function (e) {
-                $('#school_img').attr('src', e.target.result).width(700).height(700);
-            }
-            filerdr.readAsDataURL(input.files[0]);
-        }
-    }
+		function showMainImg(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#mainImg').attr('src', e.target.result).width(700).height(700);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
+	
+	
+	 function showExtraImg1(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#previewExtraImg1').attr('src', e.target.result);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
+	 
+	 function showExtraImg2(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#previewExtraImg2').attr('src', e.target.result);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
+	 
+	 
+	 function showExtraImg3(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#previewExtraImg3').attr('src', e.target.result);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
 </script>

@@ -11,6 +11,6 @@ import com.demo.models.InfoRoom;
 
 @Repository
 public interface HighlightRepository extends CrudRepository<Highlight, Integer>{
-
+	
 
 }

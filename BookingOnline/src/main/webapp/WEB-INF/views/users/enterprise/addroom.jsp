@@ -3,8 +3,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/checkbox/css/style.css">
+
 <style>
 /*product list*/
 
@@ -141,7 +140,79 @@
     font-size: 18px;
     font-weight: 300;
 }
+
+
+/* The container */
+.container2 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  right:300;
+  height: 25px;
+  width: 25px;
+  background-color: #4b4e4a;
+}
+
+/* On mouse-over, add a grey background color */
+.container2:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container2 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container2 .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 </style>
+
+
 <mt:layout_user title="Add Room">
 	<jsp:attribute name="content">
 	
@@ -175,10 +246,10 @@
 			
 				<div class="col-lg-8">
 				
-				<input  onchange="show(this)" type="file" name="file" multiple="multiple" id="firstimg" style="display:none; visibility: none;"/> 
+				<input  onchange="showMainImg(this)" type="file" name="mainImage" id="firstimg" style="display:none; visibility: none;"/> 
 				
 					
-					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img id="school_img" src="images/room-details-img1.jpg" alt="room img" class="img-fluid rounded"></label>
+					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img id="mainImg" src="images/room-details-img1.jpg" alt="room img" class="img-fluid rounded"></label>
 					
 					</div>
                 
@@ -238,23 +309,23 @@
                                 </tr>
                                 <tr>
                                     <td>Room Category</td>
-                                    <td><s:input path="roomCategory"/></td>
+                                    <td><s:textarea rows="1" path="roomCategory"/></td>
                                 </tr>
                                 <tr>
                                     <td>Room Quantiy</td>
-                                    <td><s:input path="quantityRoom"/></td>
+                                    <td><s:textarea rows="1" path="quantityRoom"/></td>
                                 </tr>
                                 <tr>
                                     <td>Price(/1night)</td>
-                                    <td><s:input path="price"/></td>
+                                    <td><s:textarea rows="1" path="price"/></td>
                                 </tr>
                                 <tr>
                                     <td>Sale(%)</td>
-                                    <td><s:input path="salePrice"/></td>
+                                    <td><s:textarea rows="1" path="salePrice"/></td>
                                 </tr>
                                 <tr>
                                     <td>Location detail</td>
-                                    <td><s:input path="locationDetail"/></td>
+                                    <td><s:textarea rows="2" path="locationDetail"/></td>
                                     <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
                                 </tr>
                                 
@@ -272,6 +343,50 @@
 	</section>
 	
 	<!-- =======================================         ==End details info section==      =======================================-->
+	
+	<!-- =======================================         ==Start hotel view section==      =======================================-->
+	<section class="hotel-view section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="content align-center-center text-center">
+						<span class="color-44 text-uppercase display-block mb-25">Amazing
+							Hotel View</span>
+						<h2 class="color-1c playfair mb-30">Our Hotel View</h2>
+						<p>Etiam neque libero, tincidunt non magna at, varius pretium
+							elit. Nulla dui ante, gravida et luctus nec, venenatis et tellus.
+							Suspendisse a turpis ut urna bibendum mollis vitae sit amet
+							metus. Nam cursus dolor a viverra condimentum. Nunc fermentum
+							elit sit amet est dictum eleifend. Nunc in massa et tellus
+							consectetur molestie.</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="img-area">
+						<input  onchange="showExtraImg1(this)" type="file" name="extraImage" id="extraImg1" style="display:none; visibility: none;"/> 
+						<label for="extraImg1" ><i class="fa fa-plus "></i><img id="previewExtraImg1" src="images/room-details-img1.jpg" alt="Extra Image 1" class="img-fluid rounded"></label>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="img-area">
+						<input  onchange="showExtraImg2(this)" type="file" name="extraImage" id="extraImg2" style="display:none; visibility: none;"/> 
+						<label for="extraImg2" ><i class="fa fa-plus "></i><img id="previewExtraImg2" src="images/room-details-img1.jpg" alt="Extra Image 2" class="img-fluid rounded"></label>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="img-area">
+						<input  onchange="showExtraImg3(this)" type="file" name="extraImage" id="extraImg3" style="display:none; visibility: none;"/> 
+						<label for="extraImg3" ><i class="fa fa-plus "></i><img id="previewExtraImg3" src="images/room-details-img1.jpg" alt="Extra Image 3" class="img-fluid rounded"></label>
+					</div>
+				</div>
+				
+				
+				 
+				
+			
+		</div>
+	</section>
+	<!-- =======================================         ==End hotel view section==   
 	<!-- =======================================         ==Start hotel view section==      =======================================-->
 			
 <section class="room-facilities single section-padding">
@@ -285,33 +400,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-12">
-					<div class="container">
-						  <ul class="ks-cboxtags form-inline">
-						 
-						 
-						  	<li><input name="checkHighlight" type="checkbox" value="Lawn"><label >Lawn</label></li>
-						     <li><input name="checkHighlight"  type="checkbox" value="Air Conditioning" ><label>Air Conditioning</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Swimming Pool" ><label >Swimming Pool</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Sauna"><label >Sauna</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Microwave"><label >Microwave</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Barbeque" ><label >Barbeque
-						                    </label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="TV Cable"><label >TV Cable</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Laundry"><label >Laundry</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Outdoor Shower"><label>Outdoor Shower
-						                    </label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Dryer"><label >Dryer</label></li>
-						    <li class="ks-selected"><input type="checkbox" name="checkHighlight" value="Washer"><label>Washer</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Window Coverings"><label >Window Coverings</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Refrigerator"><label >Refrigerator</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="Gym"><label >Gym</label></li>
-						    <li><input type="checkbox" name="checkHighlight" value="WiFi"><label>WiFi</label></li>
-						  
-						  </ul>
-
-					</div>
+			<div class="row ">
+				<div class=" col-12 text-center">
+					
+			
+				<c:forEach var="highlight" items="${highlights }">
+					<label class="container2 color-1c text-uppercase">${highlight.nameHighlight }
+								
+						<s:checkbox path="highlightRoom" value="${highlight.nameHighlight }" />
+					<span class="checkmark"></span>	
+					</label>			
+				</c:forEach>
+					
 				</div>
 			
 			</div>
@@ -325,15 +425,49 @@
 	
 </mt:layout_user>
 	<script type="text/javascript">
+	 function showMainImg(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#mainImg').attr('src', e.target.result).width(700).height(700);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
+	
+	
+	 function showExtraImg1(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#previewExtraImg1').attr('src', e.target.result);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
+	 
+	 function showExtraImg2(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#previewExtraImg2').attr('src', e.target.result);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
+	 
+	 
+	 function showExtraImg3(input) {
+	        if (input.files && input.files[0]) {
+	            var filerdr = new FileReader();
+	            filerdr.onload = function (e) {
+	                $('#previewExtraImg3').attr('src', e.target.result);
+	            }
+	            filerdr.readAsDataURL(input.files[0]);
+	        }
+	    }
 
-    function show(input) {
-        if (input.files && input.files[0]) {
-            var filerdr = new FileReader();
-            filerdr.onload = function (e) {
-                $('#school_img').attr('src', e.target.result).width(700).height(700);
-            }
-            filerdr.readAsDataURL(input.files[0]);
-        }
-    }
 </script>
+
+
 

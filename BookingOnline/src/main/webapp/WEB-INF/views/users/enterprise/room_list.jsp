@@ -42,7 +42,7 @@
 				<c:forEach var="roomlist" items="${roomlists }">
 					<div class="col-md-4 col-sm-6">
 						<div class="single-room">
-							<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}"
+							<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"
 								alt="room img" class="img-fluid" height="1000"></a>
 							<h5 class="mb-15 playfair">
 								<a href="#">${roomlist.roomCategory }</a>

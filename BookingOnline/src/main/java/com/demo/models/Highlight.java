@@ -1,15 +1,11 @@
 package com.demo.models;
-// Generated Jan 8, 2022, 5:55:33 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 10, 2022, 1:22:03 PM by Hibernate Tools 5.1.10.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,18 +17,12 @@ public class Highlight implements java.io.Serializable {
 
 	private Integer idHighlight;
 	private String nameHighlight;
-	private Set<InfoRoom> infoRooms = new HashSet<InfoRoom>(0);
 
 	public Highlight() {
 	}
 
 	public Highlight(String nameHighlight) {
 		this.nameHighlight = nameHighlight;
-	}
-
-	public Highlight(String nameHighlight, Set<InfoRoom> infoRooms) {
-		this.nameHighlight = nameHighlight;
-		this.infoRooms = infoRooms;
 	}
 
 	@Id
@@ -47,22 +37,13 @@ public class Highlight implements java.io.Serializable {
 		this.idHighlight = idHighlight;
 	}
 
-	@Column(name = "name_highlight", nullable = false, length = 200)
+	@Column(name = "name_highlight", nullable = false, length = 250)
 	public String getNameHighlight() {
 		return this.nameHighlight;
 	}
 
 	public void setNameHighlight(String nameHighlight) {
 		this.nameHighlight = nameHighlight;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "highlights")
-	public Set<InfoRoom> getInfoRooms() {
-		return this.infoRooms;
-	}
-
-	public void setInfoRooms(Set<InfoRoom> infoRooms) {
-		this.infoRooms = infoRooms;
 	}
 
 }

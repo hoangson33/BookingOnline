@@ -4,7 +4,9 @@ package com.demo.controllers.user;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,7 +48,8 @@ public class EnterpriseController implements ServletContextAware {
 	@Autowired
 	private RoleService roleService;
 	
-
+	@Autowired
+	private HighlightService highlightService;
 	
 	@Autowired
 	private RoomService roomService;
@@ -54,8 +57,7 @@ public class EnterpriseController implements ServletContextAware {
 	@Autowired
 	private AccountService accountService;
 	
-	@Autowired
-	private HighlightService highlightService;
+
 	
 	
 
@@ -147,7 +149,7 @@ public class EnterpriseController implements ServletContextAware {
 		Account account = accountService.findByUsername2(name);
 		modelMap.put("idAcc", account.getIdAcc());
 		modelMap.put("infoRoom", infoRoom);
-		modelMap.put("highlights", highlightService.findAllHighLight());
+		modelMap.put("highlights", highlightService.findAll());
 		
 		System.out.println("username " + authentication.getName());
 		modelMap.put("accounts", accountService.findByUsername(name));
@@ -163,7 +165,14 @@ public class EnterpriseController implements ServletContextAware {
 			InfoRoom infoRoom = roomService.roomInfo(idRoom);
 			Account account = accountService.findByUsername2(name);
 			
+			
+			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
+			modelMap.put("highlights", convertedHightlight);
 			modelMap.put("idAcc", account.getIdAcc());
+			
+			modelMap.put("highlightS", highlightService.findAll());
+			
+			
 			
 			modelMap.put("imgRoom", infoRoom.getImgRoom());
 			
@@ -174,16 +183,43 @@ public class EnterpriseController implements ServletContextAware {
 	
 	@RequestMapping(value = "edit-room", method = RequestMethod.POST )
 	public String editRoom(@ModelAttribute("roomlist") InfoRoom infoRoom,
-			@RequestParam(value = "file") MultipartFile file,RedirectAttributes redirectAttributes, @RequestParam(value = "idRoom") int idRoom) {
+			@RequestParam(value = "mainImage") MultipartFile mainImageFile,@RequestParam(value = "extraImage") MultipartFile[] extraImageFile
+			,RedirectAttributes redirectAttributes, @RequestParam(value = "idRoom") int idRoom) {
 		InfoRoom infoRoomOld = roomService.roomInfo(idRoom);
-		String fileName = UUID.randomUUID().toString().replace("-", "");
-		String fileNameUpload = UploadHelper.upload(servletContext, file);
-		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
-		if(fileNameUpload != null) {
-			infoRoom.setImgRoom(fileNameUpload);
+		
+		String mainNameUpload = UploadHelper.upload2(servletContext, mainImageFile);
+		if(mainNameUpload != null) {
+			infoRoom.setImgRoom(mainNameUpload);
 		}else {
 			infoRoom.setImgRoom(infoRoomOld.getImgRoom());
 		}
+		
+		
+		int count = 0;
+		
+
+			for(MultipartFile extraImageName : extraImageFile) {
+				String extraNameUpload = UploadHelper.upload2(servletContext, extraImageName);
+				if(count == 0) {
+					infoRoom.setExtraImg1(extraNameUpload);
+				}
+				if(count == 1) {
+					infoRoom.setExtraImg2(extraNameUpload);
+				}
+				if(count == 2) {
+					infoRoom.setExtraImg3(extraNameUpload);
+				}
+				count ++;
+			}
+			
+			if(infoRoom.getExtraImg1() == null && infoRoom.getExtraImg2() == null && infoRoom.getExtraImg3() == null) 
+			{ 
+			infoRoom.setExtraImg1(infoRoomOld.getExtraImg1());
+			infoRoom.setExtraImg2(infoRoomOld.getExtraImg2());
+			infoRoom.setExtraImg3(infoRoomOld.getExtraImg3());
+			}
+		
+		
 		
 		infoRoom.setCreated(new Date());
 		infoRoom.setStatus(false);
@@ -193,8 +229,8 @@ public class EnterpriseController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "addRoom" , method = RequestMethod.POST)
-	public String addRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom, @RequestParam(value = "file") MultipartFile file, Authentication authentication, 
-			RedirectAttributes redirectAttributes, @RequestParam(value = "checkHighlight") String[] highlights) {
+	public String addRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom, @RequestParam(value = "mainImage") MultipartFile mainImageFile, Authentication authentication, 
+			RedirectAttributes redirectAttributes,@RequestParam(value = "extraImage") MultipartFile[] extraImageFile) {
 	
 		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -203,42 +239,30 @@ public class EnterpriseController implements ServletContextAware {
 		try {
 			
 			
-			String fileName = UUID.randomUUID().toString().replace("-", "");
-			String fileNameUpload = UploadHelper.upload(servletContext, file);
-			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
-			if(fileNameUpload != null) {
-				infoRoom.setImgRoom(fileNameUpload);
-			}
-			infoRoom.setCreated(new Date());
 			
+			String mainNameUpload = UploadHelper.upload2(servletContext, mainImageFile);
+			infoRoom.setImgRoom(mainNameUpload);
+			
+			
+			int count = 0;
+			for(MultipartFile extraImageName : extraImageFile) {
+				String extraNameUpload = UploadHelper.upload2(servletContext, extraImageName);
+				if(count == 0) {
+					infoRoom.setExtraImg1(extraNameUpload);
+				}
+				if(count == 1) {
+					infoRoom.setExtraImg2(extraNameUpload);
+				}
+				if(count == 2) {
+					infoRoom.setExtraImg3(extraNameUpload);
+				}
+				count ++;
+			}
+			
+			infoRoom.setCreated(new Date());
 			infoRoom.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
 			infoRoom.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
-//			String name = authentication.getName();
-//			
-//			Account account = accountService.findByUsername2(name);	
-//			System.out.println("********************* : " +infoRoom.getAccount().getIdAcc());
-			
-			for(int i=0;i<highlights.length;i++) {
-				System.out.println("hightlight choose is : " + highlights[i]+",");
-			}
-			
 			infoRoom.setStatus(false);
-			
-			
-			
-			
-			
-//			else {
-//				
-//				for(MultipartFile file :files) {
-//					System.out.println("file name : " + file.getOriginalFilename());
-//					System.out.println("file type : " + file.getContentType());
-//					System.out.println("file size : " + file.getSize());
-//					String fileNameUploads = UploadHelper.upload(servletContext, file);
-//					imageRoom.setImage(fileNameUploads);
-//					imageRoomService.save(imageRoom);
-//				}
-//			}
 		} catch (ParseException e) {
 			System.err.println(e.getMessage());
 		}

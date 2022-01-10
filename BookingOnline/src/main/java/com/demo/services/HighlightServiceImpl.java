@@ -1,8 +1,5 @@
 package com.demo.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +15,11 @@ public class HighlightServiceImpl implements HighlightService {
 	private HighlightRepository highlightRepository;
 
 	@Override
-	public Iterable<Highlight> findAllHighLight() {
-			
-			return highlightRepository.findAll();
+	public Iterable<Highlight> findAll() {
+		return highlightRepository.findAll();
 	}
+
+
 
 
 

@@ -23,6 +23,18 @@ public class UploadHelper {
 		}
 	}
 	
+	public static String upload2(ServletContext servletContext,  MultipartFile file) {
+		try {
+			String fileName = generateFileName(file.getOriginalFilename());
+			byte[] bytes = file.getBytes();
+			Path path = Paths.get(servletContext.getRealPath("/assets/uploadRoom/" + fileName));
+			Files.write(path, bytes);
+			return fileName;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public static String generateFileName(String fileName) {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		int index = fileName.lastIndexOf(".");
