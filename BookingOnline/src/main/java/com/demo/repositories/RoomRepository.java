@@ -1,5 +1,8 @@
 package com.demo.repositories;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -24,5 +27,9 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	
 	@Query("from InfoRoom where account.idAcc = :idAcc")
 	public Iterable<InfoRoom> findRoomOfAcc(@Param("idAcc") String idAcc);
+
+	
+	@Query("from InfoRoom where checkIn = :checkIn and checkOut = :checkOut and guestChildren = :guestChildren")
+	public List<InfoRoom> search(@Param("checkIn") Date checkIn, @Param("checkOut") Date checkOut, @Param("guestChildren") int guestChildren);
 
 }

@@ -222,6 +222,7 @@
                                     <td>${roomlist.account.idAcc }</td>
                                     
                                     <td>
+                                     <a  href="${pageContext.request.contextPath }/admin/detailroom/${roomlist.idRoom}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a href="${pageContext.request.contextPath }/admin/deleteRoom/${roomlist.idRoom}"><i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>

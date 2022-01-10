@@ -57,6 +57,8 @@ public class AdminController implements ServletContextAware {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	
 
 
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
@@ -279,7 +281,19 @@ public class AdminController implements ServletContextAware {
 		return "redirect:/admin/room-list-approval";
 	}
 	
-	
+	@RequestMapping(value =  "detailroom/{id}", method = RequestMethod.GET)
+	public String detailroom(@PathVariable("id") int id,ModelMap modelMap,Authentication authentication) {
+		modelMap.put("roomlist", roomService.find(id));
+		
+		
+		
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
+		return "admin/detailroom";
+	}
 
 	
 	

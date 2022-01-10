@@ -1,6 +1,9 @@
 package com.demo.services;
 
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.repository.query.Param;
 
 import com.demo.models.Account;
@@ -22,7 +25,7 @@ public interface RoomService {
 	
 	public InfoRoom roomInfo(int idRoom);
 
+	public InfoRoom find(int id);
 	
-	
-
+	public List<InfoRoom> search(Date checkin , Date checkout , int children);
 }
