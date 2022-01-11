@@ -17,7 +17,7 @@
 <h3 class="w3-center w3-animate-right">You dont have permission to view this site.</h3>
 
 <h6 class="w3-center w3-animate-zoom">error code:403 forbidden</h6>
-  <h3 class="w3-center w3-animate-right"><a href="${pageContext.request.contextPath }/home/index">Back to Home</a></h3>
+  <h3 class="w3-center w3-animate-right"><a href="${pageContext.request.contextPath }/home/welcome">Back to Home</a></h3>
 
 </div>
 </body>

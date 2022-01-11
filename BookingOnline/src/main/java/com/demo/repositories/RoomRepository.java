@@ -19,14 +19,23 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	@Query("from InfoRoom where status = true")
 	public Iterable<InfoRoom> findAllRoom();
 	
+
+	
+	
 	@Query("select account.idAcc from InfoRoom where idRoom = :idRoom")
 	public String findAccId(@Param("idRoom") int idRoom);
 	
 	@Query("from InfoRoom where idRoom = :idRoom")
-	public InfoRoom roomInfo(@Param("idRoom") int idRoom);
+	public InfoRoom roomInfoByIdRoom(@Param("idRoom") int idRoom);
 	
-	@Query("from InfoRoom where account.idAcc = :idAcc")
-	public Iterable<InfoRoom> findRoomOfAcc(@Param("idAcc") String idAcc);
+	@Query("from InfoRoom where account.idAcc = :idAcc and status = true")
+	public Iterable<InfoRoom> roomInfoByIdAcc(@Param("idAcc") String idAcc);
+	
+	@Query("from InfoRoom where account.idAcc = :idAcc and status = true")
+	public Iterable<InfoRoom> findRoomTrueOfAcc(@Param("idAcc") String idAcc);
+	
+	@Query("from InfoRoom where account.idAcc = :idAcc and status = false")
+	public Iterable<InfoRoom> findRoomFalseOfAcc(@Param("idAcc") String idAcc);
 
 	
 	@Query("from InfoRoom where checkIn = :checkIn and checkOut = :checkOut and guestChildren = :guestChildren")

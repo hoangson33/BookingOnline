@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<c:forEach var="roomlist" items="${roomlists }">
+				<c:forEach var="roomlist" items="${roomlistTrue }">
 					<div class="col-md-4 col-sm-6">
 						<div class="single-room">
 							<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"
@@ -47,9 +47,46 @@
 							<h5 class="mb-15 playfair">
 								<a href="#">${roomlist.roomCategory }</a>
 							</h5>
-							<p><u><span>Check In</span></u>: ${roomlist.checkIn }</p>
+							<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
 							<span class="divider"></span>
-							<p><u><span>Check Out</span></u>: ${roomlist.checkOut }</p>
+							<h4 class="price color-66 mb-15">
+								$${roomlist.price } <span>/ Per Night</span>
+							</h4>
+							<a href="${pageContext.request.contextPath }/enterprise/edit-room/${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Details <i class="ion-android-arrow-dropright"></i>
+							</span></a>
+						</div>
+					</div>
+				</c:forEach>
+				
+				
+			</div>
+		</div>
+	</section>
+	
+	<!-- =======================================         ==End Popular room section==      =======================================-->
+	
+	
+	<!-- =======================================         ==Start Popular room section==      =======================================-->
+	<section class="hotel-room list section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-title text-center">
+						<h2 class="color-1c pos-relative">Your Rooms</h2>
+						<p class="color-1c text-uppercase">Wait for approval</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<c:forEach var="roomlist" items="${roomlistFalse }">
+					<div class="col-md-4 col-sm-6">
+						<div class="single-room">
+							<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"
+								alt="room img" class="img-fluid" height="1000"></a>
+							<h5 class="mb-15 playfair">
+								<a href="#">${roomlist.roomCategory } Room</a>
+							</h5>
+							<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
 							<span class="divider"></span>
 							<h4 class="price color-66 mb-15">
 								$${roomlist.price } <span>/ Per Night</span>

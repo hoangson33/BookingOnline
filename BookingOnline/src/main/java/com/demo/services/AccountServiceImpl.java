@@ -93,5 +93,10 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findIdAccs(email);
 	}
 
+	@Override
+	public Iterable<Account> findAllAccEnterPrise() {
+		return accountRepository.findAllAccEnterPrise();
+	}
+
 
 }

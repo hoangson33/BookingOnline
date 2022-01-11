@@ -25,6 +25,8 @@ public interface AccountService extends UserDetailsService {
 	
 	public String findEmail (String idAcc);
 	
+	public Iterable<Account> findAllAccEnterPrise();
+	
 	
 	
 	public String findIdAccs (String email);

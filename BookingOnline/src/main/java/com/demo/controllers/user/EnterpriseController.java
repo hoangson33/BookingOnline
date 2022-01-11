@@ -132,8 +132,9 @@ public class EnterpriseController implements ServletContextAware {
 		Account account =  accountService.findByUsername2(name);
 		
 		
-		modelMap.put("roomlists",  roomService.findRoomOfAcc(account.getIdAcc()));
+		modelMap.put("roomlistTrue",  roomService.findRoomTrueOfAcc(account.getIdAcc()));
 		
+		modelMap.put("roomlistFalse",  roomService.findRoomFalseOfAcc(account.getIdAcc()));
 		System.out.println("username " + authentication.getName());
 		modelMap.put("accounts", accountService.findByUsername(name));
 		return "users/enterprise/room_list";
@@ -162,7 +163,7 @@ public class EnterpriseController implements ServletContextAware {
 			,Authentication authentication) {
 		
 			String name = authentication.getName();
-			InfoRoom infoRoom = roomService.roomInfo(idRoom);
+			InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 			Account account = accountService.findByUsername2(name);
 			
 			
@@ -177,7 +178,7 @@ public class EnterpriseController implements ServletContextAware {
 			modelMap.put("imgRoom", infoRoom.getImgRoom());
 			
 			
-		modelMap.put("roomlist", roomService.roomInfo(idRoom));
+		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
 		return "users/enterprise/room_edit";
 	}
 	
@@ -185,7 +186,7 @@ public class EnterpriseController implements ServletContextAware {
 	public String editRoom(@ModelAttribute("roomlist") InfoRoom infoRoom,
 			@RequestParam(value = "mainImage") MultipartFile mainImageFile,@RequestParam(value = "extraImage") MultipartFile[] extraImageFile
 			,RedirectAttributes redirectAttributes, @RequestParam(value = "idRoom") int idRoom) {
-		InfoRoom infoRoomOld = roomService.roomInfo(idRoom);
+		InfoRoom infoRoomOld = roomService.roomInfoByIdRoom(idRoom);
 		
 		String mainNameUpload = UploadHelper.upload2(servletContext, mainImageFile);
 		if(mainNameUpload != null) {
@@ -274,6 +275,29 @@ public class EnterpriseController implements ServletContextAware {
 	}
 	
 	
+	
+	
+	
+	@RequestMapping(value =  "room-list-of/{idAcc}", method = RequestMethod.GET)
+	public String roomListOf(@PathVariable("idAcc") String idAcc,ModelMap modelMap
+			,Authentication authentication) {
+		
+			
+//			InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
+//			
+//			
+//			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
+//			modelMap.put("highlights", convertedHightlight);
+		
+			Account account =accountService.findIdAcc(idAcc);
+			modelMap.put("nameHotel", account.getName());
+			
+			modelMap.put("highlightS", highlightService.findAll());
+			
+			
+			modelMap.put("roomlists", roomService.roomInfoByIdAcc(idAcc));
+		return "users/enterprise/room_list_of";
+	}
 	
 	@Override
 	public void setServletContext(ServletContext servletContext) {

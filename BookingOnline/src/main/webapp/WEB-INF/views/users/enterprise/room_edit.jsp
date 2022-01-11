@@ -314,11 +314,7 @@
                                 <tr>
                                     <td>Sale(%)</td>
                                     <td><s:input path="salePrice"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Location detail</td>
-                                    <td><s:input path="locationDetail"/></td>
-                                    <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
+                                     <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
                                 </tr>
                    
                                 

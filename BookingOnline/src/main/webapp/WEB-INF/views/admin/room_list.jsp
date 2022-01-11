@@ -199,7 +199,6 @@
                                     <th>Total number of childrens</th>
                                     <th>Price Sale</th>
                                     <th>Price</th>
-                                    <th>Detail Address</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
                                     <th>Status</th>
@@ -208,21 +207,19 @@
                                 </tr>
                                 <c:forEach var="roomlist" items="${roomlists }" >
                                 <tr>
-                                    <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}"  width="150px"/></td>
+                                    <td><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
                                     <td>${roomlist.quantityRoom }</td>
                                     <td>${roomlist.guestAdult }</td>
                                     <td>${roomlist.guestChildren }</td>
                                     <td>% ${roomlist.salePrice }</td>
                                     <td>$ ${roomlist.price }</td>
-                                    <td>${roomlist.locationDetail }</td>
                                     <td>${roomlist.checkIn }</td>
                                     <td>${roomlist.checkOut }</td>
                                     <td><button class="pd-setting">${roomlist.status }</button></td>
                                     <td>${roomlist.account.idAcc }</td>
                                     
                                     <td>
-                                     <a  href="${pageContext.request.contextPath }/admin/detailroom/${roomlist.idRoom}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a href="${pageContext.request.contextPath }/admin/deleteRoom/${roomlist.idRoom}"><i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>

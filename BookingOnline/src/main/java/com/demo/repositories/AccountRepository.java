@@ -15,6 +15,9 @@ public interface AccountRepository extends CrudRepository<Account, Integer>{
 	@Query("from Account where username = :username")
 	public Iterable<Account> findByUsername(@Param("username") String username);
 	
+	@Query("from Account where idRole = 2")
+	public Iterable<Account> findAllAccEnterPrise();
+	
 	@Query("from Account where username = :username")
 	public Account findByUsername2(@Param("username") String username);
 	

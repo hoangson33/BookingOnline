@@ -4,6 +4,11 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_nav/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_nav/css/owl-carousel.css">
+
+
 <mt:layout_user title="Home">
 
 	<jsp:attribute name="content">
@@ -171,95 +176,57 @@
 	<!-- =======================================         ==Start room carousel section==       =======================================-->
 	
 	
-	
-	<section class="room-carousel section-padding">
-		<div class="container">
-			<div class="row">
-			<c:forEach var="roomlist" items="${roomlists }" >
-				<div class="col-12">
-					<div class="room-carousel-wrapper pos-relative">
-						<div class="room-info-wrapper carousel-info-v1">
-						
-							<div class="room-info">
-								<span class="color-1c text-uppercase tag">${roomlist.account.name }</span>
-								<h4 class="color-33 playfair">Luxurious Room for Family</h4>
-								<span class="divider"></span>
-								<p>${roomlist.description }</p>
-								<ul class="mb-40">
-									
-									<li>${roomlist.checkIn }</li>
-								</ul>
-								<a href="#" class="btn-default book-now">Book Now <i
-									class="ion-android-arrow-dropright"></i></a>
-							</div>
-						
-							
-							<div class="room-info">
-								<span class="color-1c text-uppercase tag">ÁDASDAS</span>
-								<h4 class="color-33 playfair">Luxurious Room for Family-2</h4>
-								<span class="divider"></span>
-								<p>Pellentesque nulla magna, accumsan sed ante quis, gravida
-									feugiat turpis. Vivamus et fringilla ligula. Pellentesque nulla</p>
-								<ul class="mb-40">
-									<li>Swmming Pool</li>
-									<li>Internet Wifi</li>
-									<li>Air Condition</li>
-									<li>Hd Tv Facilities</li>
-									<li>Breakfast</li>
-									<li>24 Hours parking</li>
-								</ul>
-								<a href="#" class="btn-default book-now">Book Now <i
-									class="ion-android-arrow-dropright"></i></a>
-							</div>
-							<div class="room-info">
-								<span class="color-1c text-uppercase tag">Relaxation</span>
-								<h4 class="color-33 playfair">Luxurious Room for Family-3</h4>
-								<span class="divider"></span>
-								<p>Pellentesque nulla magna, accumsan sed ante quis, gravida
-									feugiat turpis. Vivamus et fringilla ligula. Pellentesque nulla</p>
-								<ul class="mb-40">
-									<li>Swmming Pool</li>
-									<li>Internet Wifi</li>
-									<li>Air Condition</li>
-									<li>Hd Tv Facilities</li>
-									<li>Breakfast</li>
-									<li>24 Hours parking</li>
-								</ul>
-								<a href="#" class="btn-default book-now">Book Now <i
-									class="ion-android-arrow-dropright"></i></a>
-							</div>
-						</div>
-						<div class="room-img-wrapper carousel-img-v1">
-							<div  class="room-img">
-								<img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}" alt="carousel img"
-									class="img-fluid">
-								<h3 class="price color-22">
-									$${roomlist.price } <span>/ Per Night</span>
-								</h3>
-							</div>
-							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img1.jpg" alt="carousel img"
-									class="img-fluid">
-								<h3 class="price color-22">
-									$80.00 <span>/ Per Night</span>
-								</h3>
-							</div>
-							<div class="room-img">
-								<img src="${pageContext.request.contextPath }/webapp/static/user/images/room-carousel-img2.jpg" alt="carousel img"
-									class="img-fluid">
-								<h3 class="price color-22">
-									$180.00 <span>/ Per Night</span>
-								</h3>
-							</div>
-						</div>
-					</div>
-					<!--/carousel-wrapper-->
-				</div>
-			</c:forEach>	
-				<!--/col-->
-			</div>
-		</div>
-	</section>
+
+			<!-- ***** Men Area Starts ***** -->
+    <section class="section" id="men">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>Men's Latest</h2>
+                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="men-item-carousel">
+                        <div class="owl-men-item owl-carousel">
+                        <c:forEach var="account" items="${accounts }" >
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                            <li><a href="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}"><i style="color: blue" class="fa fa-eye"></i></a>
+                                    </div>
+                                    <img src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}" alt="">
+                                </div>
+                                <div class="down-content">
+                                    <h4>${account.name } Hotel</h4>
+                                    <p><i style="color: darkBlue" class="fa fa-map-marker"> ${account.location }</i></p>
+                                    <span>${account.locationDetail }.</span>
+                                    <a href="${pageContext.request.contextPath }/enterprise/room-list-of/${account.idAcc}">More deatails</a>
+                                    
+                                    <ul class="stars">
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                          </c:forEach>  
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Men Area Ends ***** -->
+
 	
 	
 	<!-- =======================================         ==End room carousel section==      =======================================-->
@@ -696,3 +663,34 @@
 	
 	</jsp:attribute>
 </mt:layout_user>
+
+
+
+
+
+    <!-- Plugins -->
+    <script src="${pageContext.request.contextPath }/webapp/static/layout_nav/js/owl-carousel.js"></script>
+
+
+
+    
+    <!-- Global Init -->
+    <script src="${pageContext.request.contextPath }/webapp/static/layout_nav/js/custom.js"></script>
+
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>

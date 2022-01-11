@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 10, 2022, 1:22:03 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 11, 2022, 6:39:55 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -33,7 +33,6 @@ public class InfoRoom implements java.io.Serializable {
 	private double price;
 	private double salePrice;
 	private String highlightRoom;
-	private String locationDetail;
 	private String imgRoom;
 	private String extraImg1;
 	private String extraImg2;
@@ -45,9 +44,8 @@ public class InfoRoom implements java.io.Serializable {
 	}
 
 	public InfoRoom(Account account, Date checkIn, Date checkOut, int guestChildren, int guestAdult, String description,
-			String roomCategory, int quantityRoom, double price, double salePrice, String highlightRoom,
-			String locationDetail, String imgRoom, String extraImg1, String extraImg2, String extraImg3, Date created,
-			boolean status) {
+			String roomCategory, int quantityRoom, double price, double salePrice, String highlightRoom, String imgRoom,
+			String extraImg1, String extraImg2, String extraImg3, Date created, boolean status) {
 		this.account = account;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
@@ -59,7 +57,6 @@ public class InfoRoom implements java.io.Serializable {
 		this.price = price;
 		this.salePrice = salePrice;
 		this.highlightRoom = highlightRoom;
-		this.locationDetail = locationDetail;
 		this.imgRoom = imgRoom;
 		this.extraImg1 = extraImg1;
 		this.extraImg2 = extraImg2;
@@ -180,15 +177,6 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setHighlightRoom(String highlightRoom) {
 		this.highlightRoom = highlightRoom;
-	}
-
-	@Column(name = "location_detail", nullable = false, length = 250)
-	public String getLocationDetail() {
-		return this.locationDetail;
-	}
-
-	public void setLocationDetail(String locationDetail) {
-		this.locationDetail = locationDetail;
 	}
 
 	@Column(name = "img_room", nullable = false, length = 65535)

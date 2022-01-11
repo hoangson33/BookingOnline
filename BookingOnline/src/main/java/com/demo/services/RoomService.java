@@ -4,6 +4,7 @@ package com.demo.services;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import com.demo.models.Account;
@@ -19,13 +20,24 @@ public interface RoomService {
 	
 	public void delete(int id);
 	
-	public Iterable<InfoRoom> findRoomOfAcc(String idAcc);
+	public Iterable<InfoRoom> findRoomTrueOfAcc(String idAcc);
+	
+	public Iterable<InfoRoom> findRoomFalseOfAcc(String idAcc);
 	
 	public String findAccId(int idRoom);
 	
-	public InfoRoom roomInfo(int idRoom);
+	public InfoRoom roomInfoByIdRoom(int idRoom);
+	
+	
+	public Iterable<InfoRoom> roomInfoByIdAcc(String idAcc);
 
 	public InfoRoom find(int id);
 	
+	
+	
+	
 	public List<InfoRoom> search(Date checkin , Date checkout , int children);
+	
+	
+	
 }

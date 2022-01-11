@@ -273,7 +273,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                      <th>Total number of Adult</th>
                                     <th>Price</th>
                                     <th>Price sales</th>
-                                    <th>Detail Address</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
                                     <th>Status</th>
@@ -282,47 +281,24 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                 </tr>
                                 <c:forEach var="roomlist" items="${roomlists }" >
                                 <tr>
-                                    <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${roomlist.imgRoom}"  width="150px"/></td>
+                                    <td><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
                                     <td>${roomlist.quantityRoom }</td>
                                     <td>${roomlist.guestChildren }</td>
                                     <td>${roomlist.guestAdult }</td>
                                     <td>$ ${roomlist.price }</td>
                                      <td>$ ${roomlist.salePrice }</td>
-                                    <td>${roomlist.locationDetail }</td>
                                     <td>${roomlist.checkIn }</td>
                                     <td>${roomlist.checkOut }</td>
                                     <td><button class="pd-setting">${roomlist.status }</button></td>
                                     <td>${roomlist.account.idAcc }</td>
                                     
                                     <td>
-                                        <a ><i style="color: green;" class="fa fa-check" aria-hidden="true"></i></a>
-                                        <button id="myBtn">
-                                        <i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i>
+                                        <a href="${pageContext.request.contextPath }/admin/edit-room/${roomlist.idRoom } "><i style="color: green;" class="fa fa-edit" aria-hidden="true"></i></a>
                                         
-                                        </button>
                                     </td>
                                 </tr>
-                                <s:form  method="get" action="${pageContext.request.contextPath }/admin/deleteRoom/${roomlist.idRoom } ">    
-                                <!-- The Modal -->
-									<div id="myModal" class="modal">
-									
-									  <!-- Modal content -->
-									  <div class="modal-content">
-									    <div class="modal-header">
-									      <span class="close">&times;</span>
-									      <h2 style="color: white;">Refuse</h2>
-									    </div>
-									    <div class="modal-body">
-									      <textarea name="desc" class="col-sm-12" placeholder="Reason...."></textarea>
-									    </div>
-									    <div class="modal-footer">
-      										<button type="submit" class="btn btn-button " >Submit</button>
-    									</div>
-									  </div>
-									
-									</div>
-									</s:form>
+                                
                                 </c:forEach>
                             </table>
                             <div class="custom-pagination">

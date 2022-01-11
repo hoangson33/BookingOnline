@@ -20,6 +20,27 @@ type="java.lang.String"%>
 
 
 
+
+
+
+
+
+
+
+
+
+<!--jquery ui css-->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/jquery-ui.min.css">
+
+
+
+<!--color css-->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/user/css/color-1.css">
+
+
+
+
+
 <style id="" media="all">/* cyrillic-ext */
 @font-face {
   font-family: 'Roboto';
@@ -1099,6 +1120,26 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <script src="${pageContext.request.contextPath }/webapp/static/layout_admin/js/main.js"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+
+
+
+
+	<!-- jQuary library -->
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/jquery-3.2.1.min.js"></script>
+
+
+	
+	
+	<!--jquery ui js-->
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/jquery-ui.min.js"></script>
+
+	
+	
+	
+	
+	
+	<!-- all jQuary activation code here and always it will be bottom of all script tag -->
+	<script src="${pageContext.request.contextPath }/webapp/static/user/js/main.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 10, 2022, 1:22:03 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 11, 2022, 6:39:55 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -30,6 +30,7 @@ public class Account implements java.io.Serializable {
 	private String name;
 	private String gender;
 	private String location;
+	private String locationDetail;
 	private int phone;
 	private boolean status;
 	private String avatar;
@@ -44,7 +45,8 @@ public class Account implements java.io.Serializable {
 	}
 
 	public Account(String idAcc, String username, String password, String email, String name, String gender,
-			String location, int phone, boolean status, String avatar, Date datecreated, String idRole) {
+			String location, String locationDetail, int phone, boolean status, String avatar, Date datecreated,
+			String idRole) {
 		this.idAcc = idAcc;
 		this.username = username;
 		this.password = password;
@@ -52,6 +54,7 @@ public class Account implements java.io.Serializable {
 		this.name = name;
 		this.gender = gender;
 		this.location = location;
+		this.locationDetail = locationDetail;
 		this.phone = phone;
 		this.status = status;
 		this.avatar = avatar;
@@ -60,8 +63,9 @@ public class Account implements java.io.Serializable {
 	}
 
 	public Account(String idAcc, String username, String password, String email, String name, String gender,
-			String location, int phone, boolean status, String avatar, Date datecreated, String idRole,
-			Set<InfoRoom> infoRooms, Set<GuestRating> guestRatings, Set<Bill> bills, Set<Roles> roleses) {
+			String location, String locationDetail, int phone, boolean status, String avatar, Date datecreated,
+			String idRole, Set<InfoRoom> infoRooms, Set<GuestRating> guestRatings, Set<Bill> bills,
+			Set<Roles> roleses) {
 		this.idAcc = idAcc;
 		this.username = username;
 		this.password = password;
@@ -69,6 +73,7 @@ public class Account implements java.io.Serializable {
 		this.name = name;
 		this.gender = gender;
 		this.location = location;
+		this.locationDetail = locationDetail;
 		this.phone = phone;
 		this.status = status;
 		this.avatar = avatar;
@@ -143,6 +148,15 @@ public class Account implements java.io.Serializable {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	@Column(name = "location_detail", nullable = false, length = 250)
+	public String getLocationDetail() {
+		return this.locationDetail;
+	}
+
+	public void setLocationDetail(String locationDetail) {
+		this.locationDetail = locationDetail;
 	}
 
 	@Column(name = "phone", nullable = false)

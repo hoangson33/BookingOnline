@@ -1,6 +1,10 @@
 package com.demo.controllers.user;
 
+import java.lang.ProcessHandle.Info;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -84,6 +88,8 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value = {"","room-list-approval"}, method = RequestMethod.GET)
 	public String roomListApproval(ModelMap modelMap, Authentication authentication) {
+		
+		
 		modelMap.put("roomlists", roomService.findRoomApproval());
 		
 		System.out.println("username " + authentication.getName());
@@ -117,10 +123,7 @@ public class AdminController implements ServletContextAware {
 		return "admin/role_management";
 	}
 	
-	@RequestMapping(value = {"","room-edit"}, method = RequestMethod.GET)
-	public String roomEdit(ModelMap modelMap) {
-		return "admin/room_edit";
-	}
+
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(ModelMap modelMap,Authentication authentication) {
@@ -267,12 +270,12 @@ public class AdminController implements ServletContextAware {
 	public String deleteRoom(@PathVariable("id") int id, String desc) throws MessagingException {
 		String idAcc = roomService.findAccId(id);
 		String email = accountService.findEmail(idAcc);
-		InfoRoom infoRoom = roomService.roomInfo(id);
+		InfoRoom infoRoom = roomService.roomInfoByIdRoom(id);
 		String body = "<p>We would like to inform you that your request to register your business on the 'BookingHotel' website has been rejected for the following reasons: </p>" + desc +"<br>";
 		body += "Infomation of room : " + "<br>" + "It's " + infoRoom.getRoomCategory() + " room" +"<br>";
 		body += "Quantity of room : " + infoRoom.getQuantityRoom() + "<br>";
 		body += "Quantity of guests adult : " + infoRoom.getGuestAdult() + "Quantity of guests children : " + infoRoom.getGuestChildren()  + "<br>" + "Price : " + infoRoom.getPrice() + "<br>";
-		body += "Detail address : " + infoRoom.getLocationDetail() + "<br>";
+		body += "Detail address : " + infoRoom.getAccount().getLocationDetail() + "<br>";
 		body += "Time check in: " + infoRoom.getCheckIn() + ", Time check out: " + infoRoom.getCheckOut() + "<br>";
 		body += "Is required to register on : " + infoRoom.getCreated() + "<br>" + "Thank you" + "<br>" +"The BookingHotel Team";
 		smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
@@ -281,20 +284,41 @@ public class AdminController implements ServletContextAware {
 		return "redirect:/admin/room-list-approval";
 	}
 	
-	@RequestMapping(value =  "detailroom/{id}", method = RequestMethod.GET)
-	public String detailroom(@PathVariable("id") int id,ModelMap modelMap,Authentication authentication) {
-		modelMap.put("roomlist", roomService.find(id));
+	
+	
+	
+	
+	
+	@RequestMapping(value =  "edit-room/{idRoom}", method = RequestMethod.GET)
+	public String editRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap,Authentication authentication) {
 		
-		
-		
-		
-		System.out.println("username " + authentication.getName());
-		String name = authentication.getName();
-		modelMap.put("accountss", accountService.findByUsername(name));
-		System.out.println("name " + name);
-		return "admin/detailroom";
+		modelMap.put("infoRoom", roomService.roomInfoByIdRoom(idRoom));
+		modelMap.put("idRoom", idRoom);
+
+		return "admin/room_edit";
+	}
+	
+	@RequestMapping(value = "edit-room", method = RequestMethod.POST )
+	public String editRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom) {
+		InfoRoom infoRoomOld = roomService.roomInfoByIdRoom(infoRoom.getIdRoom());
+		infoRoom.setImgRoom(infoRoomOld.getImgRoom());
+		infoRoom.setExtraImg1(infoRoomOld.getExtraImg1());
+		infoRoom.setExtraImg2(infoRoomOld.getExtraImg2());
+		infoRoom.setExtraImg3(infoRoomOld.getExtraImg3());
+		infoRoom.setCreated(infoRoom.getCreated());
+		infoRoom.setStatus(true);
+		roomService.save(infoRoom);
+		return "redirect:/admin/room-list";
 	}
 
+	
+	@RequestMapping(value = {"","room-edit"}, method = RequestMethod.GET)
+	public String roomEdit(ModelMap modelMap) {
+		return "admin/room_edit";
+	}
+	
+	
+	
 	
 	
 	@Override
