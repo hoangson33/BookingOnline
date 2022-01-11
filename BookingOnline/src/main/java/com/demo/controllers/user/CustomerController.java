@@ -89,7 +89,7 @@ public class CustomerController implements ServletContextAware{
 				account.setAvatar(accountOld.getAvatar());
 			}
 			
-			accountService.update(account);
+			accountService.save(account);
 			return "users/home/index";
 		
 	}

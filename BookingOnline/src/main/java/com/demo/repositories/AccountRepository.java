@@ -28,6 +28,8 @@ public interface AccountRepository extends CrudRepository<Account, Integer>{
 	@Query("select email from Account where idAcc = :idAcc")
 	public String findEmail(@Param("idAcc") String idAcc);
 	
+	@Query("select idAcc from Account where email =:email")
+	public String findIdAccs(@Param("email") String email);
 	
 	
 	@Transactional
