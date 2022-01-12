@@ -68,10 +68,10 @@
 	                					<span>ADD ROOM</span>
 	                				</div>
 	                			</a>
-	                			<a href="#" class="grid-item" style="background-image: url('${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/research-bg.jpg');">
+	                			<a href="${pageContext.request.contextPath }/customer/changepass" class="grid-item" style="background-image: url('${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/research-bg.jpg');">
 	                				<div class="inner">
 	                					<img src="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/images/research.png" alt="">
-	                					<span>Research</span>
+	                					<span>Change Password</span>
 	                				</div>
 	                				
 	                			</a>

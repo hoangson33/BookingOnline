@@ -8,6 +8,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -95,7 +97,66 @@ public class CustomerController implements ServletContextAware{
 	}
 		
 
+	@RequestMapping(value = "changepass", method = RequestMethod.GET)
+	public String changepass(Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		return "users/customer/changepass";
+	}
+
+	@RequestMapping(value = "editpass", method = RequestMethod.POST)
+	public String editpass(Authentication authentication,ModelMap modelMap, @RequestParam("passwordOld") String passwordOld, 
+			 @RequestParam("passwordNew") String passwordNew ,@RequestParam("passwordNewMatch") String passwordNewMatch) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		Account account = accountService.findByUsername2(name); /// username truyền vào
 		
+		
+//		String hashs  = new BCryptPasswordEncoder().encode(passwords);
+//		System.out.println("passwords hien tai ms nhap :" + hashs); // passwords mới nhập  
+		
+		String passs  = accountService.findPass(name);
+		System.out.println("password databse hien tai  :" + passs); // password dưới database 
+		
+		System.out.println("password hien tai trong database :" + account.getPassword());
+		
+		System.out.println("passwords hien tai ms nhap :" + passwordOld); // passwords mới nhập  
+		System.out.println("password  :" + passwordNewMatch); 
+		System.out.println("passwordd  :" + passwordNew); 
+
+		
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		boolean result = passwordEncoder.matches(passwordOld, account.getPassword());
+		System.out.println("match  : " + result); 
+		
+		
+		if(result != false &&  passwordNew.equalsIgnoreCase(passwordNewMatch)) {
+			account.getIdAcc();
+			account.getUsername();
+			String hash  = new BCryptPasswordEncoder().encode(passwordNewMatch);
+			account.setPassword(hash);
+			System.out.println("hash :" + hash);
+			account.getEmail();
+			account.getName();
+			account.getGender();
+			account.getLocation();
+			account.getPhone();
+			account.isStatus();
+			account.getAvatar();
+			account.getDatecreated();
+			account.getIdRole();
+			accountService.save(account);
+			modelMap.put("successfully", "You have successfully changed your password!"); 
+			return "users/customer/changepass";
+		}else {
+		//	return "forgotpass/accessDenied";
+			modelMap.put("error", "You entered the wrong password!"); 
+			return "users/customer/changepass";
+		}
+			
+	}
 		
 	
 	

@@ -49,7 +49,7 @@ public class ForgotPassController {
 		System.out.println("idAcc : " + idacc);
 		Account accountOld = accountService.findIdAcc(idacc);
 		
-			
+		String hash  = new BCryptPasswordEncoder().encode(otp);
 		
 			
 			
@@ -59,12 +59,13 @@ public class ForgotPassController {
 				
 				account.setIdAcc(idacc);
 				account.setUsername(accountOld.getUsername());
-				account.setPassword(otp);
+				account.setPassword(hash);
 				System.out.println("Pass : " + account.getPassword());
 				account.setEmail(accountOld.getEmail());
 				account.setName(accountOld.getName());
 				account.setGender(accountOld.getGender());
 				account.setLocation(accountOld.getLocation());
+				account.setLocationDetail(accountOld.getLocationDetail());
 				account.setPhone(accountOld.getPhone());
 				account.setStatus(accountOld.isStatus());
 				account.setAvatar(accountOld.getAvatar());
