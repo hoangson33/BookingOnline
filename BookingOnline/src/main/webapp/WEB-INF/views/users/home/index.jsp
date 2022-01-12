@@ -194,7 +194,7 @@
                 <div class="col-lg-12">
                     <div class="men-item-carousel">
                         <div class="owl-men-item owl-carousel">
-                        <c:forEach var="account" items="${accounts }" >
+                        <c:forEach var="account" items="${accountEnters }" >
                             <div class="item">
                                 <div class="thumb">
                                     <div class="hover-content">

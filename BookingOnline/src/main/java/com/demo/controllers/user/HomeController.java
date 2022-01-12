@@ -44,7 +44,7 @@ public class HomeController {
 		String name = authentication.getName();
 
 		modelMap.put("accounts", accountService.findByUsername(name));
-		modelMap.put("accounts", accountService.findAllAccEnterPrise());
+		modelMap.put("accountEnters", accountService.findAllAccEnterPrise());
 		return "users/home/index";
 	}
 	

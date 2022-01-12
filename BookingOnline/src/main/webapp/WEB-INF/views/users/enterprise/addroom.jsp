@@ -322,10 +322,6 @@
                                 <tr>
                                     <td>Sale(%)</td>
                                     <td><s:textarea rows="1" path="salePrice"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Location detail</td>
-                                    <td><s:textarea rows="2" path="locationDetail"/></td>
                                     <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
                                 </tr>
                                 
