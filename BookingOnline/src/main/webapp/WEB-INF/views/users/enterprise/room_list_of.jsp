@@ -4,6 +4,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <mt:layout_user title="Room list">
 	<jsp:attribute name="content">
 	
@@ -91,8 +92,11 @@
 							<h4 class="price color-66 mb-15">
 								$${roomlist.price } <span>/ Per Night</span>
 							</h4>
-							<a href="${pageContext.request.contextPath }/enterprise/edit-room/${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Details <i class="ion-android-arrow-dropright"></i>
+							<a  href="${pageContext.request.contextPath }/enterprise/view-room/${roomlist.idRoom}" class="btn-default read-more solid-bg-btn">
+							<span>Details <i class="ion-android-arrow-dropright"></i>
 							</span></a>
+							
+
 						</div>
 					</div>
 				</c:forEach>
@@ -103,9 +107,9 @@
 	</section>
 	
 	<!-- =======================================         ==End Popular room section==      =======================================-->
-	
-	
-	
+
+
+
 	<!-- =======================================         ==Start facilities action section==      =======================================-->
 	<section class="room-facilities section-padding">
 		<div class="container">
@@ -151,4 +155,8 @@
 	</jsp:attribute>
 	
 </mt:layout_user>
+
+      
+
+      
 	

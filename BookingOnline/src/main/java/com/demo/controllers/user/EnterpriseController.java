@@ -361,6 +361,30 @@ public class EnterpriseController implements ServletContextAware {
 			
 	}
 	
+	
+	@RequestMapping(value =  "view-room/{idRoom}", method = RequestMethod.GET)
+	public String viewRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap
+			,Authentication authentication) {
+		
+			String name = authentication.getName();
+			InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
+			Account account = accountService.findByUsername2(name);
+			
+			
+			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
+			modelMap.put("highlights", convertedHightlight);
+			modelMap.put("idAcc", account.getIdAcc());
+			System.out.println("" + convertedHightlight);
+			
+			
+			modelMap.put("imgRoom", infoRoom.getImgRoom());
+			
+			
+		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
+		return "users/enterprise/view_room";
+	}
+
+	
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
