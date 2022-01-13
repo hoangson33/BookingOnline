@@ -1,6 +1,9 @@
 package com.demo.controllers.user;
 
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -48,8 +51,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = {"","accessDenied"}, method = RequestMethod.GET)
-	public String accessDenied() {
-	
+	public String accessDenied(HttpServletRequest request) {
+		if(request.isUserInRole("ROLE_CUSTOMER")) {
+			return "login/accessDeniedCustomer";
+		}
 		return "login/accessDenied";
 	}
 	

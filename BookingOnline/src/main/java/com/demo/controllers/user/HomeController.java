@@ -48,6 +48,16 @@ public class HomeController {
 		return "users/home/index";
 	}
 	
+	@RequestMapping(value = "welcomeCustomer", method = RequestMethod.GET)
+	public String welcomeCustomer(Authentication authentication , ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("accountEnters", accountService.findAllAccEnterPrise());
+		return "users/home/indexCustomer";
+	}
+	
 	
 	@RequestMapping(value = {"","home2"}, method = RequestMethod.GET)
 	public String index2() {

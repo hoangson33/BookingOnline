@@ -93,7 +93,7 @@ function validateForm() {
 							<s:input path="email"  name="email" type="text" placeholder="Email" class="form-control"/>
 						</div>
 						<div class="form-holder">
-							<s:input path="location"  name="location" type="text" placeholder="Address" class="form-control"/>
+							<s:input path="locationDetail"  name="location" type="text" placeholder="Address" class="form-control"/>
 						</div>
 						<div class=" btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<span>&nbsp;</span>
