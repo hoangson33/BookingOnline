@@ -268,7 +268,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                 <tr>
                                     <th>Image</th>
                                     <th>Room Category</th>
-                                    <th>Total number of rooms</th>
                                     <th>Total number of Children</th>
                                      <th>Total number of Adult</th>
                                     <th>Price</th>
@@ -283,7 +282,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                 <tr>
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
-                                    <td>${roomlist.quantityRoom }</td>
                                     <td>${roomlist.guestChildren }</td>
                                     <td>${roomlist.guestAdult }</td>
                                     <td>$ ${roomlist.price }</td>

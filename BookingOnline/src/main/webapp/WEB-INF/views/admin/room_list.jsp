@@ -194,7 +194,6 @@
                                 <tr>
                                     <th>Image</th>
                                     <th>Room Category</th>
-                                    <th>Total number of rooms</th>
                                     <th>Total number of adult</th>
                                     <th>Total number of childrens</th>
                                     <th>Price Sale</th>
@@ -209,7 +208,6 @@
                                 <tr>
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
-                                    <td>${roomlist.quantityRoom }</td>
                                     <td>${roomlist.guestAdult }</td>
                                     <td>${roomlist.guestChildren }</td>
                                     <td>% ${roomlist.salePrice }</td>

@@ -312,10 +312,6 @@
                                     <td><s:textarea rows="1" path="roomCategory"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Room Quantiy</td>
-                                    <td><s:textarea rows="1" path="quantityRoom"/></td>
-                                </tr>
-                                <tr>
                                     <td>Price(/1night)</td>
                                     <td><s:textarea rows="1" path="price"/></td>
                                 </tr>

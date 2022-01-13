@@ -304,10 +304,6 @@
                                     <td><s:input path="roomCategory"/></td>
                                 </tr>
                                 <tr>
-                                    <td>Room Quantiy</td>
-                                    <td><s:input path="quantityRoom"/></td>
-                                </tr>
-                                <tr>
                                     <td>Price(/1night)</td>
                                     <td><s:input path="price"/></td>
                                 </tr>

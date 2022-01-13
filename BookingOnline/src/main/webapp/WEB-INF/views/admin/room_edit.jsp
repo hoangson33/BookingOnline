@@ -194,11 +194,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 			<s:input path="roomCategory" type="text" class="form-control" />
 			</div>
 			<div class="input-group mg-b-pro-edt">
-			<span class="input-group-addon">Room Quantity</span>
-			<s:input path="quantityRoom" type="text" class="form-control"
-																		/>
-			</div>
-			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i style="color:green;" class="fa fa-usd" aria-hidden="true"></i> No discount</span>
 			<s:input path="price" type="number" class="form-control" />
 			</div>

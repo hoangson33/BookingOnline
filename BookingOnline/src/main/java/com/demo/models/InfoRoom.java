@@ -1,7 +1,9 @@
 package com.demo.models;
-// Generated Jan 11, 2022, 6:39:55 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 13, 2022, 2:59:49 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +32,6 @@ public class InfoRoom implements java.io.Serializable {
 	private int guestAdult;
 	private String description;
 	private String roomCategory;
-	private int quantityRoom;
 	private double price;
 	private double salePrice;
 	private String highlightRoom;
@@ -39,13 +41,14 @@ public class InfoRoom implements java.io.Serializable {
 	private String extraImg3;
 	private Date created;
 	private boolean status;
+	private Set<Reservation> reservations = new HashSet<Reservation>(0);
 
 	public InfoRoom() {
 	}
 
 	public InfoRoom(Account account, Date checkIn, Date checkOut, int guestChildren, int guestAdult, String description,
-			String roomCategory, int quantityRoom, double price, double salePrice, String highlightRoom, String imgRoom,
-			String extraImg1, String extraImg2, String extraImg3, Date created, boolean status) {
+			String roomCategory, double price, double salePrice, String highlightRoom, String imgRoom, String extraImg1,
+			String extraImg2, String extraImg3, Date created, boolean status) {
 		this.account = account;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
@@ -53,7 +56,6 @@ public class InfoRoom implements java.io.Serializable {
 		this.guestAdult = guestAdult;
 		this.description = description;
 		this.roomCategory = roomCategory;
-		this.quantityRoom = quantityRoom;
 		this.price = price;
 		this.salePrice = salePrice;
 		this.highlightRoom = highlightRoom;
@@ -63,6 +65,28 @@ public class InfoRoom implements java.io.Serializable {
 		this.extraImg3 = extraImg3;
 		this.created = created;
 		this.status = status;
+	}
+
+	public InfoRoom(Account account, Date checkIn, Date checkOut, int guestChildren, int guestAdult, String description,
+			String roomCategory, double price, double salePrice, String highlightRoom, String imgRoom, String extraImg1,
+			String extraImg2, String extraImg3, Date created, boolean status, Set<Reservation> reservations) {
+		this.account = account;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.guestChildren = guestChildren;
+		this.guestAdult = guestAdult;
+		this.description = description;
+		this.roomCategory = roomCategory;
+		this.price = price;
+		this.salePrice = salePrice;
+		this.highlightRoom = highlightRoom;
+		this.imgRoom = imgRoom;
+		this.extraImg1 = extraImg1;
+		this.extraImg2 = extraImg2;
+		this.extraImg3 = extraImg3;
+		this.created = created;
+		this.status = status;
+		this.reservations = reservations;
 	}
 
 	@Id
@@ -141,15 +165,6 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setRoomCategory(String roomCategory) {
 		this.roomCategory = roomCategory;
-	}
-
-	@Column(name = "quantity_room", nullable = false)
-	public int getQuantityRoom() {
-		return this.quantityRoom;
-	}
-
-	public void setQuantityRoom(int quantityRoom) {
-		this.quantityRoom = quantityRoom;
 	}
 
 	@Column(name = "price", nullable = false, precision = 22, scale = 0)
@@ -232,6 +247,15 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "infoRoom")
+	public Set<Reservation> getReservations() {
+		return this.reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 }

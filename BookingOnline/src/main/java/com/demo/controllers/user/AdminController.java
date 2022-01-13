@@ -273,7 +273,6 @@ public class AdminController implements ServletContextAware {
 		InfoRoom infoRoom = roomService.roomInfoByIdRoom(id);
 		String body = "<p>We would like to inform you that your request to register your business on the 'BookingHotel' website has been rejected for the following reasons: </p>" + desc +"<br>";
 		body += "Infomation of room : " + "<br>" + "It's " + infoRoom.getRoomCategory() + " room" +"<br>";
-		body += "Quantity of room : " + infoRoom.getQuantityRoom() + "<br>";
 		body += "Quantity of guests adult : " + infoRoom.getGuestAdult() + "Quantity of guests children : " + infoRoom.getGuestChildren()  + "<br>" + "Price : " + infoRoom.getPrice() + "<br>";
 		body += "Detail address : " + infoRoom.getAccount().getLocationDetail() + "<br>";
 		body += "Time check in: " + infoRoom.getCheckIn() + ", Time check out: " + infoRoom.getCheckOut() + "<br>";

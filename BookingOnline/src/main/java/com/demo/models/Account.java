@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 11, 2022, 6:39:55 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 13, 2022, 2:59:49 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -38,7 +38,6 @@ public class Account implements java.io.Serializable {
 	private String idRole;
 	private Set<InfoRoom> infoRooms = new HashSet<InfoRoom>(0);
 	private Set<GuestRating> guestRatings = new HashSet<GuestRating>(0);
-	private Set<Bill> bills = new HashSet<Bill>(0);
 	private Set<Roles> roleses = new HashSet<Roles>(0);
 
 	public Account() {
@@ -64,8 +63,7 @@ public class Account implements java.io.Serializable {
 
 	public Account(String idAcc, String username, String password, String email, String name, String gender,
 			String location, String locationDetail, int phone, boolean status, String avatar, Date datecreated,
-			String idRole, Set<InfoRoom> infoRooms, Set<GuestRating> guestRatings, Set<Bill> bills,
-			Set<Roles> roleses) {
+			String idRole, Set<InfoRoom> infoRooms, Set<GuestRating> guestRatings, Set<Roles> roleses) {
 		this.idAcc = idAcc;
 		this.username = username;
 		this.password = password;
@@ -81,7 +79,6 @@ public class Account implements java.io.Serializable {
 		this.idRole = idRole;
 		this.infoRooms = infoRooms;
 		this.guestRatings = guestRatings;
-		this.bills = bills;
 		this.roleses = roleses;
 	}
 
@@ -221,15 +218,6 @@ public class Account implements java.io.Serializable {
 
 	public void setGuestRatings(Set<GuestRating> guestRatings) {
 		this.guestRatings = guestRatings;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
-	public Set<Bill> getBills() {
-		return this.bills;
-	}
-
-	public void setBills(Set<Bill> bills) {
-		this.bills = bills;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
