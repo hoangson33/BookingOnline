@@ -72,6 +72,11 @@ function validateForm() {
                             <label for="email" class="form-label">Email</label>
                         </div>
                         <div class="form-group form-input">
+                            <s:input path="location" style="color: white;" type="text" name="email"  />
+                            	<s:errors path="email" cssClass="format"></s:errors>
+                            <label for="location" class="form-label">City</label>
+                        </div>
+                        <div class="form-group form-input">
                             <s:input path="phone" type="number" name="phone" id="phone" value=""  />
                     
                             <label for="phone" class="form-label">Your phone number</label>
@@ -98,7 +103,7 @@ function validateForm() {
                         </div>
                         
                         <div class="form-group form-input">
-                            <s:input path="location" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control" />
+                            <s:input path="locationDetail" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control" />
                             	<s:errors path="location" cssClass="format"></s:errors>
                         </div>
   

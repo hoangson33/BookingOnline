@@ -49,7 +49,7 @@
 							<input readonly="readonly" path="email" type="text" value="${account.email }" class="form-control"/>
 						</div>
 						<div class="form-holder">
-							<input readonly="readonly" path="locationDetail" type="text" value="${account.location }" class="form-control"/>
+							<input readonly="readonly" path="locationDetail" type="text" value="${account.locationDetail }" class="form-control"/>
 						</div>
 						
                         	<a href="${pageContext.request.contextPath }/enterprise/editAcc/${account.idAcc}" class="btn btn-info">Edit profile</a>

@@ -28,6 +28,8 @@ public interface RoomService {
 	
 	public InfoRoom roomInfoByIdRoom(int idRoom);
 	
+	public List<InfoRoom> roomInfoByIdRoomPaypal(int idRoom);
+	
 	
 	public Iterable<InfoRoom> roomInfoByIdAcc(String idAcc);
 

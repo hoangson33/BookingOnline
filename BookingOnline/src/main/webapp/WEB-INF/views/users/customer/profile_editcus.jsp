@@ -17,7 +17,7 @@
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/css/style.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	
+	 	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 	<script>
 function validateForm() {
   let name = document.forms["myForm"]["name"].value;
@@ -57,7 +57,7 @@ function validateForm() {
 
 
 <s:form name="myForm" onsubmit="return validateForm()"  method="post" modelAttribute="account" enctype="multipart/form-data"
-			action="${pageContext.request.contextPath }/customer/editAcc">       
+			action="${pageContext.request.contextPath }/customer/editCus">       
 
 <div class="wrapper">
             <form action="">
@@ -81,11 +81,11 @@ function validateForm() {
 							<div class="form-group">
 								<div class="form-holder active">
 									<s:input name="username" path="username" type="text" placeholder="Username" class="form-control" />
-							
+							<s:errors path="username" cssClass="format"></s:errors>
 								</div>
 								<div class="form-holder">
 									<s:input path="name" name="name"  type="text" placeholder="Fullname's enterprise" class="form-control" />
-										
+										<s:errors path="name" cssClass="format"></s:errors>
 								</div>
 								<div class="form-holder">
 									<s:input path="phone" name="phone" type="number" placeholder="Phone" class="form-control"  />
@@ -94,13 +94,16 @@ function validateForm() {
 	                	</div>
 	                	<div class="form-holder">
 							<s:input path="email" type="text" name="email" placeholder="Email" class="form-control"/>
+								<s:errors path="email" cssClass="format"></s:errors>
 						</div>
 						<div class="form-holder">
 							<s:input path="location" name="location" type="text" placeholder="Address" class="form-control"/>
+							<s:errors path="location" cssClass="format"></s:errors>
 						</div>
 						<div class=" btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<span>&nbsp;</span>
                             <input type="submit" value="Submit" class="btn btn-primary " id="submit" name="submit" />
+                            <a class="btn btn-primary " href="${pageContext.request.contextPath }/customer">Cancel</a>
                             <s:hidden path="idAcc"/>
                             <s:hidden path="idRole"/>
 						</div>

@@ -85,8 +85,11 @@ public class EnterpriseController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
-	public String editAcc(@ModelAttribute("account") Account account,
+	public String editAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap) {
+		if(bindingResult.hasErrors()) {
+		return "users/enterprise/profile_edit";
+	}else {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 
@@ -95,7 +98,7 @@ public class EnterpriseController implements ServletContextAware {
 		
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
 		
-		
+		account.setLocationDetail(accountOld.getLocationDetail());
 		account.setDatecreated(new Date());
 		account.setGender(accountOld.getGender());
 		account.setPassword(accountOld.getPassword());
@@ -117,6 +120,7 @@ public class EnterpriseController implements ServletContextAware {
 		}
 		accountService.save(account);
 		return "redirect:/home/welcome";
+	}
 	}
 	
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)

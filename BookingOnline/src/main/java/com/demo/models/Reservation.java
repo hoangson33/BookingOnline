@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 13, 2022, 2:59:49 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 13, 2022, 7:32:19 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -31,23 +31,37 @@ public class Reservation implements java.io.Serializable {
 	private Date customerId;
 	private Date checkIn;
 	private Date checkOut;
+	private String name;
+	private String email;
+	private int phone;
+	private Date created;
 	private Set<DetailBill> detailBills = new HashSet<DetailBill>(0);
 
 	public Reservation() {
 	}
 
-	public Reservation(InfoRoom infoRoom, Date customerId, Date checkIn, Date checkOut) {
+	public Reservation(InfoRoom infoRoom, Date customerId, Date checkIn, Date checkOut, String name, String email,
+			int phone, Date created) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.created = created;
 	}
 
-	public Reservation(InfoRoom infoRoom, Date customerId, Date checkIn, Date checkOut, Set<DetailBill> detailBills) {
+	public Reservation(InfoRoom infoRoom, Date customerId, Date checkIn, Date checkOut, String name, String email,
+			int phone, Date created, Set<DetailBill> detailBills) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.created = created;
 		this.detailBills = detailBills;
 	}
 
@@ -101,6 +115,43 @@ public class Reservation implements java.io.Serializable {
 
 	public void setCheckOut(Date checkOut) {
 		this.checkOut = checkOut;
+	}
+
+	@Column(name = "name", nullable = false, length = 100)
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Column(name = "email", nullable = false, length = 250)
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Column(name = "phone", nullable = false)
+	public int getPhone() {
+		return this.phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "created", nullable = false, length = 10)
+	public Date getCreated() {
+		return this.created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reservation")

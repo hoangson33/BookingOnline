@@ -215,7 +215,24 @@
 
 <mt:layout_user title="Add Room">
 	<jsp:attribute name="content">
-	
+	<script>
+function validateForm() {
+  let checkIn = document.forms["myForm"]["checkIn"].value;
+  let checkOut = document.forms["myForm"]["checkOut"].value;
+  let children = document.forms["myForm"]["children"].value;
+  if (checkIn == "") {
+    alert(" checkIn must be filled out");
+    return false;
+  }else if (checkOut == "") {
+	    alert(" checkOut must be filled out");
+	    return false;
+	  }else if (children == "") {
+		    alert(" children must be filled out");
+		    return false;
+		  }
+  
+}
+</script>
 	<!-- =======================================         ==End Header section==      =======================================-->
 	<!-- =======================================         ==Start Breadcrumbs section==      =======================================-->
 	<section class="hotel-breadcrumbs pos-relative">
@@ -238,7 +255,7 @@
 	
 	<!-- =======================================         ==Start details info section==      =======================================-->
 	
-		<s:form method="post" modelAttribute="infoRoom" enctype="multipart/form-data"
+		<s:form name="myForm" onsubmit="return validateForm()" method="post" modelAttribute="infoRoom" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/enterprise/addRoom"> 
 	<section class="details-info section-padding">
 		<div class="container">
@@ -264,12 +281,13 @@
 							<p class="color-22 text-center">Book with Stuck Hotel</p>
 							<span class="divider"></span>
 							<div class="group checkin">
-								<label for="booking-checkin">CHECK IN Date</label><s:input path="checkIn"
+								<label for="booking-checkin">CHECK IN Date</label><s:input path="checkIn" name="checkIn"
 									type="text" id="booking-checkin" placeholder="MM/DD/YY"
 									readonly="true"/>
+
 							</div>
 							<div class="group checkout">
-								<label for="booking-checkout">CHECK OUT Date</label><s:input path="checkOut"
+								<label for="booking-checkout">CHECK OUT Date</label><s:input path="checkOut" name="checkOut"
 									type="text" id="booking-checkout" placeholder="MM/DD/YY"
 									readonly="true"/>
 							</div>

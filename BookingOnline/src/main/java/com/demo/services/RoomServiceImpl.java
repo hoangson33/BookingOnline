@@ -72,6 +72,11 @@ public class RoomServiceImpl implements RoomService {
 		return roomRepository.roomInfoByIdAcc(idAcc);
 	}
 
+	@Override
+	public List<InfoRoom> roomInfoByIdRoomPaypal(int idRoom) {
+		return roomRepository.roomInfoByIdRoomPaypal(idRoom);
+	}
+
 
 
 

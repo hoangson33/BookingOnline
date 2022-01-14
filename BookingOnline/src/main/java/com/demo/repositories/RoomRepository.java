@@ -28,6 +28,9 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	@Query("from InfoRoom where idRoom = :idRoom")
 	public InfoRoom roomInfoByIdRoom(@Param("idRoom") int idRoom);
 	
+	@Query("from InfoRoom where idRoom = :idRoom")
+	public List<InfoRoom> roomInfoByIdRoomPaypal(@Param("idRoom") int idRoom);
+	
 	@Query("from InfoRoom where account.idAcc = :idAcc and status = true")
 	public Iterable<InfoRoom> roomInfoByIdAcc(@Param("idAcc") String idAcc);
 	

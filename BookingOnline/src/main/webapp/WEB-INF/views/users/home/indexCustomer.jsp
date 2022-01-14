@@ -206,7 +206,7 @@
                                     <h4>${account.name } Hotel</h4>
                                     <p><i style="color: darkBlue" class="fa fa-map-marker"> ${account.location }</i></p>
                                     <span>${account.locationDetail }.</span>
-                                    <a href="${pageContext.request.contextPath }/enterprise/room-list-of/${account.idAcc}">More deatails</a>
+                                    <a href="${pageContext.request.contextPath }/customer/room-list-of/${account.idAcc}">More deatails</a>
                                     
                                     <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
