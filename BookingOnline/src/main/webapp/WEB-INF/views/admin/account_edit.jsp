@@ -291,17 +291,22 @@ function validateForm() {
 
 
 
-<div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"><i class="fa fa-book "
-																aria-hidden="true"></i></span>
-<s:input path="location" name="location" type="text" class="form-control" placeholder="Address"/>
-</div>
+
 
 
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
 <s:input path="phone" name="phone" type="number" class="form-control" placeholder="Phone"/>
+</div>
+
+<div class="input-group mg-b-pro-edt">
+<span class="input-group-addon"></i>Location</span>
+<s:input path="location" name="phone" type="text" class="form-control" placeholder="Location"/>
+</div>
+<div class="input-group mg-b-pro-edt">
+<span class="input-group-addon"></i>Location Detail</span>
+<s:input path="locationDetail" name="phone" type="text" class="form-control" placeholder="Location Detail"/>
 </div>
 
 <div class="input-group mg-b-pro-edt">

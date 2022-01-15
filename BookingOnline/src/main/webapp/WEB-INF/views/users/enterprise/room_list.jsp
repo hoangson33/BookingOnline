@@ -50,7 +50,7 @@
 							<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
 							<span class="divider"></span>
 							<h4 class="price color-66 mb-15">
-								$${roomlist.price } <span>/ Per Night</span>
+								$${roomlist.total } <span>/ Per Night</span>
 							</h4>
 							<a href="${pageContext.request.contextPath }/enterprise/edit-room/${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Details <i class="ion-android-arrow-dropright"></i>
 							</span></a>
@@ -89,7 +89,7 @@
 							<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
 							<span class="divider"></span>
 							<h4 class="price color-66 mb-15">
-								$${roomlist.price } <span>/ Per Night</span>
+								$${roomlist.total } <span>/ Per Night</span>
 							</h4>
 							<a href="${pageContext.request.contextPath }/enterprise/edit-room/${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Details <i class="ion-android-arrow-dropright"></i>
 							</span></a>

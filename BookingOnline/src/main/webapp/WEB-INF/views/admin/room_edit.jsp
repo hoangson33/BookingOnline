@@ -210,10 +210,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
 			</div>
 			
 			<div class="input-group mg-b-pro-edt">
-			<span class="input-group-addon"><i style="color:red;" class="fa fa-eye"
-																		aria-hidden="true"></i> Status</span>
-			<s:input path="status" type="text" class="form-control" />
+			<span class="input-group-addon"><i style="color:red;" class="fa fa-usd"
+																		aria-hidden="true"></i> Discount</span>
+			<s:input path="salePrice" type="text" class="form-control" />
 			</div>
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;" class="fa fa-usd" aria-hidden="true"></i> Total</span>
+			<s:input path="total" type="number" class="form-control" />
+			</div>
+			
 			
 			<div class="input-group mg-b-pro-edt img-area">
 						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRoom.extraImg2}" alt="Extra Image 1" class="img-fluid rounded"></label>

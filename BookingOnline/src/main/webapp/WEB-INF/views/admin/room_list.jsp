@@ -198,6 +198,7 @@
                                     <th>Total number of childrens</th>
                                     <th>Price Sale</th>
                                     <th>Price</th>
+                                    <th>Total Price</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
                                     <th>Status</th>
@@ -212,6 +213,7 @@
                                     <td>${roomlist.guestChildren }</td>
                                     <td>% ${roomlist.salePrice }</td>
                                     <td>$ ${roomlist.price }</td>
+                                    <td>$ ${roomlist.total }</td>
                                     <td>${roomlist.checkIn }</td>
                                     <td>${roomlist.checkOut }</td>
                                     <td><button class="pd-setting">${roomlist.status }</button></td>

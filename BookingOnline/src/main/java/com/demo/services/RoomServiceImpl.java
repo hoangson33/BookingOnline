@@ -1,5 +1,7 @@
 package com.demo.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -58,9 +60,23 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<InfoRoom> search(Date checkin, Date checkout, int children) {
-		return roomRepository.search(checkin, checkout, children);
+	public List<InfoRoom> search(String city,String checkin, String checkout, int guestChildren, int guestAdult) {
+		try {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Date CheckIn = simpleDateFormat.parse(checkin);
+			System.out.println("Service checkIn" + CheckIn);
+			Date CheckOut = simpleDateFormat.parse(checkout);
+			System.out.println("Service checkOut" + CheckOut);
+			return roomRepository.search(city,CheckIn, CheckOut, guestChildren,guestAdult);
+		} catch (ParseException e) {
+			return null;
+		}
+		
+		
 	}
+	
+
 
 	@Override
 	public Iterable<InfoRoom> findRoomFalseOfAcc(String idAcc) {
@@ -76,6 +92,8 @@ public class RoomServiceImpl implements RoomService {
 	public List<InfoRoom> roomInfoByIdRoomPaypal(int idRoom) {
 		return roomRepository.roomInfoByIdRoomPaypal(idRoom);
 	}
+
+
 
 
 

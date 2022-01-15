@@ -38,7 +38,8 @@ public interface RoomService {
 	
 	
 	
-	public List<InfoRoom> search(Date checkin , Date checkout , int children);
+	public List<InfoRoom> search(String city,String checkin , String checkout , int guestChildren, int guestAdult);
+	
 	
 	
 	

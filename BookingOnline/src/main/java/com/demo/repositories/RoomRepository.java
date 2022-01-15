@@ -41,7 +41,11 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	public Iterable<InfoRoom> findRoomFalseOfAcc(@Param("idAcc") String idAcc);
 
 	
-	@Query("from InfoRoom where checkIn = :checkIn and checkOut = :checkOut and guestChildren = :guestChildren")
-	public List<InfoRoom> search(@Param("checkIn") Date checkIn, @Param("checkOut") Date checkOut, @Param("guestChildren") int guestChildren);
+	@Query("from InfoRoom where account.location like %:city% and checkIn >= :checkIn and checkOut <= :checkOut and guestChildren >= :guestChildren and guestAdult <= :guestAdult and status = true")
+	public List<InfoRoom> search(@Param("city") String city,@Param("checkIn") Date checkIn, @Param("checkOut") Date checkOut, @Param("guestChildren") int guestChildren , @Param("guestAdult") int guestAdult);
+	
+	
+	@Query("from InfoRoom where created >= :startDate and created <= :endDate")
+	public List<InfoRoom> searchDate(@Param("startDate") Date startDate,@Param("endDate") Date endDate);
 
 }

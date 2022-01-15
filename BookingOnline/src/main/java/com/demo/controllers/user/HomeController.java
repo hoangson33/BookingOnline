@@ -1,5 +1,6 @@
 package com.demo.controllers.user;
 
+import java.lang.ProcessHandle.Info;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,6 +57,7 @@ public class HomeController {
 
 		modelMap.put("accounts", accountService.findByUsername(name));
 		modelMap.put("accountEnters", accountService.findAllAccEnterPrise());
+		modelMap.put("roomlists", roomService.findAllRoom());
 		return "users/home/indexCustomer";
 	}
 	
@@ -65,17 +68,22 @@ public class HomeController {
 		return "users/home/index2";
 	}
 	
-	@RequestMapping(value = "search/{checkIn}/{checkOut}/{guestChildren}", method = RequestMethod.GET)
-	public String search(ModelMap modelMap,@RequestParam("checkIn") Date checkIn , @RequestParam("checkOut") Date checkOut
-			,@RequestParam("guestChildren") int guestChildren ) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		String checkin = simpleDateFormat.format(checkIn); 
-		String checkout = simpleDateFormat.format(checkOut); 
-		System.out.println("checkIn : " + checkin);
-		System.out.println("checkOut : " + checkout);
+	@RequestMapping(value = "search/{city}/{checkIn}/{checkOut}/{guestChildren}/{guestAdult}", method = RequestMethod.GET)
+	public String search(ModelMap modelMap,@RequestParam("city") String city,@RequestParam("checkIn") String checkIn , @RequestParam("checkOut") String checkOut
+			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult ) {
+		
+		System.out.println("city : " + city);
+		System.out.println("checkIn : " + checkIn);
+		System.out.println("checkOut : " + checkOut);
 		System.out.println("guestChildren : " + guestChildren);
-		List<InfoRoom> listInfoRooms = roomService.search(checkIn, checkOut, guestChildren);
-	
-		return "users/home/index";
+		System.out.println("guestAdult : " + guestAdult);
+		if(roomService.search(city,checkIn, checkOut, guestChildren,guestAdult) != null) {
+			System.out.println("Có dữ liệu : ") ;
+		}else {
+			System.out.println("không dữ liệu : ") ;
+		}
+		modelMap.put("roomSearchs", roomService.search(city,checkIn, checkOut, guestChildren,guestAdult)) ;
+		
+		return "users/room/room_list";
 	}
 }

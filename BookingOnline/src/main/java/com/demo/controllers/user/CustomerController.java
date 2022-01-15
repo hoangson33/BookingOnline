@@ -257,22 +257,23 @@ public class CustomerController implements ServletContextAware{
 		
 		
 		
-		try {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-			String CheckIn =  String.valueOf(reservation.getCheckIn()) ;
-			String CheckOut =  String.valueOf(reservation.getCheckOut()) ;
-			reservation.setCreated(new Date());
-			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
-			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
-			System.out.println("name ++++++++++: " + reservation.getName());
-			
-			
-			
-		} catch (ParseException e) {
-			System.err.println(e.getMessage());
-		}
-		
-		reservationService.save(reservation);
+//		try {
+//			
+//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//			String CheckIn =  String.valueOf(reservation.getCheckIn()) ;
+//			String CheckOut =  String.valueOf(reservation.getCheckOut()) ;
+//			reservation.setCreated(new Date());
+//			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
+//			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
+//			System.out.println("name ++++++++++: " + reservation.getName());
+//			
+//			
+//			
+//		} catch (ParseException e) {
+//			System.err.println(e.getMessage());
+//		}
+//		
+//		reservationService.save(reservation);
 		return "redirect:/home/welcomeCustomer";
 		
 	}
@@ -281,7 +282,10 @@ public class CustomerController implements ServletContextAware{
 	
 	
 	public double discountPrice(double price, double disount) {
-		return (price*disount)/100;
+		if(disount != 0) {
+			return (price*disount)/100;
+		}
+		return price;
 	}
 	
 	

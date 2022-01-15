@@ -267,6 +267,7 @@ public class EnterpriseController implements ServletContextAware {
 			}
 			
 			infoRoom.setCreated(new Date());
+			infoRoom.setTotal(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice()));
 			infoRoom.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
 			infoRoom.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
 			infoRoom.setStatus(false);
@@ -294,6 +295,7 @@ public class EnterpriseController implements ServletContextAware {
 //			
 //			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
 //			modelMap.put("highlights", convertedHightlight);
+			System.out.println("idAcc " + idAcc);
 		
 			Account account =accountService.findIdAcc(idAcc);
 			modelMap.put("nameHotel", account.getName());
@@ -387,6 +389,13 @@ public class EnterpriseController implements ServletContextAware {
 			
 		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
 		return "users/enterprise/view_room";
+	}
+	
+	public double discountPrice(double price, double disount) {
+		if(disount != 0) {
+			return (price*disount)/100;
+		}
+		return price;
 	}
 
 	

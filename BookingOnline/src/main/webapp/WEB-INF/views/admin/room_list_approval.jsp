@@ -272,6 +272,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                      <th>Total number of Adult</th>
                                     <th>Price</th>
                                     <th>Price sales</th>
+                                    <th>Total Price</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
                                     <th>Status</th>
@@ -286,6 +287,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                     <td>${roomlist.guestAdult }</td>
                                     <td>$ ${roomlist.price }</td>
                                      <td>$ ${roomlist.salePrice }</td>
+                                     <td>$ ${roomlist.total }</td>
                                     <td>${roomlist.checkIn }</td>
                                     <td>${roomlist.checkOut }</td>
                                     <td><button class="pd-setting">${roomlist.status }</button></td>
