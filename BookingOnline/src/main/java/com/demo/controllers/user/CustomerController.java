@@ -105,10 +105,9 @@ public class CustomerController implements ServletContextAware{
 				Account accountOld = accountService.findIdAcc(account.getIdAcc());
 				System.out.println("id acc : " + accountOld);
 			
-				account.setLocationDetail(accountOld.getLocationDetail());
-				account.setDatecreated(accountOld.getDatecreated());
+
+				account.setDatecreated(new Date());
 				account.setGender(accountOld.getGender());
-				account.setPassword(accountOld.getPassword());
 				String idRole =  account.getIdRole();
 				account.setIdRole(idRole);
 				System.out.println("id role : " + idRole);
@@ -124,7 +123,7 @@ public class CustomerController implements ServletContextAware{
 				}
 				
 				accountService.save(account);
-				return "users/home/welcomeCustomer";
+				return "redirect:/home/welcomeCustomer";
 		
 	}
 		

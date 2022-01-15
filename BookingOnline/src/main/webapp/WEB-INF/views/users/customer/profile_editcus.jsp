@@ -20,34 +20,12 @@
 	 	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 	<script>
 function validateForm() {
-  let name = document.forms["myForm"]["name"].value;
-  let username = document.forms["myForm"]["username"].value;
   let phone = document.forms["myForm"]["phone"].value;
-  let email = document.forms["myForm"]["email"].value;
-  let location = document.forms["myForm"]["location"].value;
-  if (username == "") {
-    alert(" Username must be filled out");
-    return false;
-  }else
-  if (name == "") {
-	    alert("Full Name must be filled out");
-	    return false;
-	  }
-  else
 	  if (phone == "") {
 		    alert("Phone must be filled out");
 		    return false;
 		  }	 
-	  else
-		  if (email == "") {
-			    alert("Email must be filled out");
-			    return false;
-			  }
-		  else
-			  if (location == "") {
-				    alert("Location must be filled out");
-				    return false;
-				  }
+
   
 }
 </script>
@@ -80,7 +58,7 @@ function validateForm() {
 							</div>
 							<div class="form-group">
 								<div class="form-holder active">
-									<s:input name="username" path="username" type="text" placeholder="Username" class="form-control" />
+									<s:input readonly="true"  name="username" path="username" type="text" placeholder="Username" class="form-control" />
 							<s:errors path="username" cssClass="format"></s:errors>
 								</div>
 								<div class="form-holder">
@@ -100,6 +78,14 @@ function validateForm() {
 							<s:input path="location" name="location" type="text" placeholder="Address" class="form-control"/>
 							<s:errors path="location" cssClass="format"></s:errors>
 						</div>
+							<div class="form-holder">
+							<s:input path="locationDetail"  name="locationDetail" type="text" placeholder="locationDetail" class="form-control"/>
+						<s:errors path="locationDetail" cssClass="format"></s:errors>
+						</div>
+						<div class="form-holder">
+							<input id="myInput" readonly="readonly" path="password"  name="password" type="hidden" value="${account.password }" class="form-control"/>
+						  
+						<s:errors path="password" cssClass="format"></s:errors>
 						<div class=" btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<span>&nbsp;</span>
                             <input type="submit" value="Submit" class="btn btn-primary " id="submit" name="submit" />

@@ -3,36 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+<link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
  <script>
 function validateForm() {
-  let email = document.forms["myForm"]["email"].value;
-  let name = document.forms["myForm"]["name"].value;
-  let location = document.forms["myForm"]["location"].value;
+
   let phone = document.forms["myForm"]["phone"].value;
 
  
-  if (email == "") {
-    alert(" Email must be filled out");
-    return false;
-  }else
-  if (name == "") {
-	    alert("Full Name must be filled out");
-	    return false;
-	  }
-  
-	  else
-			  if (location == "") {
-				    alert("Location must be filled out");
-				    return false;
-				  }
-			 	else
-					  if (phone == "") {
-						    alert("Phone must be filled out");
-						    return false;
-						  }	 
-  
-}
-</script>
+		if (phone == "") {
+				alert("Phone must be filled out");
+				return false;
+			}
+
+		}
+	</script>
 <mt:layout_admin title="Index">
 
 	<jsp:attribute name="content">
@@ -244,11 +228,15 @@ function validateForm() {
 <div class="review-content-section">
 
 
+<s:input  path="username" name="username" type="hidden" class="form-control"
+																placeholder="Username" />
+	<s:errors path="username" cssClass="format"></s:errors>
 
 
+<s:input  path="password" name="password" type="hidden" class="form-control"
+																placeholder="Password" />
 
-
-aaaaaaaaaaaaaaaa
+	<s:errors path="password" cssClass="format"></s:errors>
 
 
 
@@ -257,7 +245,7 @@ aaaaaaaaaaaaaaaa
 																aria-hidden="true"></i></span>
 <s:input path="email" name="email" type="text" class="form-control"
 																placeholder="Email"  />
-																	
+										<s:errors path="email" cssClass="format"></s:errors>		
 </div>
 
 
@@ -267,6 +255,7 @@ aaaaaaaaaaaaaaaa
 																aria-hidden="true"></i></span>
 <s:input path="name" name="name" type="text" class="form-control"
 																placeholder="First Name And Last Name" />
+																	<s:errors path="name" cssClass="format"></s:errors>	
 </div>
 
 
@@ -291,22 +280,24 @@ aaaaaaaaaaaaaaaa
 
 
 
+<div class="input-group mg-b-pro-edt">
+<span class="input-group-addon"><i class="fa fa-book "
+																aria-hidden="true"></i></span>
+<s:input path="location" name="location" type="text" class="form-control" placeholder="Address"/>
+	<s:errors path="location" cssClass="format"></s:errors>	
+</div>
 
-
+<div class="input-group mg-b-pro-edt">
+<span class="input-group-addon"><i class="fa fa-book "
+																aria-hidden="true"></i></span>
+<s:input path="locationDetail" name="locationDetail" type="text" class="form-control" placeholder="locationDetail"/>
+	<s:errors path="locationDetail" cssClass="format"></s:errors>	
+</div>
 
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
 <s:input path="phone" name="phone" type="number" class="form-control" placeholder="Phone"/>
-</div>
-
-<div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"></i>Location</span>
-<s:input path="location" name="phone" type="text" class="form-control" placeholder="Location"/>
-</div>
-<div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"></i>Location Detail</span>
-<s:input path="locationDetail" name="phone" type="text" class="form-control" placeholder="Location Detail"/>
 </div>
 
 <div class="input-group mg-b-pro-edt">

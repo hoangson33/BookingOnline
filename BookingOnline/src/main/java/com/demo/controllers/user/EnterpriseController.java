@@ -98,11 +98,8 @@ public class EnterpriseController implements ServletContextAware {
 		
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
 		
-		account.setLocationDetail(accountOld.getLocationDetail());
 		account.setDatecreated(new Date());
 		account.setGender(accountOld.getGender());
-		account.setPassword(accountOld.getPassword());
-		account.setLocation(accountOld.getLocation());
 		String idRole =  account.getIdRole();
 		account.setIdRole(idRole);
 		account.setStatus(true);
@@ -121,6 +118,7 @@ public class EnterpriseController implements ServletContextAware {
 		accountService.save(account);
 		return "redirect:/home/welcome";
 	}
+	
 	}
 	
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)

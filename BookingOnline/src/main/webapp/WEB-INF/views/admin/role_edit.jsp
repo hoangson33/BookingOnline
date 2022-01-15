@@ -3,18 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
- <script>
-function validateForm() {
-  let nameRole = document.forms["myForm"]["nameRole"].value;
+   	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 
-
-  if (nameRole == "") {
-    alert("NameRole must be filled out");
-    return false;
-  }
-  
-}
-</script>
 <mt:layout_admin title="Index">
 
 	<jsp:attribute name="content">
@@ -235,7 +225,9 @@ function validateForm() {
 			<span class="input-group-addon"><i class="fa fa-edit"
 																		aria-hidden="true"></i></span>
 			<s:input path="nameRole" name="nameRole" type="text" class="form-control" placeholder="Enter name role" />
+		<s:errors path="nameRole" cssClass="format"></s:errors>
 			</div>
+				
 		</div>
 		</div>
 		</div>

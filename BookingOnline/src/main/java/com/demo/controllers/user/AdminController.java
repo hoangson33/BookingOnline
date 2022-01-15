@@ -203,7 +203,11 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = "edit", method = RequestMethod.POST )
-	public String edit(@ModelAttribute("role") Roles role) {
+	public String edit(@ModelAttribute("role")@Valid Roles role , BindingResult bindingResult) {
+		rolesValidator.validate(role, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "admin/role_edit";
+		}
 		roleService.save(role);
 		return "redirect:/admin/role-management";
 	}
@@ -225,16 +229,20 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
-	public String editAcc(@ModelAttribute("account") Account account,
+	public String editAcc(@ModelAttribute("account")@Valid Account account,BindingResult bindingResult,
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes) {
+		accountValidator.validate(account, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "admin/account_edit";
+		}
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
 		
 		
-		account.setUsername (accountOld.getUsername());
+//		account.setUsername (accountOld.getUsername());
 		
 		account.setDatecreated(new Date());
 		
-		account.setPassword(accountOld.getPassword());
+//		account.setPassword(accountOld.getPassword());
 		String idRole2  = accountOld.getIdRole();
 		System.out.println("idRole2 :  " + idRole2);
 		account.setIdRole(idRole2);
