@@ -30,6 +30,15 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.save(reservation);
 	}
 
+	@Override
+	public Iterable<Reservation> reserInfo(int idReservation) {
+		return reservationRepository.reserInfo(idReservation);
+	}
+
+
+
+
+
 	
 
 	

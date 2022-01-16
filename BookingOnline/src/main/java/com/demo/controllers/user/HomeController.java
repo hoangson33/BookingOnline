@@ -72,15 +72,13 @@ public class HomeController {
 	public String search(ModelMap modelMap,@RequestParam("city") String city,@RequestParam("checkIn") String checkIn , @RequestParam("checkOut") String checkOut
 			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult ) {
 		
-		System.out.println("city : " + city);
-		System.out.println("checkIn : " + checkIn);
-		System.out.println("checkOut : " + checkOut);
-		System.out.println("guestChildren : " + guestChildren);
-		System.out.println("guestAdult : " + guestAdult);
-		if(roomService.search(city,checkIn, checkOut, guestChildren,guestAdult) != null) {
-			System.out.println("Có dữ liệu : ") ;
-		}else {
-			System.out.println("không dữ liệu : ") ;
+		modelMap.put("city", city);
+		modelMap.put("checkIn", checkIn);
+		modelMap.put("checkOut", checkOut);
+		modelMap.put("guestChildren", guestChildren);
+		modelMap.put("guestAdult", guestAdult);
+		if(roomService.search(city,checkIn, checkOut, guestChildren,guestAdult) == null) {
+			modelMap.put("emptyRoom", "There are currently no rooms that match your request, please refer to the popular rooms below....");
 		}
 		modelMap.put("roomSearchs", roomService.search(city,checkIn, checkOut, guestChildren,guestAdult)) ;
 		

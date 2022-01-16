@@ -20,7 +20,7 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	public Iterable<InfoRoom> findAllRoom();
 	
 
-	
+
 	
 	@Query("select account.idAcc from InfoRoom where idRoom = :idRoom")
 	public String findAccId(@Param("idRoom") int idRoom);

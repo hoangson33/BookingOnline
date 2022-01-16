@@ -13,5 +13,7 @@ public interface ReservationService {
 	
 	public Reservation save(Reservation reservation);
 	
+	public Iterable<Reservation> reserInfo(int idReservation);
+	
 	
 }

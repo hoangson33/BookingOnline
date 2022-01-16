@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -204,7 +205,10 @@ public class CustomerController implements ServletContextAware{
 			modelMap.put("account", account);
 			Reservation reservation = new Reservation();
 			modelMap.put("reservation", reservation);
+			DetailBill detailBill = new DetailBill();
+			modelMap.put("detailBill", detailBill);
 			
+		
 			
 			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
 			modelMap.put("highlights", convertedHightlight);
@@ -276,6 +280,61 @@ public class CustomerController implements ServletContextAware{
 		return "redirect:/home/welcomeCustomer";
 		
 	}
+	
+	
+	
+	@RequestMapping(value = "book-room-cash", method = RequestMethod.POST )
+	public String bookRoomCash(@ModelAttribute("reservation") Reservation reservation,
+			@ModelAttribute("detailBill") DetailBill detailBill,ModelMap modelMap,
+			@RequestParam("checkIn")String checkIn, @RequestParam("checkOut")String checkOut,
+			@RequestParam("adult")int adult, @RequestParam("children")int children) {
+		
+		try {
+			
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String CheckIn =  String.valueOf(reservation.getCheckIn()) ;
+			String CheckOut =  String.valueOf(reservation.getCheckOut()) ;
+			reservation.setCreated(new Date());
+			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
+			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
+			System.out.println("name ++++++++++: " + reservation.getName());
+			
+			
+		} catch (ParseException e) {
+			System.err.println(e.getMessage());
+		}
+		
+		reservationService.save(reservation);
+		System.out.println("id : " + reservation.getIdReservation());
+		System.out.println("id Room : " +reservation.getInfoRoom().getIdRoom());
+		InfoRoom infoRoom = roomService.roomInfoByIdRoom(reservation.getInfoRoom().getIdRoom());
+		modelMap.put("infoRoom", infoRoom);
+		modelMap.put("invoiceInfos", reservationService.reserInfo(reservation.getIdReservation()));
+		modelMap.put("checkIn", checkIn);
+		modelMap.put("checkOut", checkOut);
+		modelMap.put("adult", adult);
+		modelMap.put("children", children);
+		modelMap.put("account", accountService.findIdAcc(reservation.getCustomerId()));
+
+//		Random generator = new Random();
+//		detailBill.setIdBill("CASH"+generator.nextInt());
+		return "users/customer/invoice_cash";
+		
+	}
+	
+	
+//	@RequestMapping(value =  "invoice-view", method = RequestMethod.GET)
+//	public String invoiceView(ModelMap modelMap,Authentication authentication) {
+//		String name = authentication.getName();
+//		Account account = accountService.findByUsername2(name);
+//		
+//		
+//		modelMap.put("invoiceInfos", reservationService.reserInfo(account.getIdAcc()));
+//			
+//		return "users/customer/invoice_cash";
+//	}
+	
+	
 	
 
 	

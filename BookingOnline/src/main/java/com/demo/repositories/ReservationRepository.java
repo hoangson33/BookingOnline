@@ -14,4 +14,7 @@ import com.demo.models.Reservation;
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Integer>{
 	
+	@Query("from Reservation where idReservation = :idReservation")
+	public Iterable<Reservation> reserInfo(@Param("idReservation") int idReservation);
+	
 }
