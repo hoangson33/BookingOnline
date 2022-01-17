@@ -111,7 +111,7 @@ type="java.lang.String"%>
 							<c:if test="${pageContext.request.userPrincipal.name != null }">
 									<li  class="active"><a href="${pageContext.request.contextPath }/home/welcomeCustomer">Home</a>
 							<ul class="dropdown">
-									<li><a  href="${pageContext.request.contextPath }/home2/welcome"">Home-2</a></li>
+									<li><a  href="${pageContext.request.contextPath }/home2/welcome">Home-2</a></li>
 								</ul></li>
 							<li><a href="#">Room</a>
 							<ul class="dropdown">
@@ -120,7 +120,7 @@ type="java.lang.String"%>
 								</ul></li>
 							<li><a href="${pageContext.request.contextPath }/aboutus/welcome">About Us</a></li>
 								<li><a href="${pageContext.request.contextPath }/spa/welcome">Spa</a></li>
-							<li><a href="${pageContext.request.contextPath }/contact/welcome">Contact</a></li>	
+							<li><a href="${pageContext.request.contextPath }/contact/welcomeCustomer">Contact</a></li>	
 							</c:if>
 							
 

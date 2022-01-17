@@ -92,12 +92,14 @@ public class CustomerController implements ServletContextAware{
 	}
 	
 	@RequestMapping(value = "editCus", method = RequestMethod.POST )
-	public String editAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
+	public String editAcc(@ModelAttribute("account") Account account, BindingResult bindingResult,
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap ) {
-		accountValidator.validate(account, bindingResult);
-		if(bindingResult.hasErrors()) {
-			return "users/customer/profile_editcus";
-		}
+
+// @Valid ở chỗ ModelAttribute ở trên tháo ra , có gì vô lại		
+//		accountValidator.validate(account, bindingResult);
+//		if(bindingResult.hasErrors()) {
+//			return "users/customer/profile_editcus";
+//		}
 			System.out.println("username " + authentication.getName());
 			String name = authentication.getName();
 			modelMap.put("accounts", accountService.findByUsername(name));
@@ -124,7 +126,7 @@ public class CustomerController implements ServletContextAware{
 				}
 				
 				accountService.save(account);
-				return "redirect:/home/welcomeCustomer";
+				return "redirect:/customer/";
 		
 	}
 		
@@ -208,6 +210,7 @@ public class CustomerController implements ServletContextAware{
 			DetailBill detailBill = new DetailBill();
 			modelMap.put("detailBill", detailBill);
 			
+			
 		
 			
 			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
@@ -286,8 +289,7 @@ public class CustomerController implements ServletContextAware{
 	@RequestMapping(value = "book-room-cash", method = RequestMethod.POST )
 	public String bookRoomCash(@ModelAttribute("reservation") Reservation reservation,
 			@ModelAttribute("detailBill") DetailBill detailBill,ModelMap modelMap,
-			@RequestParam("checkIn")String checkIn, @RequestParam("checkOut")String checkOut,
-			@RequestParam("adult")int adult, @RequestParam("children")int children) {
+			@RequestParam("checkIn")String checkIn, @RequestParam("checkOut")String checkOut) {
 		
 		try {
 			
@@ -297,6 +299,7 @@ public class CustomerController implements ServletContextAware{
 			reservation.setCreated(new Date());
 			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
 			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
+			reservation.setStatus(false);
 			System.out.println("name ++++++++++: " + reservation.getName());
 			
 			
@@ -312,9 +315,9 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("invoiceInfos", reservationService.reserInfo(reservation.getIdReservation()));
 		modelMap.put("checkIn", checkIn);
 		modelMap.put("checkOut", checkOut);
-		modelMap.put("adult", adult);
-		modelMap.put("children", children);
 		modelMap.put("account", accountService.findIdAcc(reservation.getCustomerId()));
+		Reservation reservation2 = new Reservation();
+		modelMap.put("reservation", reservation2);
 
 //		Random generator = new Random();
 //		detailBill.setIdBill("CASH"+generator.nextInt());
@@ -335,6 +338,11 @@ public class CustomerController implements ServletContextAware{
 //	}
 	
 	
+	@RequestMapping(value = "detele-reservation/{idReservation}", method = RequestMethod.GET)
+	public String delete(@PathVariable("idReservation") int idReservation) {
+		reservationService.delete(idReservation);
+		return "redirect:/home/welcomeCustomer";
+	}
 	
 
 	

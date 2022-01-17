@@ -324,7 +324,7 @@ html {
                     
                     	<s:input type="hidden" path="infoRoom.idRoom" value="${roomlist.idRoom }"/>
                     	<s:input type="hidden" path="customerId" value="${account.idAcc }"/>
-                        <div class="form-group"> <s:input path="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
+                        <div class="form-group"><label style="color: #87CEFA">Fullname</label> <s:input path="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label style="color: #87CEFA" for="booking-checkin">CHECK IN Date</label><s:input value="${checkIn }" path="checkIn"
@@ -332,7 +332,7 @@ html {
 									readonly="true"/>
                             </div>
                             <div class="col-md-6">
-                                <label style="color: #87CEFA" for="booking-checkout">CHECK OUT Date</label><s:input path="checkOut"
+                                <label style="color: #87CEFA" for="booking-checkout">CHECK OUT Date</label><s:input value="${checkOut }" path="checkOut"
 									type="text" id="booking-checkout" name="checkOut" placeholder="YY/MM/DD"
 									readonly="true"/>
                             </div>
@@ -348,10 +348,10 @@ html {
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"> <input name="adult" value="1" class="form-control" type="number" placeholder="Number of Adult"/> <span class="form-label">Adult</span> </div>
+                                <div class="form-group"><label style="color: #87CEFA">Adult</label> <s:input path="adult" name="adult" value="1" class="form-control" type="number" placeholder="Number of Adult"/> </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"> <input name="children" value="1" class="form-control" type="number" placeholder="Number of Children"/> <span class="form-label">Children</span> </div>
+                                <div class="form-group"><label style="color: #87CEFA">Children</label> <s:input path="children" name="children" value="1" class="form-control" type="number" placeholder="Number of Children"/> </div>
                             </div>
                         </div>
                         

@@ -43,6 +43,15 @@ public class ContactController {
 		return "users/contact/index";
 	}
 	
+	@RequestMapping(value = "welcomeCustomer", method = RequestMethod.GET)
+	public String welcomeCustomer(Authentication authentication	,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		return "users/contact/indexCustomer";
+	}
+	
 
 	@RequestMapping(value = "send", method = RequestMethod.POST)
 	public String sendMail(Authentication authentication	,ModelMap modelMap,@RequestParam("subject") String subject,

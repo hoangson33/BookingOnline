@@ -15,5 +15,9 @@ public interface ReservationService {
 	
 	public Iterable<Reservation> reserInfo(int idReservation);
 	
+	public Reservation find(int id);
+	
+	public void delete(int id);
+	
 	
 }

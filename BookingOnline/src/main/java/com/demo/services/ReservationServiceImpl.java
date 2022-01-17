@@ -35,7 +35,15 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.reserInfo(idReservation);
 	}
 
-
+	@Override
+	public Reservation find(int id) {
+		return reservationRepository.findById(id).get();
+	}
+	
+	@Override
+	public void delete(int id) {
+		reservationRepository.deleteById(id);
+	}
 
 
 

@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 16, 2022, 2:09:42 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 17, 2022, 3:45:39 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -32,6 +32,9 @@ public class Reservation implements java.io.Serializable {
 	private String name;
 	private String email;
 	private int phone;
+	private int adult;
+	private int children;
+	private boolean status;
 	private Date created;
 	private Set<DetailBill> detailBills = new HashSet<DetailBill>(0);
 
@@ -39,7 +42,7 @@ public class Reservation implements java.io.Serializable {
 	}
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
-			int phone, Date created) {
+			int phone, int adult, int children, boolean status, Date created) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
@@ -47,11 +50,14 @@ public class Reservation implements java.io.Serializable {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
+		this.adult = adult;
+		this.children = children;
+		this.status = status;
 		this.created = created;
 	}
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
-			int phone, Date created, Set<DetailBill> detailBills) {
+			int phone, int adult, int children, boolean status, Date created, Set<DetailBill> detailBills) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
@@ -59,6 +65,9 @@ public class Reservation implements java.io.Serializable {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
+		this.adult = adult;
+		this.children = children;
+		this.status = status;
 		this.created = created;
 		this.detailBills = detailBills;
 	}
@@ -139,6 +148,33 @@ public class Reservation implements java.io.Serializable {
 
 	public void setPhone(int phone) {
 		this.phone = phone;
+	}
+
+	@Column(name = "adult", nullable = false)
+	public int getAdult() {
+		return this.adult;
+	}
+
+	public void setAdult(int adult) {
+		this.adult = adult;
+	}
+
+	@Column(name = "children", nullable = false)
+	public int getChildren() {
+		return this.children;
+	}
+
+	public void setChildren(int children) {
+		this.children = children;
+	}
+
+	@Column(name = "status", nullable = false)
+	public boolean isStatus() {
+		return this.status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	@Temporal(TemporalType.DATE)
