@@ -16,8 +16,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.models.Account;
+import com.demo.services.AccountService;
 import com.demo.services.RegistrationService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
@@ -39,7 +41,9 @@ public class RegistrationController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-
+	@Autowired
+	private AccountService accountService;
+	
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
 		return "login/index";
@@ -54,11 +58,21 @@ public class RegistrationController {
 	}
 	
 	@RequestMapping(value = "add" , method = RequestMethod.POST)
-	public String add(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult) {
+	public String add(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult 
+			,ModelMap modelMap ,@RequestParam("email") String email,@RequestParam("phone") int phone) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "registration/add";
-		}else {
+		}
+		if(phone < 0) {
+			modelMap.put("errorphone", "You cannot enter negative numbers!?"); 
+			return "registration/add";
+		}
+		System.out.println("email :" + email);
+		String idacc = accountService.findIdAccs(email);
+		System.out.println("idAcc : " + idacc);
+		
+			if(idacc == null) {
 			String idRole = roleService.findRoleByNameRole(account.getIdRole());
 			int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
 			account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
@@ -72,10 +86,17 @@ public class RegistrationController {
 			account.setAvatar("anhmacdinh.png");
 			
 			registrationService.save(account);
+			}else {
+				modelMap.put("error", "This email already exists !?");
+				modelMap.put("errors", "Re-enter another email !");
+				return "registration/add";
+			}
 			return "redirect:/registration/index";
-		}
+		
 		
 	}
+	
+	
 	
 
 }

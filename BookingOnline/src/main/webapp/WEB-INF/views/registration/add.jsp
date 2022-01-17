@@ -52,34 +52,38 @@ function validateForm() {
                         <h2 style="color: white;">The best service for your tour!</h2>
                         <div class="form-group form-input">
                             <s:input path="name" style="color: white;" type="text" name="name"/>
-                            	<s:errors path="name" cssClass="format"></s:errors>
+                            	
                             <label for="name" class="form-label">Your name</label>
-                            
+                            <s:errors path="name" cssClass="format"></s:errors>
                         </div>
                         <div class="form-group form-input">
-                            <s:input path="username" style="color: white;" type="text" name="username"  />
-                            	<s:errors path="username" cssClass="format"></s:errors>
+                            <s:input path="username" style="color: white;" type="text" name="username"  />                      	
                             <label for="name" class="form-label">Username</label>
+                            <s:errors path="username" cssClass="format"></s:errors>
                         </div>
                         <div class="form-group form-input">
-                            <s:input path="password" style="color: white;" type="password" name="name"  />
-                            	<s:errors path="password" cssClass="format"></s:errors>
+                            <s:input path="password" style="color: white;" type="password" name="name"  />                       	
                             <label for="name" class="form-label">Password</label>
+                            <s:errors path="password" cssClass="format"></s:errors>
                         </div>
                         <div class="form-group form-input">
                             <s:input path="email" style="color: white;" type="text" name="email"  />
                             	<s:errors path="email" cssClass="format"></s:errors>
+                            
                             <label for="email" class="form-label">Email</label>
+                            	   <p style="color: red;">${error}</p>
+                              <p style="color: red;">${errors}</p>
                         </div>
                         <div class="form-group form-input">
-                            <s:input path="location" style="color: white;" type="text" name="email"  />
-                            	<s:errors path="email" cssClass="format"></s:errors>
+                            <s:input path="location" style="color: white;" type="text" name="location"  />                                                 
                             <label for="location" class="form-label">City</label>
+                          <s:errors path="location" cssClass="format"></s:errors>
                         </div>
                         <div class="form-group form-input">
                             <s:input path="phone" type="number" name="phone" id="phone" value=""  />
                     
                             <label for="phone" class="form-label">Your phone number</label>
+                             <p style="color: red;">${errorphone}</p>
                         </div>
                         <div class="form-group">
                             <div class="select-list">
