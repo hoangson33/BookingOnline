@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-
+	 	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
+	 	 <link href="${pageContext.request.contextPath }/webapp/js/jquery-3.6.0.min.js" rel="stylesheet">
 
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -81,7 +82,36 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 	<jsp:attribute name="content">
             
-            
+           <script>
+function validateForm() {
+  let guestChildren = document.forms["myForm"]["guestChildren"].value;
+  let guestAdult = document.forms["myForm"]["guestAdult"].value;
+  let price = document.forms["myForm"]["price"].value;
+  let highlightRoom = document.forms["myForm"]["highlightRoom"].value;
+  let salePrice = document.forms["myForm"]["salePrice"].value;
+  let total = document.forms["myForm"]["total"].value;
+  if (guestChildren == "") {
+    alert(" guestChildren must be filled out ");
+    return false;
+  }else if (guestAdult == "") {
+	    alert(" guestAdult must be filled out ");
+	    return false;
+	  }else if (price == "") {
+		    alert(" price must be filled out ");
+		    return false;
+			  }else if (highlightRoom == "") {
+				    alert(" highlightRoom must be entered ");
+				    return false;
+				  }else if (salePrice == "") {
+					    alert(" salePrice must be entered ");
+					    return false;
+					  }else if (total == "") {
+						    alert(" total must be entered ");
+						    return false;
+						  }
+  
+}
+</script> 
             
 
    
@@ -133,7 +163,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	<li id="myBtn"> <i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i>
 </li>
 </ul>
-<s:form method="post" modelAttribute="infoRoom" enctype="multipart/form-data"
+<s:form name="myForm" onsubmit="return validateForm()" method="post" modelAttribute="infoRoom" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/admin/edit-room">   
 <div id="myTabContent" class="tab-content custom-product-edit">
 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -149,16 +179,19 @@ body {font-family: Arial, Helvetica, sans-serif;}
 			</div>
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon">Guest Children</span>
-			<s:input path="guestChildren" type="text" class="form-control" />
+			<s:input path="guestChildren" type="number" class="form-control" />
+			 <p style="color: red;">${errorguestChildren}</p>
 			</div>
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon">Guest Adult</span>
-			<s:input path="guestAdult" type="text" class="form-control" />
+			<s:input path="guestAdult" type="number" class="form-control" />
+			 <p style="color: red;">${errorguestAdult}</p>
 			</div>
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i style="color: green;" class="fa fa-file-text"
 																		aria-hidden="true"></i> Description</span>
 			<s:input path="description" type="text" class="form-control" />
+			<s:errors path="description" cssClass="format"></s:errors>
 			</div>
 			
 			
@@ -192,10 +225,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon">Room Category</span>
 			<s:input path="roomCategory" type="text" class="form-control" />
+			 <s:errors path="roomCategory" cssClass="format"></s:errors>
 			</div>
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i style="color:green;" class="fa fa-usd" aria-hidden="true"></i> No discount</span>
 			<s:input path="price" type="number" class="form-control" />
+			 <p style="color: red;">${errorprice}</p>
 			</div>
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i style="color:green;" class="fa fa-calendar"
@@ -213,6 +248,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 			<span class="input-group-addon"><i style="color:red;" class="fa fa-usd"
 																		aria-hidden="true"></i> Discount</span>
 			<s:input path="salePrice" type="text" class="form-control" />
+			 <p style="color: red;">${errorsalePrice}</p>
+			
 			</div>
 			<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i style="color:green;" class="fa fa-usd" aria-hidden="true"></i> Total</span>

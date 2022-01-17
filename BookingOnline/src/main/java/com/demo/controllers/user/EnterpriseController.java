@@ -37,6 +37,7 @@ import com.demo.services.AccountService;
 import com.demo.services.HighlightService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
+import com.demo.validators.InfoRoomValidator;
 
 
 
@@ -58,7 +59,8 @@ public class EnterpriseController implements ServletContextAware {
 	@Autowired
 	private AccountService accountService;
 	
-
+	@Autowired
+	private InfoRoomValidator infoRoomValidator;
 	
 	
 
@@ -86,10 +88,15 @@ public class EnterpriseController implements ServletContextAware {
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
-			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap) {
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap
+			, @RequestParam("phone") int phone) {
 		if(bindingResult.hasErrors()) {
 		return "users/enterprise/profile_edit";
-	}else {
+	}
+		if(phone < 0) {
+			modelMap.put("error", "You cannot enter negative numbers!?"); 
+			return "users/enterprise/profile_edit";
+		}
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 
@@ -119,7 +126,7 @@ public class EnterpriseController implements ServletContextAware {
 		return "redirect:/home/welcome";
 	}
 	
-	}
+	
 	
 	@RequestMapping(value = {"","welcome"}, method = RequestMethod.GET)
 	public String welcome(Authentication authentication , ModelMap modelMap) {
@@ -182,14 +189,65 @@ public class EnterpriseController implements ServletContextAware {
 			modelMap.put("imgRoom", infoRoom.getImgRoom());
 			
 			
+			System.out.println("username " + authentication.getName());
+			
+
+			modelMap.put("accounts", accountService.findByUsername(name));
+			
 		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
 		return "users/enterprise/room_edit";
 	}
 	
+	
 	@RequestMapping(value = "edit-room", method = RequestMethod.POST )
-	public String editRoom(@ModelAttribute("roomlist") InfoRoom infoRoom,
+	public String editRoom(@ModelAttribute("roomlist")@Valid InfoRoom infoRoom,BindingResult bindingResult,
 			@RequestParam(value = "mainImage") MultipartFile mainImageFile,@RequestParam(value = "extraImage") MultipartFile[] extraImageFile
-			,RedirectAttributes redirectAttributes, @RequestParam(value = "idRoom") int idRoom) {
+			,RedirectAttributes redirectAttributes, @RequestParam(value = "idRoom") int idRoom, ModelMap modelMap 
+			,Authentication authentication,@RequestParam("price") double price ,@RequestParam("salePrice") double salePrice
+			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+
+		infoRoomValidator.validate(infoRoom, bindingResult);
+		if(bindingResult.hasErrors()) {
+			modelMap.put("highlightS", highlightService.findAll());
+			return "users/enterprise/room_edit";
+		}
+//		if(price < 0 && salePrice < 0 && guestChildren < 0 && guestAdult < 0) {
+//			modelMap.put("highlightS", highlightService.findAll());
+//			modelMap.put("errorPrice", "You cannot enter negative numbers!?"); 
+//			modelMap.put("errorSalePrice", "You cannot enter negative numbers!?"); 
+//			modelMap.put("errorGuestChildren", "You cannot enter negative numbers!?"); 
+//			modelMap.put("errorGuestAdult", "You cannot enter negative numbers!?"); 
+//			return "users/enterprise/room_edit";		
+//		}
+		if(guestChildren < 0) {
+			modelMap.put("highlightS", highlightService.findAll());
+			modelMap.put("errorGuestChildren", "You cannot enter negative numbers!?");  
+			
+			return "users/enterprise/room_edit";
+		}else
+			if(guestAdult < 0) {
+			modelMap.put("highlightS", highlightService.findAll());
+			modelMap.put("errorGuestAdult", "You cannot enter negative numbers!?");  
+			
+			return "users/enterprise/room_edit";
+		}else
+		if(price < 0) {
+			modelMap.put("highlightS", highlightService.findAll());
+			modelMap.put("errorPrice", "You cannot enter negative numbers!?"); 
+			
+			return "users/enterprise/room_edit";		
+		}else
+		if(salePrice < 0) {
+			modelMap.put("highlightS", highlightService.findAll());
+			modelMap.put("errorSalePrice", "You cannot enter negative numbers!?");
+			return "users/enterprise/room_edit";		
+		}
+		
 		InfoRoom infoRoomOld = roomService.roomInfoByIdRoom(idRoom);
 		
 		String mainNameUpload = UploadHelper.upload2(servletContext, mainImageFile);
@@ -234,9 +292,44 @@ public class EnterpriseController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "addRoom" , method = RequestMethod.POST)
-	public String addRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom, @RequestParam(value = "mainImage") MultipartFile mainImageFile, Authentication authentication, 
-			RedirectAttributes redirectAttributes,@RequestParam(value = "extraImage") MultipartFile[] extraImageFile) {
-	
+	public String addRoom(@ModelAttribute("infoRoom")@Valid InfoRoom infoRoom,BindingResult bindingResult  ,@RequestParam(value = "mainImage") MultipartFile mainImageFile, Authentication authentication, 
+			RedirectAttributes redirectAttributes,@RequestParam(value = "extraImage") MultipartFile[] extraImageFile
+			, ModelMap modelMap,@RequestParam("price") double price,@RequestParam("salePrice") double salePrice,
+			@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		
+		infoRoomValidator.validate(infoRoom, bindingResult);
+		if(bindingResult.hasErrors()) {
+			modelMap.put("highlights", highlightService.findAll());
+			return "users/enterprise/addroom";
+		}
+		if(guestChildren < 0) {
+			modelMap.put("highlightS", highlightService.findAll());
+			modelMap.put("errorGuestChildren", "You cannot enter negative numbers!?");  
+			
+			return "users/enterprise/room_edit";
+		}else
+			if(guestAdult < 0) {
+			modelMap.put("highlightS", highlightService.findAll());
+			modelMap.put("errorGuestAdult", "You cannot enter negative numbers!?");  
+			
+			return "users/enterprise/room_edit";
+		}else
+		if(price < 0) {
+			modelMap.put("highlights", highlightService.findAll());
+			modelMap.put("errorprice", "You cannot enter negative numbers!?"); 
+		
+			return "users/enterprise/addroom";
+		}else if( salePrice < 0) {
+			modelMap.put("highlights", highlightService.findAll());
+			
+			modelMap.put("errorssalePrice", "You cannot enter negative numbers!?"); 
+			return "users/enterprise/addroom";
+		} 
 		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		String CheckIn =  String.valueOf(infoRoom.getCheckIn()) ;
@@ -286,7 +379,11 @@ public class EnterpriseController implements ServletContextAware {
 	@RequestMapping(value =  "room-list-of/{idAcc}", method = RequestMethod.GET)
 	public String roomListOf(@PathVariable("idAcc") String idAcc,ModelMap modelMap
 			,Authentication authentication) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
 		
+
+		modelMap.put("accounts", accountService.findByUsername(name));
 			
 //			InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 //			

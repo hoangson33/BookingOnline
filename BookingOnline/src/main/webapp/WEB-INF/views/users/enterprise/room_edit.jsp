@@ -6,6 +6,8 @@
 
 <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/checkbox/css/style.css">
+	 	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
+	 	 <link href="${pageContext.request.contextPath }/webapp/js/jquery-3.6.0.min.js" rel="stylesheet">
 <style>
 /*product list*/
 
@@ -216,8 +218,34 @@
 </style>
 <mt:layout_user title="Room edit">
 	<jsp:attribute name="content">
+		<script>
+function validateForm() {
+  let checkIn = document.forms["myForm"]["checkIn"].value;
+  let checkOut = document.forms["myForm"]["checkOut"].value;
+  let children = document.forms["myForm"]["children"].value;
+  let price = document.forms["myForm"]["price"].value;
+  let salePrice = document.forms["myForm"]["salePrice"].value;
+  if (checkIn == "") {
+    alert(" CheckIn must be filled out ");
+    return false;
+  }else if (checkOut == "") {
+	    alert(" CheckOut must be filled out ");
+	    return false;
+	  }else if (children == "") {
+		    alert(" Children must be filled out ");
+		    return false;
+		  }else if (price == "") {
+			    alert(" Price must be entered ");
+			    return false;
+			  }else if (salePrice == "") {
+				    alert(" Sale% must be entered ");
+				    return false;
+				  }
+  
+}
+</script>
 	
-<s:form method="post" modelAttribute="roomlist" enctype="multipart/form-data"
+<s:form name="myForm" onsubmit="return validateForm()" method="post" modelAttribute="roomlist" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/enterprise/edit-room">   
       <!-- =======================================         ==End Header section==      =======================================-->
 	<!-- =======================================         ==Start Breadcrumbs section==      =======================================-->
@@ -273,12 +301,15 @@
 									name="children" id="children" path="guestChildren" /><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
+									 <p style="color: red;">${errorGuestChildren}</p>
+									
 							</div>
 							<div class="group adult">
 								<label class="color-22 playfair" for="children">Adult</label><s:input type="text"
 									name="children" id="adult" path="guestAdult" /><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
+									 <p style="color: red;">${errorGuestAdult}</p>
 							</div>
 							<button type="submit"
 								class="btn-default solid-bg-btn pos-relative">
@@ -297,19 +328,31 @@
                             <tbody >
                                 <tr>
                                     <td width="390">Description about the room</td>
-                                    <td width="1200"><s:textarea path="description" rows="5" cols=""/></td>
+                                    <td width="1200"><s:textarea path="description" rows="5" cols=""/>
+                                    <s:errors path="description" cssClass="format"></s:errors>
+                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>Room Category</td>
-                                    <td><s:input path="roomCategory"/></td>
+                                    <td><s:input path="roomCategory"/> 
+                                    <s:errors path="roomCategory" cssClass="format"></s:errors>
+                                    </td>
+                               
+                                    
                                 </tr>
                                 <tr>
                                     <td>Price(/1night)</td>
-                                    <td><s:input path="price"/></td>
+                                    <td><s:input type="number" path="price"/>
+                                       <p style="color: red;">${errorPrice}</p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Sale(%)</td>
-                                    <td><s:input path="salePrice"/></td>
+                                    <td><s:input type="number" path="salePrice"/>
+                                      <p style="color: red;">${errorSalePrice}</p>
+                                    </td>
+                                  
                                      <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
                                 </tr>
                    

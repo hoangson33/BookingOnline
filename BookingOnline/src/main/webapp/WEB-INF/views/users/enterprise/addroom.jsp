@@ -3,6 +3,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	 	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 
 <style>
 /*product list*/
@@ -220,16 +221,24 @@ function validateForm() {
   let checkIn = document.forms["myForm"]["checkIn"].value;
   let checkOut = document.forms["myForm"]["checkOut"].value;
   let children = document.forms["myForm"]["children"].value;
+  let price = document.forms["myForm"]["price"].value;
+  let salePrice = document.forms["myForm"]["salePrice"].value;
   if (checkIn == "") {
-    alert(" checkIn must be filled out");
+    alert(" CheckIn must be filled out ");
     return false;
   }else if (checkOut == "") {
-	    alert(" checkOut must be filled out");
+	    alert(" CheckOut must be filled out ");
 	    return false;
 	  }else if (children == "") {
-		    alert(" children must be filled out");
+		    alert(" Children must be filled out ");
 		    return false;
-		  }
+		  }else if (price == "") {
+			    alert(" Price must be entered ");
+			    return false;
+			  }else if (salePrice == "") {
+				    alert(" Sale% must be entered ");
+				    return false;
+				  }
   
 }
 </script>
@@ -296,12 +305,14 @@ function validateForm() {
 									name="children" id="children" value="1" readonly="true"/><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
+									<p style="color: red;">${errorGuestChildren}</p>
 							</div>
 							<div class="group adult">
 								<label for="children">Adult</label><s:input type="text" path="guestAdult"
 									name="children" id="adult" value="1" readonly="true"/><span
 									class="increse"><i class="fa fa-angle-up"></i></span><span
 									class="decrese"><i class="fa fa-angle-down"></i></span>
+									<p style="color: red;">${errorGuestAdult}</p>
 							</div>
 							<button type="submit"
 								class="btn-default solid-bg-btn pos-relative">
@@ -323,20 +334,32 @@ function validateForm() {
                             <tbody >
                                 <tr>
                                     <td width="390">Description about the room</td>
-                                    <td width="1200"><s:textarea path="description" rows="5" cols=""/></td>
+                                    <td width="1200"><s:textarea path="description" rows="5" cols=""/>
+                                     <s:errors path="description" cssClass="format"></s:errors>
+                                    </td>
+                                       
                                 </tr>
                                 <tr>
                                     <td>Room Category</td>
-                                    <td><s:textarea rows="1" path="roomCategory"/></td>
+                                    <td>
+                                    <s:textarea rows="1" path="roomCategory"/>
+                                    <s:errors path="roomCategory" cssClass="format"></s:errors>
+                                    </td>
+                              
                                 </tr>
                                 <tr>
                                     <td>Price(/1night)</td>
-                                    <td><s:textarea rows="1" path="price"/></td>
+                                  
+                                    <td><s:input type="number" rows="1" path="price"/>
+                                     <p style="color: red;">${errorprice}</p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Sale(%)</td>
-                                    <td><s:textarea rows="1" path="salePrice"/></td>
-                                    <s:input type="hidden" path="account.idAcc" value="${idAcc }"/>
+                                    <td><s:input type="number" rows="1" path="salePrice"/>
+                                    <p style="color: red;">${errorssalePrice}</p>
+                                    </td>
+                                    <s:input type="hidden"  path="account.idAcc" value="${idAcc }"/>
                                 </tr>
                                 
                                 

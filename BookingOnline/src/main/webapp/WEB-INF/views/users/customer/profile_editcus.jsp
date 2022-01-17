@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- STYLE CSS -->
+			 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
 <style type="text/css">
 body {
@@ -90,10 +91,20 @@ body {
 }
 	</style>
 	</head>
-	
+		<script>
+function validateForm() {
+  let phone = document.forms["myForm"]["phone"].value;
+	  if (phone == "") {
+		    alert("Phone must be filled out");
+		    return false;
+		  }
+
+  
+}
+</script>
 <body>
 
-<s:form method="post" modelAttribute="account" enctype="multipart/form-data"
+<s:form name="myForm" onsubmit="return validateForm()" method="post" modelAttribute="account" enctype="multipart/form-data"
 			action="${pageContext.request.contextPath }/customer/editCus"> 
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
@@ -117,14 +128,27 @@ body {
                     <h4 style="color: #87CEFA;" class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><s:input path="name" type="text" class="form-control" placeholder="first name" value="${account.name }"/></div>
+                    <div class="col-md-6"><label class="labels">Name</label><s:input path="name" type="text" class="form-control" placeholder="first name" value="${account.name }"/>
+                    <s:errors path="name" cssClass="format"></s:errors>
+                    </div>
                     <div class="col-md-6"><label class="labels">Username</label><s:input path="username" type="text" class="form-control" value="${account.username }" readonly="true"/></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Phone Number</label><s:input path="phone" type="number" class="form-control" placeholder="enter phone number" value="${account.phone }"/></div>
-                    <div class="col-md-12"><label class="labels">Email</label><s:input path="email" type="email" class="form-control" placeholder="enter email" value="${account.email }"/></div>
-                    <div class="col-md-12"><label class="labels">Location</label><s:input path="location" type="text" class="form-control" placeholder="enter location" value="${account.location }"/></div>
-                    <div class="col-md-12"><label class="labels">Location Detail</label><s:input path="locationDetail" type="text" class="form-control" placeholder="enter location detail" value="${account.locationDetail }"/></div>
+                    <div class="col-md-12"><label class="labels">Phone Number</label><s:input path="phone" type="number" class="form-control" placeholder="enter phone number" value="${account.phone }"/>
+                    <p style="color: red;">${error}</p>
+              
+                    </div>
+                    <div class="col-md-12"><label class="labels">Email</label><s:input path="email" type="email" class="form-control" placeholder="enter email" value="${account.email }"/>
+                    <s:errors path="email" cssClass="format"></s:errors>
+                       	   <p style="color: red;">${erroremail}</p>
+                              <p style="color: red;">${errorsemail}</p>
+                    </div>
+                    <div class="col-md-12"><label class="labels">Location</label><s:input path="location" type="text" class="form-control" placeholder="enter location" value="${account.location }"/>
+                    <s:errors path="location" cssClass="format"></s:errors>
+                    </div>
+                    <div class="col-md-12"><label class="labels">Location Detail</label><s:input path="locationDetail" type="text" class="form-control" placeholder="enter location detail" value="${account.locationDetail }"/>
+                    <s:errors path="locationDetail" cssClass="format"></s:errors>
+                    </div>
                     <s:input path="password" type="hidden" class="form-control" placeholder="enter location detail" value="${account.password }"/>
                 </div>
                 <div class="row mt-3">

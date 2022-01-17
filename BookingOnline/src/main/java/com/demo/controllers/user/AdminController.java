@@ -36,6 +36,7 @@ import com.demo.services.AccountService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
 import com.demo.validators.AccountValidator;
+import com.demo.validators.InfoRoomValidator;
 import com.demo.validators.RolesValidator;
 
 @Controller
@@ -63,7 +64,8 @@ public class AdminController implements ServletContextAware {
 	private AccountService accountService;
 	
 	
-
+	@Autowired
+	private InfoRoomValidator infoRoomValidator;
 
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Authentication authentication) {
@@ -167,11 +169,15 @@ public class AdminController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "addAcc" , method = RequestMethod.POST)
-	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult) {
+	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,@RequestParam("phone") int phone, ModelMap modelMap) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "admin/account_add";
-		}else {
+		}
+		if(phone < 0) {
+			modelMap.put("errorphone", "You cannot enter negative numbers!?");
+			return "admin/account_add";
+		}
 			String idRole = roleService.findRoleByNameRole(account.getIdRole());
 			int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
 			account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
@@ -186,7 +192,7 @@ public class AdminController implements ServletContextAware {
 		
 			accountService.save(account);
 			return "redirect:/admin/account-management";
-		}
+		
 		
 	}
 	
@@ -306,7 +312,27 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = "edit-room", method = RequestMethod.POST )
-	public String editRoom(@ModelAttribute("infoRoom") InfoRoom infoRoom) {
+	public String editRoom(@ModelAttribute("infoRoom")@Valid InfoRoom infoRoom, BindingResult bindingResult
+			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult
+			,@RequestParam("price") double price, ModelMap modelMap,@RequestParam("salePrice") double salePrice) {
+		infoRoomValidator.validate(infoRoom, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "admin/room_edit";
+		}
+		if(guestChildren < 0) {
+			modelMap.put("errorguestChildren", "You cannot enter negative numbers!?");
+			return "admin/room_edit";
+		}else if(guestAdult < 0) {
+			modelMap.put("errorguestAdult", "You cannot enter negative numbers!?");
+			return "admin/room_edit";
+		}else if(price < 0) {
+			modelMap.put("errorprice", "You cannot enter negative numbers!?");
+			return "admin/room_edit";
+		}else if(salePrice < 0) {
+			modelMap.put("errorsalePrice", "You cannot enter negative numbers!?");
+			return "admin/room_edit";
+		}
+			
 		InfoRoom infoRoomOld = roomService.roomInfoByIdRoom(infoRoom.getIdRoom());
 		infoRoom.setImgRoom(infoRoomOld.getImgRoom());
 		infoRoom.setExtraImg1(infoRoomOld.getExtraImg1());

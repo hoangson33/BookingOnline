@@ -284,18 +284,26 @@
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
-<s:input path="phone" type="text" class="form-control" placeholder="Phone"/>
+<s:input path="phone" type="number" class="form-control" placeholder="Phone"/>
+ <p style="color: red;">${errorphone}</p>
 </div>
 
 
 
-
+<div class="input-group mg-b-pro-edt">
+<span class="input-group-addon"><i class="icon nalika-user"
+																aria-hidden="true"></i></span>
+<s:input path="locationDetail" type="text" class="form-control" placeholder="City"/>
+<s:errors path="locationDetail" cssClass="format"></s:errors>
+</div>
 
 <s:select path="idRole" class="form-control pro-edt-select form-control-primary">
  <s:option value="">Role</s:option>
  <s:option value="ROLE_ENTERPRISE">Enterprise</s:option>
  <s:option value="ROLE_CUSTOMER">Customer</s:option>
 </s:select>
+
+
 
 
 </div>

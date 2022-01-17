@@ -92,14 +92,18 @@ public class CustomerController implements ServletContextAware{
 	}
 	
 	@RequestMapping(value = "editCus", method = RequestMethod.POST )
-	public String editAcc(@ModelAttribute("account") Account account, BindingResult bindingResult,
-			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap ) {
-
-// @Valid ở chỗ ModelAttribute ở trên tháo ra , có gì vô lại		
-//		accountValidator.validate(account, bindingResult);
-//		if(bindingResult.hasErrors()) {
-//			return "users/customer/profile_editcus";
-//		}
+	public String editAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap
+			, @RequestParam("phone") int phone,@RequestParam("email") String email) {
+		accountValidator.validate(account, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "users/customer/profile_editcus";
+		}
+		if(phone < 0) {
+			modelMap.put("error", "You cannot enter negative numbers!?"); 
+			return "users/customer/profile_editcus";
+		}
+	
 			System.out.println("username " + authentication.getName());
 			String name = authentication.getName();
 			modelMap.put("accounts", accountService.findByUsername(name));
@@ -107,8 +111,12 @@ public class CustomerController implements ServletContextAware{
 			
 				Account accountOld = accountService.findIdAcc(account.getIdAcc());
 				System.out.println("id acc : " + accountOld);
+//			
+//			if(email == account.getEmail()) {
+				
 			
-
+				
+				
 				account.setDatecreated(new Date());
 				account.setGender(accountOld.getGender());
 				String idRole =  account.getIdRole();
@@ -124,9 +132,15 @@ public class CustomerController implements ServletContextAware{
 				}else {
 					account.setAvatar(accountOld.getAvatar());
 				}
+			
 				
 				accountService.save(account);
-				return "redirect:/customer/";
+				return "redirect:/home/welcomeCustomer";
+//			}else {
+//				modelMap.put("erroremail", "This email already exists !?");
+//				modelMap.put("errorsemail", "Re-enter another email !");
+//				return "users/customer/profile_editcus";
+//			}
 		
 	}
 		

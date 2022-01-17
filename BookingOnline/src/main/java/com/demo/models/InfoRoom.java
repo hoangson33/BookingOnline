@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -42,7 +45,11 @@ public class InfoRoom implements java.io.Serializable {
 	
 	private int guestChildren;
 	private int guestAdult;
+	@NotEmpty
+	@Length(min = 3, max = 50)
 	private String description;
+	@NotEmpty
+	@Length(min = 3, max = 20)
 	private String roomCategory;
 	private double price;
 	private double salePrice;

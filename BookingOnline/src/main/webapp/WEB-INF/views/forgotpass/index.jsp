@@ -29,7 +29,7 @@
 		      	<a class="mb-4 text-center" href="#"><h3>Forgot Password </h3></a>
 		      	<form method="post" action="${pageContext.request.contextPath }/forgotpass/sendotp" class="signin-form">
 		      		<div class="form-group">
-		      			<input type="email" class="form-control" name="email" placeholder="Username" required>
+		      			<input type="email" class="form-control" name="email" placeholder="Email" required>
 		      		</div>
 	           	${successfully}
 	            <div class="form-group">

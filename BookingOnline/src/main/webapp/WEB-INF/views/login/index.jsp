@@ -28,7 +28,8 @@
 					<div class="login-wrap p-0">
 		      	<a class="mb-4 text-center" href="${pageContext.request.contextPath }/registration/add"><h3>Have an account?</h3></a>
 		      	<form method="post" action="${pageContext.request.contextPath }/login/process-login" class="signin-form">
-		      	${msg }
+		      	
+		      		<h4 style="color: yellow;">${msg}</h4>
 		      		<div class="form-group">
 		      			<input type="text" class="form-control" name="username" placeholder="Username" required>
 		      		</div>
@@ -37,8 +38,8 @@
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
-	           ${msgs }
-	
+	          
+	<h4 style="color: red;">${msgs}</h4>
 	            	<input type="submit" class="form-control btn btn-primary submit px-3" value="Sign In">
 	            </div>
 	            <div class="form-group d-md-flex">
