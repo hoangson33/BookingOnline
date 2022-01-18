@@ -14,45 +14,32 @@ import org.springframework.stereotype.Service;
 import com.demo.models.Account;
 import com.demo.models.InfoRoom;
 import com.demo.models.Reservation;
+import com.demo.models.ReservationCancel;
 import com.demo.models.Roles;
 import com.demo.repositories.AccountRepository;
+import com.demo.repositories.ReservationCancelRepository;
 import com.demo.repositories.ReservationRepository;
 import com.demo.repositories.RoomRepository;
 
 @Service
-public class ReservationServiceImpl implements ReservationService {
+public class ReservationCancelServiceImpl implements ReservationCancelService {
 	
 	@Autowired
-	private ReservationRepository reservationRepository;
+	private ReservationCancelRepository reservationCancelRepository;
 
 	@Override
-	public Reservation save(Reservation reservation) {
-		return reservationRepository.save(reservation);
+	public ReservationCancel save(ReservationCancel reservationCancel) {
+		return reservationCancelRepository.save(reservationCancel);
 	}
 
 	@Override
-	public Iterable<Reservation> reserInfo(int idReservation) {
-		return reservationRepository.reserInfo(idReservation);
-	}
-
-	@Override
-	public Reservation find(int id) {
-		return reservationRepository.findById(id).get();
+	public ReservationCancel find(int id) {
+		return reservationCancelRepository.findById(id).get();
 	}
 	
 	@Override
 	public void delete(int id) {
-		reservationRepository.deleteById(id);
-	}
-
-	@Override
-	public Iterable<Reservation> invoiceCustomer(String customerId) {
-		return reservationRepository.invoiceCustomer(customerId);
-	}
-
-	@Override
-	public Reservation reserInfo2(int idReservation) {
-		return reservationRepository.reserInfo2(idReservation);
+		reservationCancelRepository.deleteById(id);
 	}
 
 

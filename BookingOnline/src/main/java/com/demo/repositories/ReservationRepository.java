@@ -17,4 +17,10 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	@Query("from Reservation where idReservation = :idReservation")
 	public Iterable<Reservation> reserInfo(@Param("idReservation") int idReservation);
 	
+	@Query("from Reservation where idReservation = :idReservation")
+	public Reservation reserInfo2(@Param("idReservation") int idReservation);
+	
+	@Query("from Reservation where customerId = :customerId order by idReservation DESC")
+	public Iterable<Reservation> invoiceCustomer(@Param("customerId") String customerId);
+	
 }

@@ -34,6 +34,7 @@ import com.demo.models.Account;
 import com.demo.models.DetailBill;
 import com.demo.models.InfoRoom;
 import com.demo.models.Reservation;
+import com.demo.models.ReservationCancel;
 import com.demo.models.Roles;
 import com.demo.paypal.PayPalConfig;
 import com.demo.paypal.PayPalResult;
@@ -41,6 +42,7 @@ import com.demo.paypal.PayPalSucess;
 import com.demo.repositories.ReservationRepository;
 import com.demo.services.AccountService;
 import com.demo.services.HighlightService;
+import com.demo.services.ReservationCancelService;
 import com.demo.services.ReservationService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
@@ -70,8 +72,30 @@ public class CustomerController implements ServletContextAware{
 	private ReservationService reservationService;
 	
 	@Autowired
+	private ReservationCancelService reservationCancelService;
+	
+	@Autowired
 	private AccountService accountService;
 	
+	private int idCancel;
+	
+	private int idReservation;
+	
+	
+
+	
+	public int getIdReservation() {
+		return idReservation;
+	}
+	public void setIdReservation(int idReservation) {
+		this.idReservation = idReservation;
+	}
+	public int getIdCancel() {
+		return idCancel;
+	}
+	public void setIdCancel(int idCancel) {
+		this.idCancel = idCancel;
+	}
 	@RequestMapping(value = {"","customer"}, method = RequestMethod.GET)
 	public String index(Authentication authentication,ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
@@ -314,6 +338,7 @@ public class CustomerController implements ServletContextAware{
 			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
 			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
 			reservation.setStatus(false);
+			reservation.setStatusCancel(false);
 			System.out.println("name ++++++++++: " + reservation.getName());
 			
 			
@@ -358,7 +383,72 @@ public class CustomerController implements ServletContextAware{
 		return "redirect:/home/welcomeCustomer";
 	}
 	
-
+	
+	@RequestMapping(value = "invoice/{idAcc}", method = RequestMethod.GET)
+	public String invoice(@PathVariable("idAcc") String idAcc,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("invoices", reservationService.invoiceCustomer(idAcc));
+		return "users/customer/invoice"; 
+	}
+	
+	@RequestMapping(value = "invoice-detail", method = RequestMethod.GET)
+	public String invoiceDetail(@RequestParam("idReservation")int idReservation,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("invoices", reservationService.reserInfo(idReservation));
+		ReservationCancel reservationCancel = new ReservationCancel();
+		modelMap.put("reservationCancel", reservationCancel);
+		System.out.println("get IdCancel " + getIdCancel());
+		modelMap.put("idCancel", getIdCancel());
+		return "users/customer/invoice_detail";
+	}
+	
+	@RequestMapping(value = "booking-again/{idCancel}", method = RequestMethod.GET)
+	public String bookingAgain(@PathVariable("idCancel") int idCancel) {
+		Reservation reservation = reservationService.reserInfo2(getIdReservation());
+		reservation.getIdReservation();
+		reservation.getCustomerId();
+		reservation.getCheckIn();
+		reservation.getCheckOut();
+		reservation.getName();
+		reservation.getEmail();
+		reservation.getPhone();
+		reservation.getAdult();
+		reservation.getChildren();
+		reservation.setStatus(false);;
+		reservation.setStatusCancel(false);
+		reservationService.save(reservation);
+		reservationCancelService.delete(idCancel);
+		return "redirect:/customer/invoice-detail?idReservation=" + reservation.getIdReservation();
+	}
+	
+	
+	@RequestMapping(value = "add-reservation-cancel", method = RequestMethod.POST )
+	public String addReservationCancel(@ModelAttribute("reservationCancel") ReservationCancel reservationCancel,ModelMap modelMap) {
+		
+		reservationCancelService.save(reservationCancel);
+		Reservation reservation = reservationService.reserInfo2(reservationCancel.getReservation().getIdReservation());
+		reservation.getIdReservation();
+		reservation.getCustomerId();
+		reservation.getCheckIn();
+		reservation.getCheckOut();
+		reservation.getName();
+		reservation.getEmail();
+		reservation.getPhone();
+		reservation.getAdult();
+		reservation.getChildren();
+		reservation.setStatus(false);;
+		reservation.setStatusCancel(true);
+		reservationService.save(reservation);
+		modelMap.put("idCancel", reservationCancel.getIdCancel());
+		setIdCancel(reservationCancel.getIdCancel());
+		setIdReservation(reservation.getIdReservation());
+		return "redirect:/customer/invoice-detail?idReservation=" + reservation.getIdReservation();
+		
+	}
 	
 	
 	public double discountPrice(double price, double disount) {
