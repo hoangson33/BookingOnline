@@ -55,7 +55,8 @@ Your Current Password :" required>
 				
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
-	                   	${error}
+	                
+	                   	  <p style="color: yellow;">${error}</p>
 	            <div class="form-group">
 	              <input  id="myInput" type="password" name="passwordNew" class="form-control" placeholder="Your New Password :" required>
 	              <span onclick="myFunction()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
@@ -64,7 +65,8 @@ Your Current Password :" required>
 	              <input  id="myInputs" type="password" name="passwordNewMatch" class="form-control" placeholder="Re-enter your new Password :" required>
 	              <span onclick="myFunctions()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
-	               	${successfully}
+	           
+	               	  <p style="color: yellow;">${successfully}</p>
 	            <div class="form-group">
 	            	<input type="submit" class="form-control btn btn-primary submit px-3" value="Submit">
 	            </div>

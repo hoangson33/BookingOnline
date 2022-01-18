@@ -5,7 +5,22 @@
 <mt:layout_user title="Contact">
 
 	<jsp:attribute name="content">
-	
+	 <link href="${pageContext.request.contextPath }/webapp/js/jquery-3.6.0.min.js" rel="stylesheet">
+		<script>
+function validateForm() {
+  let subject = document.forms["myForm"]["subject"].value;
+  let content = document.forms["myForm"]["content"].value;
+ 
+  if (subject == "") {
+    alert(" subject must be filled out ");
+    return false;
+  }else if (content == "") {
+	    alert(" content must be filled out ");
+	    return false;
+  }
+  
+}
+</script>
 	<!-- =======================================         ==End Header section==      =======================================-->
 	<!-- =======================================         ==Start Breadcrumbs section==      =======================================-->
 	<section class="hotel-breadcrumbs pos-relative">
@@ -86,7 +101,7 @@
 							class="contact-title text-uppercase fw-600 color-22 pos-relative playfair d-inline">Drop
 							us a Line</h3>
 						<div class="abform-area clearfix pos-relative">
-							<form action="${pageContext.request.contextPath }/contact/send" method="post">
+							<form name="myForm" onsubmit="return validateForm()"  action="${pageContext.request.contextPath }/contact/send" method="post">
 							
 								
 								

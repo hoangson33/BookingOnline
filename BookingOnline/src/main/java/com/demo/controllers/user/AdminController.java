@@ -236,11 +236,16 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account")@Valid Account account,BindingResult bindingResult,
-			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes) {
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,@RequestParam("phone") int phone, ModelMap modelMap) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "admin/account_edit";
 		}
+		if(phone < 0) {
+			modelMap.put("errorphone", "You cannot enter negative numbers!?");
+			return "admin/account_edit";
+		}
+		
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
 		
 		

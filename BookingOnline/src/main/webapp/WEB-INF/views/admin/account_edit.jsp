@@ -298,6 +298,7 @@ function validateForm() {
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
 <s:input path="phone" name="phone" type="number" class="form-control" placeholder="Phone"/>
+ <p style="color: red;">${errorphone}</p>
 </div>
 
 <div class="input-group mg-b-pro-edt">

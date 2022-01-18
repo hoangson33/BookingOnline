@@ -88,14 +88,14 @@ ul{
                     <h4 style="color: #87CEFA;" class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value="${account.name }"></div>
-                    <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" value="${account.username }" placeholder="surname"></div>
+                    <div class="col-md-6"><label class="labels">Name</label><input readonly="readonly" type="text" class="form-control" placeholder="first name" value="${account.name }"></div>
+                    <div class="col-md-6"><label class="labels">Username</label><input readonly="readonly" type="text" class="form-control" value="${account.username }" placeholder="surname"></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Phone Number</label><input type="number" class="form-control" placeholder="enter phone number" value="${account.phone }"></div>
-                    <div class="col-md-12"><label class="labels">Email</label><input type="email" class="form-control" placeholder="enter email" value="${account.email }"></div>
-                    <div class="col-md-12"><label class="labels">Location</label><input type="text" class="form-control" placeholder="enter location" value="${account.location }"></div>
-                    <div class="col-md-12"><label class="labels">Location Detail</label><input type="text" class="form-control" placeholder="enter location detail" value="${account.locationDetail }"></div>
+                    <div class="col-md-12"><label class="labels">Phone Number</label><input readonly="readonly" type="number" class="form-control" placeholder="enter phone number" value="${account.phone }"></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input readonly="readonly" type="email" class="form-control" placeholder="enter email" value="${account.email }"></div>
+                    <div class="col-md-12"><label class="labels">Location</label><input readonly="readonly" type="text" class="form-control" placeholder="enter location" value="${account.location }"></div>
+                    <div class="col-md-12"><label class="labels">Location Detail</label><input readonly="readonly" type="text" class="form-control" placeholder="enter location detail" value="${account.locationDetail }"></div>
                     
                 </div>
                 <div class="row mt-3">

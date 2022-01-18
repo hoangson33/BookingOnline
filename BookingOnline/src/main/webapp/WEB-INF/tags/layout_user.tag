@@ -152,6 +152,7 @@ type="java.lang.String"%>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/enterprise/addRoom?name=${pageContext.request.userPrincipal.name }">Add room</a></li>
 							<li><a href="${pageContext.request.contextPath }/enterprise/profile">Profile's enterprise</a></li>
+							<li><a href="${pageContext.request.contextPath }/enterprise/changepass">Change Password</a></li>
 							<li><a href="${pageContext.request.contextPath }/enterprise/room-list">Room list</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
 							</ul>
