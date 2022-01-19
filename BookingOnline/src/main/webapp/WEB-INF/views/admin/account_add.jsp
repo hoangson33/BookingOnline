@@ -219,10 +219,9 @@
 <span class="input-group-addon"><i class="icon nalika-user"
 																aria-hidden="true"></i></span>
 <s:input path="username" type="text" class="form-control"
-																placeholder="Username" />
-																<s:errors path="username" cssClass="format"></s:errors>
+																placeholder="Username" />														
 </div>
-
+	<s:errors path="username" cssClass="format"></s:errors>
 
 
 <div class="input-group mg-b-pro-edt">
@@ -230,29 +229,28 @@
 																aria-hidden="true"></i></span>
 <s:input path="password" type="password" class="form-control"
 																placeholder="Password" />
-																<s:errors path="password" cssClass="format"></s:errors>
 </div>
-
+																<s:errors path="password" cssClass="format"></s:errors>
 
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-envelope"
 																aria-hidden="true"></i></span>
 <s:input path="email" type="text" class="form-control"
-																placeholder="Email" />
-																<s:errors path="email" cssClass="format"></s:errors>
+																placeholder="Email" />																								
 </div>
-
-
+<s:errors path="email" cssClass="format"></s:errors>
+  	   <p style="color: red;">${error}</p>
+                              <p style="color: red;">${errors}</p>
+						    
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-new-file"
 																aria-hidden="true"></i></span>
 <s:input path="name" type="text" class="form-control"
-																placeholder="First Name And Last Name" />
-																<s:errors path="name" cssClass="format"></s:errors>
+																placeholder="First Name And Last Name" />																
 </div>
-
+<s:errors path="name" cssClass="format"></s:errors>
 
 <s:select path="gender" class="form-control pro-edt-select form-control-primary">
  <s:option value="">Gender</s:option>
@@ -285,18 +283,16 @@
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
 <s:input path="phone" type="number" class="form-control" placeholder="Phone"/>
- <p style="color: red;">${errorphone}</p>
 </div>
-
+ <p style="color: red;">${errorphone}</p>
 
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-user"
 																aria-hidden="true"></i></span>
 <s:input path="locationDetail" type="text" class="form-control" placeholder="City"/>
-<s:errors path="locationDetail" cssClass="format"></s:errors>
 </div>
-
+<s:errors path="locationDetail" cssClass="format"></s:errors>
 <s:select path="idRole" class="form-control pro-edt-select form-control-primary">
  <s:option value="">Role</s:option>
  <s:option value="ROLE_ENTERPRISE">Enterprise</s:option>

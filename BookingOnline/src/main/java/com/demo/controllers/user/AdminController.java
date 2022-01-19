@@ -169,7 +169,8 @@ public class AdminController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "addAcc" , method = RequestMethod.POST)
-	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,@RequestParam("phone") int phone, ModelMap modelMap) {
+	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,@RequestParam("phone") int phone,
+			ModelMap modelMap,@RequestParam("email") String email) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "admin/account_add";
@@ -178,6 +179,11 @@ public class AdminController implements ServletContextAware {
 			modelMap.put("errorphone", "You cannot enter negative numbers!?");
 			return "admin/account_add";
 		}
+		System.out.println("email :" + email);
+		String idacc = accountService.findIdAccs(email);
+		System.out.println("idAcc : " + idacc);
+		
+			if(idacc == null) {
 			String idRole = roleService.findRoleByNameRole(account.getIdRole());
 			int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
 			account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
@@ -191,6 +197,11 @@ public class AdminController implements ServletContextAware {
 			account.setAvatar("anhmacdinh.png");
 		
 			accountService.save(account);
+			}else {
+				modelMap.put("error", "This email already exists !?");
+				modelMap.put("errors", "Re-enter another email !");
+				return "admin/account_add";
+			}
 			return "redirect:/admin/account-management";
 		
 		
@@ -239,6 +250,8 @@ public class AdminController implements ServletContextAware {
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,@RequestParam("phone") int phone, ModelMap modelMap) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
+			modelMap.addAttribute("avatar", accountService.findAvatar(account.getIdAcc()));
+			
 			return "admin/account_edit";
 		}
 		if(phone < 0) {
@@ -309,8 +322,12 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value =  "edit-room/{idRoom}", method = RequestMethod.GET)
 	public String editRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap,Authentication authentication) {
-		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		modelMap.put("infoRoom", roomService.roomInfoByIdRoom(idRoom));
+		modelMap.put("infoRooms", roomService.roomInfoByIdRoom(idRoom));
 		modelMap.put("idRoom", idRoom);
 
 		return "admin/room_edit";
@@ -319,9 +336,14 @@ public class AdminController implements ServletContextAware {
 	@RequestMapping(value = "edit-room", method = RequestMethod.POST )
 	public String editRoom(@ModelAttribute("infoRoom")@Valid InfoRoom infoRoom, BindingResult bindingResult
 			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult
-			,@RequestParam("price") double price, ModelMap modelMap,@RequestParam("salePrice") double salePrice) {
+			,@RequestParam("price") double price, ModelMap modelMap,@RequestParam("salePrice") double salePrice,Authentication authentication) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
 		infoRoomValidator.validate(infoRoom, bindingResult);
 		if(bindingResult.hasErrors()) {
+			modelMap.put("infoRooms", roomService.roomInfoByIdRoom(infoRoom.getIdRoom()));
 			return "admin/room_edit";
 		}
 		if(guestChildren < 0) {

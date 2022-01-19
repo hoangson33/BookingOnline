@@ -140,7 +140,7 @@ function validateForm() {
                     </div>
                     <div class="col-md-12"><label class="labels">Email</label><s:input path="email" type="email" class="form-control" placeholder="enter email" value="${account.email }"/>
                     <s:errors path="email" cssClass="format"></s:errors>
-                       	   <p style="color: red;">${erroremail}</p>
+                         	   <p style="color: red;">${erroremail}</p>
                               <p style="color: red;">${errorsemail}</p>
                     </div>
                     <div class="col-md-12"><label class="labels">Location</label><s:input path="location" type="text" class="form-control" placeholder="enter location" value="${account.location }"/>

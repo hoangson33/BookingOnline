@@ -119,7 +119,7 @@ public class EnterpriseController implements ServletContextAware {
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap
-			, @RequestParam("phone") int phone) {
+			, @RequestParam("phone") int phone,@RequestParam("email") String email) {
 		if(bindingResult.hasErrors()) {
 		return "users/enterprise/profile_edit";
 	}
@@ -129,29 +129,60 @@ public class EnterpriseController implements ServletContextAware {
 		}
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
-
 		modelMap.put("accounts", accountService.findByUsername(name));
 		
 		
-		Account accountOld = accountService.findIdAcc(account.getIdAcc());
-		
-		account.setDatecreated(new Date());
-		account.setGender(accountOld.getGender());
-		String idRole =  account.getIdRole();
-		account.setIdRole(idRole);
-		account.setStatus(true);
-		
-		account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
-		
-		
-		String fileName = UUID.randomUUID().toString().replace("-", "");
-		String fileNameUpload = UploadHelper.upload(servletContext, file);
-		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
-		if(fileNameUpload != null) {
-			account.setAvatar(fileNameUpload);
-		}else {
-			account.setAvatar(accountOld.getAvatar());
-		}
+			Account accountOld = accountService.findIdAcc(account.getIdAcc());
+			System.out.println("id acc : " + account.getIdAcc());
+			System.out.println("email acc : " + accountOld.getEmail());
+			System.out.println("email : " + email);
+			List<Account>  allAccount = accountService.findAllAccountList(account.getIdAcc());
+			for(Account account1 : allAccount) {
+				if(!account1.getEmail().equalsIgnoreCase(email)) {
+					account.setDatecreated(new Date());
+					account.setGender(accountOld.getGender());
+					String idRole =  account.getIdRole();
+					account.setIdRole(idRole);
+					System.out.println("id role : " + idRole);
+					account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
+					account.setStatus(true);
+					String fileName = UUID.randomUUID().toString().replace("-", "");
+					String fileNameUpload = UploadHelper.upload(servletContext, file);
+					redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+					if(fileNameUpload != null) {
+						account.setAvatar(fileNameUpload);
+					}else {
+						account.setAvatar(accountOld.getAvatar());
+					}
+				}else if(account1.getEmail().equalsIgnoreCase(email) && account.getIdAcc().equalsIgnoreCase(account1.getIdAcc())){
+					account.setDatecreated(new Date());
+					account.setGender(accountOld.getGender());
+					String idRole =  account.getIdRole();
+					account.setIdRole(idRole);
+					System.out.println("id role : " + idRole);
+					account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
+					account.setStatus(true);
+					String fileName = UUID.randomUUID().toString().replace("-", "");
+					String fileNameUpload = UploadHelper.upload(servletContext, file);
+					redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+					if(fileNameUpload != null) {
+						account.setAvatar(fileNameUpload);
+					}else {
+						account.setAvatar(accountOld.getAvatar());
+					}
+				}else if(account1.getEmail().equalsIgnoreCase(email) && !account.getIdAcc().equalsIgnoreCase(account1.getIdAcc())){
+				
+					
+					String avatar = accountService.findAvatar(account.getIdAcc());
+					System.out.println("avatar  : " + avatar);
+					modelMap.put("erroremail", "This email already exists !?");
+					modelMap.put("errorsemail", "Re-enter another email !");
+					return "users/enterprise/profile_edit";
+				}
+				
+			}
+			
+
 		accountService.save(account);
 		return "redirect:/enterprise/profile";
 	}
@@ -225,6 +256,7 @@ public class EnterpriseController implements ServletContextAware {
 			modelMap.put("accounts", accountService.findByUsername(name));
 			
 		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
+		modelMap.put("roomlists", roomService.roomInfoByIdRoom(idRoom));	
 		return "users/enterprise/room_edit";
 	}
 	
@@ -243,6 +275,8 @@ public class EnterpriseController implements ServletContextAware {
 
 		infoRoomValidator.validate(infoRoom, bindingResult);
 		if(bindingResult.hasErrors()) {
+			
+			modelMap.put("roomlists", roomService.roomInfoByIdRoom(infoRoom.getIdRoom()));			
 			modelMap.put("highlightS", highlightService.findAll());
 			return "users/enterprise/room_edit";
 		}

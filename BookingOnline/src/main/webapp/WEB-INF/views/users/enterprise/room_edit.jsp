@@ -276,7 +276,7 @@ function validateForm() {
 					<input  onchange="showMainImg(this)" type="file" name="mainImage" id="firstimg" style="display:none; visibility: none;"/> 
 				
 					
-					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img width="700" height="700" id="mainImg" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}" alt="room img" class="img-fluid rounded"></label>
+					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img width="700" height="700" id="mainImg" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlists.imgRoom}" alt="room img" class="img-fluid rounded"></label>
 					
 					</div>
 				</div>
@@ -390,19 +390,19 @@ function validateForm() {
 				<div class="col-md-6">
 					<div class="img-area">
 						<input  onchange="showExtraImg1(this)" type="file" name="extraImage" id="extraImg1" style="display:none; visibility: none;"/> 
-						<label for="extraImg1" ><i class="fa fa-plus "></i><img id="previewExtraImg1" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.extraImg1}" alt="Extra Image 1" class="img-fluid rounded"></label>
+						<label for="extraImg1" ><i class="fa fa-plus "></i><img id="previewExtraImg1" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlists.extraImg1}" alt="Extra Image 1" class="img-fluid rounded"></label>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="img-area">
 						<input  onchange="showExtraImg2(this)" type="file" name="extraImage" id="extraImg2" style="display:none; visibility: none;"/> 
-						<label for="extraImg2" ><i class="fa fa-plus "></i><img id="previewExtraImg2" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.extraImg2}" alt="Extra Image 1" class="img-fluid rounded"></label>
+						<label for="extraImg2" ><i class="fa fa-plus "></i><img id="previewExtraImg2" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlists.extraImg2}" alt="Extra Image 1" class="img-fluid rounded"></label>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="img-area">
 						<input  onchange="showExtraImg3(this)" type="file" name="extraImage" id="extraImg3" style="display:none; visibility: none;"/> 
-						<label for="extraImg3" ><i class="fa fa-plus "></i><img id="previewExtraImg3" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.extraImg3}" alt="Extra Image 1" class="img-fluid rounded"></label>
+						<label for="extraImg3" ><i class="fa fa-plus "></i><img id="previewExtraImg3" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlists.extraImg3}" alt="Extra Image 1" class="img-fluid rounded"></label>
 					</div>
 				</div>
 			</div>

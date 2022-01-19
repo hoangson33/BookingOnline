@@ -103,5 +103,14 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findPass(username);
 	}
 
+	@Override
+	public List<Account> findAllAccountList(String idAcc) {
+		return accountRepository.findAllAccountList(idAcc);
+	}
+
+
+
+
+
 
 }

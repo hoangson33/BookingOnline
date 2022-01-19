@@ -225,9 +225,32 @@ html {
     opacity: 0.9
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <mt:layout_user2 title="Room edit">
 	<jsp:attribute name="content">
-	  
+	  		<script>
+function validateForm() {
+  let checkIn = document.forms["myForm"]["checkIn"].value;
+  let checkOut = document.forms["myForm"]["checkOut"].value;
+  let adult = document.forms["myForm"]["adult"].value;
+  let children = document.forms["myForm"]["children"].value;
+	  if (checkIn == "") {
+		    alert("checkIn must be filled out");
+		    return false;
+		  }else if (checkOut == "") {
+			    alert("checkOut must be filled out");
+			    return false;
+			  }else if (adult < 0) {
+				    alert("adult : You cannot enter negative numbers !???");
+				    return false;
+				  }else if (children < 0) {
+				    alert("children : You cannot enter negative numbers !???");
+				    return false;
+				  }
+
+  
+}
+</script>
 
 <div class="backgroundImage"></div>
 <div class="transparentText">
@@ -311,7 +334,7 @@ html {
     <!-- /.row -->
  </form> 
 <!-- <s:form method="post" modelAttribute="reservation" action="${pageContext.request.contextPath }/customer/book-room-cash">-->
-	<form method="get" action="${pageContext.request.contextPath }/customer/book-room-cash">    
+	<form name="myForm" onsubmit="return validateForm()" method="get" action="${pageContext.request.contextPath }/customer/book-room-cash">    
     <section class="second">
 			
 	<div id="booking" class="section">
@@ -328,12 +351,14 @@ html {
                         <div class="form-group"><label style="color: #87CEFA">Fullname</label> <input name="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label style="color: #87CEFA" for="booking-checkin">CHECK IN Date</label><input value="${checkIn }" 
+                                <label style="color: #87CEFA" for="booking-checkin">CHECK IN Date</label><input name="checkIn" value="${checkIn }" 
 									type="text" id="from" name="checkIn" placeholder="YY/MM/DD"
 									readonly="readonly"/>
+
+									
                             </div>
                             <div class="col-md-6">
-                                <label style="color: #87CEFA" for="booking-checkout">CHECK OUT Date</label><input value="${checkOut }" 
+                                <label style="color: #87CEFA" for="booking-checkout">CHECK OUT Date</label><input name="checkOut" value="${checkOut }" 
 									type="text" id="to" name="checkOut" placeholder="YY/MM/DD"
 									readonly="readonly"/>
                             </div>
@@ -352,8 +377,9 @@ html {
                                 <div class="form-group"><label style="color: #87CEFA">Adult</label> <input  name="adult" value="1" class="form-control" type="number" placeholder="Number of Adult"/> </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"><label style="color: #87CEFA">Children</label> <input name="children" value="1" class="form-control" type="number" placeholder="Number of Children"/> </div>
+                                <div class="form-group"><label style="color: #87CEFA">Children</label> <input   name="children" value="1" class="form-control" type="number" placeholder="Number of Children"/> </div>
                             </div>
+                             <p style="color: red;">${errorchildren}</p>
                         </div>
                         
                         <div style="margin-left: 190px" class="row ">

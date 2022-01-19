@@ -207,11 +207,11 @@ function validateForm() {
 			</div>
 			
 			<div class="input-group mg-b-pro-edt img-area">
-						<label><img width="420" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRoom.imgRoom}" alt="Extra Image 1" class="img-fluid rounded"></label>
+						<label><img width="420" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRooms.imgRoom}" alt="Extra Image 1" class="img-fluid rounded"></label>
 			</div>
 			
 			<div class="input-group mg-b-pro-edt img-area">
-						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRoom.extraImg1}" alt="Extra Image 1" class="img-fluid rounded"></label>
+						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRooms.extraImg1}" alt="Extra Image 1" class="img-fluid rounded"></label>
 			</div>
 			
 			
@@ -258,11 +258,11 @@ function validateForm() {
 			
 			
 			<div class="input-group mg-b-pro-edt img-area">
-						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRoom.extraImg2}" alt="Extra Image 1" class="img-fluid rounded"></label>
+						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRooms.extraImg2}" alt="Extra Image 1" class="img-fluid rounded"></label>
 			</div>
 			
 			<div class="input-group mg-b-pro-edt img-area">
-						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRoom.extraImg3}" alt="Extra Image 1" class="img-fluid rounded"></label>
+						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRooms.extraImg3}" alt="Extra Image 1" class="img-fluid rounded"></label>
 			</div>
 			
 			</div>

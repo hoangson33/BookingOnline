@@ -2,6 +2,7 @@ package com.demo.controllers.user;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -200,38 +201,58 @@ public class CustomerController implements ServletContextAware{
 			
 			
 				Account accountOld = accountService.findIdAcc(account.getIdAcc());
-				System.out.println("id acc : " + accountOld);
-//			
-//			if(email == account.getEmail()) {
-				
-			
-				
-				
-				account.setDatecreated(new Date());
-				account.setGender(accountOld.getGender());
-				String idRole =  account.getIdRole();
-				account.setIdRole(idRole);
-				System.out.println("id role : " + idRole);
-				account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
-				account.setStatus(true);
-				String fileName = UUID.randomUUID().toString().replace("-", "");
-				String fileNameUpload = UploadHelper.upload(servletContext, file);
-				redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
-				if(fileNameUpload != null) {
-					account.setAvatar(fileNameUpload);
-				}else {
-					account.setAvatar(accountOld.getAvatar());
+				System.out.println("id acc : " + account.getIdAcc());
+				System.out.println("email acc : " + accountOld.getEmail());
+				System.out.println("email : " + email);
+				List<Account>  allAccount = accountService.findAllAccountList(account.getIdAcc());
+				for(Account account1 : allAccount) {
+					if(!account1.getEmail().equalsIgnoreCase(email)) {
+						account.setDatecreated(new Date());
+						account.setGender(accountOld.getGender());
+						String idRole =  account.getIdRole();
+						account.setIdRole(idRole);
+						System.out.println("id role : " + idRole);
+						account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
+						account.setStatus(true);
+						String fileName = UUID.randomUUID().toString().replace("-", "");
+						String fileNameUpload = UploadHelper.upload(servletContext, file);
+						redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+						if(fileNameUpload != null) {
+							account.setAvatar(fileNameUpload);
+						}else {
+							account.setAvatar(accountOld.getAvatar());
+						}
+					}else if(account1.getEmail().equalsIgnoreCase(email) && account.getIdAcc().equalsIgnoreCase(account1.getIdAcc())){
+						account.setDatecreated(new Date());
+						account.setGender(accountOld.getGender());
+						String idRole =  account.getIdRole();
+						account.setIdRole(idRole);
+						System.out.println("id role : " + idRole);
+						account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
+						account.setStatus(true);
+						String fileName = UUID.randomUUID().toString().replace("-", "");
+						String fileNameUpload = UploadHelper.upload(servletContext, file);
+						redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+						if(fileNameUpload != null) {
+							account.setAvatar(fileNameUpload);
+						}else {
+							account.setAvatar(accountOld.getAvatar());
+						}
+					}else if(account1.getEmail().equalsIgnoreCase(email) && !account.getIdAcc().equalsIgnoreCase(account1.getIdAcc())){
+					
+						
+						String avatar = accountService.findAvatar(account.getIdAcc());
+						System.out.println("avatar  : " + avatar);
+						modelMap.put("erroremail", "This email already exists !?");
+						modelMap.put("errorsemail", "Re-enter another email !");
+						return "users/customer/profile_editcus";
+					}
+					
 				}
-			
 				
-				accountService.save(account);
-				return "redirect:/home/welcomeCustomer";
-//			}else {
-//				modelMap.put("erroremail", "This email already exists !?");
-//				modelMap.put("errorsemail", "Re-enter another email !");
-//				return "users/customer/profile_editcus";
-//			}
-		
+
+			accountService.save(account);
+			return "redirect:/customer";
 	}
 		
 
@@ -304,8 +325,12 @@ public class CustomerController implements ServletContextAware{
 	@RequestMapping(value =  "view-room", method = RequestMethod.GET)
 	public String viewRoom(@RequestParam("idRoom") int idRoom,ModelMap modelMap
 			,Authentication authentication) {
+	
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
 		
-			String name = authentication.getName();
 			InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 			Account account = accountService.findByUsername2(name);
 			modelMap.put("account", account);
@@ -397,6 +422,14 @@ public class CustomerController implements ServletContextAware{
 			@RequestParam("name")String name,@RequestParam("phone")int phone, @RequestParam("email")String email,
 			@RequestParam("adult") int adult,@RequestParam("children") int children,Authentication authentication,
 			@RequestParam("idRoom") int idRoom) {
+		
+		System.out.println("username " + authentication.getName());
+		String names = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(names));
+		
+		
+		
 		Reservation reservation = new Reservation();
 		modelMap.put("reservation", reservation);
 //		try {
