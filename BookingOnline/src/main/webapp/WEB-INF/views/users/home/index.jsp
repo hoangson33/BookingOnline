@@ -181,11 +181,12 @@
     <section class="section" id="men">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-heading">
-                        <h2>Men's Latest</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
-                    </div>
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+						<h2 class="color-1c pos-relative">Our Hotels</h2>
+						<p class="color-1c text-uppercase">We Will Give you Best
+							Service Ever</p>
+					</div>
                 </div>
             </div>
         </div>
@@ -204,16 +205,16 @@
                                 </div>
                                 <div class="down-content">
                                     <h4>${account.name } Hotel</h4>
-                                    <p><i style="color: darkBlue" class="fa fa-map-marker"> ${account.location }</i></p>
+                                    <p><i style="color: #87CEFA" class="fa fa-map-marker"> ${account.location }</i></p>
                                     <span>${account.locationDetail }.</span>
                                     <a href="${pageContext.request.contextPath }/enterprise/room-list-of/${account.idAcc}">More deatails</a>
                                     
                                     <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
                                     </ul>
                                 </div>
                             </div>

@@ -236,11 +236,11 @@
                                     <a href="${pageContext.request.contextPath }/customer/room-list-of/${account.idAcc}">More deatails</a>
                                     
                                     <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
+                                        <li><i style="color: orange;" class="fa fa-star"></i></li>
                                     </ul>
                                 </div>
                             </div>
