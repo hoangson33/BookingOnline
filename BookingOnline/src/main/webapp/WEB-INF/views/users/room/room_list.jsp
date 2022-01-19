@@ -100,7 +100,7 @@
 			</div>
 			<div class="row">
 			<c:forEach var="roomSearch" items="${roomSearchs }">
-				<div class="col-md-4 col-sm-6">
+				<div class="col-md-4 col-sm-6 text-center">
 				
 					<div class="single-room">
 						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomSearch.imgRoom}"
@@ -109,7 +109,9 @@
 							<a href="#">${roomSearch.roomCategory }</a>
 						</h5>
 						<p>${roomSearch.guestAdult } Adult ${roomSearch.guestChildren } Children</p>
-						<span class="divider"></span>
+						<p><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${roomSearch.account.location }</p>
+						
+						<hr>
 						<h4 class="price color-66 mb-15">
 							$${roomSearch.total } <span>/ Per Night</span>
 						</h4>
@@ -120,6 +122,44 @@
 					
 				</div>
 				</c:forEach>
+			</div>
+		</div>
+	</section>
+	<!-- =======================================         ==End Popular room section==      =======================================-->
+	<!-- =======================================         ==Start Popular room section==      =======================================-->
+	<section class="hotel-room section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-title text-center">
+						<h2 class="color-1c pos-relative">Popular Rooms</h2>
+						<p class="color-1c text-uppercase">Available Accommodations</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<c:forEach var="roomlist" items="${roomlists }">
+				<div class="col-md-4 text-center">
+					<div class="single-room">
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"
+							alt="room img" class="img-fluid"></a>
+						<h5 class="mb-15">
+							<a href="#">${roomlist.roomCategory }</a>
+						</h5>
+						<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
+						<p><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${roomlist.account.location }</p>
+						
+						<hr>
+						<h4 class="price color-66 mb-15">
+							$${roomlist.total } <span>/ Per Night</span>
+						</h4>
+						<a href="${pageContext.request.contextPath }/customer/view-room?idRoom=${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Book
+								Now <i class="ion-android-arrow-dropright"></i>
+						</span></a>
+					</div>
+				</div>
+			</c:forEach>
+				
 			</div>
 		</div>
 	</section>

@@ -80,6 +80,7 @@ public class HomeController {
 		if(roomService.search(city,checkIn, checkOut, guestChildren,guestAdult) == null) {
 			modelMap.put("emptyRoom", "There are currently no rooms that match your request, please refer to the popular rooms below....");
 		}
+		modelMap.put("roomlists", roomService.popupalRoom(city));
 		modelMap.put("roomSearchs", roomService.search(city,checkIn, checkOut, guestChildren,guestAdult)) ;
 		
 		return "users/room/room_list";

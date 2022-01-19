@@ -41,6 +41,8 @@ public interface RoomService {
 	public List<InfoRoom> search(String city,String checkin , String checkout , int guestChildren, int guestAdult);
 	
 	
+	public Iterable<InfoRoom> popupalRoom(String city);
+	
 	
 	
 }
