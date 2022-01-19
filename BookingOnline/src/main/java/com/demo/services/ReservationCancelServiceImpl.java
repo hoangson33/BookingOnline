@@ -42,6 +42,11 @@ public class ReservationCancelServiceImpl implements ReservationCancelService {
 		reservationCancelRepository.deleteById(id);
 	}
 
+	@Override
+	public ReservationCancel existCancelled(int idReservation) {
+		return reservationCancelRepository.existCancelled(idReservation);
+	}
+
 
 
 	

@@ -18,5 +18,7 @@ public interface ReservationCancelService {
 	
 	public void delete(int id);
 	
+	public ReservationCancel existCancelled(int idReservation);
+	
 	
 }

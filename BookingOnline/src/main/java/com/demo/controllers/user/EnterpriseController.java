@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
@@ -29,12 +30,17 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.demo.email.SmtpMailSender;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.InfoRoom;
+import com.demo.models.Reservation;
+import com.demo.models.ReservationCancel;
 import com.demo.models.Roles;
 import com.demo.services.AccountService;
 import com.demo.services.HighlightService;
+import com.demo.services.ReservationCancelService;
+import com.demo.services.ReservationService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
 import com.demo.validators.InfoRoomValidator;
@@ -62,16 +68,40 @@ public class EnterpriseController implements ServletContextAware {
 	@Autowired
 	private InfoRoomValidator infoRoomValidator;
 	
+	@Autowired
+	private ReservationService reservationService;
+	
+	@Autowired
+	private ReservationCancelService reservationCancelService;
+	
+	@Autowired
+	private SmtpMailSender smtpMailSender;
+	
+	private int idResevation;
+	
+	
+	
 	
 
 	
+	public int getIdResevation() {
+		return idResevation;
+	}
+
+
+	public void setIdResevation(int idResevation) {
+		this.idResevation = idResevation;
+	}
+
+
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String profile(Authentication authentication,ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
-		
+		Account account = accountService.findByUsername2(name);
 
 		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("invoiceCount", reservationService.countInvoice(account.getIdAcc()));
 		return "users/enterprise/profile";
 	}
 	
@@ -123,7 +153,7 @@ public class EnterpriseController implements ServletContextAware {
 			account.setAvatar(accountOld.getAvatar());
 		}
 		accountService.save(account);
-		return "redirect:/home/welcome";
+		return "redirect:/enterprise/profile";
 	}
 	
 	
@@ -169,8 +199,8 @@ public class EnterpriseController implements ServletContextAware {
 	}
 	
 	
-	@RequestMapping(value =  "edit-room/{idRoom}", method = RequestMethod.GET)
-	public String editRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap
+	@RequestMapping(value =  "edit-room", method = RequestMethod.GET)
+	public String editRoom(@RequestParam("idRoom") int idRoom,ModelMap modelMap
 			,Authentication authentication) {
 		
 			String name = authentication.getName();
@@ -484,6 +514,63 @@ public class EnterpriseController implements ServletContextAware {
 			
 		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
 		return "users/enterprise/view_room";
+	}
+	
+	
+	@RequestMapping(value = "invoice/{idAcc}", method = RequestMethod.GET)
+	public String invoice(@PathVariable("idAcc") String idAcc,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		Account account = accountService.findByUsername2(name);
+		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("invoiceCount", reservationService.countInvoice(account.getIdAcc()));
+		modelMap.put("invoiceWaits", reservationService.invoiceEnterprise(idAcc));
+		modelMap.put("invoiceCancel", reservationService.invoiceEnterpriseCancel(idAcc));
+		modelMap.put("invoiceConfirm", reservationService.invoiceEnterpriseConfirm(idAcc));
+		return "users/enterprise/invoice"; 
+	}
+	
+	
+	@RequestMapping(value = "invoice-detail", method = RequestMethod.GET)
+	public String invoiceDetail(@RequestParam("idReservation")int idReservation,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("invoices", reservationService.reserInfo(idReservation));
+		modelMap.put("reservationCancelled", reservationCancelService.existCancelled(idReservation));
+		Reservation reservation = new Reservation();
+		modelMap.put("reservation", reservation);
+		setIdResevation(idReservation);
+		return "users/enterprise/invoice_detail";
+	}
+	
+	
+	@RequestMapping(value =  "confirm-invoice", method = RequestMethod.POST)
+	public String deleteRoom(@ModelAttribute("reservation") Reservation reservation) throws MessagingException {
+		System.out.println("id reservation  " + reservation.getIdReservation());
+		Reservation reservationOld = reservationService.reserInfo2(reservation.getIdReservation());
+		reservation.setCustomerId(reservationOld.getCustomerId());
+		reservation.setCheckIn(reservationOld.getCheckIn());
+		reservation.setCheckOut(reservationOld.getCheckOut());
+		reservation.setName(reservationOld.getName());
+		reservation.setEmail(reservationOld.getEmail());
+		reservation.setPhone(reservationOld.getPhone());
+		reservation.setAdult(reservationOld.getAdult());
+		reservation.setChildren(reservationOld.getChildren());
+		reservation.setStatus(true);;
+		reservation.setStatusCancel(false);
+		reservation.setCreated(reservationOld.getCreated());
+		
+		reservationService.save(reservation);
+		
+		
+		//String email = accountService.findEmail(idAcc);
+		//String body = "<p>We would like to inform you that your request to register your business on the 'BookingHotel' website has been rejected for the following reasons: </p>" + desc +"<br>";
+		
+		//body +=  "Thank you" + "<br>" +"The BookingHotel Team";
+		//smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
+		
+		return "redirect:/enterprise/invoice-detail?idReservation=" + reservation.getIdReservation();
 	}
 	
 	public double discountPrice(double price, double disount) {

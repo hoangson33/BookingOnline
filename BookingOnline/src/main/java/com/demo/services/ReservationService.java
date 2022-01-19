@@ -23,5 +23,13 @@ public interface ReservationService {
 	
 	public Iterable<Reservation> invoiceCustomer(String customerId);
 	
+	public Iterable<Reservation> invoiceEnterprise(String idAcc);
+	
+	public Iterable<Reservation> invoiceEnterpriseCancel(String idAcc);
+	
+	public Iterable<Reservation> invoiceEnterpriseConfirm(String idAcc);
+	
+	public int countInvoice(String idAcc);
+	
 	
 }

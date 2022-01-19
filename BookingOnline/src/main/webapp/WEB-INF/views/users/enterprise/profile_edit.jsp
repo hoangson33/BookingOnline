@@ -160,6 +160,7 @@ function validateForm() {
                 <input class="btn btn-primary profile-button" type="submit" value="Save Profile">
                 <s:hidden path="idAcc"/>
                 <s:hidden path="idRole"/>
+                <a href="${pageContext.request.contextPath }/enterprise/profile" class="btn btn-primary profile-button" type="button" >Cancel</a>
                 </div>
             </div>
         </div>

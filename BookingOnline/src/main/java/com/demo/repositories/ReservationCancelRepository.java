@@ -15,6 +15,7 @@ import com.demo.models.ReservationCancel;
 @Repository
 public interface ReservationCancelRepository extends CrudRepository<ReservationCancel, Integer>{
 	
-	
+	@Query("from ReservationCancel where reservation.idReservation = :idReservation")
+	public ReservationCancel existCancelled(@Param("idReservation") int idReservation);
 	
 }

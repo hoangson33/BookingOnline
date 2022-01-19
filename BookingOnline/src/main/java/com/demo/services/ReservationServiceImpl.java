@@ -55,6 +55,26 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.reserInfo2(idReservation);
 	}
 
+	@Override
+	public int countInvoice(String idAcc) {
+		return reservationRepository.countInvoice(idAcc);
+	}
+
+	@Override
+	public Iterable<Reservation> invoiceEnterprise(String idAcc) {
+		return reservationRepository.invoiceEnterprise(idAcc);
+	}
+
+	@Override
+	public Iterable<Reservation> invoiceEnterpriseCancel(String idAcc) {
+		return reservationRepository.invoiceEnterpriseCancel(idAcc);
+	}
+
+	@Override
+	public Iterable<Reservation> invoiceEnterpriseConfirm(String idAcc) {
+		return reservationRepository.invoiceEnterpriseConfirm(idAcc);
+	}
+
 
 
 	
