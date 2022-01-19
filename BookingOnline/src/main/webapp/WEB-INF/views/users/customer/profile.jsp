@@ -92,22 +92,27 @@ ul{
                     <div class="col-md-6"><label class="labels">Username</label><input readonly="readonly" type="text" class="form-control" value="${account.username }" placeholder="surname"></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Phone Number</label><input readonly="readonly" type="number" class="form-control" placeholder="enter phone number" value="${account.phone }"></div>
+                    <div class="col-md-12"><label class="labels">Phone Number</label><input readonly="readonly"  type="number" class="form-control" placeholder="enter phone number" value="${account.phone }"></div>
                     <div class="col-md-12"><label class="labels">Email</label><input readonly="readonly" type="email" class="form-control" placeholder="enter email" value="${account.email }"></div>
                     <div class="col-md-12"><label class="labels">Location</label><input readonly="readonly" type="text" class="form-control" placeholder="enter location" value="${account.location }"></div>
                     <div class="col-md-12"><label class="labels">Location Detail</label><input readonly="readonly" type="text" class="form-control" placeholder="enter location detail" value="${account.locationDetail }"></div>
                     
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Status</label><input type="button" class="form-control btn btn-info" value="Active"></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    <div class="col-md-6"><label class="labels">Status</label><input  type="button" class="form-control btn btn-info" value="Active"></div>
+                    <div class="col-md-6"><label class="labels">State/Region</label><input readonly="readonly" type="text" class="form-control" value="" placeholder="state"></div>
                 </div>
-                <div class="mt-5 text-center"><a href="${pageContext.request.contextPath }/customer/editCus/${account.idAcc}" class="btn btn-primary profile-button" type="button">Edit Profile</a></div>
+                <div class="mt-5 text-center">
+                <a href="${pageContext.request.contextPath }/customer/editCus/${account.idAcc}" class="btn btn-primary profile-button" type="button">Edit Profile</a>
+                
+                </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/changepass"><span class="border px-3 p-1 add-experience"><i class="fa fa-key"></i>&nbsp;ChangePass</span></a></div><br>
+                <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice/${account.idAcc}"><span class="border px-3 p-1 add-experience"><i class="fa fa-file"></i>&nbsp;Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a></div><br>
+                
                 <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
                 <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
             </div>

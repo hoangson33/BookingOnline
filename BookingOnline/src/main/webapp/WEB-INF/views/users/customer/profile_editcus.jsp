@@ -156,10 +156,12 @@ function validateForm() {
                     <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
                 </div>
                 <div class="mt-5 text-center">
+                
                 <span>&nbsp;</span>
                 <input class="btn btn-primary profile-button" type="submit" value="Save Profile">
                 <s:hidden path="idAcc"/>
                 <s:hidden path="idRole"/>
+                <a href="${pageContext.request.contextPath }/customer/" class="btn btn-primary profile-button" type="button" >Cancel</a>
                 </div>
             </div>
         </div>

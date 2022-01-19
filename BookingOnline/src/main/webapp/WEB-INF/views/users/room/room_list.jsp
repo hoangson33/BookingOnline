@@ -3,7 +3,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<mt:layout_user title="Room List">
+<mt:layout_customer title="Room List">
 
 	<jsp:attribute name="content">
 	
@@ -113,7 +113,7 @@
 						<h4 class="price color-66 mb-15">
 							$${roomSearch.total } <span>/ Per Night</span>
 						</h4>
-						<a href="${pageContext.request.contextPath }/customer/view-room/${roomSearch.idRoom}" class="btn-default read-more solid-bg-btn"><span>Book
+						<a href="${pageContext.request.contextPath }/customer/view-room?idRoom=${roomSearch.idRoom}" class="btn-default read-more solid-bg-btn"><span>Book
 								Now <i class="ion-android-arrow-dropright"></i>
 						</span></a>
 					</div>
@@ -165,7 +165,7 @@
 	
 	
 	</jsp:attribute>
-</mt:layout_user>
+</mt:layout_customer>
 
 <script>
 

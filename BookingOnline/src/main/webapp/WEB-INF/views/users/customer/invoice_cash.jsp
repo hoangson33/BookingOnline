@@ -403,12 +403,12 @@ input[type="text"] {
 </style>
 <mt:layout_user2 title="Room edit">
 	<jsp:attribute name="content">
+	
+	<s:form method="post" modelAttribute="reservation" action="${pageContext.request.contextPath }/customer/add-reservation">
 	  
 
 <div class="backgroundImage"></div>
 <div class="transparentText">
-
-<c:forEach var="invoiceInfo" items="${invoiceInfos }">
   <section class="content">
     <div class="details shadow">
       <div class="details__item">
@@ -475,12 +475,12 @@ input[type="text"] {
           <div class="payment__shipping">
             <div class="payment__title">
               <i style="color: #87CEFA" class="icon icon-plane">Your Information</i> 
-              <i style="color: #87CEFA; margin-left: 210px; margin-top: 10px" class="fa fa-edit"><a href="${pageContext.request.contextPath }/home/welcomeCustomer"> Edit stay</a></i>
+              <i style="color: #87CEFA; margin-left: 210px; margin-top: 10px" class="fa fa-edit"><a href="${pageContext.request.contextPath }/customer/view-room?idRoom=${idRoom}"> Edit stay</a></i>
             </div>
             <div class="details__user">
-              <div class="user__name"><i style="color: #87CEFA" class="fa fa-user"></i> ${invoiceInfo.name }
-                <br><i style="color: #87CEFA" class="fa fa-phone"></i> ${invoiceInfo.phone }
-                <br><i style="color: #87CEFA" class="fa fa-sort-amount-asc"></i> ${invoiceInfo.adult } Adult ${invoiceInfo.children } Children</div>
+              <div class="user__name"><i style="color: #87CEFA" class="fa fa-user"></i> ${name }
+                <br><i style="color: #87CEFA" class="fa fa-phone"></i> ${phone }
+                <br><i style="color: #87CEFA" class="fa fa-sort-amount-asc"></i> ${adult } Adult ${children } Children</div>
               <div class="user__address"> <i style="color: #87CEFA" class="fa fa-calendar"></i> From: ${checkIn } | <i style="color: #87CEFA" class="fa fa-calendar"></i> To: ${checkOut }
                 <br><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${account.location }</div>
             </div>
@@ -492,25 +492,30 @@ input[type="text"] {
 			
           </div>
         </div>
+        
         <div class="actions">
-
-        <a href="#" class="btn action__submit">Confirm
-          <i class="fa fa-arrow-right"></i>
-        </a>
-        <a href="${pageContext.request.contextPath }/customer/detele-reservation/${invoiceInfo.idReservation}" class="backBtn">Cancel !!!</a>
+		
+        <s:input type="hidden" path="infoRoom.idRoom" value="${infoRoom.idRoom }"/>
+        <s:input type="hidden" path="customerId" value="${account.idAcc }"/>
+        <span>&nbsp;</span>
+        <button  class="btn action__submit" type="submit" >Confirm
+          <i class="fa fa-arrow-right"></i></button>
+        
+          <a href="${pageContext.request.contextPath }/customer/view-room?idRoom=${idRoom}" class="backBtn">Cancel !!!</a>
 
       </div>
+      
       </div>
         
-    </div>
+    
    
       
   </section>
-  </c:forEach>
+
   
   </div>
 
-
+</s:form>
 
 	</jsp:attribute>
 	

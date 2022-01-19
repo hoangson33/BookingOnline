@@ -109,7 +109,7 @@ type="java.lang.String"%>
 							
 							
 							<c:if test="${pageContext.request.userPrincipal.name != null }">
-									<li  class="active"><a href="${pageContext.request.contextPath }/home/welcome">Home</a>
+									<li  class="active"><a href="${pageContext.request.contextPath }/home/welcomeCustomer">Home</a>
 							<ul class="dropdown">
 									<li><a  href="${pageContext.request.contextPath }/home2/welcome"">Home-2</a></li>
 								</ul></li>

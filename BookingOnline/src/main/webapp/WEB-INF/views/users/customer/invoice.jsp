@@ -109,7 +109,7 @@ ul{
         <div id="myDIV" onscroll="myFunction()" class="col-md-9 border-right">
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 style="color: #87CEFA;" class="text-right">Your invoices</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/">Profile </a><i class="fa fa-arrow-right"></i> Invoices</h4>
                 </div>
                 <c:forEach var="invoice" items="${invoices }">
                 <div class="d-flex justify-content-center container mt-5">

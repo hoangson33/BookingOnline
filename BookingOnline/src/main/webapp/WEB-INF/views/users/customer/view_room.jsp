@@ -264,6 +264,7 @@ html {
   
       <div class="col-md-4">
         <h3 style="color: #87CEFA" class="color-22 playfair">${roomlist.roomCategory } ROOM</h3>
+        <h6 class="my-3"><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${roomlist.account.locationDetail },${roomlist.account.location }</h6>
         <h6 class="my-3">${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</h6>
         <h5 style="color: #87CEFA" class="my-3">Room highlights :</h5>
         <ul>
@@ -309,8 +310,8 @@ html {
     </div>
     <!-- /.row -->
  </form> 
-	  <s:form method="post" modelAttribute="reservation" action="${pageContext.request.contextPath }/customer/book-room-cash">
-	     
+<!-- <s:form method="post" modelAttribute="reservation" action="${pageContext.request.contextPath }/customer/book-room-cash">-->
+	<form method="get" action="${pageContext.request.contextPath }/customer/book-room-cash">    
     <section class="second">
 			
 	<div id="booking" class="section">
@@ -321,37 +322,37 @@ html {
                     <div class="form-header">
                         <h1 style="color: #87CEFA">Make your reservation</h1>
                     </div>
-                    
-                    	<s:input type="hidden" path="infoRoom.idRoom" value="${roomlist.idRoom }"/>
-                    	<s:input type="hidden" path="customerId" value="${account.idAcc }"/>
-                        <div class="form-group"><label style="color: #87CEFA">Fullname</label> <s:input path="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
+                    	<input name="idRoom" type="hidden" value="${roomlist.idRoom }">
+                    	<!--<s:input type="hidden" path="infoRoom.idRoom" value="${roomlist.idRoom }"/>
+                    	<s:input type="hidden" path="customerId" value="${account.idAcc }"/>-->
+                        <div class="form-group"><label style="color: #87CEFA">Fullname</label> <input name="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label style="color: #87CEFA" for="booking-checkin">CHECK IN Date</label><s:input value="${checkIn }" path="checkIn"
-									type="text" id="booking-checkin" name="checkIn" placeholder="YY/MM/DD"
-									readonly="true"/>
+                                <label style="color: #87CEFA" for="booking-checkin">CHECK IN Date</label><input value="${checkIn }" 
+									type="text" id="from" name="checkIn" placeholder="YY/MM/DD"
+									readonly="readonly"/>
                             </div>
                             <div class="col-md-6">
-                                <label style="color: #87CEFA" for="booking-checkout">CHECK OUT Date</label><s:input value="${checkOut }" path="checkOut"
-									type="text" id="booking-checkout" name="checkOut" placeholder="YY/MM/DD"
-									readonly="true"/>
+                                <label style="color: #87CEFA" for="booking-checkout">CHECK OUT Date</label><input value="${checkOut }" 
+									type="text" id="to" name="checkOut" placeholder="YY/MM/DD"
+									readonly="readonly"/>
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"> <s:input path="email" value="${account.email }" class="form-control" type="email" placeholder="Enter your Email"/> <span class="form-label">Email</span> </div>
+                                <div class="form-group"> <input name="email" value="${account.email }" class="form-control" type="email" placeholder="Enter your Email"/> <span class="form-label">Email</span> </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"> <s:input path="phone" value="${account.phone }" class="form-control" type="tel" placeholder="Enter you Phone"/> <span class="form-label">Phone</span> </div>
+                                <div class="form-group"> <input name="phone" value="${account.phone }" class="form-control" type="tel" placeholder="Enter you Phone"/> <span class="form-label">Phone</span> </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"><label style="color: #87CEFA">Adult</label> <s:input path="adult" name="adult" value="1" class="form-control" type="number" placeholder="Number of Adult"/> </div>
+                                <div class="form-group"><label style="color: #87CEFA">Adult</label> <input  name="adult" value="1" class="form-control" type="number" placeholder="Number of Adult"/> </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"><label style="color: #87CEFA">Children</label> <s:input path="children" name="children" value="1" class="form-control" type="number" placeholder="Number of Children"/> </div>
+                                <div class="form-group"><label style="color: #87CEFA">Children</label> <input name="children" value="1" class="form-control" type="number" placeholder="Number of Children"/> </div>
                             </div>
                         </div>
                         
@@ -369,7 +370,8 @@ html {
 </div>
 		
 	</section>
-	</s:form>
+	</form> 
+<!--  	</s:form>-->
 	
 	
 </div>

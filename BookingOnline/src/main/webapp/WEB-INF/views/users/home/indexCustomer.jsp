@@ -231,7 +231,7 @@
                                 </div>
                                 <div class="down-content">
                                     <h4>${account.name } Hotel</h4>
-                                    <p><i style="color: darkBlue" class="fa fa-map-marker"> ${account.location }</i></p>
+                                    <p><i style="color: #87CEFA" class="fa fa-map-marker"> ${account.location }</i></p>
                                     <span>${account.locationDetail }.</span>
                                     <a href="${pageContext.request.contextPath }/customer/room-list-of/${account.idAcc}">More deatails</a>
                                     
@@ -271,7 +271,7 @@
 			</div>
 			<div class="row">
 			<c:forEach var="roomlist" items="${roomlists }">
-				<div class="col-md-4">
+				<div class="col-md-4 text-center">
 					<div class="single-room">
 						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"
 							alt="room img" class="img-fluid"></a>
@@ -279,11 +279,13 @@
 							<a href="#">${roomlist.roomCategory }</a>
 						</h5>
 						<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
-						<span class="divider"></span>
+						<p><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${roomlist.account.location }</p>
+						
+						<hr>
 						<h4 class="price color-66 mb-15">
 							$${roomlist.total } <span>/ Per Night</span>
 						</h4>
-						<a href="#" class="btn-default read-more solid-bg-btn"><span>Book
+						<a href="${pageContext.request.contextPath }/customer/view-room?idRoom=${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Book
 								Now <i class="ion-android-arrow-dropright"></i>
 						</span></a>
 					</div>

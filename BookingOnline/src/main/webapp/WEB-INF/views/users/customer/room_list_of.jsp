@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<mt:layout_user title="Room list">
+<mt:layout_customer title="Room list">
 	<jsp:attribute name="content">
 	
 	      <!-- =======================================         ==End Header section==      =======================================-->
@@ -151,7 +151,7 @@
 							<h4 class="price color-66 mb-15">
 								$${roomlist.price } <span>/ Per Night</span>
 							</h4>
-							<a  href="${pageContext.request.contextPath }/customer/view-room/${roomlist.idRoom}" class="btn-default read-more solid-bg-btn">
+							<a  href="${pageContext.request.contextPath }/customer/view-room?idRoom=${roomlist.idRoom}" class="btn-default read-more solid-bg-btn">
 							<span>Details <i class="ion-android-arrow-dropright"></i>
 							</span></a>
 							
@@ -213,7 +213,7 @@
 	
 	</jsp:attribute>
 	
-</mt:layout_user>
+</mt:layout_customer>
 
       
 <script>

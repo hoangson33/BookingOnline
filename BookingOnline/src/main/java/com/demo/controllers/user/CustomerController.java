@@ -81,9 +81,75 @@ public class CustomerController implements ServletContextAware{
 	
 	private int idReservation;
 	
+	private int idRoom;
+	
+	private String checkIn;
+	
+	private String checkOut;
+
+	private String name;
+	
+	private int phone;
+	
+	private String email;
+	
+	private int adult;
+	
+	private int children;
+	
+	
+	
 	
 
 	
+	public String getCheckIn() {
+		return checkIn;
+	}
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
+	}
+	public String getCheckOut() {
+		return checkOut;
+	}
+	public void setCheckOut(String checkOut) {
+		this.checkOut = checkOut;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getPhone() {
+		return phone;
+	}
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getAdult() {
+		return adult;
+	}
+	public void setAdult(int adult) {
+		this.adult = adult;
+	}
+	public int getChildren() {
+		return children;
+	}
+	public void setChildren(int children) {
+		this.children = children;
+	}
+	public int getIdRoom() {
+		return idRoom;
+	}
+	public void setIdRoom(int idRoom) {
+		this.idRoom = idRoom;
+	}
 	public int getIdReservation() {
 		return idReservation;
 	}
@@ -235,8 +301,8 @@ public class CustomerController implements ServletContextAware{
 	}
 		
 	
-	@RequestMapping(value =  "view-room/{idRoom}", method = RequestMethod.GET)
-	public String viewRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap
+	@RequestMapping(value =  "view-room", method = RequestMethod.GET)
+	public String viewRoom(@RequestParam("idRoom") int idRoom,ModelMap modelMap
 			,Authentication authentication) {
 		
 			String name = authentication.getName();
@@ -245,10 +311,10 @@ public class CustomerController implements ServletContextAware{
 			modelMap.put("account", account);
 			Reservation reservation = new Reservation();
 			modelMap.put("reservation", reservation);
-			DetailBill detailBill = new DetailBill();
+			DetailBill detailBill = new DetailBill();	
 			modelMap.put("detailBill", detailBill);
 			
-			
+			setIdRoom(idRoom);
 		
 			
 			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
@@ -324,39 +390,60 @@ public class CustomerController implements ServletContextAware{
 	
 	
 	
-	@RequestMapping(value = "book-room-cash", method = RequestMethod.POST )
-	public String bookRoomCash(@ModelAttribute("reservation") Reservation reservation,
+	@RequestMapping(value = "book-room-cash", method = RequestMethod.GET )
+	public String bookRoomCash(
 			@ModelAttribute("detailBill") DetailBill detailBill,ModelMap modelMap,
-			@RequestParam("checkIn")String checkIn, @RequestParam("checkOut")String checkOut) {
-		
-		try {
-			
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String CheckIn =  String.valueOf(reservation.getCheckIn()) ;
-			String CheckOut =  String.valueOf(reservation.getCheckOut()) ;
-			reservation.setCreated(new Date());
-			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
-			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
-			reservation.setStatus(false);
-			reservation.setStatusCancel(false);
-			System.out.println("name ++++++++++: " + reservation.getName());
-			
-			
-		} catch (ParseException e) {
-			System.err.println(e.getMessage());
-		}
-		
-		reservationService.save(reservation);
-		System.out.println("id : " + reservation.getIdReservation());
-		System.out.println("id Room : " +reservation.getInfoRoom().getIdRoom());
-		InfoRoom infoRoom = roomService.roomInfoByIdRoom(reservation.getInfoRoom().getIdRoom());
+			@RequestParam("checkIn")String checkIn, @RequestParam("checkOut")String checkOut,
+			@RequestParam("name")String name,@RequestParam("phone")int phone, @RequestParam("email")String email,
+			@RequestParam("adult") int adult,@RequestParam("children") int children,Authentication authentication,
+			@RequestParam("idRoom") int idRoom) {
+		Reservation reservation = new Reservation();
+		modelMap.put("reservation", reservation);
+//		try {
+//			
+//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//			String CheckIn =  String.valueOf(reservation.getCheckIn()) ;
+//			String CheckOut =  String.valueOf(reservation.getCheckOut()) ;
+//			reservation.setCreated(new Date());
+//			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
+//			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
+//			reservation.setStatus(false);
+//			reservation.setStatusCancel(false);
+//			System.out.println("name ++++++++++: " + reservation.getName());
+//			
+//			
+//		} catch (ParseException e) {
+//			System.err.println(e.getMessage());
+//		}
+//		
+//		reservationService.save(reservation);
+//		System.out.println("id : " + reservation.getIdReservation());
+		InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 		modelMap.put("infoRoom", infoRoom);
-		modelMap.put("invoiceInfos", reservationService.reserInfo(reservation.getIdReservation()));
+//		modelMap.put("invoiceInfos", reservationService.reserInfo(reservation.getIdReservation()));
+		
+	
+		
 		modelMap.put("checkIn", checkIn);
+		setCheckIn(checkIn);
 		modelMap.put("checkOut", checkOut);
-		modelMap.put("account", accountService.findIdAcc(reservation.getCustomerId()));
-		Reservation reservation2 = new Reservation();
-		modelMap.put("reservation", reservation2);
+		setCheckOut(checkOut);
+		modelMap.put("name", name);
+		setName(name);
+		modelMap.put("phone", phone);
+		setPhone(phone);
+		modelMap.put("adult", adult);
+		setAdult(adult);
+		modelMap.put("children", children);
+		setChildren(children);
+		modelMap.put("email", email);
+		setEmail(email);
+		String nameAcc = authentication.getName();
+		Account account = accountService.findByUsername2(nameAcc);
+		modelMap.put("account", accountService.findIdAcc(account.getIdAcc()));
+//		Reservation reservation2 = new Reservation();
+//		modelMap.put("reservation", reservation2);
+		modelMap.put("idRoom", idRoom);
 
 //		Random generator = new Random();
 //		detailBill.setIdBill("CASH"+generator.nextInt());
@@ -365,23 +452,45 @@ public class CustomerController implements ServletContextAware{
 	}
 	
 	
-//	@RequestMapping(value =  "invoice-view", method = RequestMethod.GET)
-//	public String invoiceView(ModelMap modelMap,Authentication authentication) {
-//		String name = authentication.getName();
-//		Account account = accountService.findByUsername2(name);
-//		
-//		
-//		modelMap.put("invoiceInfos", reservationService.reserInfo(account.getIdAcc()));
-//			
-//		return "users/customer/invoice_cash";
-//	}
-	
-	
-	@RequestMapping(value = "detele-reservation/{idReservation}", method = RequestMethod.GET)
-	public String delete(@PathVariable("idReservation") int idReservation) {
-		reservationService.delete(idReservation);
-		return "redirect:/home/welcomeCustomer";
+	@RequestMapping(value = "add-reservation", method = RequestMethod.POST )
+	public String addReservation(@ModelAttribute("reservation") Reservation reservation,ModelMap modelMap) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println("GEtcheckIn : " + 	getCheckIn());
+		System.out.println("checkOut : " + getCheckOut());
+		System.out.println("name : " + getName());
+		System.out.println("phone : " + getPhone());
+		System.out.println("adult : " + getAdult());
+		System.out.println("children : " + getChildren());
+		System.out.println("email : " + getEmail());
+		try {
+			Date checkIn = simpleDateFormat.parse(getCheckIn());
+			Date checkOut = simpleDateFormat.parse(getCheckOut());
+			reservation.setCheckIn(checkIn);
+			reservation.setCheckOut(checkOut);
+			reservation.setName(getName());
+			reservation.setEmail(getEmail());
+			reservation.setPhone(getPhone());
+			reservation.setAdult(getAdult());
+			reservation.setChildren(getChildren());
+			reservation.setStatus(false);
+			reservation.setStatusCancel(false);
+			reservation.setCreated(new Date());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		reservationService.save(reservation);
+		
+		return "redirect:/customer/invoice-detail?idReservation=" + reservation.getIdReservation();
+		
 	}
+	
+
+	
+	
+
 	
 	
 	@RequestMapping(value = "invoice/{idAcc}", method = RequestMethod.GET)

@@ -202,8 +202,9 @@ body {
 				                <hr>
 				                <div class="d-flex justify-content-between align-items-center product-details">
 				                    <div class="d-flex flex-row product-name-image"><img class="rounded" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${invoice.infoRoom.imgRoom}" width="80">
+				                        
 				                        <div class="d-flex flex-column justify-content-between ml-2">
-				                            <div><span class="d-block font-weight-bold p-name">${invoice.infoRoom.account.name } Hotel</span><span class="fs-12">${invoice.infoRoom.roomCategory } room</span></div><span class="fs-12">${invoice.infoRoom.guestAdult } Adult ${invoice.infoRoom.guestChildren } Children | Checkin : ${invoice.infoRoom.checkIn } / Checkout: ${invoice.infoRoom.checkOut }</span>
+				                            <div><span class="d-block font-weight-bold p-name">${invoice.infoRoom.account.name } Hotel</span><span class="fs-12">${invoice.infoRoom.roomCategory } room</span> | <span class="fs-12 text-success">${invoice.infoRoom.account.locationDetail },${invoice.infoRoom.account.location }</span></div><span class="fs-12 text-success">${invoice.infoRoom.guestAdult } Adult ${invoice.infoRoom.guestChildren } Children | Checkin : ${invoice.infoRoom.checkIn } / Checkout: ${invoice.infoRoom.checkOut }</span>
 				                        </div>
 				                    </div>
 				                    <div class="product-price">
