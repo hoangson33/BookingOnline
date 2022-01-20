@@ -169,16 +169,13 @@ public class AdminController implements ServletContextAware {
 
 	
 	@RequestMapping(value = "addAcc" , method = RequestMethod.POST)
-	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,@RequestParam("phone") int phone,
+	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
 			ModelMap modelMap,@RequestParam("email") String email) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "admin/account_add";
 		}
-		if(phone < 0) {
-			modelMap.put("errorphone", "You cannot enter negative numbers!?");
-			return "admin/account_add";
-		}
+		
 		System.out.println("email :" + email);
 		String idacc = accountService.findIdAccs(email);
 		System.out.println("idAcc : " + idacc);
@@ -247,17 +244,14 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account")@Valid Account account,BindingResult bindingResult,
-			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,@RequestParam("phone") int phone, ModelMap modelMap) {
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes, ModelMap modelMap) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			modelMap.addAttribute("avatar", accountService.findAvatar(account.getIdAcc()));
 			
 			return "admin/account_edit";
 		}
-		if(phone < 0) {
-			modelMap.put("errorphone", "You cannot enter negative numbers!?");
-			return "admin/account_edit";
-		}
+	
 		
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
 		

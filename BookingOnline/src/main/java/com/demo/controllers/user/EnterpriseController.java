@@ -119,14 +119,11 @@ public class EnterpriseController implements ServletContextAware {
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap
-			, @RequestParam("phone") int phone,@RequestParam("email") String email) {
+			,@RequestParam("email") String email) {
 		if(bindingResult.hasErrors()) {
 		return "users/enterprise/profile_edit";
 	}
-		if(phone < 0) {
-			modelMap.put("error", "You cannot enter negative numbers!?"); 
-			return "users/enterprise/profile_edit";
-		}
+		
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 		modelMap.put("accounts", accountService.findByUsername(name));

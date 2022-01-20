@@ -230,17 +230,30 @@ html {
 	<jsp:attribute name="content">
 	  		<script>
 function validateForm() {
+  let name = document.forms["myForm"]["name"].value;
+ 
   let checkIn = document.forms["myForm"]["checkIn"].value;
   let checkOut = document.forms["myForm"]["checkOut"].value;
+  let email = document.forms["myForm"]["email"].value;
+  let phone = document.forms["myForm"]["phone"].value;
   let adult = document.forms["myForm"]["adult"].value;
   let children = document.forms["myForm"]["children"].value;
-	  if (checkIn == "") {
+  if (name == "") {
+	    alert("name must be filled out");
+	    return false;
+	  }else if (checkIn == "") {
 		    alert("checkIn must be filled out");
 		    return false;
 		  }else if (checkOut == "") {
 			    alert("checkOut must be filled out");
 			    return false;
-			  }else if (adult < 0) {
+			  }else if (email == "") {
+				    alert("email must be filled out");
+				    return false;
+				  }else if (phone == "") {
+					    alert("phone must be filled out");
+					    return false;
+					  }else if (adult < 0) {
 				    alert("adult : You cannot enter negative numbers !???");
 				    return false;
 				  }else if (children < 0) {
@@ -366,10 +379,12 @@ function validateForm() {
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"> <input name="email" value="${account.email }" class="form-control" type="email" placeholder="Enter your Email"/> <span class="form-label">Email</span> </div>
+                                <div class="form-group"> <input name="email" 
+                                 value="${account.email }" class="form-control" type="email" placeholder="Enter your Email"/> <span class="form-label">Email</span> </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"> <input name="phone" value="${account.phone }" class="form-control" type="tel" placeholder="Enter you Phone"/> <span class="form-label">Phone</span> </div>
+                                <div class="form-group"> <input pattern="(\+84|0)\d{9,10}" name="phone" value="${account.phone }" class="form-control" type="text" placeholder="Enter you Phone"/> <span class="form-label">Phone</span> </div>
+                 
                             </div>
                         </div>
                         <div class="row">

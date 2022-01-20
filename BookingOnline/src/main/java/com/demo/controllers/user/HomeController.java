@@ -70,11 +70,19 @@ public class HomeController {
 	
 	@RequestMapping(value = "search/{city}/{checkIn}/{checkOut}/{guestChildren}/{guestAdult}", method = RequestMethod.GET)
 	public String search(ModelMap modelMap,@RequestParam("city") String city,@RequestParam("checkIn") String checkIn , @RequestParam("checkOut") String checkOut
-			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult ) {
+			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult ,Authentication authentication ) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		
 		
 		modelMap.put("city", city);
 		modelMap.put("checkIn", checkIn);
 		modelMap.put("checkOut", checkOut);
+	
+		
+		System.out.println("checkkkout :" + checkOut);
 		modelMap.put("guestChildren", guestChildren);
 		modelMap.put("guestAdult", guestAdult);
 		if(roomService.search(city,checkIn, checkOut, guestChildren,guestAdult) == null) {

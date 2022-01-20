@@ -80,7 +80,7 @@ function validateForm() {
                           <s:errors path="location" cssClass="format"></s:errors>
                         </div>
                         <div class="form-group form-input">
-                            <s:input path="phone" type="number" name="phone" id="phone" value=""  />
+                            <s:input  pattern="(\+84|0)\d{9,10}" path="phone" type="text" name="phone" id="phone" value=""  />
                     
                             <label for="phone" class="form-label">Your phone number</label>
                              <p style="color: red;">${errorphone}</p>

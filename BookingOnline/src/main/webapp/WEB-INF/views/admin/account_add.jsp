@@ -282,7 +282,7 @@
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
-<s:input path="phone" type="number" class="form-control" placeholder="Phone"/>
+<s:input path="phone" pattern="(\+84|0)\d{9,10}" type="text" class="form-control" placeholder="Phone"/>
 </div>
  <p style="color: red;">${errorphone}</p>
 

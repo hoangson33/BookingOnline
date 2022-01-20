@@ -185,15 +185,12 @@ public class CustomerController implements ServletContextAware{
 	@RequestMapping(value = "editCus", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap
-			, @RequestParam("phone") int phone,@RequestParam("email") String email) {
+			,@RequestParam("email") String email) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "users/customer/profile_editcus";
 		}
-		if(phone < 0) {
-			modelMap.put("error", "You cannot enter negative numbers!?"); 
-			return "users/customer/profile_editcus";
-		}
+		
 	
 			System.out.println("username " + authentication.getName());
 			String name = authentication.getName();
@@ -324,12 +321,14 @@ public class CustomerController implements ServletContextAware{
 	
 	@RequestMapping(value =  "view-room", method = RequestMethod.GET)
 	public String viewRoom(@RequestParam("idRoom") int idRoom,ModelMap modelMap
-			,Authentication authentication) {
+			,Authentication authentication ) {
 	
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 
 		modelMap.put("accounts", accountService.findByUsername(name));
+		
+		
 		
 			InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 			Account account = accountService.findByUsername2(name);
