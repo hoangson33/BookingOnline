@@ -31,7 +31,10 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	
 	@Query("from Reservation where infoRoom.account.idAcc = :idAcc and status = false and statusCancel = false order by updated DESC")
 	public Iterable<Reservation> invoiceEnterprise(@Param("idAcc") String idAcc);
-	
+	//new
+	@Query("from Reservation where infoRoom.idRoom = :idRoom order by updated DESC")
+	public Iterable<Reservation> reservationEnterpriseByIdRoom(@Param("idRoom") int idRoom);
+	//
 	@Query("from Reservation where infoRoom.account.idAcc = :idAcc and statusCancel = true order by updated DESC")
 	public Iterable<Reservation> invoiceEnterpriseCancel(@Param("idAcc") String idAcc);
 	

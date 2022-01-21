@@ -108,12 +108,12 @@ ul{
         <div class="col-md-4">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/changepass"><span class="border px-3 p-1 add-experience"><i class="fa fa-key"></i>&nbsp;ChangePass</span></a></div><br>
-                <c:if test="${invoiceCount > 0 }">
+                <!--<c:if test="${invoiceCount > 0 }">
                 <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none; color: red;" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}"><span class="border px-3 p-1 add-experience"><i class="fa fa-file"></i>&nbsp;Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*${invoiceCount }</span></a></div><br>
                 </c:if>
                 <c:if test="${invoiceCount == 0 }">
                 <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none;" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}"><span class="border px-3 p-1 add-experience"><i class="fa fa-file"></i>&nbsp;Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*${invoiceCount }</span></a></div><br>
-                </c:if>
+                </c:if>-->
                
                <div class="d-flex justify-content-between align-items-center experience">
                <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/room-management"><span class="border px-3 p-1 add-experience"><i class="fa fa-bars"></i>&nbsp;Room management</span></a></div><br>

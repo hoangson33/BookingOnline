@@ -32,10 +32,13 @@ public interface ReservationService {
 	public Iterable<Reservation> invoiceEnterpriseCancel(String idAcc);
 	
 	public Iterable<Reservation> invoiceEnterpriseConfirm(String idAcc);
+	public Iterable<Reservation> findAll();
 	
 	public int countInvoice(String idAcc);
 	
 	public int countInvoiceCustomer(String customerId);
 	
+	//new 
+	public Iterable<Reservation> reservationEnterpriseByIdRoom(int idRoom);
 	
 }

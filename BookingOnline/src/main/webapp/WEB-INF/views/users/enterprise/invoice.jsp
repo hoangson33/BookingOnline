@@ -1,286 +1,304 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Edit Profile</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="colorlib.com">
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_update_profile_enterprise/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-		
-		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script>
-function myFunction1() {
-  var elmnt = document.getElementById("myDIV1");
-  var x = elmnt.scrollLeft;
-  var y = elmnt.scrollTop;
-  document.getElementById ("demo").innerHTML = "Horizontally: " + x + "px<br>Vertically: " + y + "px";
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/webapp/static/layout_room_management/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-function myFunction2() {
-	  var elmnt = document.getElementById("myDIV2");
-	  var x = elmnt.scrollLeft;
-	  var y = elmnt.scrollTop;
-	  document.getElementById ("demo").innerHTML = "Horizontally: " + x + "px<br>Vertically: " + y + "px";
-	}
-	
-function myFunction3() {
-	  var elmnt = document.getElementById("myDIV3");
-	  var x = elmnt.scrollLeft;
-	  var y = elmnt.scrollTop;
-	  document.getElementById ("demo").innerHTML = "Horizontally: " + x + "px<br>Vertically: " + y + "px";
-	}
-</script>
-<style type="text/css">
-.card {
-    width: 444px
-}
+  <title>Room management</title>
 
-#myDIV1 {
-  height: 800px;
-  width: 950px;
-  overflow: auto;
-}
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 
-#myDIV2 {
-  height: 800px;
-  width: 950px;
-  overflow: auto;
-}
+  <!-- Canonical SEO -->
+  <link rel="canonical" href="https://www.creative-tim.com/product/fresh-bootstrap-table"/>
 
-#myDIV3 {
-  height: 800px;
-  width: 950px;
-  overflow: auto;
-}
+  <!--  Social tags    -->
+  <meta name="keywords" content="creative tim, html table, html css table, web table, freebie, free bootstrap table, bootstrap, css3 table, bootstrap table, fresh bootstrap table, frontend, modern table, responsive bootstrap table, responsive bootstrap table">
 
-#content {
-  height: 800px;
-  width: 1000px;
-}
+  <meta name="description" content="Probably the most beautiful and complex bootstrap table you've ever seen on the internet, this bootstrap table is one of the essential plugins you will need.">
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="Fresh Bootstrap Table by Creative Tim">
+  <meta itemprop="description" content="Probably the most beautiful and complex bootstrap table you've ever seen on the internet, this bootstrap table is one of the essential plugins you will need.">
+
+  <meta itemprop="image" content="http://s3.amazonaws.com/creativetim_bucket/products/31/original/opt_fbt_thumbnail.jpg">
+  <!-- Twitter Card data -->
+
+  <meta name="twitter:card" content="product">
+  <meta name="twitter:site" content="@creativetim">
+  <meta name="twitter:title" content="Fresh Bootstrap Table by Creative Tim">
+
+  <meta name="twitter:description" content="Probably the most beautiful and complex bootstrap table you've ever seen on the internet, this bootstrap table is one of the essential plugins you will need.">
+  <meta name="twitter:creator" content="@creativetim">
+  <meta name="twitter:image" content="http://s3.amazonaws.com/creativetim_bucket/products/31/original/opt_fbt_thumbnail.jpg">
+  <meta name="twitter:data1" content="Fresh Bootstrap Table by Creative Tim">
+  <meta name="twitter:label1" content="Product Type">
+  <meta name="twitter:data2" content="Free">
+  <meta name="twitter:label2" content="Price">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Fresh Bootstrap Table by Creative Tim" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://wenzhixin.github.io/fresh-bootstrap-table/full-screen-table.html" />
+  <meta property="og:image" content="http://s3.amazonaws.com/creativetim_bucket/products/31/original/opt_fbt_thumbnail.jpg"/>
+  <meta property="og:description" content="Probably the most beautiful and complex bootstrap table you've ever seen on the internet, this bootstrap table is one of the essential plugins you will need." />
+  <meta property="og:site_name" content="Creative Tim" />
 
 
-body {
-    background-image: url("${pageContext.request.contextPath }/webapp/static/user/images/background-profile.jpg");
-   height: 100%;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="${pageContext.request.contextPath }/webapp/static/layout_room_management/css/fresh-bootstrap-table.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/webapp/static/layout_room_management/css/demo.css" rel="stylesheet" />
 
-.form-control:focus {
-    box-shadow: none;
-    border-color: #BA68C8
-}
+  <!--   Fonts and icons   -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
 
-.profile-button {
-    background: #87CEFA;
-    box-shadow: none;
-    border: none
-}
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
 
-.profile-button:hover {
-    background: green;
-}
+  <!--  Just for demo purpose, do not include in your project   -->
+  <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/gsdk-switch.js"></script>
+  <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/jquery.sharrre.js"></script>
+  <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/demo.js"></script>
 
-.profile-button:focus {
-    background: green;
-    box-shadow: none
-}
-
-.profile-button:active {
-    background: green;
-    box-shadow: none
-}
-
-.back:hover {
-    color: #682773;
-    cursor: pointer
-}
-
-.labels {
-    font-size: 11px
-}
-
-.add-experience:hover {
-    background: #BA68C8;
-    color: #fff;
-    cursor: pointer;
-    border: solid 1px #BA68C8
-}
-
-ul{
-	list-style-type: none !important;
-}
-	</style>
-	</head>
-	
+</head>
 <body>
 
-<c:forEach var="account" items="${accounts }" >
-<div class="container rounded bg-white mt-5 mb-5 " style="width: 5000px; height: 850px">
-    <div class="row tab-content">
-   			<ul class="nav nav-tabs">
-			    <li class="active"><a href="${pageContext.request.contextPath }/home/welcome"><i class="fa fa-home fa-2x" style="color: #87CEFA;"></i> Home</a></li>
-			    <c:if test="${invoiceCount != null }">
-			    <li><a style="color: red;" data-toggle="tab" href="#myDIV1">Awaiting confirmation *${invoiceCount }</a></li>
-			    </c:if>
-			    <c:if test="${invoiceCount == null }">
-			    <li><a data-toggle="tab" href="#myDIV1">Awaiting confirmation *${invoiceCount }</a></li>
-			    </c:if>
-			    <li><a data-toggle="tab" href="#myDIV2">Cancelled</a></li>
-			    <li><a data-toggle="tab" href="#myDIV3">Confirmed</a></li>
-			    
-			</ul>
-        <div class="col-md-3 border-right">
-        	
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}"><span class="font-weight-bold">${account.username }</span><span class="text-black-50">${account.email }</span><span> </span></div>
-        </div>
-      
-        <div id="myDIV1" onscroll="myFunction1()" class="col-md-9 border-right tab-pane fade">
-            <div id="content" class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 style="color: #87CEFA;" class="text-right">
-                    <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/profile">Profile </a><i class="fa fa-arrow-right"></i> 
-                    <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i>
-                    Awaiting confirmation</h4>
-                </div>
-                <c:forEach var="invoice" items="${invoiceWaits }">
-                <div  class="d-flex justify-content-center container mt-5">
-                
-				    <div class=" card p-3 bg-white"><a style="color: #87CEFA; text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${invoice.idReservation}"><i class="fa fa-info-circle"></i> More detail...</a>
-				        <div class="about-product text-center mt-2"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${invoice.infoRoom.imgRoom}" width="300">
-				            <div>
-				                <h4>ID:${invoice.idReservation } | ${invoice.infoRoom.roomCategory } Room</h4>
-				                <c:if test="${invoice.status  == false && invoice.statusCancel  == false}">
-				                	<a class="btn btn-warning " type="button">Processing...</a>
-				                </c:if>
-				                <c:if test="${invoice.status  != false && invoice.statusCancel  == false}">
-				                	<a class="btn btn-success " type="button">Confirmed</a>
-				                </c:if>
-				                <c:if test="${invoice.status  == false && invoice.statusCancel  == true}">
-				                	<a class="btn btn-danger " type="button">Cancelled</a>
-				                </c:if>
-				                <h6 class="mt-0 text-black-50">${invoice.adult } Adult ${invoice.children } Children</h6>
-				            </div>
-				        </div>
-				        <div class="stats mt-2">
-				            <div class="d-flex justify-content-between p-price"><span>Price / Per night</span><span>$${invoice.infoRoom.price }</span></div>
-				            <div class="d-flex justify-content-between p-price"><span>Discount from the hotel</span><span>%${invoice.infoRoom.salePrice }</span></div>
-				        </div>
-				        <div class="d-flex justify-content-between total font-weight-bold mt-4"><span>Total</span><span>$${invoice.infoRoom.total }</span></div>
-				    </div>
-				    
-				</div>
-				</c:forEach>
-            </div>
-        </div>
-        
-        
-        
-        <div id="myDIV2" onscroll="myFunction2()" class="col-md-9 border-right tab-pane fade">
-            <div id="content" class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 style="color: #87CEFA;" class="text-right">
-                    <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/profile">Profile </a><i class="fa fa-arrow-right"></i> 
-                    <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i> 
-                    Cancelled</h4>
-                </div>
-                <c:forEach var="invoice" items="${invoiceCancel }">
-                <div  class="d-flex justify-content-center container mt-5">
-                
-				    <div class=" card p-3 bg-white"><a style="color: #87CEFA; text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${invoice.idReservation}"><i class="fa fa-info-circle"></i> More detail...</a>
-				        <div class="about-product text-center mt-2"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${invoice.infoRoom.imgRoom}" width="300">
-				            <div>
-				                <h4>ID:${invoice.idReservation } | ${invoice.infoRoom.roomCategory } Room</h4>
-				                <c:if test="${invoice.status  == false && invoice.statusCancel  == false}">
-				                	<a class="btn btn-warning " type="button">Processing...</a>
-				                </c:if>
-				                <c:if test="${invoice.status  != false && invoice.statusCancel  == false}">
-				                	<a class="btn btn-success " type="button">Confirmed</a>
-				                </c:if>
-				                <c:if test="${invoice.status  == false && invoice.statusCancel  == true}">
-				                	<a class="btn btn-danger " type="button">Cancelled</a>
-				                </c:if>
-				                <h6 class="mt-0 text-black-50">${invoice.adult } Adult ${invoice.children } Children</h6>
-				            </div>
-				        </div>
-				        <div class="stats mt-2">
-				            <div class="d-flex justify-content-between p-price"><span>Price / Per night</span><span>$${invoice.infoRoom.price }</span></div>
-				            <div class="d-flex justify-content-between p-price"><span>Discount from the hotel</span><span>%${invoice.infoRoom.salePrice }</span></div>
-				        </div>
-				        <div class="d-flex justify-content-between total font-weight-bold mt-4"><span>Total</span><span>$${invoice.infoRoom.total }</span></div>
-				    </div>
-				    
-				</div>
-				</c:forEach>
-            </div>
-        </div>
-        
-        
-        <div id="myDIV3" onscroll="myFunction3()" class="col-md-9 border-right tab-pane fade">
-            <div id="content" class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 style="color: #87CEFA;" class="text-right">
-                    <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/profile">Profile </a><i class="fa fa-arrow-right"></i> 
-                    <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i> 
-                    Confirmed</h4>
-                </div>
-                <c:forEach var="invoice" items="${invoiceConfirm }">
-                <div  class="d-flex justify-content-center container mt-5">
-                
-				    <div class=" card p-3 bg-white"><a style="color: #87CEFA; text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${invoice.idReservation}"><i class="fa fa-info-circle"></i> More detail...</a>
-				        <div class="about-product text-center mt-2"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${invoice.infoRoom.imgRoom}" width="300">
-				            <div>
-				                <h4>ID:${invoice.idReservation } | ${invoice.infoRoom.roomCategory } Room</h4>
-				                <c:if test="${invoice.status  == false && invoice.statusCancel  == false}">
-				                	<a class="btn btn-warning " type="button">Processing...</a>
-				                </c:if>
-				                <c:if test="${invoice.status  != false && invoice.statusCancel  == false}">
-				                	<a class="btn btn-success " type="button">Confirmed</a>
-				                </c:if>
-				                <c:if test="${invoice.status  == false && invoice.statusCancel  == true}">
-				                	<a class="btn btn-danger " type="button">Cancelled</a>
-				                </c:if>
-				                <h6 class="mt-0 text-black-50">${invoice.adult } Adult ${invoice.children } Children</h6>
-				            </div>
-				        </div>
-				        <div class="stats mt-2">
-				            <div class="d-flex justify-content-between p-price"><span>Price / Per night</span><span>$${invoice.infoRoom.price }</span></div>
-				            <div class="d-flex justify-content-between p-price"><span>Discount from the hotel</span><span>%${invoice.infoRoom.salePrice }</span></div>
-				        </div>
-				        <div class="d-flex justify-content-between total font-weight-bold mt-4"><span>Total</span><span>$${invoice.infoRoom.total }</span></div>
-				    </div>
-				    
-				</div>
-				</c:forEach>
-            </div>
-        </div>
-      
-        
+<div class="wrapper">
+   <!--   Creative Tim Branding   -->
+  <a href="http://creative-tim.com">
+    <div class="logo-container full-screen-table-demo">
+      <div class="logo">
+        <img width="70px" height="50px" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
+      </div>
+      <div class="brand ">
+      ${account.name } Hotel
+      </div>
     </div>
+  </a>
+
+  <div class="fresh-table toolbar-color-orange full-screen-table">
+  <!--
+    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+  -->
+    <table id="fresh-table" class="table">
+    
+      <thead>
+      	<th data-field="back"><a href="${pageContext.request.contextPath }/enterprise/room-management" type="button" class="btn btn-warning fa fa-arrow-left">Back</a></th>
+        <th data-field="id">ID Reser</th>
+        <th data-field="img">ID room</th>
+        <th data-field="name" data-sortable="true">Check in</th>
+        <th data-field="salary" data-sortable="true">Check out</th>
+        <th data-field="country" data-sortable="true">Adult</th>
+        <th data-field="city">Children</th>
+        <th data-field="status">Status</th>
+        <th data-field="actions" >Actions</th>
+      </thead>
+      <tbody>
+      <c:forEach var="reservationEnterpriseConfirm" items="${reservationEnterpriseConfirms }">
+        <tr>
+        	<td></td>
+          <td>${reservationEnterpriseConfirm.idReservation }</td>
+          <td >${reservationEnterpriseConfirm.infoRoom.idRoom }</td>
+          <td>${reservationEnterpriseConfirm.checkIn }</td>
+          <td>${reservationEnterpriseConfirm.checkOut }</td>
+          <td>${reservationEnterpriseConfirm.adult }</td>
+          <td>${reservationEnterpriseConfirm.children }</td>
+          <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false}">
+			              <td><button type="button" class="btn btn-success">Confirmed</button></td>
+		  </c:if>
+			              <c:if test="${invoice.status != true && invoice.statusCancel == false}">
+			              <td><button type="button" class="btn btn-warning">Awaiting for approval</button></td>
+			              </c:if>
+			              <c:if test="${invoice.statusCancel != false && invoice.status != true}">
+			              <td><button type="button" class="btn btn-danger">Cancelled </button></td>
+			              </c:if>
+          <td>
+          <a href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${reservationEnterpriseConfirm.idReservation}"><i class="fa fa-edit fa-2x"></i></a>
+          
+          </td>
+        </tr>
+      </c:forEach>  
+      </tbody>
+    </table>
+  </div>
+
+  
 </div>
 
 
-<p id="demo"></p>
+<div class="fixed-plugin" style="top: 300px">
+  <div class="dropdown open">
+    <a href="#" data-toggle="dropdown">
+    <i class="fa fa-cog fa-2x"> </i>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="header-title">Adjustments</li>
+      <li class="adjustments-line">
+        <a href="javascript:void(0)" class="switch-trigger">
+          <p>Full Background</p>
+          <div class="switch"
+            data-off-label="OFF"
+            data-on-label="ON">
+            <input type="checkbox" checked data-target="section-header" data-type="parallax"/>
+          </div>
+          <div class="clearfix"></div>
+        </a>
+      </li>
+      <li class="adjustments-line">
+        <a href="javascript:void(0)" class="switch-trigger">
+          <p>Colors</p>
+          <div class="pull-right">
+            <span class="badge filter badge-blue" data-color="blue"></span>
+            <span class="badge filter badge-azure" data-color="azure"></span>
+            <span class="badge filter badge-green" data-color="green"></span>
+            <span class="badge filter badge-orange active" data-color="orange"></span>
+            <span class="badge filter badge-red" data-color="red"></span>
+          </div>
+          <div class="clearfix"></div>
+        </a>
+      </li>
+      <li class="header-title">Layouts</li>
+      
+        <li class="active">
+          <a class="img-holder" href="full-screen-table.html">
+            <img src="${pageContext.request.contextPath }/webapp/static/layout_room_management/img/full.jpg">
+            <h5>Full Screen Table</h5>
+          </a>
+        </li>
+        
+    </ul>
+  </div>
+</div>
+
+<script>
+  var $table = $('#fresh-table')
+
+  window.operateEvents = {
+    'click .like': function (e, value, row, index) {
+      alert('You click like icon, row: ' + JSON.stringify(row))
+      console.log(value, row, index)
+    },
+    'click .edit': function (e, value, row, index) {
+      alert('You click edit icon, row: ' + JSON.stringify(row))
+      console.log(value, row, index)
+    },
+    'click .remove': function (e, value, row, index) {
+      $table.bootstrapTable('remove', {
+        field: 'id',
+        values: [row.id]
+      })
+    }
+  }
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
+        '<i class="fa fa-heart"></i>',
+      '</a>',
+      '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
+        '<i class="fa fa-edit"></i>',
+      '</a>',
+      '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
+        '<i class="fa fa-remove"></i>',
+      '</a>'
+    ].join('')
+  }
+
+  $(function () {
+    $table.bootstrapTable({
+      classes: 'table table-hover table-striped',
+      toolbar: '.toolbar',
+
+      search: true,
+      showRefresh: true,
+      showToggle: true,
+      showColumns: true,
+      pagination: true,
+      striped: true,
+      sortable: true,
+      height: $(window).height(),
+      pageSize: 25,
+      pageList: [25, 50, 100],
+
+      formatShowingRows: function (pageFrom, pageTo, totalRows) {
+        return ''
+      },
+      formatRecordsPerPage: function (pageNumber) {
+        return pageNumber + ' rows visible'
+      }
+    })
 
 
+    $(window).resize(function () {
+      $table.bootstrapTable('resetView', {
+        height: $(window).height()
+      })
+    })
+  })
 
-		<!-- JQUERY STEP -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  $('#sharrreTitle').sharrre({
+    share: {
+      twitter: true,
+      facebook: true
+    },
+    template: '',
+    enableHover: false,
+    enableTracking: true,
+    render: function (api, options) {
+      $("#sharrreTitle").html('Thank you for ' + options.total + ' shares!')
+    },
+    enableTracking: true,
+    url: location.href
+  })
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</c:forEach>
+  $('#twitter').sharrre({
+    share: {
+      twitter: true
+    },
+    enableHover: false,
+    enableTracking: true,
+    buttons: { twitter: {via: 'CreativeTim'}},
+    click: function (api, options) {
+      api.simulateClick()
+      api.openPopup('twitter')
+    },
+    template: '<i class="fa fa-twitter"></i> {total}',
+    url: location.href
+  })
+
+  $('#facebook').sharrre({
+    share: {
+      facebook: true
+    },
+    enableHover: false,
+    enableTracking: true,
+    click: function (api, options) {
+      api.simulateClick()
+      api.openPopup('facebook')
+    },
+    template: '<i class="fa fa-facebook-square"></i> {total}',
+    url: location.href
+  })
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga')
+
+  ga('create', 'UA-46172202-1', 'auto')
+  ga('send', 'pageview')
+
+</script>
+
 </body>
-</html>
 
+</html>

@@ -550,6 +550,17 @@ public class EnterpriseController implements ServletContextAware {
 		return "users/enterprise/view_room";
 	}
 	
+	@RequestMapping(value = "invoice-idRoom/{idRoom}", method = RequestMethod.GET)
+	public String invoiceIdRoom(@PathVariable("idRoom") int idRoom,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		Account account = accountService.findByUsername2(name);
+		modelMap.put("account", account);
+		modelMap.put("invoiceCount", reservationService.countInvoice(account.getIdAcc()));
+		modelMap.put("reservationEnterpriseConfirms", reservationService.reservationEnterpriseByIdRoom(idRoom));
+		return "users/enterprise/invoice"; 
+	}
+	
 	
 	@RequestMapping(value = "invoice/{idAcc}", method = RequestMethod.GET)
 	public String invoice(@PathVariable("idAcc") String idAcc,Authentication authentication,ModelMap modelMap) {
@@ -676,7 +687,8 @@ public class EnterpriseController implements ServletContextAware {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 		Account account = accountService.findByUsername2(name);
-		
+		modelMap.put("account", account);
+		modelMap.put("reservations", reservationService.findAll());
 		modelMap.put("allrooms", roomService.roomInfoByIdAccAll(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
 		

@@ -90,6 +90,16 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.countInvoiceCustomer(customerId);
 	}
 
+	@Override
+	public Iterable<Reservation> reservationEnterpriseByIdRoom(int idRoom) {
+		return reservationRepository.reservationEnterpriseByIdRoom(idRoom);
+	}
+
+	@Override
+	public Iterable<Reservation> findAll() {
+		return reservationRepository.findAll();
+	}
+
 
 
 	

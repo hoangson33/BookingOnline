@@ -174,12 +174,14 @@ body {
             <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}"><span class="font-weight-bold">${account.username }</span><span class="text-black-50">${account.email }</span><span> </span></div>
         </div>
         <div id="myDIV" onscroll="myFunction()" class="col-md-9 border-right">
+            
             <div id="content" class="p-3 py-5">
+            <c:forEach var="invoice" items="${invoices }">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
-               <c:forEach var="invoice" items="${invoices }">
+               
                 <div class="container mt-5 mb-5">
 				    <div class="d-flex justify-content-center row">
 				        <div class="col-md-10">
@@ -314,12 +316,14 @@ body {
 </div>
 </s:form>
 
-			</c:forEach>	
-                
+				
+                </c:forEach>
             </div>
+            
         </div>
         
     </div>
+    
 </div>
 
 
