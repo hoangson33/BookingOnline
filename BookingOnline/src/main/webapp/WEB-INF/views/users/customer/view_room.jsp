@@ -383,7 +383,7 @@ function validateForm() {
                                  value="${account.email }" class="form-control" type="email" placeholder="Enter your Email"/> <span class="form-label">Email</span> </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group"> <input pattern="(\+84|0)\d{9,10}" name="phone" value="${account.phone }" class="form-control" type="text" placeholder="Enter you Phone"/> <span class="form-label">Phone</span> </div>
+                                <div class="form-group"> <input pattern="(\+84|0)\d{9,10}" maxlength="12" name="phone" value="${account.phone }" class="form-control" type="text" placeholder="Enter you Phone"/> <span class="form-label">Phone</span> </div>
                  
                             </div>
                         </div>

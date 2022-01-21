@@ -134,7 +134,7 @@ function validateForm() {
                     <div class="col-md-6"><label class="labels">Username</label><s:input path="username" type="text" class="form-control" value="${account.username }" readonly="true"/></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Phone Number</label><s:input pattern="(\+84|0)\d{9,10}" path="phone" type="text" class="form-control" placeholder="enter phone number" value="${account.phone }"/>
+                    <div class="col-md-12"><label class="labels">Phone Number</label><s:input pattern="(\+84|0)\d{9,10}" maxlength="12" path="phone" type="text" class="form-control" placeholder="enter phone number" value="${account.phone }"/>
                     <p style="color: red;">${error}</p>
               
                     </div>
