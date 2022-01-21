@@ -184,14 +184,18 @@ body {
 				    <div class="d-flex justify-content-center row">
 				        <div class="col-md-10">
 				            <div class="receipt bg-white p-3 rounded"><img src="${pageContext.request.contextPath }/webapp/static/user/images/favicon.png" width="120">
-				               <c:if test="${invoice.status == false}">
-				                <h4 class="mt-2 mb-3">Your order is processing!</h4>
+				               <c:if test="${invoice.status == false && invoice.statusCancel == false}">
+				                <h4 class="mt-2 mb-3">Your order was processing!</h4>
 				                <h6 class="name">Hello ${account.name },</h6><span class="fs-12 text-black-50">your order has been received and the hotel will contact you as soon as possible</span>
 				               </c:if> 
 				               <c:if test="${invoice.status != false}">
-				                <h4 class="mt-2 mb-3">Your order is confirmed!</h4>
+				                <h4 class="mt-2 mb-3">Your order was confirmed!</h4>
 				                <h6 class="name">Hello ${account.name },</h6><span class="fs-12 text-black-50">your order has been confirmed and the hotel will greet you on : ${invoice.checkIn }</span>
 				               </c:if> 
+				               <c:if test="${invoice.statusCancel != false }">
+				               <h4 style="color: red;" class="mt-2 mb-3">Your order was cancelled !</h4>
+				                <h6 class="name">Hello ${account.name },</h6><span class="fs-12 text-black-50">your order has been cancelled </span>
+				               </c:if>
 				                
 				                <hr>
 				                <div class="d-flex flex-row justify-content-between align-items-center order-details">
@@ -231,7 +235,16 @@ body {
 				                        </div>
 				                    </div>
 				                    <hr>
-				                </div><span class="d-block">You are expected to arrive on</span><span class="font-weight-bold text-success">${invoice.checkIn }</span><span style="color: red;" class="d-block mt-3  fs-15">*You pay after check in!</span>
+				                </div>
+				                <c:if test="${invoice.statusCancel == false }">
+				                <span class="d-block">You are expected to arrive on</span><span class="font-weight-bold text-success">${invoice.checkIn }</span><span style="color: red;" class="d-block mt-3  fs-15">*You pay after check in!</span>
+				                </c:if>
+				                <c:if test="${invoice.statusCancel != false && account.idAcc == cancelledBy.cancelledBy }">
+				                <span style="color: red;" class="d-block mt-3  fs-15">*Cancelled by you! : "${cancelledBy.reason }"</span>
+				                </c:if>
+				                <c:if test="${invoice.statusCancel != false && account.idAcc != cancelledBy.cancelledBy }">
+				                <span style="color: red;" class="d-block mt-3  fs-15">*Cancelled by Hotel! : "${cancelledBy.reason }"</span>	
+				                </c:if>
 				                <hr>
 				                <div class="d-flex justify-content-between align-items-center footer">
 				                    <div class="thanks"><span class="d-block font-weight-bold">Thanks for booking</span><span>Booking Hotel team</span></div>
@@ -239,10 +252,14 @@ body {
 				                </div>
 				                <hr>
 				                <div class="d-flex justify-content-between align-items-center footer">
+				                	
+				                    <c:if test="${invoice.statusCancel != false && account.idAcc != cancelledBy.cancelledBy }">
+				                    <div style="margin-left: 200px" class="col-md-6"><input  type="button" class="form-control btn btn-danger" value="Cancelled by the holtel"></div>
+				                    </c:if>
 				                	<c:if test="${invoice.statusCancel == false }">
 				                    <div style="margin-left: 200px" class="col-md-6"><input data-toggle="modal" data-target="#staticBackdrop" type="button" class="form-control btn btn-danger" value="Cancel booking"></div>
 				                    </c:if>
-				                    <c:if test="${invoice.statusCancel != false }">
+				                    <c:if test="${invoice.statusCancel != false && account.idAcc == cancelledBy.cancelledBy}">
 				                    <div style="margin-left: 200px" class="col-md-6"><a href="${pageContext.request.contextPath }/customer/booking-again/${idCancel }" type="button" class="form-control btn btn-danger" >Booking again</a></div>
 				                    </c:if>
 				                    
@@ -259,9 +276,10 @@ body {
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">Recommended list</h4> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
             </div>
-            <div class="modal-body mt-0"> <span>Lists are broadest way to group together contacts who have opted-in to receive your emails. Remember -- the fewer list</span>
+            <div class="modal-body mt-0">
                 <div class="mt-3">
                 	<s:input path="reservation.idReservation" type="hidden" value="${invoice.idReservation }"/>
+                	<s:input path="cancelledBy" type="hidden" value="${account.idAcc }"/>
                     <div class="p-2 rounded checkbox-form">
                         <div class="form-check"> <s:checkbox path="reason" id="1"  class="form-check-input"  value="I want to edit my stay !" onclick="getSelectItemThat(this.id)" /> <label class=" newsletter form-check-label" for="flexCheckDefault-1"> I want to edit my stay ! </label> </div>
                     </div>

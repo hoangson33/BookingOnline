@@ -34,7 +34,7 @@ function myFunction2() {
 	  document.getElementById ("demo").innerHTML = "Horizontally: " + x + "px<br>Vertically: " + y + "px";
 	}
 	
-function myFunction2() {
+function myFunction3() {
 	  var elmnt = document.getElementById("myDIV3");
 	  var x = elmnt.scrollLeft;
 	  var y = elmnt.scrollTop;
@@ -160,7 +160,7 @@ ul{
 				    <div class=" card p-3 bg-white"><a style="color: #87CEFA; text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${invoice.idReservation}"><i class="fa fa-info-circle"></i> More detail...</a>
 				        <div class="about-product text-center mt-2"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${invoice.infoRoom.imgRoom}" width="300">
 				            <div>
-				                <h4>${invoice.infoRoom.roomCategory } Room</h4>
+				                <h4>ID:${invoice.idReservation } | ${invoice.infoRoom.roomCategory } Room</h4>
 				                <c:if test="${invoice.status  == false && invoice.statusCancel  == false}">
 				                	<a class="btn btn-warning " type="button">Processing...</a>
 				                </c:if>
@@ -201,7 +201,7 @@ ul{
 				    <div class=" card p-3 bg-white"><a style="color: #87CEFA; text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${invoice.idReservation}"><i class="fa fa-info-circle"></i> More detail...</a>
 				        <div class="about-product text-center mt-2"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${invoice.infoRoom.imgRoom}" width="300">
 				            <div>
-				                <h4>${invoice.infoRoom.roomCategory } Room</h4>
+				                <h4>ID:${invoice.idReservation } | ${invoice.infoRoom.roomCategory } Room</h4>
 				                <c:if test="${invoice.status  == false && invoice.statusCancel  == false}">
 				                	<a class="btn btn-warning " type="button">Processing...</a>
 				                </c:if>
@@ -241,7 +241,7 @@ ul{
 				    <div class=" card p-3 bg-white"><a style="color: #87CEFA; text-decoration: none" href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${invoice.idReservation}"><i class="fa fa-info-circle"></i> More detail...</a>
 				        <div class="about-product text-center mt-2"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${invoice.infoRoom.imgRoom}" width="300">
 				            <div>
-				                <h4>${invoice.infoRoom.roomCategory } Room</h4>
+				                <h4>ID:${invoice.idReservation } | ${invoice.infoRoom.roomCategory } Room</h4>
 				                <c:if test="${invoice.status  == false && invoice.statusCancel  == false}">
 				                	<a class="btn btn-warning " type="button">Processing...</a>
 				                </c:if>

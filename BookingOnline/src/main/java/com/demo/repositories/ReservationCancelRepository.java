@@ -18,4 +18,10 @@ public interface ReservationCancelRepository extends CrudRepository<ReservationC
 	@Query("from ReservationCancel where reservation.idReservation = :idReservation")
 	public ReservationCancel existCancelled(@Param("idReservation") int idReservation);
 	
+	@Query("from ReservationCancel where cancelledBy = :cancelledBy")
+	public ReservationCancel existCancelledByWho(@Param("cancelledBy") String cancelledBy);
+	
+	@Query("select COUNT(*) from ReservationCancel where cancelledBy = :customerId")
+	public int countCancalledCustomer(@Param("customerId") String customerId);
+	
 }

@@ -184,9 +184,25 @@ body {
 				    <div class="d-flex justify-content-center row">
 				        <div class="col-md-10">
 				            <div class="receipt bg-white p-3 rounded"><img src="${pageContext.request.contextPath }/webapp/static/user/images/favicon.png" width="120">
-				              
-				                <h4 class="mt-2 mb-3">Customers are waiting for your hotel to confirm the room!</h4>
-				                <h6 class="name">Hello ${account.name } hotel,</h6><span class="fs-15 text-black-50">Your room <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${invoice.infoRoom.idRoom}">${invoice.infoRoom.idRoom }</a> has been booked by a customer : ${invoice.name }  </span>
+				              <c:if test="${invoice.statusCancel != false }">
+				              <h4 style="color: red;" class="mt-2 mb-3">Your order was cancelled !</h4>
+				                <h6 class="name">Hello ${account.name },</h6><span class="fs-12 text-black-50">Your room <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${invoice.infoRoom.idRoom}">${invoice.infoRoom.idRoom }</a> has been cancelled </span>
+				               </c:if>
+				               
+				               <c:if test="${invoice.status == false && invoice.statusCancel == false}">
+				                <h4 class="mt-2 mb-3">customer is waiting for your confirmation!</h4>
+								<h6 class="name">Hello ${account.name },</h6><span class="fs-12 text-black-50"> Your room <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${invoice.infoRoom.idRoom}">${invoice.infoRoom.idRoom }</a>
+				                 has been booked by a customer : ${invoice.name } |  
+				                 <c:if test="${countCancelled <= 1 && invoice.status != true && invoice.statusCancel == false}"><strong style="color: green;" >Warning about cancellations : ${countCancelled }</strong> </c:if>  
+				                 <c:if test="${countCancelled >1 && countCancelled <=2 && invoice.status != true && invoice.statusCancel == false}"><strong style="color: orange;" >Warning about cancellations : ${countCancelled }</strong> </c:if>  
+				                 <c:if test="${countCancelled >3 && invoice.status != true && invoice.statusCancel == false}"><strong style="color: red;" >Warning about cancellations : ${countCancelled }</strong> </c:if>  
+				                 </span>				               
+				                 </c:if> 
+				                 <c:if test="${invoice.status != false}">
+				                <h4 class="mt-2 mb-3">You have completed the customer's booking!</h4>
+				                <h6 class="name">Hello ${account.name },</h6><span class="fs-12 text-black-50">Your room <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${invoice.infoRoom.idRoom}">${invoice.infoRoom.idRoom }</a> has been booked successfully</span>
+				               </c:if> 
+				                
 				               
 				                
 				                <hr>
@@ -252,11 +268,14 @@ body {
 				                	<c:if test="${invoice.status != true && invoice.statusCancel == false}">
 				                	<div style="margin-left: 100px" class="col-md-3"><input  type="submit" class="form-control btn btn-success" value="Confirm"></div>
 				                    
-				                    <div style="margin-right: 100px" class="col-md-3"><a href="" type="button" class="form-control btn btn-danger" >Cancel</a></div>
+				                    <div style="margin-right: 100px" class="col-md-3"><input data-toggle="modal" data-target="#staticBackdrop" type="button" class="form-control btn btn-danger" value="Cancel"></div>
 				                	</c:if>
-				                	<c:if test="${reservationCancelled.reservation.idReservation == invoice.idReservation }">
-					                <div style="margin-left: 200px" class="col-md-6"><input  type="button" class="form-control btn btn-danger" value="Cancelled by the customer"></div>
-					                </c:if>
+				                	<c:if test="${invoice.statusCancel != false && account.idAcc != cancelledBy.cancelledBy }">
+				                    <div style="margin-left: 200px" class="col-md-6"><input  type="button" class="form-control btn btn-danger" value="Cancelled by the Customer"></div>
+				                    </c:if>
+					                <c:if test="${invoice.statusCancel != false && account.idAcc == cancelledBy.cancelledBy }">
+				                    <div style="margin-left: 200px" class="col-md-6"><input  type="button" class="form-control btn btn-danger" value="Cancelled by You"></div>
+				                    </c:if>
 				                    
 				                   
 				                    
@@ -266,7 +285,34 @@ body {
 				        </div>
 				    </div>
 				</div>
-
+<s:form method="post" modelAttribute="reservationCancel" action="${pageContext.request.contextPath }/enterprise/cancel-invoice">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Recommended list</h4> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body mt-0">
+                <div class="mt-3">
+                <s:input path="reservation.idReservation" type="hidden" value="${invoice.idReservation }"/>
+                	<s:input path="cancelledBy" type="hidden" value="${account.idAcc }"/>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox  path="reason" id="1"  class="form-check-input"  value="Sorry, the room you booked has had an unexpected problem, we're very sorry about this problem !" onclick="getSelectItemThat(this.id)" /> <label class=" newsletter form-check-label" for="flexCheckDefault-1"> Sorry, the room you booked has had an unexpected problem, we're very sorry about this problem ! </label> </div>
+                    </div>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox  path="reason" id="2" class="form-check-input "  value="This room is currently not available! ! " onclick="getSelectItemThat(this.id)"/> <label class=" prospect form-check-label" for="flexCheckDefault-2"> This room is currently not available! ! </label> </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="modal-footer d-flex justify-content-between align-items-center">
+            <span>&nbsp;</span>
+            <button type="submit" class="btn btn-danger btn-sm" >Confirm</button> </div>
+        </div>
+    </div>
+</div>
+</s:form>
 
 			</c:forEach>	
                 
@@ -283,7 +329,7 @@ body {
 <script>
 
 function getSelectItemThat(id) {
-    for (var i = 1;i <= 4; i++)
+    for (var i = 1;i <= 2; i++)
     {
         document.getElementById(i).checked = false;
     }

@@ -23,6 +23,10 @@ public interface ReservationService {
 	
 	public Iterable<Reservation> invoiceCustomer(String customerId);
 	
+	public Iterable<Reservation> invoiceCustomerCancel(String customerId);
+	
+	public Iterable<Reservation> invoiceCustomerConfirm(String customerId);
+	
 	public Iterable<Reservation> invoiceEnterprise(String idAcc);
 	
 	public Iterable<Reservation> invoiceEnterpriseCancel(String idAcc);
@@ -30,6 +34,8 @@ public interface ReservationService {
 	public Iterable<Reservation> invoiceEnterpriseConfirm(String idAcc);
 	
 	public int countInvoice(String idAcc);
+	
+	public int countInvoiceCustomer(String customerId);
 	
 	
 }

@@ -75,6 +75,21 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.invoiceEnterpriseConfirm(idAcc);
 	}
 
+	@Override
+	public Iterable<Reservation> invoiceCustomerCancel(String customerId) {
+		return reservationRepository.invoiceCustomerCancel(customerId);
+	}
+
+	@Override
+	public Iterable<Reservation> invoiceCustomerConfirm(String customerId) {
+		return reservationRepository.invoiceCustomerConfirm(customerId);
+	}
+
+	@Override
+	public int countInvoiceCustomer(String customerId) {
+		return reservationRepository.countInvoiceCustomer(customerId);
+	}
+
 
 
 	

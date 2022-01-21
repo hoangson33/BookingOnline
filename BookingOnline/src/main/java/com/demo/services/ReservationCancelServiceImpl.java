@@ -47,6 +47,16 @@ public class ReservationCancelServiceImpl implements ReservationCancelService {
 		return reservationCancelRepository.existCancelled(idReservation);
 	}
 
+	@Override
+	public ReservationCancel existCancelledByWho(String cancelledBy) {
+		return reservationCancelRepository.existCancelledByWho(cancelledBy);
+	}
+
+	@Override
+	public int countCancalledCustomer(String customerId) {
+		return reservationCancelRepository.countCancalledCustomer(customerId);
+	}
+
 
 
 	

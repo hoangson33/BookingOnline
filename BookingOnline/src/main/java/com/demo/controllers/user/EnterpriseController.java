@@ -566,11 +566,17 @@ public class EnterpriseController implements ServletContextAware {
 	public String invoiceDetail(@RequestParam("idReservation")int idReservation,Authentication authentication,ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
+		Reservation reservationCount = reservationService.reserInfo2(idReservation);
+		modelMap.put("countCancelled", reservationCancelService.countCancalledCustomer(reservationCount.getCustomerId()));
 		modelMap.put("accounts", accountService.findByUsername(name));
 		modelMap.put("invoices", reservationService.reserInfo(idReservation));
-		modelMap.put("reservationCancelled", reservationCancelService.existCancelled(idReservation));
+		ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(idReservation);
+		modelMap.put("cancelledBy", reservationCancelByWho);
 		Reservation reservation = new Reservation();
 		modelMap.put("reservation", reservation);
+		ReservationCancel reservationCancel = new ReservationCancel();
+		modelMap.put("reservationCancel", reservationCancel);
+		
 		setIdResevation(idReservation);
 		return "users/enterprise/invoice_detail";
 	}
@@ -591,19 +597,75 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setStatus(true);;
 		reservation.setStatusCancel(false);
 		reservation.setCreated(reservationOld.getCreated());
+		reservation.setUpdated(reservationOld.getUpdated());
 		
 		reservationService.save(reservation);
 		
 		
-		//String email = accountService.findEmail(idAcc);
-		//String body = "<p>We would like to inform you that your request to register your business on the 'BookingHotel' website has been rejected for the following reasons: </p>" + desc +"<br>";
 		
-		//body +=  "Thank you" + "<br>" +"The BookingHotel Team";
-		//smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
+		InfoRoom infoRoom = roomService.roomInfoByIdRoom(reservation.getInfoRoom().getIdRoom());
+		Account account = accountService.findIdAcc(reservation.getCustomerId());
+		String email = accountService.findEmail(reservation.getCustomerId());
+		String body = "<p>Dear Mr/Mrs.</p>" + account.getName()+"<br>";
+		body += infoRoom.getAccount().getName() +" Hotel would like to send to you, your room has been successfully booked :" +"<br>";
+		body += "Your reservation information : " + "Check in : " + reservation.getCheckIn() + "/ Check out : " + reservation.getCheckOut();
+		body += " Number of people : " + reservation.getAdult() + " Adult " + reservation.getChildren() + " Children";
+		body += "Your contact infomation : " + reservation.getEmail() + " | " + reservation.getPhone();
+		body += "<hr>" + "Room information : " + "<br>" + infoRoom.getRoomCategory() + " Room " + "| " +infoRoom.getAccount().getLocationDetail() + "," + infoRoom.getAccount().getLocation() + "<br>" ;
+		body += "Number of guests : " + infoRoom.getGuestAdult() + " Adult " + infoRoom.getGuestChildren() + " Children <br>";
+ 		body += "Available date : " + infoRoom.getCheckIn() + " to " + infoRoom.getCheckOut() + "<br>";
+ 		body += " For more information please visit : " + "http://localhost:9799/customer/invoice-detail?idReservation=" + reservation.getIdReservation() + "<br>";
+		body +=  " Thanks for booking" + "<br>" +"The BookingHotel Team" + ". Need Help? Contact us: " + infoRoom.getAccount().getPhone();
+ 		
+		smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
 		
 		return "redirect:/enterprise/invoice-detail?idReservation=" + reservation.getIdReservation();
 	}
 	
+	
+	@RequestMapping(value =  "cancel-invoice", method = RequestMethod.POST)
+	public String cancelInvoice(@ModelAttribute("reservationCancel") ReservationCancel reservationCancel,
+			@RequestParam("reason") String reason) throws MessagingException {
+		System.out.println("Reason  " + reason);
+		reservationCancel.setCreated(new Date());
+		reservationCancelService.save(reservationCancel);
+		Reservation reservation = reservationService.reserInfo2(reservationCancel.getReservation().getIdReservation());
+		reservation.getIdReservation();
+		reservation.getCustomerId();
+		reservation.getCheckIn();
+		reservation.getCheckOut();
+		reservation.getName();
+		reservation.getEmail();
+		reservation.getPhone();
+		reservation.getAdult();
+		reservation.getChildren();
+		reservation.setStatus(false);;
+		reservation.setStatusCancel(true);
+		reservation.setUpdated(new Date());
+		reservationService.save(reservation);
+		
+		
+		
+		
+		InfoRoom infoRoom = roomService.roomInfoByIdRoom(reservation.getInfoRoom().getIdRoom());
+		Account account = accountService.findIdAcc(reservation.getCustomerId());
+		String email = accountService.findEmail(reservation.getCustomerId());
+		String body = "<p>Dear Mr/Mrs.</p>" + account.getName()+"<br>";
+		body += infoRoom.getAccount().getName() +" Hotel would like to send to you, your room has been canceled for the following reasons: " +"<br>";
+		body += reason + "<br>";
+		body += "Your reservation information : " + "Check in : " + reservation.getCheckIn() + "/ Check out : " + reservation.getCheckOut();
+		body += " Number of people : " + reservation.getAdult() + " Adult " + reservation.getChildren() + " Children";
+		body += "Your contact infomation : " + reservation.getEmail() + " | " + reservation.getPhone();
+		body += "<hr>" + "Room information : " + "<br>" + infoRoom.getRoomCategory() + " Room " + "| " +infoRoom.getAccount().getLocationDetail() + "," + infoRoom.getAccount().getLocation() + "<br>" ;
+		body += "Number of guests : " + infoRoom.getGuestAdult() + " Adult " + infoRoom.getGuestChildren() + " Children <br>";
+ 		body += "Available date : " + infoRoom.getCheckIn() + " to " + infoRoom.getCheckOut() + "<br>";
+ 		body += " For more information please visit : " + "http://localhost:9799/customer/invoice-detail?idReservation=" + reservation.getIdReservation() + "<br>";
+		body +=  " Thanks for booking" + "<br>" +"The BookingHotel Team" + ". Need Help? Contact us: " + infoRoom.getAccount().getPhone();
+ 		
+		smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
+		
+		return "redirect:/enterprise/profile";
+	}
 	public double discountPrice(double price, double disount) {
 		if(disount != 0) {
 			return (price*disount)/100;

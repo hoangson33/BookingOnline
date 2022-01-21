@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -508,6 +509,7 @@ public class CustomerController implements ServletContextAware{
 			reservation.setStatus(false);
 			reservation.setStatusCancel(false);
 			reservation.setCreated(new Date());
+			reservation.setUpdated(new Date());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -529,8 +531,14 @@ public class CustomerController implements ServletContextAware{
 	public String invoice(@PathVariable("idAcc") String idAcc,Authentication authentication,ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
+		
 		modelMap.put("accounts", accountService.findByUsername(name));
-		modelMap.put("invoices", reservationService.invoiceCustomer(idAcc));
+		modelMap.put("invoiceWaits", reservationService.invoiceCustomer(idAcc));
+		Account account = accountService.findByUsername2(name);
+
+		modelMap.put("invoiceCount", reservationService.countInvoiceCustomer(account.getIdAcc()));
+		modelMap.put("invoiceCancel", reservationService.invoiceCustomerCancel(idAcc));
+		modelMap.put("invoiceConfirm", reservationService.invoiceCustomerConfirm(idAcc));
 		return "users/customer/invoice"; 
 	}
 	
@@ -544,7 +552,9 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("reservationCancel", reservationCancel);
 		System.out.println("get IdCancel " + getIdCancel());
 		modelMap.put("idCancel", getIdCancel());
-		return "users/customer/invoice_detail";
+		ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(idReservation);
+		modelMap.put("cancelledBy", reservationCancelByWho);
+		return "users/customer/invoice_detail"; 
 	}
 	
 	@RequestMapping(value = "booking-again/{idCancel}", method = RequestMethod.GET)
@@ -561,6 +571,7 @@ public class CustomerController implements ServletContextAware{
 		reservation.getChildren();
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(false);
+		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		reservationCancelService.delete(idCancel);
 		return "redirect:/customer/invoice-detail?idReservation=" + reservation.getIdReservation();
@@ -569,7 +580,7 @@ public class CustomerController implements ServletContextAware{
 	
 	@RequestMapping(value = "add-reservation-cancel", method = RequestMethod.POST )
 	public String addReservationCancel(@ModelAttribute("reservationCancel") ReservationCancel reservationCancel,ModelMap modelMap) {
-		
+		reservationCancel.setCreated(new Date());
 		reservationCancelService.save(reservationCancel);
 		Reservation reservation = reservationService.reserInfo2(reservationCancel.getReservation().getIdReservation());
 		reservation.getIdReservation();
@@ -583,6 +594,7 @@ public class CustomerController implements ServletContextAware{
 		reservation.getChildren();
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
+		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		modelMap.put("idCancel", reservationCancel.getIdCancel());
 		setIdCancel(reservationCancel.getIdCancel());

@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 18, 2022, 2:01:32 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 21, 2022, 2:32:02 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -37,6 +37,7 @@ public class Reservation implements java.io.Serializable {
 	private boolean status;
 	private boolean statusCancel;
 	private Date created;
+	private Date updated;
 	private Set<ReservationCancel> reservationCancels = new HashSet<ReservationCancel>(0);
 	private Set<DetailBill> detailBills = new HashSet<DetailBill>(0);
 
@@ -44,7 +45,7 @@ public class Reservation implements java.io.Serializable {
 	}
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
-			int phone, int adult, int children, boolean status, boolean statusCancel, Date created) {
+			int phone, int adult, int children, boolean status, boolean statusCancel, Date created, Date updated) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
@@ -57,10 +58,11 @@ public class Reservation implements java.io.Serializable {
 		this.status = status;
 		this.statusCancel = statusCancel;
 		this.created = created;
+		this.updated = updated;
 	}
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
-			int phone, int adult, int children, boolean status, boolean statusCancel, Date created,
+			int phone, int adult, int children, boolean status, boolean statusCancel, Date created, Date updated,
 			Set<ReservationCancel> reservationCancels, Set<DetailBill> detailBills) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
@@ -74,6 +76,7 @@ public class Reservation implements java.io.Serializable {
 		this.status = status;
 		this.statusCancel = statusCancel;
 		this.created = created;
+		this.updated = updated;
 		this.reservationCancels = reservationCancels;
 		this.detailBills = detailBills;
 	}
@@ -200,6 +203,16 @@ public class Reservation implements java.io.Serializable {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "updated", nullable = false, length = 10)
+	public Date getUpdated() {
+		return this.updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reservation")

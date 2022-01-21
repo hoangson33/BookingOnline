@@ -20,5 +20,9 @@ public interface ReservationCancelService {
 	
 	public ReservationCancel existCancelled(int idReservation);
 	
+	public ReservationCancel existCancelledByWho(String cancelledBy);
+	
+	public int countCancalledCustomer(String customerId);
+	
 	
 }
