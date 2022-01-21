@@ -108,12 +108,16 @@ ul{
         <div class="col-md-4">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/changepass"><span class="border px-3 p-1 add-experience"><i class="fa fa-key"></i>&nbsp;ChangePass</span></a></div><br>
-                <c:if test="${invoiceCount != null }">
+                <c:if test="${invoiceCount > 0 }">
                 <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none; color: red;" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}"><span class="border px-3 p-1 add-experience"><i class="fa fa-file"></i>&nbsp;Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*${invoiceCount }</span></a></div><br>
                 </c:if>
-                <c:if test="${invoiceCount == null }">
-                <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none;" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}"><span class="border px-3 p-1 add-experience"><i class="fa fa-file"></i>&nbsp;Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*${invoiceCount }</span></a></div><br>
+                <c:if test="${invoiceCount == 0 }">
+                <div class="d-flex justify-content-between align-items-center experience"><a style="text-decoration: none;" href="${pageContext.request.contextPath }/enterprise/invoice/${account.idAcc}"><span class="border px-3 p-1 add-experience"><i class="fa fa-file"></i>&nbsp;Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*${invoiceCount }</span></a></div><br>
                 </c:if>
+               
+               <div class="d-flex justify-content-between align-items-center experience">
+               <a style="text-decoration: none" href="${pageContext.request.contextPath }/enterprise/room-management"><span class="border px-3 p-1 add-experience"><i class="fa fa-bars"></i>&nbsp;Room management</span></a></div><br>
+                
                 <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
                 
                 <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>

@@ -44,5 +44,7 @@ public interface RoomService {
 	public Iterable<InfoRoom> popupalRoom(String city);
 	
 	
+	public Iterable<InfoRoom> roomInfoByIdAccAll(String idAcc);
+	
 	
 }

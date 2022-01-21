@@ -98,6 +98,11 @@ public class RoomServiceImpl implements RoomService {
 		return roomRepository.popupalRoom(city);
 	}
 
+	@Override
+	public Iterable<InfoRoom> roomInfoByIdAccAll(String idAcc) {
+		return roomRepository.roomInfoByIdAccAll(idAcc);
+	}
+
 
 
 

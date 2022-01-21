@@ -669,6 +669,19 @@ public class EnterpriseController implements ServletContextAware {
 		
 		return "redirect:/enterprise/profile";
 	}
+	
+	
+	@RequestMapping(value = "room-management", method = RequestMethod.GET)
+	public String roomManagement(Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		Account account = accountService.findByUsername2(name);
+		
+		modelMap.put("allrooms", roomService.roomInfoByIdAccAll(account.getIdAcc()));
+		modelMap.put("datenow", new Date());
+		
+		return "users/enterprise/room_management";
+	}
 	public double discountPrice(double price, double disount) {
 		if(disount != 0) {
 			return (price*disount)/100;

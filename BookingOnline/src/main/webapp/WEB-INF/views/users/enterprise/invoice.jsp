@@ -140,6 +140,7 @@ ul{
 			    </c:if>
 			    <li><a data-toggle="tab" href="#myDIV2">Cancelled</a></li>
 			    <li><a data-toggle="tab" href="#myDIV3">Confirmed</a></li>
+			    
 			</ul>
         <div class="col-md-3 border-right">
         	
