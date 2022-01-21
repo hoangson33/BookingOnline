@@ -361,7 +361,7 @@ function validateForm() {
                     	<input name="idRoom" type="hidden" value="${roomlist.idRoom }">
                     	<!--<s:input type="hidden" path="infoRoom.idRoom" value="${roomlist.idRoom }"/>
                     	<s:input type="hidden" path="customerId" value="${account.idAcc }"/>-->
-                        <div class="form-group"><label style="color: #87CEFA">Fullname</label> <input name="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
+                        <div class="form-group"><label style="color: #87CEFA">Fullname</label> <input minlength="3" maxlength="20" name="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label style="color: #87CEFA" for="booking-checkin">CHECK IN Date</label><input name="checkIn" value="${checkIn }" 

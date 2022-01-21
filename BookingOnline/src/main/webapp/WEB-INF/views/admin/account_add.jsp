@@ -7,9 +7,21 @@
 <mt:layout_admin title="Index">
 
 	<jsp:attribute name="content">
+             <script>
+function validateForm() {
+
+  let phone = document.forms["myForm"]["phone"].value;
+
+ 
+		if (phone == "") {
+				alert("Phone must be filled out");
+				return false;
+			}
+
+		}
+	</script>
             
-            
-<s:form method="post" modelAttribute="account"
+<s:form name="myForm" onsubmit="return validateForm()"  method="post" modelAttribute="account"
 			action="${pageContext.request.contextPath }/admin/addAcc">            
    	 <link href="${pageContext.request.contextPath }/webapp/validation/style.css" rel="stylesheet">
            <div class="mobile-menu-area">
@@ -282,9 +294,9 @@
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
-<s:input path="phone" pattern="(\+84|0)\d{9,10}" type="text" class="form-control" placeholder="Phone"/>
+<s:input path="phone" name="phone" pattern="(\+84|0)\d{9,10}" maxlength="12" type="text" class="form-control" placeholder="Phone"/>
 </div>
- <p style="color: red;">${errorphone}</p>
+
 
 
 <div class="input-group mg-b-pro-edt">

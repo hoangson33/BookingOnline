@@ -199,13 +199,15 @@ function validateForm() {
 				<label class="color-22 playfair input-group-addon"  for="booking-checkin"><i style="color:orange;" class="fa fa-calendar"></i> CheckIn</label><s:input
 									class="form-control" path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
 									/>
+									
 			</div>
+			<s:errors path="checkIn" cssClass="format"></s:errors>
 			<div class="input-group mg-b-pro-edt group checkout">
 								<label class="color-22 playfair input-group-addon" for="booking-checkout"><i style="color:orange;" class="fa fa-calendar"></i> CheckOut</label><s:input 
 									class="form-control" path="checkOut" type="text" id="booking-checkout" placeholder="MM/DD/YY"
 									/>
 			</div>
-			
+			<s:errors path="checkOut" cssClass="format"></s:errors>
 			<div class="input-group mg-b-pro-edt img-area">
 						<label><img width="420" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${infoRooms.imgRoom}" alt="Extra Image 1" class="img-fluid rounded"></label>
 			</div>

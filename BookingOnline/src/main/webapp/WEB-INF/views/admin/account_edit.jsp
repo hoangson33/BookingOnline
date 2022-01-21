@@ -253,7 +253,7 @@ function validateForm() {
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-user"
 																aria-hidden="true"></i></span>
-<s:input path="name" name="name" type="text" class="form-control"
+<s:input path="name" name="name"  type="text" class="form-control"
 																placeholder="First Name And Last Name" />
 																	<s:errors path="name" cssClass="format"></s:errors>	
 </div>
@@ -297,7 +297,7 @@ function validateForm() {
 
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-<s:input path="phone" pattern="(\+84|0)\d{9,10}" name="phone" type="text" class="form-control" placeholder="Phone"/>
+<s:input path="phone" pattern="(\+84|0)\d{9,10}" maxlength="12" name="phone" type="text" class="form-control" placeholder="Phone"/>
  <p style="color: red;">${errorphone}</p>
 </div>
 

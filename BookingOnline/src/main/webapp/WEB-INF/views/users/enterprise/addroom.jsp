@@ -223,13 +223,7 @@ function validateForm() {
   let children = document.forms["myForm"]["children"].value;
   let price = document.forms["myForm"]["price"].value;
   let salePrice = document.forms["myForm"]["salePrice"].value;
-  if (checkIn == "") {
-    alert(" CheckIn must be filled out ");
-    return false;
-  }else if (checkOut == "") {
-	    alert(" CheckOut must be filled out ");
-	    return false;
-	  }else if (children == "") {
+    if (children == "") {
 		    alert(" Children must be filled out ");
 		    return false;
 		  }else if (price == "") {
@@ -293,12 +287,13 @@ function validateForm() {
 								<label for="booking-checkin">CHECK IN Date</label><s:input path="checkIn" name="checkIn"
 									type="text" id="booking-checkin" placeholder="MM/DD/YY"
 									readonly="true"/>
-
+ 									<s:errors path="checkIn" cssClass="format"></s:errors>
 							</div>
 							<div class="group checkout">
 								<label for="booking-checkout">CHECK OUT Date</label><s:input path="checkOut" name="checkOut"
 									type="text" id="booking-checkout" placeholder="MM/DD/YY"
 									readonly="true"/>
+									 <s:errors path="checkOut" cssClass="format"></s:errors>
 							</div>
 							<div class="group children">
 								<label for="children">Children</label><s:input type="text" path="guestChildren"

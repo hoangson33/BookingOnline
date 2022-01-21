@@ -225,13 +225,8 @@ function validateForm() {
   let children = document.forms["myForm"]["children"].value;
   let price = document.forms["myForm"]["price"].value;
   let salePrice = document.forms["myForm"]["salePrice"].value;
-  if (checkIn == "") {
-    alert(" CheckIn must be filled out ");
-    return false;
-  }else if (checkOut == "") {
-	    alert(" CheckOut must be filled out ");
-	    return false;
-	  }else if (children == "") {
+  
+  if (children == "") {
 		    alert(" Children must be filled out ");
 		    return false;
 		  }else if (price == "") {
@@ -290,11 +285,13 @@ function validateForm() {
 								<label class="color-22 playfair"  for="booking-checkin">CHECK IN Date</label><s:input
 									path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
 									/>
+									<s:errors path="checkIn" cssClass="format"></s:errors>
 							</div>
 							<div class="group checkout">
 								<label class="color-22 playfair" for="booking-checkout">CHECK OUT Date</label><s:input 
 									path="checkOut" type="text" id="booking-checkout" placeholder="MM/DD/YY"
 									/>
+									<s:errors path="checkOut" cssClass="format"></s:errors>
 							</div>
 							<div class="group children">
 								<label class="color-22 playfair" for="children">Children</label><s:input type="text"
@@ -430,7 +427,7 @@ function validateForm() {
 				<c:forEach var="highlight" items="${highlightS }">
 					<label class="container2 color-1c text-uppercase">${highlight.nameHighlight }
 								
-						<s:checkbox path="highlightRoom" value="${highlight.nameHighlight }" />
+						<s:checkbox path="highlightRoom" name="nameHighlight" value="${highlight.nameHighlight }" />
 					<span class="checkmark"></span>	
 					</label>			
 				</c:forEach>

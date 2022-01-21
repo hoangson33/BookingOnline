@@ -188,7 +188,11 @@ public class CustomerController implements ServletContextAware{
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap
 			,@RequestParam("email") String email) {
 		accountValidator.validate(account, bindingResult);
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors()) {			
+			String avatar = accountService.findAvatar(account.getIdAcc());
+			
+			System.out.println("avatar  : " + avatar);
+	
 			return "users/customer/profile_editcus";
 		}
 		

@@ -121,6 +121,9 @@ public class EnterpriseController implements ServletContextAware {
 			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes,Authentication authentication,ModelMap modelMap
 			,@RequestParam("email") String email) {
 		if(bindingResult.hasErrors()) {
+			String avatar = accountService.findAvatar(account.getIdAcc());
+			System.out.println("avatar  : " + avatar);
+		
 		return "users/enterprise/profile_edit";
 	}
 		

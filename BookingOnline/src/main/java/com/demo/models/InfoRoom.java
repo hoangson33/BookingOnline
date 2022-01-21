@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -32,12 +34,12 @@ public class InfoRoom implements java.io.Serializable {
 	private Integer idRoom;
 	private Account account;
 	
-	
+	@NotNull(message = "{InfoRoom.checkIn.notNull}")
 	@JsonFormat(pattern = "MM/dd/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date checkIn;
 	
-	
+	@NotNull(message = "{InfoRoom.checkOut.notNull}")
 	@JsonFormat(pattern = "MM/dd/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date checkOut;
@@ -46,7 +48,7 @@ public class InfoRoom implements java.io.Serializable {
 	private int guestChildren;
 	private int guestAdult;
 	@NotEmpty
-	@Length(min = 3, max = 50)
+	@Size(min = 3, message = "enter atleast 3 characters !")
 	private String description;
 	@NotEmpty
 	@Length(min = 3, max = 20)
