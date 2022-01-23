@@ -34,6 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.DetailBill;
+import com.demo.models.GuestRating;
 import com.demo.models.InfoRoom;
 import com.demo.models.Reservation;
 import com.demo.models.ReservationCancel;
@@ -548,6 +549,8 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("account", account);
 		modelMap.put("reservationOfCustomer", reservationService.reservationOfCustomer(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
+		GuestRating guestRating = new GuestRating();
+		modelMap.put("guestRating", guestRating);
 		
 		return "users/customer/room_management";
 	}

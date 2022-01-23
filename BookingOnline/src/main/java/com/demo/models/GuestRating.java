@@ -1,10 +1,12 @@
 package com.demo.models;
-// Generated Jan 23, 2022, 7:03:38 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 23, 2022, 7:41:39 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "guest_rating", catalog = "booking_hotel")
 public class GuestRating implements java.io.Serializable {
 
-	private String idRating;
+	private Integer idRating;
 	private InfoRoom infoRoom;
 	private double score;
 	private String idCustomer;
@@ -29,9 +31,7 @@ public class GuestRating implements java.io.Serializable {
 	public GuestRating() {
 	}
 
-	public GuestRating(String idRating, InfoRoom infoRoom, double score, String idCustomer, Date created,
-			boolean status) {
-		this.idRating = idRating;
+	public GuestRating(InfoRoom infoRoom, double score, String idCustomer, Date created, boolean status) {
 		this.infoRoom = infoRoom;
 		this.score = score;
 		this.idCustomer = idCustomer;
@@ -40,13 +40,14 @@ public class GuestRating implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "id_rating", unique = true, nullable = false, length = 250)
-	public String getIdRating() {
+	@Column(name = "id_rating", unique = true, nullable = false)
+	public Integer getIdRating() {
 		return this.idRating;
 	}
 
-	public void setIdRating(String idRating) {
+	public void setIdRating(Integer idRating) {
 		this.idRating = idRating;
 	}
 

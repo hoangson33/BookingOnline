@@ -62,7 +62,6 @@ public class Account implements java.io.Serializable {
 	private String idRole;
 	
 	private Set<InfoRoom> infoRooms = new HashSet<InfoRoom>(0);
-	private Set<GuestRating> guestRatings = new HashSet<GuestRating>(0);
 	private Set<Roles> roleses = new HashSet<Roles>(0);
 
 	public Account() {
@@ -88,7 +87,7 @@ public class Account implements java.io.Serializable {
 
 	public Account(String idAcc, String username, String password, String email, String name, String gender,
 			String location, String locationDetail, int phone, boolean status, String avatar, Date datecreated,
-			String idRole, Set<InfoRoom> infoRooms, Set<GuestRating> guestRatings, Set<Roles> roleses) {
+			String idRole, Set<InfoRoom> infoRooms, Set<Roles> roleses) {
 		this.idAcc = idAcc;
 		this.username = username;
 		this.password = password;
@@ -103,7 +102,6 @@ public class Account implements java.io.Serializable {
 		this.datecreated = datecreated;
 		this.idRole = idRole;
 		this.infoRooms = infoRooms;
-		this.guestRatings = guestRatings;
 		this.roleses = roleses;
 	}
 
@@ -236,14 +234,6 @@ public class Account implements java.io.Serializable {
 		this.infoRooms = infoRooms;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
-	public Set<GuestRating> getGuestRatings() {
-		return this.guestRatings;
-	}
-
-	public void setGuestRatings(Set<GuestRating> guestRatings) {
-		this.guestRatings = guestRatings;
-	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "account_role", catalog = "booking_hotel", joinColumns = {

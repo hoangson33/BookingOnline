@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -113,6 +114,47 @@ label:hover ~ label:before {
 label:hover:before {
   color: #FFC107;
 }
+
+
+
+
+.modal-header {
+    border-bottom: none
+}
+
+.modal-title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #1A237E
+}
+
+.modal-body {
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1A237E
+}
+
+.checkbox-form {
+    background: #FFEBEE;
+    color: #D32F2F;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 1px
+}
+
+.learn {
+    text-decoration: none;
+    color: #fff
+}
+
+.add-list {
+    height: 45px;
+    line-height: 27px;
+    background-color: #D32F2F;
+    color: #fff !important
+}
+
 
 </style>
 </head>
@@ -276,23 +318,44 @@ label:hover:before {
           <td>${allroom.name }</td>
           <td>${allroom.phone }</td>
           <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == true}">
-			              <td><button type="button" class="btn btn-success">Completed</button>
-<input type="checkbox" id="st1" value="1" />
-  <label for="st1"></label>
-  <input type="checkbox" id="st2" value="2" />
-  <label for="st2"></label>
-  <input type="checkbox" id="st3" value="3" />
-  <label for="st3"></label>
-  <input type="checkbox" id="st4" value="4" />
-  <label for="st4"></label>
-  <input type="checkbox" id="st5" value="5" />
-  <label for="st5"></label>
+			              <td><button data-toggle="modal" data-target="#staticBackdrop" type="button" class="btn btn-success">Rating !!</button>
+
 			              </td>
+<s:form method="post" modelAttribute="guestRating" action="${pageContext.request.contextPath }/customer/add-reservation-cancel">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Please,give me 5 star</h4> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body mt-0">
+                <div class="mt-3" style="margin-right: 100px; margin-bottom: 50px">
+  <s:checkbox path="score"  id="st1" value="1" />
+  <label for="st1"></label>
+  <s:checkbox path="score" id="st2" value="2" />
+  <label for="st2"></label>
+  <s:checkbox path="score" id="st3" value="3" />
+  <label for="st3"></label>
+  <s:checkbox path="score" id="st4" value="4" />
+  <label for="st4"></label>
+  <s:checkbox path="score" id="st5" value="5" />
+  <label for="st5"></label>
+                    
+                </div>
+            </div>
+            
+            <div class="modal-footer d-flex justify-content-between align-items-center">
+            <span>&nbsp;</span>
+            <button type="submit" class="btn btn-danger btn-sm" >Confirm</button> </div>
+        </div>
+    </div>
+</div>
+</s:form>
 		  </c:if>
 		  <td>${allroom.updated }</td>
 		
           <td>
-          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;"	 class="fa fa-edit fa-2x"></i></a>
+          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;"	 class="fa fa-edit fa-2x">Rating</i></a>
           
           </td>
         </tr>

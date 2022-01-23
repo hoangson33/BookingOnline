@@ -35,6 +35,7 @@ import com.demo.email.SmtpMailSender;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.DetailBill;
+import com.demo.models.GuestRating;
 import com.demo.models.InfoRoom;
 import com.demo.models.Reservation;
 import com.demo.models.ReservationCancel;
@@ -750,6 +751,7 @@ public class EnterpriseController implements ServletContextAware {
 		modelMap.put("reservations", reservationService.findAll());
 		modelMap.put("allrooms", roomService.roomInfoByIdAccAll(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
+		
 
 		
 		return "users/enterprise/room_management";
