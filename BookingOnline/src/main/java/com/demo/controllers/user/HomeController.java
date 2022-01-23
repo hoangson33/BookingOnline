@@ -93,4 +93,30 @@ public class HomeController {
 		
 		return "users/room/room_list";
 	}
+	
+	@RequestMapping(value = "search-enterprise/{city}/{checkIn}/{checkOut}/{guestChildren}/{guestAdult}", method = RequestMethod.GET)
+	public String searchEnterprise(ModelMap modelMap,@RequestParam("city") String city,@RequestParam("checkIn") String checkIn , @RequestParam("checkOut") String checkOut
+			,@RequestParam("guestChildren") int guestChildren,@RequestParam("guestAdult") int guestAdult ,Authentication authentication ) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		
+		
+		modelMap.put("city", city);
+		modelMap.put("checkIn", checkIn);
+		modelMap.put("checkOut", checkOut);
+	
+		
+		System.out.println("checkkkout :" + checkOut);
+		modelMap.put("guestChildren", guestChildren);
+		modelMap.put("guestAdult", guestAdult);
+		if(roomService.search(city,checkIn, checkOut, guestChildren,guestAdult) == null) {
+			modelMap.put("emptyRoom", "There are currently no rooms that match your request, please refer to the popular rooms below....");
+		}
+		modelMap.put("roomlists", roomService.popupalRoom(city));
+		modelMap.put("roomSearchs", roomService.search(city,checkIn, checkOut, guestChildren,guestAdult)) ;
+		
+		return "users/room/room_list_enterprise";
+	}
 }

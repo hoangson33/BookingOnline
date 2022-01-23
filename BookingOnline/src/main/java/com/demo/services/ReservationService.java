@@ -36,9 +36,12 @@ public interface ReservationService {
 	
 	public int countInvoice(String idAcc);
 	
+	public int countRoom(int idRoom);
+	
 	public int countInvoiceCustomer(String customerId);
 	
 	//new 
 	public Iterable<Reservation> reservationEnterpriseByIdRoom(int idRoom);
+	public Iterable<Reservation> reservationOfCustomer(String customerId);
 	
 }

@@ -113,10 +113,12 @@ function validateForm() {
   
                         
 
-                        <div class="form-submit">
+                        <div class="form-submit form-inline">
                         	<span>&nbsp;</span>
                             <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                            <a href="${pageContext.request.contextPath }/login/index" style="margin-left: 150px" >you have an account?</a>
                         </div>
+                        
                     </s:form>
                 </div>
             </div>

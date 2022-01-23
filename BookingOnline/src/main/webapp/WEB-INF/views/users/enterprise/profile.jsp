@@ -76,7 +76,7 @@ ul{
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         	<ul>
-        	<li><a style="text-decoration: none" href="${pageContext.request.contextPath }/home/welcomeCustomer"><i class="fa fa-home fa-2x" style="color: #87CEFA;"></i>Home</a> </li>
+        	<li><a style="text-decoration: none" href="${pageContext.request.contextPath }/home/welcome"><i class="fa fa-home fa-2x" style="color: #87CEFA;"></i>Home</a> </li>
         	</ul>
         <div class="col-md-3 border-right">
         	

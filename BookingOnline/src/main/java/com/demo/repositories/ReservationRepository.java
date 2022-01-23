@@ -34,6 +34,8 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	//new
 	@Query("from Reservation where infoRoom.idRoom = :idRoom order by updated DESC")
 	public Iterable<Reservation> reservationEnterpriseByIdRoom(@Param("idRoom") int idRoom);
+	@Query("from Reservation where customerId = :customerId order by updated DESC")
+	public Iterable<Reservation> reservationOfCustomer(@Param("customerId") String customerId);
 	//
 	@Query("from Reservation where infoRoom.account.idAcc = :idAcc and statusCancel = true order by updated DESC")
 	public Iterable<Reservation> invoiceEnterpriseCancel(@Param("idAcc") String idAcc);
@@ -43,6 +45,9 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	
 	@Query("select COUNT(*) from Reservation where infoRoom.account.idAcc = :idAcc and status = false and statusCancel = false")
 	public int countInvoice(@Param("idAcc") String idAcc);
+	
+	@Query("select COUNT(*) from Reservation where infoRoom.idRoom = :idRoom")
+	public int countRoom(@Param("idRoom") int idRoom);
 	
 	@Query("select COUNT(*) from Reservation where customerId = :customerId and status = false and statusCancel = false")
 	public int countInvoiceCustomer(@Param("customerId") String customerId);

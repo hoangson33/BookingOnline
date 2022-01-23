@@ -100,6 +100,16 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.findAll();
 	}
 
+	@Override
+	public int countRoom(int idRoom) {
+		return reservationRepository.countRoom(idRoom);
+	}
+
+	@Override
+	public Iterable<Reservation> reservationOfCustomer(String customerId) {
+		return reservationRepository.reservationOfCustomer(customerId);
+	}
+
 
 
 	

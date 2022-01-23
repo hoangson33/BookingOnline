@@ -21,26 +21,51 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<form method="get" action="${pageContext.request.contextPath }/home/search">
+						<form method="get" action="${pageContext.request.contextPath }/home/search-enterprise/{city}/{checkIn}/{checkOut}/{guestChildren}/{guestAdult}">
 							<ul class="align-row-spacebetween">
 								<li>Check Availability</li>
-								<li class="align-row-center-center"><div
+								<li class="align-row-center-center">
+									<div
+										class="group checkin">
+										<label for="booking-checkin">City</label>
+										<select name="city">
+											<option value="Ba Ria">Ba Ria</option>
+											<option value="Ho Chi Minh">Ho Chi Minh</option>
+											<option value="Nha Trang">Nha Trang</option>
+											<option value="Vung Tau">Vung Tau</option>
+											<option value="Da Lat">Da Lat</option>
+											<option value="Phan Thiet">Phan Thiet</option>
+											<option value="Cam Ranh">Cam Ranh</option>
+											<option value="Can Tho">Can Tho</option>
+											<option value="Kien Giang">Kien Giang</option>
+											<option value="Ben Tre">Ben Tre</option>
+										</select>
+									</div>
+									
+									<div
 										class="group checkin">
 										<label for="booking-checkin">CHECK IN Date</label><input
-											type="text" name="checkIn" checkIn id="booking-checkin" placeholder="MM/DD/YY"
+											type="text" name="checkIn" id="from" placeholder="MM/DD/YY"
 											readonly>
 									</div>
 									<div class="group checkout">
 										<label for="booking-checkout">CHECK OUT Date</label><input
-											type="text" name="checkOut" id="booking-checkout" placeholder="MM/DD/YY"
+											type="text" name="checkOut" id="to" placeholder="MM/DD/YY"
 											readonly>
 									</div>
 									<div class="group children">
-										<label for="children">Children</label><input type="text"
+										<label for="children">Children</label><input type="number"
 											name="guestChildren" id="children" value="1" readonly><span
 											class="increse"><i class="fa fa-angle-up"></i></span><span
 											class="decrese"><i class="fa fa-angle-down"></i></span>
-									</div></li>
+									</div>
+									<div class="group children">
+										<label for="adult">Adult</label><input type="number"
+											name="guestAdult" id="adult" value="1" readonly><span
+											class="increse"><i class="fa fa-angle-up"></i></span><span
+											class="decrese"><i class="fa fa-angle-down"></i></span>
+									</div>
+									</li>
 								<li><button type="submit">CHECK AVAILABILITY</button></li>
 							</ul>
 						</form>
@@ -692,6 +717,17 @@
             }, 500);
                 
             });
+        });
+        
+        
+        $(function(){
+            $("#to").datepicker({ dateFormat: 'yy-mm-dd' });
+            $("#from").datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
+                var minValue = $(this).val();
+                minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
+                minValue.setDate(minValue.getDate()+1);
+                $("#to").datepicker( "option", "minDate", minValue );
+            })
         });
 
     </script>

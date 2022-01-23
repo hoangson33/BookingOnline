@@ -512,6 +512,7 @@ public class CustomerController implements ServletContextAware{
 			reservation.setChildren(getChildren());
 			reservation.setStatus(false);
 			reservation.setStatusCancel(false);
+			reservation.setPaymentStatus(false);
 			reservation.setCreated(new Date());
 			reservation.setUpdated(new Date());
 		} catch (ParseException e) {
@@ -527,7 +528,29 @@ public class CustomerController implements ServletContextAware{
 	
 
 	
+	@RequestMapping(value = "invoice-idRoom/{idRoom}", method = RequestMethod.GET)
+	public String invoiceIdRoom(@PathVariable("idRoom") int idRoom,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		Account account = accountService.findByUsername2(name);
+		modelMap.put("account", account);
+		modelMap.put("invoiceCount", reservationService.countInvoice(account.getIdAcc()));
+		modelMap.put("datenow", new Date());
+		modelMap.put("reservationEnterpriseConfirms", reservationService.reservationEnterpriseByIdRoom(idRoom));
+		return "users/csutomer/invoice"; 
+	}
 	
+	@RequestMapping(value = "room-management", method = RequestMethod.GET)
+	public String roomManagement(Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		Account account = accountService.findByUsername2(name);
+		modelMap.put("account", account);
+		modelMap.put("reservationOfCustomer", reservationService.reservationOfCustomer(account.getIdAcc()));
+		modelMap.put("datenow", new Date());
+		
+		return "users/customer/room_management";
+	}
 
 	
 	
@@ -575,6 +598,7 @@ public class CustomerController implements ServletContextAware{
 		reservation.getChildren();
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(false);
+		reservation.setPaymentStatus(false);
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		reservationCancelService.delete(idCancel);
@@ -598,6 +622,7 @@ public class CustomerController implements ServletContextAware{
 		reservation.getChildren();
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
+		reservation.setPaymentStatus(false);
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		modelMap.put("idCancel", reservationCancel.getIdCancel());

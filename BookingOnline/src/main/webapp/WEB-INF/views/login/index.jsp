@@ -26,7 +26,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
-		      	<a class="mb-4 text-center" href="${pageContext.request.contextPath }/registration/add"><h3>Have an account?</h3></a>
+		      	<a class="mb-4 text-center" href="${pageContext.request.contextPath }/registration/add"><h3>You dont's have an account?</h3></a>
 		      	<form method="post" action="${pageContext.request.contextPath }/login/process-login" class="signin-form">
 		      	
 		      		<h4 style="color: yellow;">${msg}</h4>

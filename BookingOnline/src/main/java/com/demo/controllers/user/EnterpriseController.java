@@ -15,6 +15,7 @@ import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.demo.email.SmtpMailSender;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
+import com.demo.models.DetailBill;
 import com.demo.models.InfoRoom;
 import com.demo.models.Reservation;
 import com.demo.models.ReservationCancel;
@@ -77,13 +79,26 @@ public class EnterpriseController implements ServletContextAware {
 	@Autowired
 	private SmtpMailSender smtpMailSender;
 	
+	@Autowired
+	private Environment environment;
+	
 	private int idResevation;
 	
-	
+	private int idRoom;
 	
 	
 
 	
+	public int getIdRoom() {
+		return idRoom;
+	}
+
+
+	public void setIdRoom(int idRoom) {
+		this.idRoom = idRoom;
+	}
+
+
 	public int getIdResevation() {
 		return idResevation;
 	}
@@ -528,24 +543,39 @@ public class EnterpriseController implements ServletContextAware {
 	}
 	
 	
-	@RequestMapping(value =  "view-room/{idRoom}", method = RequestMethod.GET)
-	public String viewRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap
+	@RequestMapping(value =  "view-room", method = RequestMethod.GET)
+	public String viewRoom(@RequestParam("idRoom") int idRoom,ModelMap modelMap
 			,Authentication authentication) {
 		
-			String name = authentication.getName();
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+
+		modelMap.put("accounts", accountService.findByUsername(name));
+		
+		
+		
 			InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 			Account account = accountService.findByUsername2(name);
+			modelMap.put("account", account);
+			Reservation reservation = new Reservation();
+			modelMap.put("reservation", reservation);
+			DetailBill detailBill = new DetailBill();	
+			modelMap.put("detailBill", detailBill);
 			
+			setIdRoom(idRoom);
+		
 			
 			List<String> convertedHightlight = Arrays.asList(infoRoom.getHighlightRoom().split(",", -1));
 			modelMap.put("highlights", convertedHightlight);
 			modelMap.put("idAcc", account.getIdAcc());
 			System.out.println("" + convertedHightlight);
 			
-			
+			modelMap.put("discountPrice", discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice()));
 			modelMap.put("imgRoom", infoRoom.getImgRoom());
 			
 			
+			
+			modelMap.put("roomlistPaypal", roomService.roomInfoByIdRoomPaypal(idRoom));
 		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
 		return "users/enterprise/view_room";
 	}
@@ -557,6 +587,7 @@ public class EnterpriseController implements ServletContextAware {
 		Account account = accountService.findByUsername2(name);
 		modelMap.put("account", account);
 		modelMap.put("invoiceCount", reservationService.countInvoice(account.getIdAcc()));
+		modelMap.put("datenow", new Date());
 		modelMap.put("reservationEnterpriseConfirms", reservationService.reservationEnterpriseByIdRoom(idRoom));
 		return "users/enterprise/invoice"; 
 	}
@@ -584,6 +615,8 @@ public class EnterpriseController implements ServletContextAware {
 		modelMap.put("countCancelled", reservationCancelService.countCancalledCustomer(reservationCount.getCustomerId()));
 		modelMap.put("accounts", accountService.findByUsername(name));
 		modelMap.put("invoices", reservationService.reserInfo(idReservation));
+		
+		
 		ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(idReservation);
 		modelMap.put("cancelledBy", reservationCancelByWho);
 		Reservation reservation = new Reservation();
@@ -597,7 +630,7 @@ public class EnterpriseController implements ServletContextAware {
 	
 	
 	@RequestMapping(value =  "confirm-invoice", method = RequestMethod.POST)
-	public String deleteRoom(@ModelAttribute("reservation") Reservation reservation) throws MessagingException {
+	public String confirmInvoice(@ModelAttribute("reservation") Reservation reservation) throws MessagingException {
 		System.out.println("id reservation  " + reservation.getIdReservation());
 		Reservation reservationOld = reservationService.reserInfo2(reservation.getIdReservation());
 		reservation.setCustomerId(reservationOld.getCustomerId());
@@ -610,6 +643,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setChildren(reservationOld.getChildren());
 		reservation.setStatus(true);;
 		reservation.setStatusCancel(false);
+		reservation.setPaymentStatus(false);
 		reservation.setCreated(reservationOld.getCreated());
 		reservation.setUpdated(reservationOld.getUpdated());
 		
@@ -637,6 +671,30 @@ public class EnterpriseController implements ServletContextAware {
 	}
 	
 	
+	@RequestMapping(value =  "completed-invoice", method = RequestMethod.POST)
+	public String completedInvoice(@ModelAttribute("reservation") Reservation reservation) throws MessagingException {
+		Reservation reservationOld = reservationService.reserInfo2(reservation.getIdReservation());
+		reservation.setCustomerId(reservationOld.getCustomerId());
+		reservation.setCheckIn(reservationOld.getCheckIn());
+		reservation.setCheckOut(reservationOld.getCheckOut());
+		reservation.setName(reservationOld.getName());
+		reservation.setEmail(reservationOld.getEmail());
+		reservation.setPhone(reservationOld.getPhone());
+		reservation.setAdult(reservationOld.getAdult());
+		reservation.setChildren(reservationOld.getChildren());
+		reservation.setStatus(true);;
+		reservation.setStatusCancel(false);
+		reservation.setPaymentStatus(true);
+		reservation.setCreated(reservationOld.getCreated());
+		reservation.setUpdated(reservationOld.getUpdated());
+		
+		reservationService.save(reservation);
+		
+		
+		return "redirect:/enterprise/invoice-detail?idReservation=" + reservation.getIdReservation();
+	}
+	
+	
 	@RequestMapping(value =  "cancel-invoice", method = RequestMethod.POST)
 	public String cancelInvoice(@ModelAttribute("reservationCancel") ReservationCancel reservationCancel,
 			@RequestParam("reason") String reason) throws MessagingException {
@@ -655,6 +713,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.getChildren();
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
+		reservation.setPaymentStatus(false);
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		
@@ -691,6 +750,7 @@ public class EnterpriseController implements ServletContextAware {
 		modelMap.put("reservations", reservationService.findAll());
 		modelMap.put("allrooms", roomService.roomInfoByIdAccAll(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
+
 		
 		return "users/enterprise/room_management";
 	}

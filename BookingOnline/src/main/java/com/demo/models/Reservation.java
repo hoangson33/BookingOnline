@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 21, 2022, 2:32:02 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 23, 2022, 7:03:38 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -36,6 +36,7 @@ public class Reservation implements java.io.Serializable {
 	private int children;
 	private boolean status;
 	private boolean statusCancel;
+	private boolean paymentStatus;
 	private Date created;
 	private Date updated;
 	private Set<ReservationCancel> reservationCancels = new HashSet<ReservationCancel>(0);
@@ -45,7 +46,8 @@ public class Reservation implements java.io.Serializable {
 	}
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
-			int phone, int adult, int children, boolean status, boolean statusCancel, Date created, Date updated) {
+			int phone, int adult, int children, boolean status, boolean statusCancel, boolean paymentStatus,
+			Date created, Date updated) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
@@ -57,13 +59,14 @@ public class Reservation implements java.io.Serializable {
 		this.children = children;
 		this.status = status;
 		this.statusCancel = statusCancel;
+		this.paymentStatus = paymentStatus;
 		this.created = created;
 		this.updated = updated;
 	}
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
-			int phone, int adult, int children, boolean status, boolean statusCancel, Date created, Date updated,
-			Set<ReservationCancel> reservationCancels, Set<DetailBill> detailBills) {
+			int phone, int adult, int children, boolean status, boolean statusCancel, boolean paymentStatus,
+			Date created, Date updated, Set<ReservationCancel> reservationCancels, Set<DetailBill> detailBills) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
@@ -75,6 +78,7 @@ public class Reservation implements java.io.Serializable {
 		this.children = children;
 		this.status = status;
 		this.statusCancel = statusCancel;
+		this.paymentStatus = paymentStatus;
 		this.created = created;
 		this.updated = updated;
 		this.reservationCancels = reservationCancels;
@@ -193,6 +197,15 @@ public class Reservation implements java.io.Serializable {
 
 	public void setStatusCancel(boolean statusCancel) {
 		this.statusCancel = statusCancel;
+	}
+
+	@Column(name = "payment_status", nullable = false)
+	public boolean isPaymentStatus() {
+		return this.paymentStatus;
+	}
+
+	public void setPaymentStatus(boolean paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
 
 	@Temporal(TemporalType.DATE)

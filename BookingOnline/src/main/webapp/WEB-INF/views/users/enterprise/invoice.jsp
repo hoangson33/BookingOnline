@@ -71,7 +71,7 @@
 
 <div class="wrapper">
    <!--   Creative Tim Branding   -->
-  <a href="http://creative-tim.com">
+  <a href="${pageContext.request.contextPath }/enterprise/profile">
     <div class="logo-container full-screen-table-demo">
       <div class="logo">
         <img width="70px" height="50px" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
@@ -93,37 +93,134 @@
       	<th data-field="back"><a href="${pageContext.request.contextPath }/enterprise/room-management" type="button" class="btn btn-warning fa fa-arrow-left">Back</a></th>
         <th data-field="id">ID Reser</th>
         <th data-field="img">ID room</th>
-        <th data-field="name" data-sortable="true">Check in</th>
+        <th data-field="checkIn" data-sortable="true">Check in</th>
         <th data-field="salary" data-sortable="true">Check out</th>
         <th data-field="country" data-sortable="true">Adult</th>
         <th data-field="city">Children</th>
+        <th data-field="name">Name</th>
+        <th data-field="phone">Phone</th>
         <th data-field="status">Status</th>
+        <th data-field="updated">Date</th>
         <th data-field="actions" >Actions</th>
       </thead>
       <tbody>
       <c:forEach var="reservationEnterpriseConfirm" items="${reservationEnterpriseConfirms }">
-        <tr>
+      <!-- Cancelled -->
+        <c:if test="${reservationEnterpriseConfirm.statusCancel != false && reservationEnterpriseConfirm.status != true && reservationEnterpriseConfirm.paymentStatus == false }">
+        <tr style="background-color: rgba(255, 0, 0, 0.4);">
         	<td></td>
           <td>${reservationEnterpriseConfirm.idReservation }</td>
           <td >${reservationEnterpriseConfirm.infoRoom.idRoom }</td>
           <td>${reservationEnterpriseConfirm.checkIn }</td>
+          
+         
           <td>${reservationEnterpriseConfirm.checkOut }</td>
+          
+          
           <td>${reservationEnterpriseConfirm.adult }</td>
           <td>${reservationEnterpriseConfirm.children }</td>
-          <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false}">
-			              <td><button type="button" class="btn btn-success">Confirmed</button></td>
-		  </c:if>
-			              <c:if test="${invoice.status != true && invoice.statusCancel == false}">
-			              <td><button type="button" class="btn btn-warning">Awaiting for approval</button></td>
-			              </c:if>
-			              <c:if test="${invoice.statusCancel != false && invoice.status != true}">
+          <td>${reservationEnterpriseConfirm.name }</td>
+          <td>${reservationEnterpriseConfirm.phone }</td>
+			              <c:if test="${reservationEnterpriseConfirm.statusCancel != false && reservationEnterpriseConfirm.status != true}">
 			              <td><button type="button" class="btn btn-danger">Cancelled </button></td>
 			              </c:if>
+			              <td>${reservationEnterpriseConfirm.updated }</td>
           <td>
-          <a href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${reservationEnterpriseConfirm.idReservation}"><i class="fa fa-edit fa-2x"></i></a>
+          <a href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${reservationEnterpriseConfirm.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
           
           </td>
         </tr>
+        </c:if>
+        
+        <!-- Awaiting -->
+        <c:if test="${reservationEnterpriseConfirm.status == false && reservationEnterpriseConfirm.statusCancel == false && reservationEnterpriseConfirm.paymentStatus == false }">
+        <tr style="background-color: rgba(255, 165, 0, 0.4);">
+        	<td></td>
+          <td>${reservationEnterpriseConfirm.idReservation }</td>
+          <td >${reservationEnterpriseConfirm.infoRoom.idRoom }</td>
+          <td>${reservationEnterpriseConfirm.checkIn }</td>
+          
+         
+          <td>${reservationEnterpriseConfirm.checkOut }</td>
+         
+          
+          
+          <td>${reservationEnterpriseConfirm.adult }</td>
+          <td>${reservationEnterpriseConfirm.children }</td>
+          <td>${reservationEnterpriseConfirm.name }</td>
+          <td>${reservationEnterpriseConfirm.phone }</td>
+			              <c:if test="${reservationEnterpriseConfirm.status == false && reservationEnterpriseConfirm.statusCancel == false}">
+			              <td><button type="button" class="btn btn-warning">Awaiting for approval</button></td>
+			              </c:if>
+			              <td>${reservationEnterpriseConfirm.updated }</td>
+          <td>
+          <a href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${reservationEnterpriseConfirm.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
+          
+          </td>
+        </tr>
+        </c:if>
+        
+        
+        
+        <!-- confirmed -->
+        <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false && reservationEnterpriseConfirm.paymentStatus == false}">
+        <tr style="background-color: rgba(255,0,255,0.3);">
+        	<td></td>
+          <td>${reservationEnterpriseConfirm.idReservation }</td>
+          <td >${reservationEnterpriseConfirm.infoRoom.idRoom }</td>
+          <td>${reservationEnterpriseConfirm.checkIn }</td>
+
+          <c:if test="${reservationEnterpriseConfirm.checkOut < datenow && reservationEnterpriseConfirm.paymentStatus == false && reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false}">
+          <td style="color: red;">${reservationEnterpriseConfirm.checkOut }<br>
+          <small >you need to complete the customer payment confirmation !</small>
+          </td>
+          </c:if>
+          <c:if test="${reservationEnterpriseConfirm.checkOut > datenow && reservationEnterpriseConfirm.paymentStatus == false && reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false}">
+          <td>${reservationEnterpriseConfirm.checkOut }</td>
+          </c:if>
+          
+          <td>${reservationEnterpriseConfirm.adult }</td>
+          <td>${reservationEnterpriseConfirm.children }</td>
+          <td>${reservationEnterpriseConfirm.name }</td>
+          <td>${reservationEnterpriseConfirm.phone }</td>
+          <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false}">
+			              <td><button type="button" class="btn btn-success">Confirmed</button></td>
+		  </c:if>
+		  <td>${reservationEnterpriseConfirm.updated }</td>
+		
+          <td>
+          
+          <a href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${reservationEnterpriseConfirm.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
+          
+          </td>
+        </tr>
+        </c:if>
+        
+        <!-- Completed -->
+        <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false && reservationEnterpriseConfirm.paymentStatus == true}">
+        <tr style="background-color: rgba(0,255,0,0.3);">
+        	<td></td>
+          <td>${reservationEnterpriseConfirm.idReservation }</td>
+          <td >${reservationEnterpriseConfirm.infoRoom.idRoom }</td>
+          <td>${reservationEnterpriseConfirm.checkIn }</td>
+
+          <td>${reservationEnterpriseConfirm.checkOut }</td>
+          
+          <td>${reservationEnterpriseConfirm.adult }</td>
+          <td>${reservationEnterpriseConfirm.children }</td>
+          <td>${reservationEnterpriseConfirm.name }</td>
+          <td>${reservationEnterpriseConfirm.phone }</td>
+          <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false && reservationEnterpriseConfirm.paymentStatus == true}">
+			              <td><button type="button" class="btn btn-success">Completed</button></td>
+		  </c:if>
+		  <td>${reservationEnterpriseConfirm.updated }</td>
+		
+          <td>
+          <a href="${pageContext.request.contextPath }/enterprise/invoice-detail?idReservation=${reservationEnterpriseConfirm.idReservation}"><i style="color: green;"	 class="fa fa-edit fa-2x"></i></a>
+          
+          </td>
+        </tr>
+        </c:if>
       </c:forEach>  
       </tbody>
     </table>

@@ -66,18 +66,68 @@
   <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/jquery.sharrre.js"></script>
   <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/demo.js"></script>
 
+
+
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<style type="text/css">
+input {
+  border: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  opacity: 0;
+}
+
+label {
+  position: relative;
+  float: right;
+  color: #C8C8C8;
+}
+
+label:before {
+  margin: 5px;
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 1.5em;
+  color: #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+input:checked ~ label:before {
+  color: #FFC107;
+}
+
+label:hover ~ label:before {
+  color: #ffdb70;
+}
+
+label:hover:before {
+  color: #FFC107;
+}
+
+</style>
 </head>
 <body>
 
+
 <div class="wrapper">
    <!--   Creative Tim Branding   -->
-  <a href="${pageContext.request.contextPath }/enterprise/profile">
+  <a href="${pageContext.request.contextPath }/customer">
     <div class="logo-container full-screen-table-demo">
       <div class="logo">
         <img width="70px" height="50px" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
       </div>
       <div class="brand ">
-        ${account.name } Hotel
+        ${account.name }
       </div>
     </div>
   </a>
@@ -89,50 +139,164 @@
   -->
     <table id="fresh-table" class="table">
       <thead>
-        <th data-field="id">ID Room</th>
+      	<th data-field="back"><a href="${pageContext.request.contextPath }/enterprise/room-management" type="button" class="btn btn-warning fa fa-arrow-left">Back</a></th>
+        <th data-field="id">ID Reservation</th>
         <th data-field="img">Image</th>
-        <th data-field="name" data-sortable="true">Check in</th>
-        <th data-field="salary" data-sortable="true">Check out</th>
-        <th data-field="country" data-sortable="true">Adult</th>
-        <th data-field="city">Children</th>
+        <th data-field="checkin" data-sortable="true">Check in</th>
+        <th data-field="checkout" data-sortable="true">Check out</th>
+        <th data-field="adult" data-sortable="true">Adult</th>
+        <th data-field="children">Children</th>
+        <th data-field="name">Name</th>
+        <th data-field="phone">Phone</th>
         <th data-field="status">Status</th>
+        <th data-field="updated">Date</th>
         <th data-field="actions" >Actions</th>
       </thead>
       <tbody>
-      <c:forEach var="allroom" items="${allrooms }">
-        <tr>
-          <td>${allroom.idRoom }</td>
+      <c:forEach var="allroom" items="${reservationOfCustomer }">
+        <!-- Cancelled -->
+        <c:if test="${allroom.statusCancel != false && allroom.status != true && allroom.paymentStatus == false }">
+        <tr style="background-color: rgba(255, 0, 0, 0.4);">
+        	<td></td>
+          <td>${allroom.idReservation }</td>
           <td >
-          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.imgRoom }"/>
+          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
           
           </td>
           <td>${allroom.checkIn }</td>
-          <c:if test="${allroom.checkOut < datenow}">
-			              <td style="color: red;">${allroom.checkOut}<br>
-			              <small>you need to update this room !!</small>
-			              </td>
-			              </c:if>
-			              <c:if test="${allroom.checkOut > datenow}">
-			              <td >${allroom.checkOut}</td>
-			              </c:if>
-          <td>${allroom.guestAdult }</td>
-          <td>${allroom.guestChildren }</td>
-          <c:if test="${allroom.status == true }">
-			              <td><button type="button" class="btn btn-success">Available now</button></td>
-			              </c:if>
-			              <c:if test="${allroom.status != true }">
-			              <td><button type="button" class="btn btn-warning">Not Available</button></td>
-			              </c:if>
-          <td>
-          <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${allroom.idRoom}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
-          <c:forEach var="reservation" items="${reservations }">
           
-	          <c:if test="${reservation.infoRoom.idRoom == allroom.idRoom}" >
-	          <a href="${pageContext.request.contextPath }/enterprise/invoice-idRoom/${allroom.idRoom}"><i style="color: red;" class="fa fa-info-circle fa-2x"><sup>new</sup></i></a>
-	          </c:if>
-          </c:forEach>
+         
+          <td>${allroom.checkOut }</td>
+          
+          
+          <td>${allroom.adult }</td>
+          <td>${allroom.children }</td>
+          <td>${allroom.name }</td>
+          <td>${allroom.phone }</td>
+			              <c:if test="${allroom.statusCancel != false && allroom.status != true}">
+			              <td><button type="button" class="btn btn-danger">Cancelled </button></td>
+			              </c:if>
+			              <td>${allroom.updated }</td>
+          <td>
+          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
+          
           </td>
         </tr>
+        </c:if>
+        
+        
+        <!-- Awaiting -->
+        <c:if test="${allroom.status == false && allroom.statusCancel == false && allroom.paymentStatus == false }">
+        <tr style="background-color: rgba(255, 165, 0, 0.4);">
+        	<td></td>
+          <td>${allroom.idReservation }</td>
+          <td >
+          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
+          
+          </td>
+          <td>${allroom.checkIn }</td>
+          
+         
+          <td>${allroom.checkOut }</td>
+         
+          
+          
+          <td>${allroom.adult }</td>
+          <td>${allroom.children }</td>
+          <td>${allroom.name }</td>
+          <td>${allroom.phone }</td>
+			              <c:if test="${allroom.status == false && allroom.statusCancel == false}">
+			              <td><button type="button" class="btn btn-warning">Awaiting for approval</button></td>
+			              </c:if>
+			              <td>${allroom.updated }</td>
+          <td>
+          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
+          
+          </td>
+        </tr>
+        </c:if>
+        
+        
+        
+        <!-- confirmed -->
+        <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == false}">
+        <tr style="background-color: rgba(255,0,255,0.3);">
+        	<td></td>
+          <td>${allroom.idReservation }</td>
+          <td >
+          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
+          
+          </td>
+          <td>${allroom.checkIn }</td>
+
+          <c:if test="${allroom.checkOut < datenow && allroom.paymentStatus == false && allroom.status == true && allroom.statusCancel == false}">
+          <td style="color: red;">${allroom.checkOut }<br>
+          <small >You need to wait for the hotel to confirm the payment !</small>
+          </td>
+          </c:if>
+          <c:if test="${allroom.checkOut > datenow && allroom.paymentStatus == false && allroom.status == true && allroom.statusCancel == false}">
+          <td>${allroom.checkOut }</td>
+          </c:if>
+          
+          <td>${allroom.adult }</td>
+          <td>${allroom.children }</td>
+          <td>${allroom.name }</td>
+          <td>${allroom.phone }</td>
+          <c:if test="${allroom.status == true && allroom.statusCancel == false}">
+			              <td><button type="button" class="btn btn-success">Confirmed</button><br>
+			              			              
+  
+			              </td>
+		  </c:if>
+		  <td>${allroom.updated }</td>
+		
+          <td>
+          
+          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
+          
+          </td>
+        </tr>
+        </c:if>
+        
+        <!-- Completed -->
+        <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == true}">
+        <tr style="background-color: rgba(0,255,0,0.3);">
+        	<td></td>
+          <td>${allroom.idReservation }</td>
+          <td >
+          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
+          
+          </td>
+          <td>${allroom.checkIn }</td>
+
+          <td>${allroom.checkOut }</td>
+          
+          <td>${allroom.adult }</td>
+          <td>${allroom.children }</td>
+          <td>${allroom.name }</td>
+          <td>${allroom.phone }</td>
+          <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == true}">
+			              <td><button type="button" class="btn btn-success">Completed</button>
+<input type="checkbox" id="st1" value="1" />
+  <label for="st1"></label>
+  <input type="checkbox" id="st2" value="2" />
+  <label for="st2"></label>
+  <input type="checkbox" id="st3" value="3" />
+  <label for="st3"></label>
+  <input type="checkbox" id="st4" value="4" />
+  <label for="st4"></label>
+  <input type="checkbox" id="st5" value="5" />
+  <label for="st5"></label>
+			              </td>
+		  </c:if>
+		  <td>${allroom.updated }</td>
+		
+          <td>
+          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;"	 class="fa fa-edit fa-2x"></i></a>
+          
+          </td>
+        </tr>
+        </c:if>
       </c:forEach>  
       </tbody>
     </table>
@@ -140,6 +304,10 @@
 
   
 </div>
+
+
+
+
 
 
 <div class="fixed-plugin" style="top: 300px">
@@ -295,18 +463,27 @@
     template: '<i class="fa fa-facebook-square"></i> {total}',
     url: location.href
   })
+  
+  
+  
+  
+
 </script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga')
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-46172202-1', 'auto')
-  ga('send', 'pageview')
+  ga('create', 'UA-46156385-1', 'cssscript.com');
+  ga('send', 'pageview');
 
 </script>
+
+
+
+
 
 </body>
 

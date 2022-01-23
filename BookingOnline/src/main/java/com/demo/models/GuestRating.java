@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 13, 2022, 7:32:19 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 23, 2022, 7:03:38 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -20,24 +20,22 @@ import javax.persistence.TemporalType;
 public class GuestRating implements java.io.Serializable {
 
 	private String idRating;
-	private Account account;
-	private double avgScore;
-	private String message;
+	private InfoRoom infoRoom;
+	private double score;
+	private String idCustomer;
 	private Date created;
-	private String accountIdHotel;
 	private boolean status;
 
 	public GuestRating() {
 	}
 
-	public GuestRating(String idRating, Account account, double avgScore, String message, Date created,
-			String accountIdHotel, boolean status) {
+	public GuestRating(String idRating, InfoRoom infoRoom, double score, String idCustomer, Date created,
+			boolean status) {
 		this.idRating = idRating;
-		this.account = account;
-		this.avgScore = avgScore;
-		this.message = message;
+		this.infoRoom = infoRoom;
+		this.score = score;
+		this.idCustomer = idCustomer;
 		this.created = created;
-		this.accountIdHotel = accountIdHotel;
 		this.status = status;
 	}
 
@@ -53,31 +51,31 @@ public class GuestRating implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "account_id_customer", nullable = false)
-	public Account getAccount() {
-		return this.account;
+	@JoinColumn(name = "id_room", nullable = false)
+	public InfoRoom getInfoRoom() {
+		return this.infoRoom;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setInfoRoom(InfoRoom infoRoom) {
+		this.infoRoom = infoRoom;
 	}
 
-	@Column(name = "avg_score", nullable = false, precision = 22, scale = 0)
-	public double getAvgScore() {
-		return this.avgScore;
+	@Column(name = "score", nullable = false, precision = 22, scale = 0)
+	public double getScore() {
+		return this.score;
 	}
 
-	public void setAvgScore(double avgScore) {
-		this.avgScore = avgScore;
+	public void setScore(double score) {
+		this.score = score;
 	}
 
-	@Column(name = "message", nullable = false, length = 16777215)
-	public String getMessage() {
-		return this.message;
+	@Column(name = "id_customer", nullable = false, length = 250)
+	public String getIdCustomer() {
+		return this.idCustomer;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setIdCustomer(String idCustomer) {
+		this.idCustomer = idCustomer;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -88,15 +86,6 @@ public class GuestRating implements java.io.Serializable {
 
 	public void setCreated(Date created) {
 		this.created = created;
-	}
-
-	@Column(name = "account_id_hotel", nullable = false, length = 250)
-	public String getAccountIdHotel() {
-		return this.accountIdHotel;
-	}
-
-	public void setAccountIdHotel(String accountIdHotel) {
-		this.accountIdHotel = accountIdHotel;
 	}
 
 	@Column(name = "status", nullable = false)
