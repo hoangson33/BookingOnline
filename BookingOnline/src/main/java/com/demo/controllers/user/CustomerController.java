@@ -44,6 +44,7 @@ import com.demo.paypal.PayPalResult;
 import com.demo.paypal.PayPalSucess;
 import com.demo.repositories.ReservationRepository;
 import com.demo.services.AccountService;
+import com.demo.services.GuestRatingService;
 import com.demo.services.HighlightService;
 import com.demo.services.ReservationCancelService;
 import com.demo.services.ReservationService;
@@ -76,6 +77,9 @@ public class CustomerController implements ServletContextAware{
 	
 	@Autowired
 	private ReservationCancelService reservationCancelService;
+	
+	@Autowired
+	private GuestRatingService guestRatingService;
 	
 	@Autowired
 	private AccountService accountService;
@@ -369,6 +373,7 @@ public class CustomerController implements ServletContextAware{
 			modelMap.put("business", business);
 			modelMap.put("returnurl", returnurl);
 			modelMap.put("roomlistPaypal", roomService.roomInfoByIdRoomPaypal(idRoom));
+			modelMap.put("fivestar", guestRatingService.count5Star(idRoom));
 		modelMap.put("roomlist", roomService.roomInfoByIdRoom(idRoom));
 		return "users/customer/view_room";
 	}
@@ -428,7 +433,7 @@ public class CustomerController implements ServletContextAware{
 			@RequestParam("adult") int adult,@RequestParam("children") int children,Authentication authentication,
 			@RequestParam("idRoom") int idRoom) {
 		
-		System.out.println("username " + authentication.getName());
+		
 		String names = authentication.getName();
 
 		modelMap.put("accounts", accountService.findByUsername(names));
@@ -437,29 +442,10 @@ public class CustomerController implements ServletContextAware{
 		
 		Reservation reservation = new Reservation();
 		modelMap.put("reservation", reservation);
-//		try {
-//			
-//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//			String CheckIn =  String.valueOf(reservation.getCheckIn()) ;
-//			String CheckOut =  String.valueOf(reservation.getCheckOut()) ;
-//			reservation.setCreated(new Date());
-//			reservation.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
-//			reservation.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
-//			reservation.setStatus(false);
-//			reservation.setStatusCancel(false);
-//			System.out.println("name ++++++++++: " + reservation.getName());
-//			
-//			
-//		} catch (ParseException e) {
-//			System.err.println(e.getMessage());
-//		}
-//		
-//		reservationService.save(reservation);
-//		System.out.println("id : " + reservation.getIdReservation());
+
 		InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 		modelMap.put("infoRoom", infoRoom);
-//		modelMap.put("invoiceInfos", reservationService.reserInfo(reservation.getIdReservation()));
-		
+
 	
 		
 		modelMap.put("checkIn", checkIn);
@@ -479,9 +465,14 @@ public class CustomerController implements ServletContextAware{
 		String nameAcc = authentication.getName();
 		Account account = accountService.findByUsername2(nameAcc);
 		modelMap.put("account", accountService.findIdAcc(account.getIdAcc()));
-//		Reservation reservation2 = new Reservation();
-//		modelMap.put("reservation", reservation2);
 		modelMap.put("idRoom", idRoom);
+		
+		modelMap.put("fivestar", guestRatingService.count5Star(idRoom));
+		System.out.println("5star " + guestRatingService.count5Star(idRoom));
+		modelMap.put("fourstar", guestRatingService.count4Star(idRoom));
+		modelMap.put("threestar", guestRatingService.count3Star(idRoom));
+		modelMap.put("twostar", guestRatingService.count2Star(idRoom));
+		modelMap.put("onestar", guestRatingService.count1Star(idRoom));
 
 //		Random generator = new Random();
 //		detailBill.setIdBill("CASH"+generator.nextInt());
@@ -549,8 +540,7 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("account", account);
 		modelMap.put("reservationOfCustomer", reservationService.reservationOfCustomer(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
-		GuestRating guestRating = new GuestRating();
-		modelMap.put("guestRating", guestRating);
+		
 		
 		return "users/customer/room_management";
 	}
@@ -576,6 +566,7 @@ public class CustomerController implements ServletContextAware{
 	public String invoiceDetail(@RequestParam("idReservation")int idReservation,Authentication authentication,ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
+		Account account =accountService.findByUsername2(name);
 		modelMap.put("accounts", accountService.findByUsername(name));
 		modelMap.put("invoices", reservationService.reserInfo(idReservation));
 		ReservationCancel reservationCancel = new ReservationCancel();
@@ -584,6 +575,10 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("idCancel", getIdCancel());
 		ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(idReservation);
 		modelMap.put("cancelledBy", reservationCancelByWho);
+		GuestRating guestRating = new GuestRating();
+		modelMap.put("guestRating", guestRating);
+		Reservation reservation = reservationService.reserInfo2(idReservation);
+		modelMap.put("ratingStar", guestRatingService.findRatingRoomByIdCus(reservation.getInfoRoom().getIdRoom(), account.getIdAcc()));
 		return "users/customer/invoice_detail"; 
 	}
 	
@@ -636,12 +631,33 @@ public class CustomerController implements ServletContextAware{
 	}
 	
 	
+	
+	@RequestMapping(value = "add-guest-rating", method = RequestMethod.POST )
+	public String addGuestRating(@ModelAttribute("guestRating") GuestRating guestRating,ModelMap modelMap,Authentication authentication) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		
+		Account account = accountService.findByUsername2(name);
+		guestRating.setIdCustomer(account.getIdAcc());
+		guestRating.setStatus(true);
+		guestRating.setCreated(new Date());
+		guestRatingService.save(guestRating);
+		
+		
+		return "redirect:/customer/room-management";
+		
+	}
+	
+	
 	public double discountPrice(double price, double disount) {
 		if(disount != 0) {
 			return (price*disount)/100;
 		}
 		return price;
 	}
+	
+	
+	
 	
 	
 	@Override

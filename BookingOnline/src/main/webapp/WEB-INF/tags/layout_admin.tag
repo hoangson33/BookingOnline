@@ -393,7 +393,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <span class="mini-click-non">Ecommerce</span>
 </a>
 <ul class="submenu-angle" aria-expanded="true">
-<li><a title="Dashboard v.1" href="${pageContext.request.contextPath }/login/welcome"><span class="mini-sub-pro">Dashboard - Home</span></a></li>
+<li><a title="Dashboard v.1" href="${pageContext.request.contextPath }/admin/index"><span class="mini-sub-pro">Dashboard - Home</span></a></li>
 <li><a title="Dashboard v.2" href="${pageContext.request.contextPath }/admin/account-management">Account List</span></a></li>
 <li><a title="Dashboard v.3" href="${pageContext.request.contextPath }/admin/role-management"> <span class="mini-sub-pro">Role List</span></a></li>
 <li><a title="Product List" href="${pageContext.request.contextPath }/admin/room-list"><span class="mini-sub-pro">Room List</span></a></li>

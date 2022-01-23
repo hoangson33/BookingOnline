@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 15, 2022, 10:40:43 AM by Hibernate Tools 5.1.10.Final
+// Generated Jan 23, 2022, 9:05:58 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -16,11 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -66,6 +66,7 @@ public class InfoRoom implements java.io.Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	private boolean status;
+	private Set<GuestRating> guestRatings = new HashSet<GuestRating>(0);
 	private Set<Reservation> reservations = new HashSet<Reservation>(0);
 
 	public InfoRoom() {
@@ -96,7 +97,7 @@ public class InfoRoom implements java.io.Serializable {
 	public InfoRoom(Account account, Date checkIn, Date checkOut, int guestChildren, int guestAdult, String description,
 			String roomCategory, double price, double salePrice, double total, String highlightRoom, String imgRoom,
 			String extraImg1, String extraImg2, String extraImg3, Date created, boolean status,
-			Set<Reservation> reservations) {
+			Set<GuestRating> guestRatings, Set<Reservation> reservations) {
 		this.account = account;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
@@ -114,6 +115,7 @@ public class InfoRoom implements java.io.Serializable {
 		this.extraImg3 = extraImg3;
 		this.created = created;
 		this.status = status;
+		this.guestRatings = guestRatings;
 		this.reservations = reservations;
 	}
 
@@ -284,6 +286,15 @@ public class InfoRoom implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "infoRoom")
+	public Set<GuestRating> getGuestRatings() {
+		return this.guestRatings;
+	}
+
+	public void setGuestRatings(Set<GuestRating> guestRatings) {
+		this.guestRatings = guestRatings;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "infoRoom")

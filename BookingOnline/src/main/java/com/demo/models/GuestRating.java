@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 23, 2022, 7:41:39 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 23, 2022, 9:05:58 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -52,7 +52,7 @@ public class GuestRating implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_room", nullable = false)
+	@JoinColumn(name = "room_id", nullable = false)
 	public InfoRoom getInfoRoom() {
 		return this.infoRoom;
 	}

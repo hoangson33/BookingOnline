@@ -224,6 +224,51 @@ html {
 .booking-form .submit-btn:focus {
     opacity: 0.9
 }
+
+
+
+
+
+
+
+.height-100 {
+    height: 100vh
+}
+
+.card {
+    width: 380px;
+    border: none;
+    height: 500px
+}
+
+.ratings {
+    margin-right: 10px
+}
+
+.ratings i {
+    color: #cecece;
+    font-size: 32px
+}
+
+.rating-color {
+    color: #fbc634 !important
+}
+
+.review-count {
+    font-weight: 400;
+    margin-bottom: 2px;
+    font-size: 24px !important
+}
+
+.small-ratings i {
+    color: #cecece
+}
+
+.review-stat {
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 2px
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <mt:layout_user2 title="Room edit">
@@ -316,10 +361,11 @@ function validateForm() {
                     <p class="lead">
                         <h3 style="color: #87CEFA"><strong>$${roomlist.total } / Per night</strong></h3></p>
                 </div>
+                
                 <ul class="list-group list-group-flush text-center">
                     <li style="color: black;" class="list-group-item"><i style="color: #87CEFA" class="fa fa-calendar"></i> ${roomlist.checkIn }</li>
                     <li style="color: black;" class="list-group-item"><i style="color: #87CEFA" class="fa fa-calendar"></i> ${roomlist.checkOut }</li>
-                    <li style="color: black;" class="list-group-item"><i style="color: #87CEFA" class="fa fa-clock-o"></i> 24/7 support</li>
+                    <li style="color: black;" class="list-group-item"><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i> ${fivestar } Reviews</li>
                     
                 </ul>
                 <div class="panel-footer">
@@ -344,6 +390,7 @@ function validateForm() {
 
   
     </div>
+    
     <!-- /.row -->
  </form> 
 <!-- <s:form method="post" modelAttribute="reservation" action="${pageContext.request.contextPath }/customer/book-room-cash">-->
@@ -351,7 +398,7 @@ function validateForm() {
     <section class="second">
 			
 	<div id="booking" class="section">
-    <div class="section-center">
+    <div style="margin-left: 500px; margin-top: 10px" class="col-sm-6">
         <div class="container">
             <div class="row">
                 <div class="booking-form">
@@ -408,10 +455,15 @@ function validateForm() {
             </div>
         </div>
     </div>
+    
+    
+    
+    
 </div>
 		
 	</section>
 	</form> 
+	
 <!--  	</s:form>-->
 	
 	

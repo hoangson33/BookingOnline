@@ -484,9 +484,16 @@ input[type="text"] {
               <div class="user__address"> <i style="color: #87CEFA" class="fa fa-calendar"></i> From: ${checkIn } | <i style="color: #87CEFA" class="fa fa-calendar"></i> To: ${checkOut }
                 <br><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${account.location }</div>
             </div>
+            <div class="details__user">
+              <div class="user__name"><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;${fivestar } Reviews
+                <br><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${fourstar } Reviews
+                <br><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${threestar } Reviews</div>
+              <div class="user__address"><i style="color: orange" class="fa fa-star"></i><i style="color: orange" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${twostar } Reviews
+                <br><i style="color: orange" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${onestar } Reviews</div>
+            </div>
           </div>
-			
-			
+          
+
 			 
       
 			

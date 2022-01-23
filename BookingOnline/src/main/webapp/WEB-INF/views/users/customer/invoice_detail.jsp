@@ -16,6 +16,8 @@
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
 		
+		
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		    
 <script>
 function myFunction() {
@@ -155,7 +157,46 @@ body {
     color: #fff !important
 }
 
+.input {
+  border: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  opacity: 0;
+}
 
+.label {
+  position: relative;
+  float: right;
+  color: #C8C8C8;
+}
+
+.label:before {
+  margin: 5px;
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 1.5em;
+  color: #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.input:checked ~ label:before {
+  color: #FFC107;
+}
+
+.label:hover ~ label:before {
+  color: #ffdb70;
+}
+
+.label:hover:before {
+  color: #FFC107;
+}
 
 
 	</style>
@@ -180,7 +221,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">
@@ -231,8 +272,27 @@ body {
 				                    </div>
 				                    <hr>
 				                </div>
-				                
-				                
+				                <c:if test="${ratingStar.score == 1 }">
+				          		<span class="d-block">Your reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 2 }">
+				          		<span class="d-block">Your reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;"  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 3 }">
+				          		<span class="d-block">Your reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;"  class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 4 }">
+				          		<span class="d-block">Your reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 5 }">
+				          		<span class="d-block">Your reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i></span>
+				                </c:if>
+				                <hr>
 				                <div class="d-flex justify-content-between align-items-center footer">
 				                    <div class="thanks"><span class="d-block font-weight-bold">Thanks for booking</span><span>Booking Hotel team</span></div>
 				                    <div class="d-flex flex-column justify-content-end align-items-end"><span class="d-block font-weight-bold">Need Help?</span><span>Call - 397850028</span></div>
@@ -241,16 +301,58 @@ body {
 				                <div class="d-flex justify-content-between align-items-center footer">
 				                	
 				                    
-				                	
+				                	<c:if test="${ratingStar.score == null }">
+				                    <div style="margin-left: 200px" class="col-md-6"><input data-toggle="modal" data-target="#staticBackdrop" type="button" class="form-control btn btn-success" value="Feedback us"></div>
+				                    </c:if>
+				                    <c:if test="${ratingStar.score != null }">
 				                    <div style="margin-left: 200px" class="col-md-6"><input type="button" class="form-control btn btn-success" value="Completed"></div>
-				                    
+				                    </c:if>
 				                    
 				                </div>
 				            </div>
 				        </div>
 				    </div>
 				</div>
-
+<s:form method="post" modelAttribute="guestRating" action="${pageContext.request.contextPath }/customer/add-guest-rating">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Please,give me 5 star</h4> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body mt-0">
+            <s:input path="infoRoom.idRoom" type="hidden" value="${invoice.infoRoom.idRoom }"/>
+                <div class="mt-3">
+				  <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox path="score" id="1"  class="form-check-input"  value="1" onclick="getSelectItemThat1(this.id)" /> <label class=" newsletter form-check-label" for="flexCheckDefault-1"><i style="color: orange;" class="fa fa-star"></i></label> </div>
+                    </div>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox path="score" id="2" class="form-check-input "  value="2" onclick="getSelectItemThat1(this.id)"/> <label class=" prospect form-check-label" for="flexCheckDefault-2"><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i></label> </div>
+                    </div>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox path="score" id="3" class="form-check-input "  value="3" onclick="getSelectItemThat1(this.id)"/> <label class=" event form-check-label" for="flexCheckDefault-3"><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i>
+                        </label> </div>
+                    </div>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox path="score" id="4" class="form-check-input "  value="4" onclick="getSelectItemThat1(this.id)"/> <label class=" customers form-check-label" for="flexCheckDefault-4">
+                        <i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i></label>
+                         </div>
+                    </div>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox path="score" id="5" class="form-check-input "  value="5" onclick="getSelectItemThat1(this.id)"/> <label class=" customers form-check-label" for="flexCheckDefault-5">
+                        <i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i></label> </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="modal-footer d-flex justify-content-between align-items-center">
+            <span>&nbsp;</span>
+            <button type="submit" class="btn btn-danger btn-sm" >Confirm</button> </div>
+        </div>
+    </div>
+</div>
+</s:form>
 
                 
             </div>
@@ -283,7 +385,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">
@@ -429,7 +531,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">
@@ -568,7 +670,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice/${account.idAcc}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">
@@ -666,6 +768,14 @@ body {
 
 function getSelectItemThat(id) {
     for (var i = 1;i <= 4; i++)
+    {
+        document.getElementById(i).checked = false;
+    }
+    document.getElementById(id).checked = true;
+}
+
+function getSelectItemThat1(id) {
+    for (var i = 1;i <= 5; i++)
     {
         document.getElementById(i).checked = false;
     }

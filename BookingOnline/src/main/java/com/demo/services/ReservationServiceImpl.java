@@ -110,6 +110,16 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.reservationOfCustomer(customerId);
 	}
 
+	@Override
+	public int totalInRoom() {
+		return reservationRepository.totalInRoom();
+	}
+
+	@Override
+	public Iterable<Reservation> allRoomPaymentCompleted() {
+		return reservationRepository.allRoomPaymentCompleted();
+	}
+
 
 
 	

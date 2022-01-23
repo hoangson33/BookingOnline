@@ -44,4 +44,7 @@ public interface ReservationService {
 	public Iterable<Reservation> reservationEnterpriseByIdRoom(int idRoom);
 	public Iterable<Reservation> reservationOfCustomer(String customerId);
 	
+	public int totalInRoom();
+	public Iterable<Reservation> allRoomPaymentCompleted();
+	
 }

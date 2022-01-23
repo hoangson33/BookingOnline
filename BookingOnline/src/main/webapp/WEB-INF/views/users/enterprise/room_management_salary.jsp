@@ -70,75 +70,70 @@
 <body>
 
 <div class="wrapper">
-   <!--   Creative Tim Branding   -->
-  <a href="${pageContext.request.contextPath }/enterprise/profile">
-    <div class="logo-container full-screen-table-demo">
+  <!--   Creative Tim Branding   -->
+  <a href="http://creative-tim.com">
+    <div class="logo-container">
       <div class="logo">
         <img width="70px" height="50px" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
       </div>
-      <div class="brand ">
+      <div class="brand">
         ${account.name } Hotel
       </div>
     </div>
   </a>
 
-  <div class="fresh-table toolbar-color-orange full-screen-table">
-  <!--
-    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
-    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
-  -->
-    <table id="fresh-table" class="table">
-      <thead>
-        <th data-field="id">ID Room</th>
-        <th data-field="img">Image</th>
-        <th data-field="name" data-sortable="true">Check in</th>
-        <th data-field="salary" data-sortable="true">Check out</th>
-        <th data-field="country" data-sortable="true">Adult</th>
-        <th data-field="city">Children</th>
-        <th data-field="status">Status</th>
-        <th data-field="actions" >Actions</th>
-      </thead>
-      <tbody>
-      <c:forEach var="allroom" items="${allrooms }">
-        <tr>
-          <td>${allroom.idRoom }</td>
-          <td >
-          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.imgRoom }"/>
-          
-          </td>
-          <td>${allroom.checkIn }</td>
-          <c:if test="${allroom.checkOut < datenow}">
-			              <td style="color: red;">${allroom.checkOut}<br>
-			              <small>you need to update this room !!</small>
-			              </td>
-			              </c:if>
-			              <c:if test="${allroom.checkOut > datenow}">
-			              <td >${allroom.checkOut}</td>
-			              </c:if>
-          <td>${allroom.guestAdult }</td>
-          <td>${allroom.guestChildren }</td>
-          <c:if test="${allroom.status == true }">
-			              <td><button type="button" class="btn btn-success">Available now</button></td>
-			              </c:if>
-			              <c:if test="${allroom.status != true }">
-			              <td><button type="button" class="btn btn-warning">Not Available</button></td>
-			              </c:if>
-          <td>
-          <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${allroom.idRoom}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
-          <c:forEach var="reservation" items="${reservations }">
-          
-	          <c:if test="${reservation.infoRoom.idRoom == allroom.idRoom}" >
-	          <a href="${pageContext.request.contextPath }/enterprise/invoice-idRoom/${allroom.idRoom}"><i style="color: red;" class="fa fa-info-circle fa-2x"><sup>new</sup></i></a>
-	          </c:if>
-          </c:forEach>
-          </td>
-        </tr>
-      </c:forEach>  
-      </tbody>
-    </table>
-  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="description">
+          <h2>Compact Highest Salary </h2>
+        </div>
 
-  
+        <div class="fresh-table toolbar-color-orange">
+        <!--
+          Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+          Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+        -->
+          <div class="toolbar">
+            <button id="alertBtn" class="btn btn-default">Alert</button>
+          </div>
+
+          <table id="fresh-table" class="table">
+            <thead>
+              <th data-field="id">ID Room</th>
+              <th data-field="name" data-sortable="true">Price</th>
+              <th data-field="salary" data-sortable="true">Sale</th>
+              <th data-field="country" data-sortable="true">Total</th>
+              <th data-field="city">Created</th>
+              <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+            </thead>
+            <tbody>
+            <c:forEach var="allroom" items="${allrooms }">
+              <tr>
+                <td>${allroom.infoRoom.idRoom }</td>
+                <td>$${allroom.infoRoom.price }</td>
+                <td>%${allroom.infoRoom.salePrice }</td>
+                <td>$${allroom.infoRoom.total }</td>
+                <td>${allroom.infoRoom.created }</td>
+                <td></td>
+              </tr>
+            </c:forEach>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="description description-footer">
+          <h2 id="sharrreTitle">Thank you for shares!</h2>
+          <br>
+          <button id="twitter" class="btn btn-info btn-social btn-twitter btn-round btn-fill btn-wd"><i class="fa fa-twitter"></i></button>
+          <button id="facebook" class="btn btn-info btn-social btn-facebook btn-round btn-fill btn-wd"><i class="fa fa-facebook-square"></i></button>
+
+
+          <p>Copyright &copy; 2019 <a href="http://creative-tim.com">Creative Tim</a>, made with <i class="fa fa-heart ct-heart"></i> for a better web.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -153,8 +148,8 @@
         <a href="javascript:void(0)" class="switch-trigger">
           <p>Full Background</p>
           <div class="switch"
-            data-off-label="OFF"
-            data-on-label="ON">
+            data-on-label="ON"
+            data-off-label="OFF">
             <input type="checkbox" checked data-target="section-header" data-type="parallax"/>
           </div>
           <div class="clearfix"></div>
@@ -173,17 +168,20 @@
           <div class="clearfix"></div>
         </a>
       </li>
-      <li class="header-title">Layouts</li>
-        <li class="active">
-        <a class="img-holder" href="${pageContext.request.contextPath }/enterprise/room-management-salary">
-          <img src="${pageContext.request.contextPath }/webapp/static/layout_room_management/img/compact.jpg">
-          <h5>Compact Highest Salary</h5>
+      <li class="header-title">Total: $${total }</li>
+      
+      <li>
+        <a class="img-holder" href="${pageContext.request.contextPath }/enterprise/room-management">
+          <img src="${pageContext.request.contextPath }/webapp/static/layout_room_management/img/full.jpg">
+          <h5>Full Screen Room Management</h5>
         </a>
       </li>
-        
+      
     </ul>
   </div>
 </div>
+
+
 
 <script>
   var $table = $('#fresh-table')
@@ -201,7 +199,7 @@
       $table.bootstrapTable('remove', {
         field: 'id',
         values: [row.id]
-      })
+     })
     }
   }
 

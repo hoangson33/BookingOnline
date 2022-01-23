@@ -756,6 +756,23 @@ public class EnterpriseController implements ServletContextAware {
 		
 		return "users/enterprise/room_management";
 	}
+	
+	@RequestMapping(value = "room-management-salary", method = RequestMethod.GET)
+	public String roomManagementSalary(Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		Account account = accountService.findByUsername2(name);
+		modelMap.put("account", account);
+		modelMap.put("reservations", reservationService.findAll());
+		modelMap.put("allrooms", reservationService.allRoomPaymentCompleted());
+		modelMap.put("datenow", new Date());
+		modelMap.put("total", reservationService.totalInRoom());
+		
+		
+
+		
+		return "users/enterprise/room_management_salary";
+	}
 	public double discountPrice(double price, double disount) {
 		if(disount != 0) {
 			return (price*disount)/100;

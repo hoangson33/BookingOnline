@@ -70,90 +70,17 @@
 
 
 
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 <style type="text/css">
-input {
-  border: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  opacity: 0;
-}
-
-label {
-  position: relative;
-  float: right;
-  color: #C8C8C8;
-}
-
-label:before {
-  margin: 5px;
-  content: "\f005";
-  font-family: FontAwesome;
-  display: inline-block;
-  font-size: 1.5em;
-  color: #ccc;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-input:checked ~ label:before {
-  color: #FFC107;
-}
-
-label:hover ~ label:before {
-  color: #ffdb70;
-}
-
-label:hover:before {
-  color: #FFC107;
-}
 
 
 
 
-.modal-header {
-    border-bottom: none
-}
 
-.modal-title {
-    font-size: 25px;
-    font-weight: 700;
-    color: #1A237E
-}
 
-.modal-body {
-    font-style: italic;
-    font-size: 15px;
-    font-weight: 500;
-    color: #1A237E
-}
 
-.checkbox-form {
-    background: #FFEBEE;
-    color: #D32F2F;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 1px
-}
-
-.learn {
-    text-decoration: none;
-    color: #fff
-}
-
-.add-list {
-    height: 45px;
-    line-height: 27px;
-    background-color: #D32F2F;
-    color: #fff !important
-}
 
 
 </style>
@@ -318,56 +245,30 @@ label:hover:before {
           <td>${allroom.name }</td>
           <td>${allroom.phone }</td>
           <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == true}">
-			              <td><button data-toggle="modal" data-target="#staticBackdrop" type="button" class="btn btn-success">Rating !!</button>
+			              <td><button  type="button" class="btn btn-success">Completed</button>
 
 			              </td>
-<s:form method="post" modelAttribute="guestRating" action="${pageContext.request.contextPath }/customer/add-reservation-cancel">
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="staticBackdropLabel">Please,give me 5 star</h4> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-            </div>
-            <div class="modal-body mt-0">
-                <div class="mt-3" style="margin-right: 100px; margin-bottom: 50px">
-  <s:checkbox path="score"  id="st1" value="1" />
-  <label for="st1"></label>
-  <s:checkbox path="score" id="st2" value="2" />
-  <label for="st2"></label>
-  <s:checkbox path="score" id="st3" value="3" />
-  <label for="st3"></label>
-  <s:checkbox path="score" id="st4" value="4" />
-  <label for="st4"></label>
-  <s:checkbox path="score" id="st5" value="5" />
-  <label for="st5"></label>
-                    
-                </div>
-            </div>
-            
-            <div class="modal-footer d-flex justify-content-between align-items-center">
-            <span>&nbsp;</span>
-            <button type="submit" class="btn btn-danger btn-sm" >Confirm</button> </div>
-        </div>
-    </div>
-</div>
-</s:form>
 		  </c:if>
 		  <td>${allroom.updated }</td>
 		
           <td>
-          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;"	 class="fa fa-edit fa-2x">Rating</i></a>
+          <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;"	 class="fa fa-edit fa-2x"></i></a>
           
           </td>
         </tr>
+
         </c:if>
+        
+		
+
       </c:forEach>  
+      
       </tbody>
     </table>
   </div>
 
   
 </div>
-
 
 
 
