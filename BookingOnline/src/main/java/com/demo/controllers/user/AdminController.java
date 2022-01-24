@@ -263,38 +263,65 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value = "editAcc", method = RequestMethod.POST )
 	public String editAcc(@ModelAttribute("account")@Valid Account account,BindingResult bindingResult,
-			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes, ModelMap modelMap) {
+			@RequestParam(value = "file") MultipartFile file , RedirectAttributes redirectAttributes, ModelMap modelMap
+			,@RequestParam("email")String email) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			modelMap.addAttribute("avatar", accountService.findAvatar(account.getIdAcc()));
 			
 			return "admin/account_edit";
 		}
-	
-		
 		Account accountOld = accountService.findIdAcc(account.getIdAcc());
-		
-		
-//		account.setUsername (accountOld.getUsername());
-		
-		account.setDatecreated(new Date());
-		
-//		account.setPassword(accountOld.getPassword());
-		String idRole2  = accountOld.getIdRole();
-		System.out.println("idRole2 :  " + idRole2);
-		account.setIdRole(idRole2);
-		account.setStatus(true);
-		account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
-		
-		String fileName = UUID.randomUUID().toString().replace("-", "");
-		String fileNameUpload = UploadHelper.upload(servletContext, file);
-		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
-		if(fileNameUpload != null) {
-			account.setAvatar(fileNameUpload);
-		}else {
-			account.setAvatar(accountOld.getAvatar());
+		System.out.println("id acc : " + account.getIdAcc());
+		System.out.println("email acc : " + accountOld.getEmail());
+		System.out.println("email : " + email);
+		List<Account>  allAccount = accountService.findAllAccountList(account.getIdAcc());
+		for(Account account1 : allAccount) {
+			if(!account1.getEmail().equalsIgnoreCase(email)) {
+				account.setDatecreated(new Date());
+				String idRole =  account.getIdRole();
+				account.setIdRole(idRole);
+				System.out.println("id role : " + idRole);
+				account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
+				account.setStatus(true);
+				String fileName = UUID.randomUUID().toString().replace("-", "");
+				String fileNameUpload = UploadHelper.upload(servletContext, file);
+				redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+				if(fileNameUpload != null) {
+					account.setAvatar(fileNameUpload);
+				}else {
+					account.setAvatar(accountOld.getAvatar());
+				}
+			}else if(account1.getEmail().equalsIgnoreCase(email) && account.getIdAcc().equalsIgnoreCase(account1.getIdAcc())){
+				account.setDatecreated(new Date());
+				account.setGender(accountOld.getGender());
+				String idRole =  account.getIdRole();
+				account.setIdRole(idRole);
+				System.out.println("id role : " + idRole);
+				account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
+				account.setStatus(true);
+				String fileName = UUID.randomUUID().toString().replace("-", "");
+				String fileNameUpload = UploadHelper.upload(servletContext, file);
+				redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+				if(fileNameUpload != null) {
+					account.setAvatar(fileNameUpload);
+				}else {
+					account.setAvatar(accountOld.getAvatar());
+				}
+			}else if(account1.getEmail().equalsIgnoreCase(email) && !account.getIdAcc().equalsIgnoreCase(account1.getIdAcc())){
+			
+				modelMap.addAttribute("avatar", accountService.findAvatar(account.getIdAcc()));
+				String avatar = accountService.findAvatar(account.getIdAcc());
+				System.out.println("avatar  : " + avatar);
+				modelMap.put("erroremail", "This email already exists !?");
+				modelMap.put("errorsemail", "Re-enter another email !");
+				return "admin/account_edit";
+			}
+			
 		}
-		accountService.save(account);
+		
+
+	accountService.save(account);
 		return "redirect:/admin/account-management";
 	}
 	

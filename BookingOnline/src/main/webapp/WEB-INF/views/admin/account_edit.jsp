@@ -247,7 +247,8 @@ function validateForm() {
 																placeholder="Email"  />
 										<s:errors path="email" cssClass="format"></s:errors>		
 </div>
-
+  	   <p style="color: red;">${erroremail}</p>
+                              <p style="color: red;">${errorsemail}</p>
 
 
 <div class="input-group mg-b-pro-edt">
