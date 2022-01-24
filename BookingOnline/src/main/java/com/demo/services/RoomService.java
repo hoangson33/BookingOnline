@@ -36,7 +36,7 @@ public interface RoomService {
 	public InfoRoom find(int id);
 	
 	
-
+	public Iterable<InfoRoom> roomInfoOfIdAcc(String idAcc);
 	
 	public List<InfoRoom> search(String city,String checkin , String checkout , int guestChildren, int guestAdult);
 	
@@ -46,5 +46,5 @@ public interface RoomService {
 	
 	public Iterable<InfoRoom> roomInfoByIdAccAll(String idAcc);
 	
-	
+	public Iterable<InfoRoom> reserInfoidAccEnter( String idAcc);
 }

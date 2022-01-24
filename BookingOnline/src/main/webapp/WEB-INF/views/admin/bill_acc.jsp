@@ -3,8 +3,6 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 
-
-
 <mt:layout_admin title="Index">
 
 	<jsp:attribute name="content">
@@ -166,7 +164,7 @@
 												<i class="fa fa-home"></i>
 											</div>
 											<div class="breadcomb-ctn">
-												<h2>Account List</h2>
+												<h2>Bill List</h2>
 												<p>Welcome to Nalika <span class="bread-ntd">Admin Template</span></p>
 											</div>
 										</div>
@@ -188,48 +186,38 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-status-wrap">
-                            <h4>Account Management</h4>
-                            <div class="add-product">
-                                <a href="${pageContext.request.contextPath }/admin/addAcc">Add</a>
+                            <h4>Bill List</h4>
+                            <div class="add-product" >
+              
                             </div>
-                            <div>
-                            <table >
-                                <tr>
-                                    <th>Image</th>
-                                    <th>IdAcc</th>
-                                    <th>Username</th>
+                            <table>
+                                <tr>    
+                                 	<th>Image</th>
+                                 	 <th>Room_id</th>
+                                 <th>Customer_id</th>
+                                    <th>Checkin</th>
+                                    <th>CheckOut</th>
                                     <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Gender</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>ID Role</th>
-                                    
-                                    <th>Setting</th>
+                                    <th>Phone</th>                     
+                                    <th>Children</th>                   
+                                    <th>Created</th>                                  
                                 </tr>
-                                <c:forEach var="account" items="${accounts }" >
-                                <tr>
-                                    <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}"  width="150px"/></td>
-                                    <c:if test="${account.idRole == 8}">
-                               			<td><a href="${pageContext.request.contextPath }/admin/billAcc/${account.idAcc}">${account.idAcc }</a></td>     
-                                     </c:if>
-                                     <c:if test="${account.idRole == 2}">
-                               			<td><a href="${pageContext.request.contextPath }/admin/room-list/${account.idAcc}">${account.idAcc }</a></td>     
-                                     </c:if>            
-                                    <td>${account.username }</td>
-                                    <td>${account.name }</td>
-                                    <td><button class="pd-setting">${account.status }</button></td>
-                                    <td>${account.gender }</td>
-                                    <td>${account.email }</td>
-                                    <td>${account.phone }</td>
-                                    <td>${account.idRole }</td>
-                                    
-                                    <td>
-                                        <a  href="${pageContext.request.contextPath }/admin/editAcc/${account.idAcc}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        <a href="${pageContext.request.contextPath }/admin/deleteAcc/${account.idAcc}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                    </td>
+                                  <c:forEach var="allroom" items="${reservationOfCustomer }">
+								  <tr>
+                                   
+                                     <td >
+          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
+          
+          </td>
+          							<td>${allroom.infoRoom.idRoom }</td>
+                                    <td>${allroom.customerId }</td>
+                                    <td>${allroom.checkIn }</td>
+         							 <td>${allroom.checkOut }</td>
+                                    <td>${allroom.name }</td>
+                                      <td>${allroom.phone }</td>
+                                    <td>${allroom.children }</td>
+                                    <td>${allroom.created }</td>
                                 </tr>
-                                	
                                 </c:forEach>
                             </table>
                             <div class="custom-pagination">
@@ -250,7 +238,5 @@
  
        
        	</jsp:attribute>
-       	
 </mt:layout_admin>
-
  

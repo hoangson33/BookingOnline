@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.demo.models.Account;
 import com.demo.models.InfoRoom;
+import com.demo.models.Reservation;
 
 @Repository
 public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
@@ -35,6 +36,9 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	public Iterable<InfoRoom> roomInfoByIdAcc(@Param("idAcc") String idAcc);
 	
 	@Query("from InfoRoom where account.idAcc = :idAcc")
+	public Iterable<InfoRoom> roomInfoOfIdAcc(@Param("idAcc") String idAcc);
+	
+	@Query("from InfoRoom where account.idAcc = :idAcc")
 	public Iterable<InfoRoom> roomInfoByIdAccAll(@Param("idAcc") String idAcc);
 	
 	@Query("from InfoRoom where account.idAcc = :idAcc and status = true")
@@ -53,4 +57,6 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	@Query("from InfoRoom where created >= :startDate and created <= :endDate")
 	public List<InfoRoom> searchDate(@Param("startDate") Date startDate,@Param("endDate") Date endDate);
 
+	@Query("from InfoRoom where account.idAcc = :idAcc")
+	public Iterable<InfoRoom> reserInfoidAccEnter(@Param("idAcc") String idAcc);
 }

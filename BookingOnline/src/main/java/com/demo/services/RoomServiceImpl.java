@@ -103,6 +103,17 @@ public class RoomServiceImpl implements RoomService {
 		return roomRepository.roomInfoByIdAccAll(idAcc);
 	}
 
+	@Override
+	public Iterable<InfoRoom> reserInfoidAccEnter(String idAcc) {
+		// TODO Auto-generated method stub
+		return roomRepository.reserInfoidAccEnter(idAcc);
+	}
+
+	@Override
+	public Iterable<InfoRoom> roomInfoOfIdAcc(String idAcc) {
+		return roomRepository.roomInfoByIdAcc(idAcc);
+	}
+
 
 
 

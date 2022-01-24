@@ -5,6 +5,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.demo.models.Account;
+import com.demo.models.InfoRoom;
 import com.demo.models.Reservation;
 import com.demo.models.Roles;
 import com.demo.repositories.ReservationRepository;
@@ -47,4 +48,10 @@ public interface ReservationService {
 	public int totalInRoom();
 	public Iterable<Reservation> allRoomPaymentCompleted();
 	
+	public Iterable<Reservation> reserInfoidAcc(String customerId);
+	
+	public Reservation roomInfoByIdReser(int idReservation);
+	
+	public void deleteById(int id);
+
 }

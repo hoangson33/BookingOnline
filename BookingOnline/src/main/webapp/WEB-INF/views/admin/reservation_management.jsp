@@ -166,7 +166,7 @@
 												<i class="fa fa-home"></i>
 											</div>
 											<div class="breadcomb-ctn">
-												<h2>Account List</h2>
+												<h2>Reservation List</h2>
 												<p>Welcome to Nalika <span class="bread-ntd">Admin Template</span></p>
 											</div>
 										</div>
@@ -188,48 +188,138 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-status-wrap">
-                            <h4>Account Management</h4>
+                            <h4>Reservation Management</h4>
                             <div class="add-product">
-                                <a href="${pageContext.request.contextPath }/admin/addAcc">Add</a>
+                        
                             </div>
                             <div>
                             <table >
                                 <tr>
-                                    <th>Image</th>
-                                    <th>IdAcc</th>
-                                    <th>Username</th>
+                                    <th>Id-Revation</th>
+                                    <th>Room-id</th>
+                                    <th>Customer-id</th>
+                                    <th>Checkin</th>
+                                    <th>Checkout</th>
                                     <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Gender</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>ID Role</th>
-                                    
+                                    <th>Status</th>
+                                    <th>Adult</th>
+                                     <th>Chilrent</th>
+                                      <th>Created</th>
                                     <th>Setting</th>
                                 </tr>
-                                <c:forEach var="account" items="${accounts }" >
+                                <c:forEach var="reva" items="${revations }" >
+                                    <!-- Cancelled -->
+                                <c:if test="${reva.statusCancel != false && reva.status != true && reva.paymentStatus == false }">
+                                
                                 <tr>
-                                    <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}"  width="150px"/></td>
-                                    <c:if test="${account.idRole == 8}">
-                               			<td><a href="${pageContext.request.contextPath }/admin/billAcc/${account.idAcc}">${account.idAcc }</a></td>     
-                                     </c:if>
-                                     <c:if test="${account.idRole == 2}">
-                               			<td><a href="${pageContext.request.contextPath }/admin/room-list/${account.idAcc}">${account.idAcc }</a></td>     
-                                     </c:if>            
-                                    <td>${account.username }</td>
-                                    <td>${account.name }</td>
-                                    <td><button class="pd-setting">${account.status }</button></td>
-                                    <td>${account.gender }</td>
-                                    <td>${account.email }</td>
-                                    <td>${account.phone }</td>
-                                    <td>${account.idRole }</td>
-                                    
-                                    <td>
-                                        <a  href="${pageContext.request.contextPath }/admin/editAcc/${account.idAcc}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        <a href="${pageContext.request.contextPath }/admin/deleteAcc/${account.idAcc}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                                	
+                                    <td>${reva.idReservation }</td>
+                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td>${reva.customerId }</td>
+                                    <td>${reva.checkIn }</td>
+                                    <td>${reva.checkOut }</td>
+                                    <td>${reva.name }</td>
+                                     <td>${reva.email }</td>
+                                      <td>${reva.phone }</td>
+                                       <c:if test="${reva.statusCancel != false && reva.status != true}">
+			              <td><button type="button" class="btn btn-danger" style="color: White;">Cancelled </button></td>
+			             				 </c:if>
+                                       <td>${reva.adult }</td>
+                                        <td>${reva.children }</td>
+                                         <td>${reva.created }</td>
+                                         <td>
+                                     <a  href="${pageContext.request.contextPath }/admin/editReservation/${reva.idReservation}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                         <a href="${pageContext.request.contextPath }/admin/deleteReservation/${reva.idReservation}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                          </td>                             
+                                   </tr>
+                                	  </c:if>
+                                	  
+                                	  
+                                   <!-- Awaiting -->  	  
+                 <c:if test="${reva.status == false && reva.statusCancel == false && reva.paymentStatus == false }">
+                                
+                                <tr>
+                                    <td>${reva.idReservation }</td>
+                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td>${reva.customerId }</td>
+                                    <td>${reva.checkIn }</td>
+                                    <td>${reva.checkOut }</td>
+                                    <td>${reva.name }</td>
+                                     <td>${reva.email }</td>
+                                      <td>${reva.phone }</td>
+                                      <c:if test="${reva.status == false && reva.statusCancel == false}">
+			              <td><button type="button" class="btn btn-warning" style="color: White;">Awaiting for approval</button></td>
+			              </c:if>
+
+                                       <td>${reva.adult }</td>
+                                        <td>${reva.children }</td>
+                                         <td>${reva.created }</td>
+                                         <td>
+                                     <a  href="${pageContext.request.contextPath }/admin/editReservation/${reva.idReservation}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                         <a href="${pageContext.request.contextPath }/admin/deleteReservation/${reva.idReservation}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                          </td>                             
+                                   </tr>
+                                	  </c:if>
+                                	  
+                                	       <!-- confirmed -->  
+                                	       
+                                	       
+                        <c:if test="${reva.status == true && reva.statusCancel == false && reva.paymentStatus == false}">
+                                
+                                <tr>
+                                    <td>${reva.idReservation }</td>
+                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td>${reva.customerId }</td>
+                                    <td>${reva.checkIn }</td>
+                                    <td>${reva.checkOut }</td>
+                                    <td>${reva.name }</td>
+                                     <td>${reva.email }</td>
+                                      <td>${reva.phone }</td>
+                                     <c:if test="${reva.status == true && reva.statusCancel == false}">
+			              <td><button type="button" class="btn btn-success" style="color: White;">Confirmed</button></td>
+		  </c:if>
+
+                                       <td>${reva.adult }</td>
+                                        <td>${reva.children }</td>
+                                         <td>${reva.created }</td>
+                                         <td>
+                                     <a  href="${pageContext.request.contextPath }/admin/editReservation/${reva.idReservation}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                         <a href="${pageContext.request.contextPath }/admin/deleteReservation/${reva.idReservation}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                          </td>                             
+                                   </tr>
+                                	  </c:if> 
+                                	  
+                                	  
+                                	  
+                                	  
+                                	        <!-- Completed -->
+                                	  
+                                	      <c:if test="${reva.status == true && reva.statusCancel == false && reva.paymentStatus == true}">
+                                
+                                <tr>
+                                    <td>${reva.idReservation }</td>
+                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td>${reva.customerId }</td>
+                                    <td>${reva.checkIn }</td>
+                                    <td>${reva.checkOut }</td>
+                                    <td>${reva.name }</td>
+                                     <td>${reva.email }</td>
+                                      <td>${reva.phone }</td>
+                                    <c:if test="${reva.status == true && reva.statusCancel == false && reva.paymentStatus == true}">
+			              <td><button type="button" class="btn btn-success" style="color: White;">Completed</button></td>
+		  </c:if>
+
+                                       <td>${reva.adult }</td>
+                                        <td>${reva.children }</td>
+                                         <td>${reva.created }</td>
+                                         <td>
+                                     <a  href="${pageContext.request.contextPath }/admin/editReservation/${reva.idReservation}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                         <a href="${pageContext.request.contextPath }/admin/deleteReservation/${reva.idReservation}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                          </td>                             
+                                   </tr>
+                                	  </c:if> 
+                                	  
                                 </c:forEach>
                             </table>
                             <div class="custom-pagination">

@@ -31,12 +31,15 @@ import com.demo.email.SmtpMailSender;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.InfoRoom;
+import com.demo.models.Reservation;
 import com.demo.models.Roles;
 import com.demo.services.AccountService;
+import com.demo.services.ReservationService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
 import com.demo.validators.AccountValidator;
 import com.demo.validators.InfoRoomValidator;
+import com.demo.validators.ReservationValidator;
 import com.demo.validators.RolesValidator;
 
 @Controller
@@ -45,6 +48,11 @@ public class AdminController implements ServletContextAware {
 	@Autowired
 	private RolesValidator rolesValidator;
 	
+	@Autowired
+	private ReservationValidator reservationValidator;
+	
+	@Autowired
+	private ReservationService reservationService;
 	
 	@Autowired
 	private AccountValidator accountValidator;
@@ -80,6 +88,17 @@ public class AdminController implements ServletContextAware {
 	@RequestMapping(value = {"","room-list"}, method = RequestMethod.GET)
 	public String roomList(ModelMap modelMap, Authentication authentication) {
 		modelMap.put("roomlists", roomService.findAllRoom());
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
+		
+		return "admin/room_list";
+	}
+	
+	@RequestMapping(value = "room-list/{idAcc}", method = RequestMethod.GET)
+	public String roomListIdAcc(@PathVariable("idAcc")String idAcc,ModelMap modelMap, Authentication authentication) {
+		modelMap.put("roomlists", roomService.roomInfoOfIdAcc(idAcc));
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 		modelMap.put("accountss", accountService.findByUsername(name));
@@ -372,8 +391,90 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	
+	@RequestMapping(value = "billAcc/{id}", method = RequestMethod.GET )
+	public String billAcc(@PathVariable("id") String id,Authentication authentication,ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
+		
+		modelMap.put("account", accountService.findIdAcc(id));
+		System.out.println("id : " + id);
+		modelMap.put("reservationOfCustomer", reservationService.reserInfoidAcc(id));
+		
+		modelMap.put("rooms", roomService.reserInfoidAccEnter(id));
+		return "admin/bill_acc";
+	}
+
+	@RequestMapping(value = "reservation-management", method = RequestMethod.GET)
+	public String reservationManagement(ModelMap modelMap,Authentication authentication) {
+		
+		modelMap.put("accounts", accountService.findAllAccount());
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("revations", reservationService.findAll());
+		System.out.println("name " + name);
+		
+		
+		
+		
+		return "admin/reservation_management";
+	}
 	
 	
+	@RequestMapping(value =  "editReservation/{idReservation}", method = RequestMethod.GET)
+	public String editReservation(@PathVariable("idReservation") int idReservation,ModelMap modelMap,Authentication authentication) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
+		
+		modelMap.put("reservation", reservationService.reserInfo2(idReservation));
+		System.out.println("username " + authentication.getName());
+		
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
+		
+		return "admin/reservation_edit";
+	}
+	
+	@RequestMapping(value = "editReservation", method = RequestMethod.POST )
+	public String editReservation(@ModelAttribute("reservation")@Valid Reservation reservation,BindingResult bindingResult,
+			Authentication authentication, ModelMap modelMap) {
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("accountss", accountService.findByUsername(name));
+		System.out.println("name " + name);
+		
+		reservationValidator.validate(reservation, bindingResult);
+		if(bindingResult.hasErrors()) {
+			
+			return "admin/reservation_edit";
+		}
+		
+		
+		
+		
+		
+		
+			
+		Reservation reservationOld = reservationService.roomInfoByIdReser(reservation.getIdReservation());
+		
+		reservation.setCreated(new Date());
+		reservation.setStatus(true);
+		reservation.setUpdated(new Date());
+		
+		reservationService.save(reservation);
+		return "redirect:/admin/reservation-management";
+	}
+	
+	@RequestMapping(value =  "deleteReservation/{id}", method = RequestMethod.GET)
+	public String deleteReservation(@PathVariable("id") int id) {
+		reservationService.deleteById(id);
+		
+		return "redirect:/admin/reservation-management";
+	}
 	
 	@Override
 	public void setServletContext(ServletContext servletContext) {

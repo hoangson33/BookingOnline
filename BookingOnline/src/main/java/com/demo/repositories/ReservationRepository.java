@@ -59,6 +59,16 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	@Query("from Reservation where paymentStatus = true")
 	public Iterable<Reservation> allRoomPaymentCompleted();
 	
+	@Query("from Reservation where customerId = :customerId")
+	public Iterable<Reservation> reserInfoidAcc(@Param("customerId") String customerId);
 	
 	
+	@Query("from Reservation where idReservation = :idReservation")
+	public Reservation roomInfoByIdReser(@Param("idReservation") int idReservation);
+	
+	
+	@Transactional
+	@Modifying
+	@Query("delete from Reservation where idReservation =:idReservation")
+	public void deleteById(@Param("idReservation") int idReservation);
 }

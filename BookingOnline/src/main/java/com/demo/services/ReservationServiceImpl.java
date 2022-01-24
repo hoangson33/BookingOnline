@@ -120,6 +120,24 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.allRoomPaymentCompleted();
 	}
 
+	@Override
+	public Iterable<Reservation> reserInfoidAcc(String customerId) {
+		// TODO Auto-generated method stub
+		return reservationRepository.reserInfoidAcc(customerId);
+	}
+
+	@Override
+	public Reservation roomInfoByIdReser(int idReservation) {
+		
+		return reservationRepository.roomInfoByIdReser(idReservation);
+	}
+
+	@Override
+	public void deleteById(int id) {
+		reservationRepository.deleteById(id);
+		
+	}
+
 
 
 	

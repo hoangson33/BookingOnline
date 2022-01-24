@@ -286,7 +286,7 @@ function validateForm() {
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-user"
 																aria-hidden="true"></i></span>
-<s:input path="location" type="text" class="form-control" placeholder="Address"/>
+<s:input path="location" type="text" class="form-control" placeholder="City"/>
 <s:errors path="location" cssClass="format"></s:errors>
 </div>
 
@@ -302,7 +302,7 @@ function validateForm() {
 <div class="input-group mg-b-pro-edt">
 <span class="input-group-addon"><i class="icon nalika-user"
 																aria-hidden="true"></i></span>
-<s:input path="locationDetail" type="text" class="form-control" placeholder="City"/>
+<s:input path="locationDetail" type="text" class="form-control" placeholder="LocationDetails"/>
 </div>
 <s:errors path="locationDetail" cssClass="format"></s:errors>
 <s:select path="idRole" class="form-control pro-edt-select form-control-primary">

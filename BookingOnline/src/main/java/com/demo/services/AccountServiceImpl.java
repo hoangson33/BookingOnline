@@ -108,6 +108,12 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findAllAccountList(idAcc);
 	}
 
+	@Override
+	public String findIdAccUser(String username) {
+		
+		return accountRepository.findIdAccUser(username);
+	}
+
 
 
 

@@ -34,5 +34,8 @@ public interface AccountService extends UserDetailsService {
 
 	
 	public String findIdAccs (String email);
+	
+	
+	public String findIdAccUser (String username);
 	public String findPass(String username);
 }

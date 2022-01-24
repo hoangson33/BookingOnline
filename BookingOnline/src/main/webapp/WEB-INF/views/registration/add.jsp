@@ -70,9 +70,7 @@ function validateForm() {
                             <s:input path="email" style="color: white;" type="text" name="email"  />
                             	<s:errors path="email" cssClass="format"></s:errors>
                             
-                            <label for="email" class="form-label">Email</label>
-                            	   <p style="color: red;">${error}</p>
-                              <p style="color: red;">${errors}</p>
+                            <label for="email" class="form-label">Email</label>                    	   
                         </div>
                         <div class="form-group form-input">
                             <s:input path="location" style="color: white;" type="text" name="location"  />                                                 
@@ -113,12 +111,11 @@ function validateForm() {
   
                         
 
-                        <div class="form-submit form-inline">
+	<p style="color: red;">${error}</p>
+                        <div class="form-submit">
                         	<span>&nbsp;</span>
                             <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
-                            <a href="${pageContext.request.contextPath }/login/index" style="margin-left: 150px" >you have an account?</a>
                         </div>
-                        
                     </s:form>
                 </div>
             </div>

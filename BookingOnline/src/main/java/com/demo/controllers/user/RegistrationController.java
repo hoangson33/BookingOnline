@@ -1,3 +1,4 @@
+
 package com.demo.controllers.user;
 
 import java.util.Date;
@@ -57,9 +58,10 @@ public class RegistrationController {
 		return "registration/add";
 	}
 	
+	
 	@RequestMapping(value = "add" , method = RequestMethod.POST)
 	public String add(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult 
-			,ModelMap modelMap ,@RequestParam("email") String email,@RequestParam("phone") int phone) {
+			,ModelMap modelMap ,@RequestParam("email") String email,@RequestParam("phone") int phone, @RequestParam("username") String username) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "registration/add";
@@ -71,8 +73,10 @@ public class RegistrationController {
 		System.out.println("email :" + email);
 		String idacc = accountService.findIdAccs(email);
 		System.out.println("idAcc : " + idacc);
+		System.out.println("Username : " + username);
+		String idaccuser = accountService.findIdAccUser(username);
 		
-			if(idacc == null) {
+			if(idacc == null && idaccuser == null) {
 			String idRole = roleService.findRoleByNameRole(account.getIdRole());
 			int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
 			account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
@@ -85,10 +89,10 @@ public class RegistrationController {
 			account.setPassword(hash);
 			account.setAvatar("anhmacdinh.png");
 			
-			registrationService.save(account);
+			//registrationService.save(account);
 			}else {
-				modelMap.put("error", "This email already exists !?");
-				modelMap.put("errors", "Re-enter another email !");
+				modelMap.put("error", "Username or Email already registered !");
+			
 				return "registration/add";
 			}
 			return "redirect:/registration/index";

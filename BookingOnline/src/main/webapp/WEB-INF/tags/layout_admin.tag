@@ -398,6 +398,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <li><a title="Dashboard v.3" href="${pageContext.request.contextPath }/admin/role-management"> <span class="mini-sub-pro">Role List</span></a></li>
 <li><a title="Product List" href="${pageContext.request.contextPath }/admin/room-list"><span class="mini-sub-pro">Room List</span></a></li>
 <li><a title="Product Edit" href="${pageContext.request.contextPath }/admin/room-edit">Room Edit</span></a></li>
+<li><a title="Product Edit" href="${pageContext.request.contextPath }/admin/reservation-management">Reservation</span></a></li>
 <li><a title="Product Detail" href="product-detail.html"><span class="mini-sub-pro">Product Detail</span></a></li>
 <li><a title="Product Cart" href="product-cart.html"><span class="mini-sub-pro">Product Cart</span></a></li>
 <li><a title="Product Payment" href="product-payment.html"><span class="mini-sub-pro">Product Payment</span></a></li>
