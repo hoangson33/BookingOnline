@@ -104,11 +104,27 @@ public class CustomerController implements ServletContextAware{
 	
 	private int children;
 	
+	private String error;
+	
+	private String errorPeopel;
+	
 	
 	
 	
 
 	
+	public String getErrorPeopel() {
+		return errorPeopel;
+	}
+	public void setErrorPeopel(String errorPeopel) {
+		this.errorPeopel = errorPeopel;
+	}
+	public String getError() {
+		return error;
+	}
+	public void setError(String error) {
+		this.error = error;
+	}
 	public String getCheckIn() {
 		return checkIn;
 	}
@@ -333,6 +349,9 @@ public class CustomerController implements ServletContextAware{
 	public String viewRoom(@RequestParam("idRoom") int idRoom,ModelMap modelMap
 			,Authentication authentication ) {
 	
+		modelMap.put("errorCheckDate", getError());
+		modelMap.put("errorCheckPeople", getErrorPeopel());
+		
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 
@@ -431,8 +450,27 @@ public class CustomerController implements ServletContextAware{
 			@RequestParam("checkIn")String checkIn, @RequestParam("checkOut")String checkOut,
 			@RequestParam("name")String name,@RequestParam("phone")int phone, @RequestParam("email")String email,
 			@RequestParam("adult") int adult,@RequestParam("children") int children,Authentication authentication,
-			@RequestParam("idRoom") int idRoom) {
+			@RequestParam("idRoom") int idRoom,@RequestParam("checkInRoom")String checkInRoom, @RequestParam("checkOutRoom")String checkOutRoom,
+			@RequestParam("adultRoom") int adultRoom,@RequestParam("childrenRoom") int childrenRoom) {
 		
+		
+		System.out.println("checkInRoom " + checkInRoom.replace("-",""));
+		System.out.println("checkOutRoom " + checkOutRoom.replace("-",""));
+		
+		int checkinroom = Integer.parseInt(checkInRoom.replace("-","")) ;
+		int checkoutroom = Integer.parseInt(checkOutRoom.replace("-",""));
+		
+		int checkin = Integer.parseInt(checkIn.replace("-","")) ;
+		int checkout = Integer.parseInt(checkOut.replace("-","")) ;
+		if(checkin < checkinroom || checkout > checkoutroom) {
+			setError("Your checkin or checkout date must correspond to the hotel's checkin and checkout date !");
+			return "redirect:/customer/view-room?idRoom=" + idRoom;
+		}
+		
+		if(adult > adultRoom || children > childrenRoom) {
+			setErrorPeopel("The number of adults and children must correspond to the hotel!");
+			return "redirect:/customer/view-room?idRoom=" + idRoom;
+		}
 		
 		String names = authentication.getName();
 
@@ -468,7 +506,6 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("idRoom", idRoom);
 		
 		modelMap.put("fivestar", guestRatingService.count5Star(idRoom));
-		System.out.println("5star " + guestRatingService.count5Star(idRoom));
 		modelMap.put("fourstar", guestRatingService.count4Star(idRoom));
 		modelMap.put("threestar", guestRatingService.count3Star(idRoom));
 		modelMap.put("twostar", guestRatingService.count2Star(idRoom));
@@ -542,6 +579,9 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("datenow", new Date());
 		
 		
+
+		modelMap.put("guestRatings", guestRatingService.findRatingRoomById(account.getIdAcc()));
+		
 		return "users/customer/room_management";
 	}
 
@@ -577,8 +617,7 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("cancelledBy", reservationCancelByWho);
 		GuestRating guestRating = new GuestRating();
 		modelMap.put("guestRating", guestRating);
-		Reservation reservation = reservationService.reserInfo2(idReservation);
-		modelMap.put("ratingStar", guestRatingService.findRatingRoomByIdCus(reservation.getInfoRoom().getIdRoom(), account.getIdAcc()));
+		modelMap.put("ratingStar", guestRatingService.findRatingRoomByIdCus(idReservation, account.getIdAcc()));
 		return "users/customer/invoice_detail"; 
 	}
 	

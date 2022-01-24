@@ -39,6 +39,7 @@
 											<option value="Can Tho">Can Tho</option>
 											<option value="Kien Giang">Kien Giang</option>
 											<option value="Ben Tre">Ben Tre</option>
+											<option value="Ben Tre">Quang Ninh</option>
 										</select>
 									</div>
 									
@@ -358,60 +359,28 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+			<c:forEach var="roomlist" items="${roomlists }">
+				<div class="col-md-4 text-center">
 					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img1.jpg"
+						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"
 							alt="room img" class="img-fluid"></a>
 						<h5 class="mb-15">
-							<a href="#">Residential</a>
+							<a href="#">${roomlist.roomCategory }</a>
 						</h5>
-						<p>Pellentesque nulla magna, accumsan sed ante quis, gravida
-							feugiat turpis. Vivamus et fringilla ligula.</p>
-						<span class="divider"></span>
+						<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
+						<p><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${roomlist.account.location }</p>
+						
+						<hr>
 						<h4 class="price color-66 mb-15">
-							$80.00 <span>/ Per Night</span>
+							$${roomlist.total } <span>/ Per Night</span>
 						</h4>
-						<a href="#" class="btn-default read-more solid-bg-btn"><span>Book
+						<a href="${pageContext.request.contextPath }/customer/view-room?idRoom=${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Book
 								Now <i class="ion-android-arrow-dropright"></i>
 						</span></a>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img2.jpg"
-							alt="room img" class="img-fluid"></a>
-						<h5 class="mb-15">
-							<a href="#">Luxurious</a>
-						</h5>
-						<p>Pellentesque nulla magna, accumsan sed ante quis, gravida
-							feugiat turpis. Vivamus et fringilla ligula.</p>
-						<span class="divider"></span>
-						<h4 class="price color-66 mb-15">
-							$120.00 <span>/ Per Night</span>
-						</h4>
-						<a href="#" class="btn-default read-more solid-bg-btn"><span>Book
-								Now <i class="ion-android-arrow-dropright"></i>
-						</span></a>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="single-room">
-						<a href="#" class="room-img"><img src="${pageContext.request.contextPath }/webapp/static/user/images/room-img3.jpg"
-							alt="room img" class="img-fluid"></a>
-						<h5 class="mb-15">
-							<a href="#">Delux</a>
-						</h5>
-						<p>Pellentesque nulla magna, accumsan sed ante quis, gravida
-							feugiat turpis. Vivamus et fringilla ligula.</p>
-						<span class="divider"></span>
-						<h4 class="price color-66 mb-15">
-							$360.00 <span>/ Per Night</span>
-						</h4>
-						<a href="#" class="btn-default read-more solid-bg-btn"><span>Book
-								Now <i class="ion-android-arrow-dropright"></i>
-						</span></a>
-					</div>
-				</div>
+			</c:forEach>
+				
 			</div>
 		</div>
 	</section>

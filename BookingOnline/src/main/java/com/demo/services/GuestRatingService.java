@@ -11,10 +11,10 @@ import com.demo.models.Roles;
 
 public interface GuestRatingService {
 	
-
+	public Iterable<GuestRating> findRatingRoomById(String idCustomer);
 	
 	public GuestRating save(GuestRating guestRating);
-	public GuestRating findRatingRoomByIdCus(int idRoom,String idCustomer);
+	public GuestRating findRatingRoomByIdCus(int idReservation,String idCustomer);
 	
 	public int count5Star(int idRoom);
 	

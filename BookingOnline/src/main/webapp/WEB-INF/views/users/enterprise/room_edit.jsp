@@ -271,7 +271,7 @@ function validateForm() {
 					<input  onchange="showMainImg(this)" type="file" name="mainImage" id="firstimg" style="display:none; visibility: none;"/> 
 				
 					
-					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img width="700" height="700" id="mainImg" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlists.imgRoom}" alt="room img" class="img-fluid rounded"></label>
+					<div class="room-img"><label for="firstimg" ><i class="fa fa-plus "></i><img  id="mainImg" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlists.imgRoom}" alt="room img" class="img-fluid rounded"></label>
 					
 					</div>
 				</div>

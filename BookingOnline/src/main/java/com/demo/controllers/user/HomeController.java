@@ -47,6 +47,7 @@ public class HomeController {
 
 		modelMap.put("accounts", accountService.findByUsername(name));
 		modelMap.put("accountEnters", accountService.findAllAccEnterPrise());
+		modelMap.put("roomlists", roomService.findAllRoom());
 		return "users/home/index";
 	}
 	

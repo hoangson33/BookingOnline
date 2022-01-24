@@ -108,7 +108,6 @@
   -->
     <table id="fresh-table" class="table">
       <thead>
-      	<th data-field="back"><a href="${pageContext.request.contextPath }/enterprise/room-management" type="button" class="btn btn-warning fa fa-arrow-left">Back</a></th>
         <th data-field="id">ID Reservation</th>
         <th data-field="img">Image</th>
         <th data-field="checkin" data-sortable="true">Check in</th>
@@ -126,7 +125,6 @@
         <!-- Cancelled -->
         <c:if test="${allroom.statusCancel != false && allroom.status != true && allroom.paymentStatus == false }">
         <tr style="background-color: rgba(255, 0, 0, 0.4);">
-        	<td></td>
           <td>${allroom.idReservation }</td>
           <td >
           <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
@@ -157,7 +155,6 @@
         <!-- Awaiting -->
         <c:if test="${allroom.status == false && allroom.statusCancel == false && allroom.paymentStatus == false }">
         <tr style="background-color: rgba(255, 165, 0, 0.4);">
-        	<td></td>
           <td>${allroom.idReservation }</td>
           <td >
           <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
@@ -190,7 +187,6 @@
         <!-- confirmed -->
         <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == false}">
         <tr style="background-color: rgba(255,0,255,0.3);">
-        	<td></td>
           <td>${allroom.idReservation }</td>
           <td >
           <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
@@ -230,10 +226,9 @@
         <!-- Completed -->
         <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == true}">
         <tr style="background-color: rgba(0,255,0,0.3);">
-        	<td></td>
           <td>${allroom.idReservation }</td>
           <td >
-          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom	.imgRoom }"/>
+          <img class="rounded" width="100px" height="100px" src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${allroom.infoRoom.imgRoom }"/>
           
           </td>
           <td>${allroom.checkIn }</td>
@@ -244,11 +239,20 @@
           <td>${allroom.children }</td>
           <td>${allroom.name }</td>
           <td>${allroom.phone }</td>
-          <c:if test="${allroom.status == true && allroom.statusCancel == false && allroom.paymentStatus == true}">
-			              <td><button  type="button" class="btn btn-success">Completed</button>
+          <c:forEach var="guestRating" items="${guestRatings }">
+          
+          			<c:if test="${guestRating.infoRoom.idRoom == allroom.infoRoom.idRoom && guestRating.idReservation == allroom.idReservation}">
+                    <td><button  type="button" class="btn btn-success">Rated !!!</button></td>
+			        </c:if>
+			        
+			        <c:if test="${guestRating.infoRoom.idRoom == allroom.infoRoom.idRoom && guestRating.idReservation != allroom.idReservation}">
+                    <td><a style="color: orange;" href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}" type="button" class="btn btn-success">Completed<br><small>please give us a feedback .</small></a></td>
 
-			              </td>
-		  </c:if>
+			        
+			        </c:if>
+			        
+		</c:forEach>	        
+			        
 		  <td>${allroom.updated }</td>
 		
           <td>

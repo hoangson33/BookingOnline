@@ -91,7 +91,7 @@
 							<h4 class="price color-66 mb-15">
 								$${roomlist.total } <span>/ Per Night</span>
 							</h4>
-							<a href="${pageContext.request.contextPath }/enterprise/edit-room/enterprise/edit-room?idRoom=${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Details <i class="ion-android-arrow-dropright"></i>
+							<a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${roomlist.idRoom}" class="btn-default read-more solid-bg-btn"><span>Details <i class="ion-android-arrow-dropright"></i>
 							</span></a>
 						</div>
 					</div>

@@ -221,7 +221,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/room-management">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">
@@ -322,6 +322,7 @@ body {
             </div>
             <div class="modal-body mt-0">
             <s:input path="infoRoom.idRoom" type="hidden" value="${invoice.infoRoom.idRoom }"/>
+            <s:input path="idReservation" type="hidden" value="${invoice.idReservation }"/>
                 <div class="mt-3">
 				  <div class="p-2 rounded checkbox-form">
                         <div class="form-check"> <s:checkbox path="score" id="1"  class="form-check-input"  value="1" onclick="getSelectItemThat1(this.id)" /> <label class=" newsletter form-check-label" for="flexCheckDefault-1"><i style="color: orange;" class="fa fa-star"></i></label> </div>
@@ -385,7 +386,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/room-management">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">
@@ -531,7 +532,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/room-management">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">
@@ -670,7 +671,7 @@ body {
             <div id="content" class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                 
-                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/invoice-idRoom/${invoice.infoRoom.idRoom}">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
+                    <h4 style="color: #87CEFA;" class="text-right"><a style="text-decoration: none" href="${pageContext.request.contextPath }/customer/room-management">Invoice </a><i class="fa fa-arrow-right"></i> Detail invoice</h4>
                 </div>
                
                 <div class="container mt-5 mb-5">

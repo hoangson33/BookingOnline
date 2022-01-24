@@ -323,7 +323,7 @@ public class AdminController implements ServletContextAware {
 		body += "Time check in: " + infoRoom.getCheckIn() + ", Time check out: " + infoRoom.getCheckOut() + "<br>";
 		body += "Is required to register on : " + infoRoom.getCreated() + "<br>" + "Thank you" + "<br>" +"The BookingHotel Team";
 		smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
-		roomService.delete(id);
+		roomService.deleteById(id);
 		
 		return "redirect:/admin/room-list-approval";
 	}

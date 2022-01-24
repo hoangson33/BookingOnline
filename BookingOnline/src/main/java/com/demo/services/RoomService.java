@@ -18,7 +18,7 @@ public interface RoomService {
 	
 	public InfoRoom save(InfoRoom infoRoom);
 	
-	public void delete(int id);
+	public void deleteById(int id);
 	
 	public Iterable<InfoRoom> findRoomTrueOfAcc(String idAcc);
 	

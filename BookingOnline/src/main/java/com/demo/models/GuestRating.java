@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 23, 2022, 9:05:58 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 24, 2022, 12:54:17 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -25,16 +25,19 @@ public class GuestRating implements java.io.Serializable {
 	private InfoRoom infoRoom;
 	private double score;
 	private String idCustomer;
+	private int idReservation;
 	private Date created;
 	private boolean status;
 
 	public GuestRating() {
 	}
 
-	public GuestRating(InfoRoom infoRoom, double score, String idCustomer, Date created, boolean status) {
+	public GuestRating(InfoRoom infoRoom, double score, String idCustomer, int idReservation, Date created,
+			boolean status) {
 		this.infoRoom = infoRoom;
 		this.score = score;
 		this.idCustomer = idCustomer;
+		this.idReservation = idReservation;
 		this.created = created;
 		this.status = status;
 	}
@@ -77,6 +80,15 @@ public class GuestRating implements java.io.Serializable {
 
 	public void setIdCustomer(String idCustomer) {
 		this.idCustomer = idCustomer;
+	}
+
+	@Column(name = "id_reservation", nullable = false)
+	public int getIdReservation() {
+		return this.idReservation;
+	}
+
+	public void setIdReservation(int idReservation) {
+		this.idReservation = idReservation;
 	}
 
 	@Temporal(TemporalType.DATE)

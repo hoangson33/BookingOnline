@@ -406,9 +406,12 @@ function validateForm() {
                         <h1 style="color: #87CEFA">Make your reservation</h1>
                     </div>
                     	<input name="idRoom" type="hidden" value="${roomlist.idRoom }">
-                    	<!--<s:input type="hidden" path="infoRoom.idRoom" value="${roomlist.idRoom }"/>
-                    	<s:input type="hidden" path="customerId" value="${account.idAcc }"/>-->
+                    	<input type="hidden" name="checkInRoom" value="${roomlist.checkIn }"/>
+                    	<input type="hidden" name="checkOutRoom" value="${roomlist.checkOut }"/>
+                    	<input type="hidden" name="adultRoom" value="${roomlist.guestAdult }"/>
+                    	<input type="hidden" name="childrenRoom" value="${roomlist.guestChildren }"/>
                         <div class="form-group"><label style="color: #87CEFA">Fullname</label> <input minlength="3" maxlength="20" name="name" value="${account.name }" class="form-control" type="text" placeholder="Your Name..."/> <span class="form-label">Destination</span> </div>
+                        <label style="color: red;">${errorCheckDate }</label>
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label style="color: #87CEFA" for="booking-checkin">CHECK IN Date</label><input name="checkIn" value="${checkIn }" 
@@ -441,7 +444,7 @@ function validateForm() {
                             <div class="col-md-6">
                                 <div class="form-group"><label style="color: #87CEFA">Children</label> <input   name="children" value="1" class="form-control" type="number" placeholder="Number of Children"/> </div>
                             </div>
-                             <p style="color: red;">${errorchildren}</p>
+                             <p style="color: red;">${errorCheckPeople}</p>
                         </div>
                         
                         <div style="margin-left: 190px" class="row ">

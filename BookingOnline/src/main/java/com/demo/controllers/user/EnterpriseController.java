@@ -365,6 +365,7 @@ public class EnterpriseController implements ServletContextAware {
 		
 		
 		infoRoom.setCreated(new Date());
+		infoRoom.setTotal(infoRoom.getPrice()-(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice())));
 		infoRoom.setStatus(false);
 		roomService.save(infoRoom);
 		return "redirect:/enterprise/room-list";
@@ -438,7 +439,7 @@ public class EnterpriseController implements ServletContextAware {
 			}
 			
 			infoRoom.setCreated(new Date());
-			infoRoom.setTotal(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice()));
+			infoRoom.setTotal(infoRoom.getPrice()-(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice())));
 			infoRoom.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
 			infoRoom.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
 			infoRoom.setStatus(false);

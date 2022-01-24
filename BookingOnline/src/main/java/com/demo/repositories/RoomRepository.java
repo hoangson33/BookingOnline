@@ -3,10 +3,12 @@
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.models.Account;
 import com.demo.models.InfoRoom;
@@ -56,6 +58,12 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	
 	@Query("from InfoRoom where created >= :startDate and created <= :endDate")
 	public List<InfoRoom> searchDate(@Param("startDate") Date startDate,@Param("endDate") Date endDate);
+	
+	
+	@Transactional
+	@Modifying
+	@Query("delete from InfoRoom where idRoom =:idRoom")
+	public void deleteById(@Param("idRoom") int idRoom);
 
 	@Query("from InfoRoom where account.idAcc = :idAcc")
 	public Iterable<InfoRoom> reserInfoidAccEnter(@Param("idAcc") String idAcc);

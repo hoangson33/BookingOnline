@@ -12,8 +12,11 @@ import com.demo.models.Reservation;
 
 @Repository
 public interface GuestRatingRepository extends CrudRepository<GuestRating, Integer>{
-	@Query("from GuestRating where infoRoom.idRoom = :idRoom and idCustomer = :idCustomer")
-	public GuestRating findRatingRoomByIdCus(@Param("idRoom") int idRoom,@Param("idCustomer") String idCustomer);
+	@Query("from GuestRating where idReservation = :idReservation and idCustomer = :idCustomer")
+	public GuestRating findRatingRoomByIdCus(@Param("idReservation") int idReservation,@Param("idCustomer") String idCustomer);
+	
+	@Query("from GuestRating where idCustomer = :idCustomer")
+	public Iterable<GuestRating> findRatingRoomById(@Param("idCustomer") String idCustomer);
 	
 	@Query("select COUNT(*) from GuestRating where infoRoom.idRoom = :idRoom and score = 5")
 	public int count5Star(@Param("idRoom") int idRoom);

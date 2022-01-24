@@ -26,8 +26,8 @@ public class GuestRatingServiceImpl implements GuestRatingService {
 	}
 
 	@Override
-	public GuestRating findRatingRoomByIdCus(int idRoom, String idCustomer) {
-		return guestRatingRepository.findRatingRoomByIdCus(idRoom, idCustomer);
+	public GuestRating findRatingRoomByIdCus(int idReservation, String idCustomer) {
+		return guestRatingRepository.findRatingRoomByIdCus(idReservation, idCustomer);
 	}
 
 	@Override
@@ -53,6 +53,11 @@ public class GuestRatingServiceImpl implements GuestRatingService {
 	@Override
 	public int count1Star(int idRoom) {
 		return guestRatingRepository.count1Star(idRoom);
+	}
+
+	@Override
+	public Iterable<GuestRating> findRatingRoomById(String idCustomer) {
+		return guestRatingRepository.findRatingRoomById(idCustomer);
 	}
 	
 	
