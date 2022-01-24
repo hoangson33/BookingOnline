@@ -431,6 +431,7 @@ public class AdminController implements ServletContextAware {
 		System.out.println("name " + name);
 		
 		modelMap.put("reservation", reservationService.reserInfo2(idReservation));
+		
 		System.out.println("username " + authentication.getName());
 		
 		modelMap.put("accountss", accountService.findByUsername(name));

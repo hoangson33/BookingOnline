@@ -118,7 +118,7 @@ type="java.lang.String"%>
 									<li><a href="${pageContext.request.contextPath }/roomlist/welcome">Room List</a></li>
 									<li><a href="${pageContext.request.contextPath }/roomdetails/welcome">Room Details</a></li>
 								</ul></li>
-							<li><a href="${pageContext.request.contextPath }/aboutus/welcome">About Us</a></li>
+							<li><a href="${pageContext.request.contextPath }/aboutus/welcome">About Us</a></li>	
 								<li><a href="${pageContext.request.contextPath }/spa/welcome">Spa</a></li>
 							<li><a href="${pageContext.request.contextPath }/contact/welcome">Contact</a></li>	
 							</c:if>
@@ -127,14 +127,17 @@ type="java.lang.String"%>
 					
 						<s:authorize access="hasRole('ROLE_CUSTOMER')">
 							<li><span class="avatar avatar-sm rounded-circle">
-							<c:forEach var="account" items="${accounts }" >
+							
+				                 	<c:forEach var="account" items="${accounts }" >
 				                  <img alt="Image placeholder" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
-				                </c:forEach>
-				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
+				                </c:forEach></span>		                
+							
+							<li><a href="#">${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/customer">Profile's customer</a></li>
+									<li><a href="${pageContext.request.contextPath }/customer">Profile's customer</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
-							</ul>
+								</ul></li>
+
 							</s:authorize>
 						
 						
@@ -147,14 +150,19 @@ type="java.lang.String"%>
 							
 				                 	<c:forEach var="account" items="${accounts }" >
 				                  <img alt="Image placeholder" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
-				                </c:forEach>				                
-				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
+				                </c:forEach></span>		                
+
+							<li><a href="#">${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
-							<li><a href="${pageContext.request.contextPath }/enterprise/addRoom?name=${pageContext.request.userPrincipal.name }">Add room</a></li>
+									<li><a href="${pageContext.request.contextPath }/enterprise/addRoom?name=${pageContext.request.userPrincipal.name }">Add room</a></li>
 							<li><a href="${pageContext.request.contextPath }/enterprise/profile">Profile's enterprise</a></li>
 							<li><a href="${pageContext.request.contextPath }/enterprise/room-list">Room list</a></li>
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
-							</ul>
+								</ul></li>
+							
+							
+							
+							
 							</s:authorize>
 							
 							
