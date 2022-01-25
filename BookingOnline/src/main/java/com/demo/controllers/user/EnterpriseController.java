@@ -774,6 +774,14 @@ public class EnterpriseController implements ServletContextAware {
 		
 		return "users/enterprise/room_management_salary";
 	}
+	
+	@RequestMapping(value =  "delete-room/{id}", method = RequestMethod.GET)
+	public String deleteRoom(@PathVariable("id") int id) {
+		
+		roomService.deleteById(id);
+		
+		return "redirect:/enterprise/room-management";
+	}
 	public double discountPrice(double price, double disount) {
 		if(disount != 0) {
 			return (price*disount)/100;

@@ -124,7 +124,8 @@
 			              <td><button type="button" class="btn btn-warning">Not Available</button></td>
 			              </c:if>
           <td>
-          <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${allroom.idRoom}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
+          <a href="${pageContext.request.contextPath }/enterprise/edit-room?idRoom=${allroom.idRoom}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>|
+          <a href="${pageContext.request.contextPath }/enterprise/delete-room/${allroom.idRoom}"><i style="color: orange;" class="fa fa-trash fa-2x"></i></a> |
           <c:forEach var="reservation" items="${reservations }">
           
 	          <c:if test="${reservation.infoRoom.idRoom == allroom.idRoom}" >

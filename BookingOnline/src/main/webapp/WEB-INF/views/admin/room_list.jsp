@@ -188,10 +188,11 @@
                         <div class="product-status-wrap">
                             <h4>Room List</h4>
                             <div class="add-product" >
-                                <a style="color: green;" href="${pageContext.request.contextPath }/admin/room-list-approval">Check Room Approval Request : </a>
+                                <a style="color: green;" href="${pageContext.request.contextPath }/admin/room-list-approval">Check Room Approval Request : <span style="color: red;"><i class="fa fa-info"></i><sup>${countRoomWaitAprroval }</sup></span></a>
                             </div>
                             <table>
                                 <tr>
+                                	<th>ID Room</th>
                                     <th>Image</th>
                                     <th>Room Category</th>
                                     <th>Total number of adult</th>
@@ -202,11 +203,12 @@
                                     <th>Check In</th>
                                     <th>Check Out</th>
                                     <th>Status</th>
-                                    <th>Room's Hotel(ID)</th>
+                                    <th>Room's Hotel</th>
                                     <th>Setting</th>
                                 </tr>
                                 <c:forEach var="roomlist" items="${roomlists }" >
                                 <tr>
+                                	<td><a href="${pageContext.request.contextPath }/admin/reservation-management/${roomlist.idRoom}">${roomlist.idRoom }</a></td>
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
                                     <td>${roomlist.guestAdult }</td>
@@ -215,11 +217,22 @@
                                     <td>$ ${roomlist.price }</td>
                                     <td>$ ${roomlist.total }</td>
                                     <td>${roomlist.checkIn }</td>
-                                    <td>${roomlist.checkOut }</td>
-                                    <td><button class="pd-setting">${roomlist.status }</button></td>
-                                    <td>${roomlist.account.idAcc }</td>
+                                    <c:if test="${roomlist.checkOut < datenow}">
+						              <td style="color: red;">${roomlist.checkOut}<br>
+						              <small>you need to update this room !!</small>
+						              </td>
+						              </c:if>
+						              <c:if test="${roomlist.checkOut > datenow}">
+						              <td >${roomlist.checkOut}</td>
+						            </c:if>
+                                    <c:if test="${roomlist.status == true}">
+                                    <td><button class="btn btn-success">Available now</button></td>
+                                    </c:if>
+                                    <td>
+                                    <a href="${pageContext.request.contextPath }/admin/editAcc/${roomlist.account.idAcc}">${roomlist.account.name }</a></td>
                                     
                                     <td>
+                                    <a href="${pageContext.request.contextPath }/admin/edit-room/${roomlist.idRoom } "><i style="color: green;" class="fa fa-edit" aria-hidden="true"></i></a>
                                         <a href="${pageContext.request.contextPath }/admin/deleteRoom/${roomlist.idRoom}"><i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>

@@ -281,8 +281,8 @@ function validateForm() {
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="text-center custom-pro-edt-ds">
 <button type="submit"
-								class="btn-default solid-bg-btn pos-relative">
-								<span>Submit</span>
+								class="btn btn-success ">
+								<span style="color: white;">Submit</span>
 								<span>&nbsp;</span>
 								<s:input type="hidden" name="idRoom" path="idRoom" />
 </button>

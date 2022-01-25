@@ -32,8 +32,10 @@ import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.InfoRoom;
 import com.demo.models.Reservation;
+import com.demo.models.ReservationCancel;
 import com.demo.models.Roles;
 import com.demo.services.AccountService;
+import com.demo.services.ReservationCancelService;
 import com.demo.services.ReservationService;
 import com.demo.services.RoleService;
 import com.demo.services.RoomService;
@@ -71,6 +73,9 @@ public class AdminController implements ServletContextAware {
 	@Autowired
 	private AccountService accountService;
 	
+	@Autowired
+	private ReservationCancelService reservationCancelService;
+	
 	
 	@Autowired
 	private InfoRoomValidator infoRoomValidator;
@@ -92,6 +97,8 @@ public class AdminController implements ServletContextAware {
 		String name = authentication.getName();
 		modelMap.put("accountss", accountService.findByUsername(name));
 		System.out.println("name " + name);
+		modelMap.put("countRoomWaitAprroval", roomService.countRoomWaitApproval());
+		modelMap.put("datenow", new Date());
 		
 		return "admin/room_list";
 	}
@@ -103,7 +110,7 @@ public class AdminController implements ServletContextAware {
 		String name = authentication.getName();
 		modelMap.put("accountss", accountService.findByUsername(name));
 		System.out.println("name " + name);
-		
+		modelMap.put("datenow", new Date());
 		return "admin/room_list";
 	}
 	
@@ -117,6 +124,7 @@ public class AdminController implements ServletContextAware {
 		String name = authentication.getName();
 		modelMap.put("accountss", accountService.findByUsername(name));
 		System.out.println("name " + name);
+		modelMap.put("datenow", new Date());
 		return "admin/room_list_approval";
 	}
 	
@@ -352,7 +360,7 @@ public class AdminController implements ServletContextAware {
 		smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
 		roomService.deleteById(id);
 		
-		return "redirect:/admin/room-list-approval";
+		return "redirect:/admin/room-list";
 	}
 	
 	
@@ -418,19 +426,18 @@ public class AdminController implements ServletContextAware {
 	}
 	
 	
-	@RequestMapping(value = "billAcc/{id}", method = RequestMethod.GET )
-	public String billAcc(@PathVariable("id") String id,Authentication authentication,ModelMap modelMap) {
+	@RequestMapping(value = "reservation-management-idCustomer/{idAcc}", method = RequestMethod.GET )
+	public String reservationManagementIdCustomer(@PathVariable("idAcc") String idAcc,Authentication authentication,ModelMap modelMap) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 		modelMap.put("accountss", accountService.findByUsername(name));
 		System.out.println("name " + name);
 		
-		modelMap.put("account", accountService.findIdAcc(id));
-		System.out.println("id : " + id);
-		modelMap.put("reservationOfCustomer", reservationService.reserInfoidAcc(id));
+		modelMap.put("account", accountService.findIdAcc(idAcc));
+		modelMap.put("revations", reservationService.reserInfoidAcc(idAcc));
+		modelMap.put("datenow", new Date());
 		
-		modelMap.put("rooms", roomService.reserInfoidAccEnter(id));
-		return "admin/bill_acc";
+		return "admin/reservation_management";
 	}
 
 	@RequestMapping(value = "reservation-management", method = RequestMethod.GET)
@@ -442,7 +449,23 @@ public class AdminController implements ServletContextAware {
 		String name = authentication.getName();
 		modelMap.put("revations", reservationService.findAll());
 		System.out.println("name " + name);
+		modelMap.put("datenow", new Date());
 		
+		
+		
+		return "admin/reservation_management";
+	}
+	
+	@RequestMapping(value = "reservation-management/{idRoom}", method = RequestMethod.GET)
+	public String reservationManagementByIdRoom(@PathVariable("idRoom") int idRoom,ModelMap modelMap,Authentication authentication) {
+		
+		modelMap.put("accounts", accountService.findAllAccount());
+		
+		System.out.println("username " + authentication.getName());
+		String name = authentication.getName();
+		modelMap.put("revations", reservationService.reservationEnterpriseByIdRoom(idRoom));
+		System.out.println("name " + name);
+		modelMap.put("datenow", new Date());
 		
 		
 		
@@ -459,10 +482,14 @@ public class AdminController implements ServletContextAware {
 		
 		modelMap.put("reservation", reservationService.reserInfo2(idReservation));
 		
-		System.out.println("username " + authentication.getName());
-		
-		modelMap.put("accountss", accountService.findByUsername(name));
-		System.out.println("name " + name);
+		modelMap.put("accounts", accountService.findByUsername(name));
+		modelMap.put("invoices", reservationService.reserInfo(idReservation));
+		ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(idReservation);
+		modelMap.put("cancelledBy", reservationCancelByWho);
+		ReservationCancel reservationCancel = new ReservationCancel();
+		modelMap.put("reservationCancel", reservationCancel);
+		Reservation reservationCount = reservationService.reserInfo2(idReservation);
+		modelMap.put("countCancelled", reservationCancelService.countCancalledCustomer(reservationCount.getCustomerId()));
 		
 		return "admin/reservation_edit";
 	}
@@ -485,15 +512,74 @@ public class AdminController implements ServletContextAware {
 		
 		
 		
-		
-			
-		Reservation reservationOld = reservationService.roomInfoByIdReser(reservation.getIdReservation());
-		
 		reservation.setCreated(new Date());
 		reservation.setStatus(true);
 		reservation.setUpdated(new Date());
 		
 		reservationService.save(reservation);
+		return "redirect:/admin/reservation-management";
+	}
+	
+	
+	@RequestMapping(value =  "cancel-invoice", method = RequestMethod.POST)
+	public String cancelInvoice(@ModelAttribute("reservationCancel") ReservationCancel reservationCancel,
+			@RequestParam("reason") String reason) throws MessagingException {
+		System.out.println("Reason  " + reason);
+		reservationCancel.setCreated(new Date());
+		reservationCancelService.save(reservationCancel);
+		Reservation reservation = reservationService.reserInfo2(reservationCancel.getReservation().getIdReservation());
+		reservation.getIdReservation();
+		reservation.getCustomerId();
+		reservation.getCheckIn();
+		reservation.getCheckOut();
+		reservation.getName();
+		reservation.getEmail();
+		reservation.getPhone();
+		reservation.getAdult();
+		reservation.getChildren();
+		reservation.setStatus(false);;
+		reservation.setStatusCancel(true);
+		reservation.setPaymentStatus(false);
+		reservation.setUpdated(new Date());
+		reservationService.save(reservation);
+		
+		
+		
+		
+		InfoRoom infoRoom = roomService.roomInfoByIdRoom(reservation.getInfoRoom().getIdRoom());
+		Account account = accountService.findIdAcc(reservation.getCustomerId());
+		String email = accountService.findEmail(reservation.getCustomerId());
+		String body = "<p>Dear Mr/Mrs.</p>" + account.getName()+"<br>";
+		body += infoRoom.getAccount().getName() +" Hotel would like to send to you, your room has been canceled for the following reasons: " +"<br>";
+		body += reason + "<br>";
+		body += "Your reservation information : " + "Check in : " + reservation.getCheckIn() + "/ Check out : " + reservation.getCheckOut();
+		body += " Number of people : " + reservation.getAdult() + " Adult " + reservation.getChildren() + " Children";
+		body += "Your contact infomation : " + reservation.getEmail() + " | " + reservation.getPhone();
+		body += "<hr>" + "Room information : " + "<br>" + infoRoom.getRoomCategory() + " Room " + "| " +infoRoom.getAccount().getLocationDetail() + "," + infoRoom.getAccount().getLocation() + "<br>" ;
+		body += "Number of guests : " + infoRoom.getGuestAdult() + " Adult " + infoRoom.getGuestChildren() + " Children <br>";
+ 		body += "Available date : " + infoRoom.getCheckIn() + " to " + infoRoom.getCheckOut() + "<br>";
+ 		body += " For more information please visit : " + "http://localhost:9799/customer/invoice-detail?idReservation=" + reservation.getIdReservation() + "<br>";
+		body +=  " Thanks for booking" + "<br>" +"The BookingHotel Team" + ". Need Help? Contact us: " + infoRoom.getAccount().getPhone();
+ 		
+		smtpMailSender.send(email, "Notice from 'BookingHotel'", body);
+		
+		return "redirect:/admin/reservation-management";
+	}
+	
+	
+	@RequestMapping(value =  "completed-invoice", method = RequestMethod.POST)
+	public String completedInvoice(@ModelAttribute("reservation") Reservation reservation) throws MessagingException {
+		Reservation reservationOld = reservationService.reserInfo2(reservation.getIdReservation());
+		
+		reservation.setStatus(true);;
+		reservation.setStatusCancel(false);
+		reservation.setPaymentStatus(true);
+		reservation.setCreated(reservationOld.getCreated());
+		reservation.setUpdated(reservationOld.getUpdated());
+		
+		reservationService.save(reservation);
+		
+		
 		return "redirect:/admin/reservation-management";
 	}
 	

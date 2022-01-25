@@ -9,72 +9,46 @@
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
 
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
 
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 .modal-header {
-  padding: 2px 16px;
-  background-color: #073865;
+    border-bottom: none
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #1A237E
+}
 
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #073865;
+.modal-body {
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1A237E
+}
+
+.checkbox-form {
+    background: #FFEBEE;
+    color: #D32F2F;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 1px
+}
+
+.learn {
+    text-decoration: none;
+    color: #fff
+}
+
+.add-list {
+    height: 45px;
+    line-height: 27px;
+    background-color: #D32F2F;
+    color: #fff !important
 }
 </style>
 
@@ -147,43 +121,48 @@ function validateForm() {
 </div>
 </div>
 </div>
-</div>
 
-<div class="single-product-tab-area mg-b-30">
-
-<div class="single-pro-review-area">
 <div class="container-fluid">
 <div class="row">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="review-tab-pro-inner">
 <ul id="myTab3" class="tab-review-design">
-<li class="active"><a href="#description"><i
-											class="fa fa-edit" aria-hidden="true"></i>Reservation Detail</a></li>
-	<li id="myBtn"> <i style="color: red;" class="fa fa-trash-o" aria-hidden="true"></i>
-</li>
+<li class="active"><a href="#description"><i class="fa fa-edit" aria-hidden="true"></i>Reservation Detail</a></li>
 </ul>
-<s:form name="myForm" onsubmit="return validateForm()" modelAttribute="reservation"  method="post"  enctype="multipart/form-data"
-			action="${pageContext.request.contextPath }/admin/editReservation">    
-<div id="myTabContent" class="tab-content custom-product-edit">
-<div class="product-tab-list tab-pane fade active in" id="description">
-<div class="row">
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-<div class="review-content-section">
 
+
+<c:forEach var="account" items="${accounts }" >
+<c:forEach var="invoice" items="${invoices }">
+<!-- Awaiting -->	
+		
+		
+<c:if test="${invoice.status == false && invoice.statusCancel == false && invoice.paymentStatus == false }">   
+<s:form name="myForm" onsubmit="return validateForm()" modelAttribute="reservation"  method="post"
+			action="${pageContext.request.contextPath }/admin/editReservation">	
+<div class="row">
+<c:if test="${countCancelled <= 1 && invoice.status != true && invoice.statusCancel == false}"><span class="input-group-addon ">Customer booking information |<strong style="color: green;" > Warning about cancellations : ${countCancelled } times</strong></span> </c:if>  
+				                 <c:if test="${countCancelled >1 && countCancelled <=2 && invoice.status != true && invoice.statusCancel == false}"><span class="input-group-addon ">Customer booking information |<strong style="color: orange;" > Warning about cancellations : ${countCancelled } times</strong></span> </c:if>  
+				                 <c:if test="${countCancelled >3 && invoice.status != true && invoice.statusCancel == false}"><span class="input-group-addon ">Customer booking information |<strong style="color: red;" > Warning about cancellations : ${countCancelled } times</strong></span> </c:if>  
+
+<hr>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<div class="review-content-section">
+			
 			<div class="input-group mg-b-pro-edt">
 
-	 
+	 		
 			<span class="input-group-addon"><i style="color: orange;" class="fa fa-building"
 																		aria-hidden="true"></i> Customer_id</span>
-			<s:input path="customerId" style="color: black;" type="text" class="form-control" placeholder="" readonly="true"/>
+			<s:input path="customerId" style="color: black;" type="text" class="form-control" placeholder="" readonly="true" />
 			</div>
 			
 			<div class="input-group mg-b-pro-edt">
 
 	 
-			<span class="input-group-addon"><i style="color: orange;" class="fa fa-building"
-																		aria-hidden="true"></i> Id_Room</span>
-			<s:input path="infoRoom.idRoom" style="color: White;" type="text" class="form-control" placeholder="" />
+			<span class="input-group-addon"><a href="${pageContext.request.contextPath }/admin/edit-room/${reservation.infoRoom.idRoom}"><i style="color: orange;" class="fa fa-building"
+																		aria-hidden="true"></i> Id_Room</a></span>
+			<s:input path="infoRoom.idRoom"  style="color: White;" type="text" class="form-control"  />
 			</div>
 			
 			<div class="input-group mg-b-pro-edt">
@@ -241,6 +220,12 @@ function validateForm() {
 	
 			</div>
 			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Status</span>
+			<button style="color: orange;"  class="form-control btn btn-warning" >Awaiting for approval</button>
+	
+			</div>
+			
 			
 	
 		
@@ -258,13 +243,11 @@ function validateForm() {
 			
 			
 			
-<div class="row">
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="text-center custom-pro-edt-ds">
 <button type="submit"
-								class="btn-default solid-bg-btn pos-relative">
-								<span>Submit</span>
+								class="btn btn-success">
+								<span style="color: white;">Confirm</span>
 								<span>&nbsp;</span>
 								<s:input type="hidden" name="idReservation" path="idReservation" />
 								
@@ -273,7 +256,445 @@ function validateForm() {
 							
 </button>
 
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
+	<span style="color: white;">Cancel</span>
+							
+							
+</button>
+</div>
 </s:form>
+
+</c:if> 
+
+<s:form method="post" modelAttribute="reservationCancel" action="${pageContext.request.contextPath }/admin/cancel-invoice">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Recommended list</h4> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body mt-0">
+                <div class="mt-3">
+                <s:input path="reservation.idReservation" type="hidden" value="${invoice.idReservation }"/>
+                	<s:input path="cancelledBy" type="hidden" value="${account.idAcc }"/>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox  path="reason" id="1"  class="form-check-input"  value="Sorry, the room you booked has had an unexpected problem, we're very sorry about this problem !" onclick="getSelectItemThat(this.id)" /> <label class=" newsletter form-check-label" for="flexCheckDefault-1"> Sorry, the room you booked has had an unexpected problem, we're very sorry about this problem ! </label> </div>
+                    </div>
+                    <div class="p-2 rounded checkbox-form">
+                        <div class="form-check"> <s:checkbox  path="reason" id="2" class="form-check-input "  value="This room is currently not available! ! " onclick="getSelectItemThat(this.id)"/> <label class=" prospect form-check-label" for="flexCheckDefault-2"> This room is currently not available! ! </label> </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="modal-footer d-flex justify-content-between align-items-center">
+            <span>&nbsp;</span>
+            <button type="submit" class="btn btn-danger btn-sm" >Confirm</button> </div>
+        </div>
+    </div>
+</div>
+</s:form>
+
+
+
+
+<!-- Confirmed -->	
+		
+		
+<c:if test="${invoice.status == true && invoice.statusCancel == false && invoice.paymentStatus == false }">   
+<s:form name="myForm" onsubmit="return validateForm()" modelAttribute="reservation"  method="post"
+			action="${pageContext.request.contextPath }/admin/completed-invoice">	
+<div class="row">
+<span class="input-group-addon ">Customer booking information</span>
+<hr>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<div class="review-content-section">
+			
+			<div class="input-group mg-b-pro-edt">
+
+	 		
+			<span class="input-group-addon"><i style="color: orange;" class="fa fa-building"
+																		aria-hidden="true"></i> Customer_id</span>
+			<s:input path="customerId" style="color: black;" type="text" class="form-control" placeholder="" readonly="true" />
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+
+	 
+			<span class="input-group-addon"><a href="${pageContext.request.contextPath }/admin/edit-room/${reservation.infoRoom.idRoom}"><i style="color: orange;" class="fa fa-building"
+																		aria-hidden="true"></i> Id_Room</a></span>
+			<s:input path="infoRoom.idRoom"  style="color: White;" type="text" class="form-control"  />
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color: green;" class="fa fa-file-text"
+																		aria-hidden="true"></i> Name</span>
+			<s:input path="name" type="text" class="form-control" />
+	
+			</div>
+			<s:errors path="name" cssClass="format"></s:errors>
+			
+			<div class="input-group mg-b-pro-edt group checkin">
+				<label class="color-22 playfair input-group-addon"  for="booking-checkin"><i style="color:orange;" class="fa fa-calendar"></i> CheckIn</label><s:input
+									class="form-control" name="checkIn" path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
+									/>
+									
+			</div>
+			<s:errors path="checkIn" cssClass="format"></s:errors>
+			<div class="input-group mg-b-pro-edt group checkout">
+								<label class="color-22 playfair input-group-addon" for="booking-checkout"><i style="color:orange;" class="fa fa-calendar"></i> CheckOut</label><s:input 
+									class="form-control" path="checkOut" type="text" id="booking-checkout" placeholder="MM/DD/YY"
+									/>
+			</div>
+	
+			<s:errors path="checkOut" cssClass="format"></s:errors>
+			
+		
+			</div>
+			</div>
+		
+			
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="review-content-section">
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon">Phone</span>
+			<s:input pattern="(\+84|0)\d{9,10}" maxlength="12"  path="phone" type="text" class="form-control" />
+
+			</div>
+			
+						<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color: green;" class="fa fa-file-text"
+																		aria-hidden="true"></i> Email</span>
+			<s:input path="email" type="email" class="form-control" />
+
+			</div>
+		<s:errors path="email" cssClass="format"></s:errors>
+				<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Adult</span>
+			<s:input path="adult" type="number" class="form-control" />
+	
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Children</span>
+			<s:input path="children" type="number" class="form-control" />
+	
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Status</span>
+			<button style="color: orange;"  class="form-control btn btn-warning" >Awaiting for confirm payment success</button>
+	
+			</div>
+			
+			
+	
+		
+			
+			
+			
+			
+			
+			
+			</div>
+			</div>
+			
+			</div>
+			
+			
+			
+			
+
+<div class="text-center custom-pro-edt-ds">
+<button type="submit"
+								class="btn btn-success">
+								<span style="color: white;">Confirmed ?</span>
+								<span>&nbsp;</span>
+								<s:input type="hidden" name="idReservation" path="idReservation" />
+								
+								<s:input type="hidden" name="infoRoom.idRoom" path="infoRoom.idRoom" />
+							
+							
+</button>
+
+<button type="button" class="btn btn-info" onclick="">
+	<span style="color: white;">Happening....</span>
+							
+							
+</button>
+</div>
+</s:form>
+
+</c:if> 
+
+
+
+<!-- Completed -->	
+		
+		
+<c:if test="${invoice.status != false && invoice.statusCancel == false && invoice.paymentStatus == true }">   
+<s:form name="myForm" onsubmit="return validateForm()" modelAttribute="reservation"  method="post"
+			action="${pageContext.request.contextPath }/admin/completed-invoice">	
+<div class="row">
+<span class="input-group-addon ">Customer booking information</span>
+<hr>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<div class="review-content-section">
+			
+			<div class="input-group mg-b-pro-edt">
+
+	 		
+			<span class="input-group-addon"><i style="color: orange;" class="fa fa-building"
+																		aria-hidden="true"></i> Customer_id</span>
+			<s:input path="customerId" style="color: black;" type="text" class="form-control" placeholder="" readonly="true" />
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+
+	 
+			<span class="input-group-addon"><a href="${pageContext.request.contextPath }/admin/edit-room/${reservation.infoRoom.idRoom}"><i style="color: orange;" class="fa fa-building"
+																		aria-hidden="true"></i> Id_Room</a></span>
+			<s:input path="infoRoom.idRoom"  style="color: White;" type="text" class="form-control"  />
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color: green;" class="fa fa-file-text"
+																		aria-hidden="true"></i> Name</span>
+			<s:input path="name" type="text" class="form-control" />
+	
+			</div>
+			<s:errors path="name" cssClass="format"></s:errors>
+			
+			<div class="input-group mg-b-pro-edt group checkin">
+				<label class="color-22 playfair input-group-addon"  for="booking-checkin"><i style="color:orange;" class="fa fa-calendar"></i> CheckIn</label><s:input
+									class="form-control" name="checkIn" path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
+									/>
+									
+			</div>
+			<s:errors path="checkIn" cssClass="format"></s:errors>
+			<div class="input-group mg-b-pro-edt group checkout">
+								<label class="color-22 playfair input-group-addon" for="booking-checkout"><i style="color:orange;" class="fa fa-calendar"></i> CheckOut</label><s:input 
+									class="form-control" path="checkOut" type="text" id="booking-checkout" placeholder="MM/DD/YY"
+									/>
+			</div>
+	
+			<s:errors path="checkOut" cssClass="format"></s:errors>
+			
+		
+			</div>
+			</div>
+		
+			
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="review-content-section">
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon">Phone</span>
+			<s:input pattern="(\+84|0)\d{9,10}" maxlength="12"  path="phone" type="text" class="form-control" />
+
+			</div>
+			
+						<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color: green;" class="fa fa-file-text"
+																		aria-hidden="true"></i> Email</span>
+			<s:input path="email" type="email" class="form-control" />
+
+			</div>
+		<s:errors path="email" cssClass="format"></s:errors>
+				<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Adult</span>
+			<s:input path="adult" type="number" class="form-control" />
+	
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Children</span>
+			<s:input path="children" type="number" class="form-control" />
+	
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Status</span>
+			<button style="color: green;"  class="form-control btn btn-success" >Payment Success</button>
+	
+			</div>
+			
+			
+	
+		
+			
+			
+			
+			
+			
+			
+			</div>
+			</div>
+			
+			</div>
+			
+			
+			
+			
+
+<div class="text-center custom-pro-edt-ds">
+<button type="button"
+								class="btn btn-success">
+								<span style="color: white;">Payment Success</span>
+								<span>&nbsp;</span>
+								
+							
+</button>
+</div>
+</s:form>
+
+</c:if> 
+
+
+
+
+<!-- Cancelled -->	
+		
+		
+<c:if test="${invoice.status == false && invoice.statusCancel == true && invoice.paymentStatus == false  }">   
+<s:form name="myForm" onsubmit="return validateForm()" modelAttribute="reservation"  method="post"
+			action="${pageContext.request.contextPath }/admin/completed-invoice">	
+<div class="row">
+<span class="input-group-addon ">Customer booking information</span>
+<hr>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<div class="review-content-section">
+			
+			<div class="input-group mg-b-pro-edt">
+
+	 		
+			<span class="input-group-addon"><i style="color: orange;" class="fa fa-building"
+																		aria-hidden="true"></i> Customer_id</span>
+			<s:input path="customerId" style="color: black;" type="text" class="form-control" placeholder="" readonly="true" />
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+
+	 
+			<span class="input-group-addon"><a href="${pageContext.request.contextPath }/admin/edit-room/${reservation.infoRoom.idRoom}"><i style="color: orange;" class="fa fa-building"
+																		aria-hidden="true"></i> Id_Room</a></span>
+			<s:input path="infoRoom.idRoom"  style="color: White;" type="text" class="form-control"  />
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color: green;" class="fa fa-file-text"
+																		aria-hidden="true"></i> Name</span>
+			<s:input path="name" type="text" class="form-control" />
+	
+			</div>
+			<s:errors path="name" cssClass="format"></s:errors>
+			
+			<div class="input-group mg-b-pro-edt group checkin">
+				<label class="color-22 playfair input-group-addon"  for="booking-checkin"><i style="color:orange;" class="fa fa-calendar"></i> CheckIn</label><s:input
+									class="form-control" name="checkIn" path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
+									/>
+									
+			</div>
+			<s:errors path="checkIn" cssClass="format"></s:errors>
+			<div class="input-group mg-b-pro-edt group checkout">
+								<label class="color-22 playfair input-group-addon" for="booking-checkout"><i style="color:orange;" class="fa fa-calendar"></i> CheckOut</label><s:input 
+									class="form-control" path="checkOut" type="text" id="booking-checkout" placeholder="MM/DD/YY"
+									/>
+			</div>
+	
+			<s:errors path="checkOut" cssClass="format"></s:errors>
+			
+		
+			</div>
+			</div>
+		
+			
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="review-content-section">
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon">Phone</span>
+			<s:input pattern="(\+84|0)\d{9,10}" maxlength="12"  path="phone" type="text" class="form-control" />
+
+			</div>
+			
+						<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color: green;" class="fa fa-file-text"
+																		aria-hidden="true"></i> Email</span>
+			<s:input path="email" type="email" class="form-control" />
+
+			</div>
+		<s:errors path="email" cssClass="format"></s:errors>
+				<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Adult</span>
+			<s:input path="adult" type="number" class="form-control" />
+	
+			</div>
+			
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Children</span>
+			<s:input path="children" type="number" class="form-control" />
+	
+			</div>
+			
+			<c:if test="${invoice.statusCancel != false && account.idAcc == cancelledBy.cancelledBy && invoice.customerId != cancelledBy.cancelledBy && invoice.infoRoom.account.idAcc != cancelledBy.cancelledBy}">
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Status</span>
+			<button style="color: red;"  class="form-control btn btn-danger" >*Cancelled by SuperAdmin ! : "${cancelledBy.reason }"</button>
+	
+			</div>
+			</c:if>
+			<c:if test="${invoice.statusCancel != false && account.idAcc != cancelledBy.cancelledBy && invoice.customerId == cancelledBy.cancelledBy && invoice.infoRoom.account.idAcc != cancelledBy.cancelledBy}">
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Status</span>
+			<button style="color: red;"  class="form-control btn btn-danger" >*Cancelled by the Customer ! : "${cancelledBy.reason }"</button>
+	
+			</div>
+			</c:if>
+			<c:if test="${invoice.statusCancel != false && account.idAcc != cancelledBy.cancelledBy && invoice.customerId != cancelledBy.cancelledBy && invoice.infoRoom.account.idAcc == cancelledBy.cancelledBy}">
+			<div class="input-group mg-b-pro-edt">
+			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Status</span>
+			<button style="color: red;"  class="form-control btn btn-danger" >*Cancelled by the Hotel ! : "${cancelledBy.reason }"</button>
+	
+			</div>
+			</c:if>
+			
+	
+		
+			
+			
+			
+			
+			
+			
+			</div>
+			</div>
+			
+			</div>
+			
+			
+			
+			
+
+<div class="text-center custom-pro-edt-ds">
+<button type="button"
+								class="btn btn-danger">
+								<span style="color: white;">Cancelled</span>
+								<span>&nbsp;</span>
+								
+							
+</button>
+</div>
+</s:form>
+
+</c:if> 
+
+
+
+		 </c:forEach>
+		
+</c:forEach>
 
 </div>
 </div>
@@ -321,4 +742,18 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+</script>
+
+<script>
+
+function getSelectItemThat(id) {
+    for (var i = 1;i <= 2; i++)
+    {
+        document.getElementById(i).checked = false;
+    }
+    document.getElementById(id).checked = true;
+}
+
+
+
 </script>

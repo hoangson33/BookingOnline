@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.demo.models.InfoRoom;
 import com.demo.repositories.RoomRepository;
 
+import net.bytebuddy.asm.Advice.Return;
+
 @Service
 public class RoomServiceImpl implements RoomService {
 	
@@ -111,6 +113,11 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public Iterable<InfoRoom> roomInfoOfIdAcc(String idAcc) {
 		return roomRepository.roomInfoByIdAcc(idAcc);
+	}
+
+	@Override
+	public int countRoomWaitApproval() {
+		return roomRepository.countRoomWaitApproval();
 	}
 
 

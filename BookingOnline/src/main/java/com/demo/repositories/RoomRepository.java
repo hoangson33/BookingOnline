@@ -67,4 +67,7 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 
 	@Query("from InfoRoom where account.idAcc = :idAcc")
 	public Iterable<InfoRoom> reserInfoidAccEnter(@Param("idAcc") String idAcc);
+	
+	@Query("select COUNT(*) from InfoRoom where status = false")
+	public int countRoomWaitApproval();
 }

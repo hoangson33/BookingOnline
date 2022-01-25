@@ -266,6 +266,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                             </div>
                             <table>
                                 <tr>
+                                	<th>ID Room</th>
                                     <th>Image</th>
                                     <th>Room Category</th>
                                     <th>Total number of Children</th>
@@ -276,11 +277,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                     <th>Check In</th>
                                     <th>Check Out</th>
                                     <th>Status</th>
-                                    <th>Room's Hotel(ID)</th>
+                                    <th>Room's Hotel</th>
                                     <th>Setting</th>
                                 </tr>
                                 <c:forEach var="roomlist" items="${roomlists }" >
                                 <tr>
+                                	<td>${roomlist.idRoom }</td>
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploadRoom/${roomlist.imgRoom}"  width="150px"/></td>
                                     <td>${roomlist.roomCategory }</td>
                                     <td>${roomlist.guestChildren }</td>
@@ -289,9 +291,23 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                      <td>$ ${roomlist.salePrice }</td>
                                      <td>$ ${roomlist.total }</td>
                                     <td>${roomlist.checkIn }</td>
-                                    <td>${roomlist.checkOut }</td>
-                                    <td><button class="pd-setting">${roomlist.status }</button></td>
-                                    <td>${roomlist.account.idAcc }</td>
+                                    <c:if test="${roomlist.checkOut < datenow}">
+						              <td style="color: red;">${roomlist.checkOut}<br>
+						              <small>you need to update this room !!</small>
+						              </td>
+						              </c:if>
+						              <c:if test="${roomlist.checkOut > datenow}">
+						              <td >${roomlist.checkOut}</td>
+						            </c:if>
+                                    
+                                    <c:if test="${roomlist.status == false}">
+                                    <td><button class="btn btn-warning">Not Available</button></td>
+                                    </c:if>
+                                    <td>
+                                    <a href="${pageContext.request.contextPath }/admin/editAcc/${roomlist.account.idAcc}">${roomlist.account.name }</a>
+                                    </td>
+                                    
+                                    
                                     
                                     <td>
                                         <a href="${pageContext.request.contextPath }/admin/edit-room/${roomlist.idRoom } "><i style="color: green;" class="fa fa-edit" aria-hidden="true"></i></a>

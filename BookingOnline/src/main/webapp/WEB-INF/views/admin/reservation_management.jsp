@@ -215,7 +215,7 @@
                                 
                                 <tr>
                                     <td>${reva.idReservation }</td>
-                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
                                     <td>${reva.customerId }</td>
                                     <td>${reva.checkIn }</td>
                                     <td>${reva.checkOut }</td>
@@ -237,11 +237,11 @@
                                 	  
                                 	  
                                    <!-- Awaiting -->  	  
-                 <c:if test="${reva.status == false && reva.statusCancel == false && reva.paymentStatus == false }">
+                 			<c:if test="${reva.status == false && reva.statusCancel == false && reva.paymentStatus == false }">
                                 
                                 <tr>
                                     <td>${reva.idReservation }</td>
-                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
                                     <td>${reva.customerId }</td>
                                     <td>${reva.checkIn }</td>
                                     <td>${reva.checkOut }</td>
@@ -269,15 +269,22 @@
                                 
                                 <tr>
                                     <td>${reva.idReservation }</td>
-                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
                                     <td>${reva.customerId }</td>
                                     <td>${reva.checkIn }</td>
-                                    <td>${reva.checkOut }</td>
+                                    <c:if test="${reva.checkOut < datenow && reva.paymentStatus == false && reva.status == true && reva.statusCancel == false}">
+							          <td style="color: red;">${reva.checkOut }<br>
+							          <small >You need to confirm the payment for this reservation !</small>
+							          </td>
+							          </c:if>
+							          <c:if test="${reva.checkOut > datenow && reva.paymentStatus == false && reva.status == true && reva.statusCancel == false}">
+							          <td>${reva.checkOut }</td>
+							        </c:if>
                                     <td>${reva.name }</td>
                                      <td>${reva.email }</td>
                                       <td>${reva.phone }</td>
                                      <c:if test="${reva.status == true && reva.statusCancel == false}">
-			              <td><button type="button" class="btn btn-success" style="color: White;">Confirmed</button></td>
+			              <td><button type="button" class="btn btn-warning" style="color: White;">Confirmed</button></td>
 		  </c:if>
 
                                        <td>${reva.adult }</td>
@@ -299,7 +306,7 @@
                                 
                                 <tr>
                                     <td>${reva.idReservation }</td>
-                                    <td>${reva.infoRoom.idRoom }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
                                     <td>${reva.customerId }</td>
                                     <td>${reva.checkIn }</td>
                                     <td>${reva.checkOut }</td>

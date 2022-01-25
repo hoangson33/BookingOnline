@@ -302,10 +302,10 @@ function validateForm() {
  <p style="color: red;">${errorphone}</p>
 </div>
 
-<div class="input-group mg-b-pro-edt">
-<span class="input-group-addon"></span>
-<img id="school_img" src="${pageContext.request.contextPath }/webapp/assets/uploads/${avatar}"  width="150px"/> 
-</div>
+
+<div class="input-group mg-b-pro-edt img-area">
+						<label><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${avatar}" alt="Avatar" class="img-fluid rounded"></label>
+			</div>
 
 
 
@@ -322,12 +322,12 @@ function validateForm() {
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="text-center custom-pro-edt-ds">
 
-<div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
-                        	<span>&nbsp;</span>
-                            <input style="color: black;" type="submit" value="Submit" class="submit " id="submit" name="submit" />
+<button type="submit" class="btn btn-success" >
+                        	<span style="color: white;">Submit</span>
+                            
                             <s:hidden path="idAcc"/>
                             <s:hidden path="idRole"/>
-</div>
+</button>
 
 <div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<input type="file" name="file" onchange="show(this)">

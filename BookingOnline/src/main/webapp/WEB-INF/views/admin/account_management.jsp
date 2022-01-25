@@ -211,14 +211,16 @@
                                 <tr>
                                     <td><img src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}"  width="150px"/></td>
                                     <c:if test="${account.idRole == 8}">
-                               			<td><a href="${pageContext.request.contextPath }/admin/billAcc/${account.idAcc}">${account.idAcc }</a></td>     
+                               			<td><a href="${pageContext.request.contextPath }/admin/reservation-management-idCustomer/${account.idAcc}">${account.idAcc }</a></td>     
                                      </c:if>
                                      <c:if test="${account.idRole == 2}">
                                			<td><a href="${pageContext.request.contextPath }/admin/room-list/${account.idAcc}">${account.idAcc }</a></td>     
                                      </c:if>            
                                     <td>${account.username }</td>
                                     <td>${account.name }</td>
-                                    <td><button class="pd-setting">${account.status }</button></td>
+                                    <c:if test="${account.status == true }">
+                                    <td><button class="pd-setting">Activated</button></td>
+                                    </c:if>
                                     <td>${account.gender }</td>
                                     <td>${account.email }</td>
                                     <td>${account.phone }</td>
