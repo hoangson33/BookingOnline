@@ -23,4 +23,6 @@ public interface GuestRatingService {
 	public int count3Star(int idRoom);
 	public int count2Star(int idRoom);
 	public int count1Star(int idRoom);
+	
+	public GuestRating findRatingRoomByIdRoom(int idReservation,int idRoom);
 }

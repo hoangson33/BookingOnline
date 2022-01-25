@@ -53,5 +53,9 @@ public interface ReservationService {
 	public Reservation roomInfoByIdReser(int idReservation);
 	
 	public void deleteById(int id);
+	
+	public int totalOfCustomer(String customerId);
+	
+	public int totalOfRoom(int idRoom);
 
 }

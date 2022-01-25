@@ -52,7 +52,7 @@
 												<option value="Can Tho">Can Tho</option>
 												<option value="Kien Giang">Kien Giang</option>
 												<option value="Ben Tre">Ben Tre</option>
-												<option value="Ben Tre">Quang Ninh</option>
+												<option value="Quang Ninh">Quang Ninh</option>
 											</select>
 										</div>
 										
@@ -110,7 +110,7 @@
 							<a href="#">${roomSearch.roomCategory }</a>
 						</h5>
 						<p>${roomSearch.guestAdult } Adult ${roomSearch.guestChildren } Children</p>
-						<p><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${roomSearch.account.location }</p>
+						<p>From: <span style="color: #87CEFA">${roomSearch.checkIn }</span> | To: <span style="color: #87CEFA">${roomSearch.checkOut }</span></p>
 						
 						<hr>
 						<h4 class="price color-66 mb-15">
@@ -148,7 +148,7 @@
 							<a href="#">${roomlist.roomCategory }</a>
 						</h5>
 						<p>${roomlist.guestAdult } Adult ${roomlist.guestChildren } Children</p>
-						<p><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${roomlist.account.location }</p>
+						<p>From: <span style="color: #87CEFA">${roomlist.checkIn }</span> | To: <span style="color: #87CEFA">${roomlist.checkOut }</span></p>
 						
 						<hr>
 						<h4 class="price color-66 mb-15">

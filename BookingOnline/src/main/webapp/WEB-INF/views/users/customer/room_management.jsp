@@ -117,6 +117,7 @@
         <th data-field="name">Name</th>
         <th data-field="phone">Phone</th>
         <th data-field="status">Status</th>
+        <th data-field="total">Total</th>
         <th data-field="updated">Date</th>
         <th data-field="actions" >Actions</th>
       </thead>
@@ -143,6 +144,7 @@
 			              <c:if test="${allroom.statusCancel != false && allroom.status != true}">
 			              <td><button type="button" class="btn btn-danger">Cancelled </button></td>
 			              </c:if>
+			<td>$${allroom.total }</td>              
 			              <td>${allroom.updated }</td>
           <td>
           <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
@@ -174,6 +176,7 @@
 			              <c:if test="${allroom.status == false && allroom.statusCancel == false}">
 			              <td><button type="button" class="btn btn-warning">Awaiting for approval</button></td>
 			              </c:if>
+			              <td>$${allroom.total }</td>    
 			              <td>${allroom.updated }</td>
           <td>
           <a href="${pageContext.request.contextPath }/customer/invoice-detail?idReservation=${allroom.idReservation}"><i style="color: green;" class="fa fa-edit fa-2x"></i></a>
@@ -213,6 +216,7 @@
   
 			              </td>
 		  </c:if>
+		  <td>$${allroom.total }</td>    
 		  <td>${allroom.updated }</td>
 		
           <td>
@@ -252,7 +256,7 @@
 			        </c:if>
 			        
 		</c:forEach>	        
-			        
+			<td>$${allroom.total }</td>            
 		  <td>${allroom.updated }</td>
 		
           <td>
@@ -309,7 +313,7 @@
           <div class="clearfix"></div>
         </a>
       </li>
-      <li class="header-title">Layouts</li>
+      <li class="header-title">Total expected : $${total }</li>
       
         <li class="active">
           <a class="img-holder" href="full-screen-table.html">

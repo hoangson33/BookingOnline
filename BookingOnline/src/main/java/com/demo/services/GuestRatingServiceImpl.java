@@ -59,6 +59,11 @@ public class GuestRatingServiceImpl implements GuestRatingService {
 	public Iterable<GuestRating> findRatingRoomById(String idCustomer) {
 		return guestRatingRepository.findRatingRoomById(idCustomer);
 	}
+
+	@Override
+	public GuestRating findRatingRoomByIdRoom(int idReservation, int idRoom) {
+		return guestRatingRepository.findRatingRoomByIdRoom(idReservation, idRoom);
+	}
 	
 	
 

@@ -138,6 +138,16 @@ public class ReservationServiceImpl implements ReservationService {
 		
 	}
 
+	@Override
+	public int totalOfCustomer(String customerId) {
+		return reservationRepository.totalOfCustomer(customerId);
+	}
+
+	@Override
+	public int totalOfRoom(int idRoom) {
+		return reservationRepository.totalOfRoom(idRoom);
+	}
+
 
 
 	

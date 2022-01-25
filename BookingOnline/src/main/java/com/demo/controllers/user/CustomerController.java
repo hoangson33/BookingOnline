@@ -108,11 +108,27 @@ public class CustomerController implements ServletContextAware{
 	
 	private String errorPeopel;
 	
+	private int totalnight;
+	
+	private double price;
+	
 	
 	
 	
 
 	
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public int getTotalnight() {
+		return totalnight;
+	}
+	public void setTotalnight(int totalnight) {
+		this.totalnight = totalnight;
+	}
 	public String getErrorPeopel() {
 		return errorPeopel;
 	}
@@ -460,8 +476,14 @@ public class CustomerController implements ServletContextAware{
 		int checkinroom = Integer.parseInt(checkInRoom.replace("-","")) ;
 		int checkoutroom = Integer.parseInt(checkOutRoom.replace("-",""));
 		
+		
+		
 		int checkin = Integer.parseInt(checkIn.replace("-","")) ;
 		int checkout = Integer.parseInt(checkOut.replace("-","")) ;
+		int totalNight = checkout - checkin;
+		modelMap.put("totalNight", totalNight);
+		setTotalnight(totalNight);
+		System.out.println("total night: " + totalNight);
 		if(checkin < checkinroom || checkout > checkoutroom) {
 			setError("Your checkin or checkout date must correspond to the hotel's checkin and checkout date !");
 			return "redirect:/customer/view-room?idRoom=" + idRoom;
@@ -484,7 +506,7 @@ public class CustomerController implements ServletContextAware{
 		InfoRoom infoRoom = roomService.roomInfoByIdRoom(idRoom);
 		modelMap.put("infoRoom", infoRoom);
 
-	
+		setPrice(infoRoom.getTotal());
 		
 		modelMap.put("checkIn", checkIn);
 		setCheckIn(checkIn);
@@ -542,6 +564,8 @@ public class CustomerController implements ServletContextAware{
 			reservation.setStatus(false);
 			reservation.setStatusCancel(false);
 			reservation.setPaymentStatus(false);
+			double total = getTotalnight() * getPrice();
+			reservation.setTotal(total);
 			reservation.setCreated(new Date());
 			reservation.setUpdated(new Date());
 		} catch (ParseException e) {
@@ -578,7 +602,7 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("reservationOfCustomer", reservationService.reservationOfCustomer(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
 		
-		
+		modelMap.put("total", reservationService.totalOfCustomer(account.getIdAcc()));
 
 		modelMap.put("guestRatings", guestRatingService.findRatingRoomById(account.getIdAcc()));
 		
@@ -618,6 +642,14 @@ public class CustomerController implements ServletContextAware{
 		GuestRating guestRating = new GuestRating();
 		modelMap.put("guestRating", guestRating);
 		modelMap.put("ratingStar", guestRatingService.findRatingRoomByIdCus(idReservation, account.getIdAcc()));
+		
+		Reservation reservation = reservationService.reserInfo2(idReservation);
+		String checkIn = String.valueOf(reservation.getCheckIn());
+		String checkOut = String.valueOf(reservation.getCheckOut());
+		int checkin = Integer.parseInt(checkIn.replace("-","")) ;
+		int checkout = Integer.parseInt(checkOut.replace("-","")) ;
+		int totalNight = checkout - checkin;
+		modelMap.put("totalNight", totalNight);
 		return "users/customer/invoice_detail"; 
 	}
 	
@@ -636,6 +668,7 @@ public class CustomerController implements ServletContextAware{
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(false);
 		reservation.setPaymentStatus(false);
+		reservation.getTotal();
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		reservationCancelService.delete(idCancel);
@@ -660,6 +693,7 @@ public class CustomerController implements ServletContextAware{
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
 		reservation.setPaymentStatus(false);
+		reservation.getTotal();
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		modelMap.put("idCancel", reservationCancel.getIdCancel());

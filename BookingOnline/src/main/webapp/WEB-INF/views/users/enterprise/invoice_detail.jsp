@@ -233,12 +233,14 @@ body {
 				                        </div>
 				                    </div>
 				                    <div class="col-md-6">
-				                        <div class="billing">
+				                       <div class="billing">
 				                            <div class="d-flex justify-content-between"><span>Subtotal</span><span class="font-weight-bold">$${invoice.infoRoom.price }</span></div>
 				             
-				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">%${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">- %${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">- Discount</span><span class="font-weight-bold text-success">= $${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span >Total nights</span><span class="font-weight-bold text-success">${totalNight }nights</span></div>
 				                            <hr>
-				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.total }</span></div>
 				                        </div>
 				                    </div>
 				                    <hr>
@@ -384,9 +386,11 @@ body {
 				                        <div class="billing">
 				                            <div class="d-flex justify-content-between"><span>Subtotal</span><span class="font-weight-bold">$${invoice.infoRoom.price }</span></div>
 				             
-				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">%${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">- %${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">- Discount</span><span class="font-weight-bold text-success">= $${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span >Total nights</span><span class="font-weight-bold text-success">${totalNight }nights</span></div>
 				                            <hr>
-				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.total }</span></div>
 				                        </div>
 				                    </div>
 				                    <hr>
@@ -503,16 +507,36 @@ body {
 				                        <div class="billing">
 				                            <div class="d-flex justify-content-between"><span>Subtotal</span><span class="font-weight-bold">$${invoice.infoRoom.price }</span></div>
 				             
-				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">%${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">- %${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">- Discount</span><span class="font-weight-bold text-success">= $${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span >Total nights</span><span class="font-weight-bold text-success">${totalNight }nights</span></div>
 				                            <hr>
-				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.total }</span></div>
 				                        </div>
 				                    </div>
 				                    <hr>
 				                </div>
 				                
-				                <span class="d-block">Customer are expected to arrive on</span>
-				                <span class="font-weight-bold text-success">${invoice.checkIn }</span>
+				                <c:if test="${ratingStar.score == 1 }">
+				          		<span class="d-block">Guest's reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 2 }">
+				          		<span class="d-block">Guest's reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;"  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 3 }">
+				          		<span class="d-block">Guest's reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;"  class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i  class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 4 }">
+				          		<span class="d-block">Guest's reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i  class="fa fa-star"></i></span>
+				                </c:if>
+				                <c:if test="${ratingStar.score == 5 }">
+				          		<span class="d-block">Guest's reviewed :</span>
+				          		<span ><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i><i style="color: orange;" class="fa fa-star"></i></span>
+				                </c:if>
 				                
 				                <hr>
 				                <div class="d-flex justify-content-between align-items-center footer">
@@ -618,9 +642,11 @@ body {
 				                        <div class="billing">
 				                            <div class="d-flex justify-content-between"><span>Subtotal</span><span class="font-weight-bold">$${invoice.infoRoom.price }</span></div>
 				             
-				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">%${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">- %${invoice.infoRoom.salePrice }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span class="text-success">- Discount</span><span class="font-weight-bold text-success">= $${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-2"><span >Total nights</span><span class="font-weight-bold text-success">${totalNight }nights</span></div>
 				                            <hr>
-				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.infoRoom.total }</span></div>
+				                            <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$${invoice.total }</span></div>
 				                        </div>
 				                    </div>
 				                    <hr>

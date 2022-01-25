@@ -56,6 +56,13 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	@Query("select SUM(infoRoom.total) from Reservation where paymentStatus = true")
 	public int totalInRoom();
 	
+	@Query("select SUM(total) from Reservation where customerId = :customerId")
+	public int totalOfCustomer(@Param("customerId") String customerId);
+	
+	
+	@Query("select SUM(total) from Reservation where infoRoom.idRoom = :idRoom")
+	public int totalOfRoom(@Param("idRoom") int idRoom);
+	
 	@Query("from Reservation where paymentStatus = true")
 	public Iterable<Reservation> allRoomPaymentCompleted();
 	

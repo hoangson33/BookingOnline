@@ -15,6 +15,10 @@ public interface GuestRatingRepository extends CrudRepository<GuestRating, Integ
 	@Query("from GuestRating where idReservation = :idReservation and idCustomer = :idCustomer")
 	public GuestRating findRatingRoomByIdCus(@Param("idReservation") int idReservation,@Param("idCustomer") String idCustomer);
 	
+	@Query("from GuestRating where idReservation = :idReservation and infoRoom.idRoom = :idRoom")
+	public GuestRating findRatingRoomByIdRoom(@Param("idReservation") int idReservation,@Param("idRoom") int idRoom);
+	
+	
 	@Query("from GuestRating where idCustomer = :idCustomer")
 	public Iterable<GuestRating> findRatingRoomById(@Param("idCustomer") String idCustomer);
 	

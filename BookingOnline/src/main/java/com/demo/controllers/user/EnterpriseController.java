@@ -41,6 +41,7 @@ import com.demo.models.Reservation;
 import com.demo.models.ReservationCancel;
 import com.demo.models.Roles;
 import com.demo.services.AccountService;
+import com.demo.services.GuestRatingService;
 import com.demo.services.HighlightService;
 import com.demo.services.ReservationCancelService;
 import com.demo.services.ReservationService;
@@ -79,6 +80,9 @@ public class EnterpriseController implements ServletContextAware {
 	
 	@Autowired
 	private SmtpMailSender smtpMailSender;
+	
+	@Autowired
+	private GuestRatingService guestRatingService;
 	
 	@Autowired
 	private Environment environment;
@@ -591,6 +595,7 @@ public class EnterpriseController implements ServletContextAware {
 		modelMap.put("invoiceCount", reservationService.countInvoice(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
 		modelMap.put("reservationEnterpriseConfirms", reservationService.reservationEnterpriseByIdRoom(idRoom));
+		modelMap.put("total", reservationService.totalOfRoom(idRoom));
 		return "users/enterprise/invoice"; 
 	}
 	
@@ -626,6 +631,15 @@ public class EnterpriseController implements ServletContextAware {
 		ReservationCancel reservationCancel = new ReservationCancel();
 		modelMap.put("reservationCancel", reservationCancel);
 		
+		Reservation reservation2 = reservationService.reserInfo2(idReservation);
+		String checkIn = String.valueOf(reservation2.getCheckIn());
+		String checkOut = String.valueOf(reservation2.getCheckOut());
+		int checkin = Integer.parseInt(checkIn.replace("-","")) ;
+		int checkout = Integer.parseInt(checkOut.replace("-","")) ;
+		int totalNight = checkout - checkin;
+		modelMap.put("totalNight", totalNight);
+		modelMap.put("ratingStar", guestRatingService.findRatingRoomByIdRoom(idReservation, reservation2.getInfoRoom().getIdRoom()));
+		
 		setIdResevation(idReservation);
 		return "users/enterprise/invoice_detail";
 	}
@@ -646,6 +660,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setStatus(true);;
 		reservation.setStatusCancel(false);
 		reservation.setPaymentStatus(false);
+		reservation.setTotal(reservationOld.getTotal());
 		reservation.setCreated(reservationOld.getCreated());
 		reservation.setUpdated(reservationOld.getUpdated());
 		
@@ -687,6 +702,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setStatus(true);;
 		reservation.setStatusCancel(false);
 		reservation.setPaymentStatus(true);
+		reservation.setTotal(reservationOld.getTotal());
 		reservation.setCreated(reservationOld.getCreated());
 		reservation.setUpdated(reservationOld.getUpdated());
 		
@@ -716,6 +732,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
 		reservation.setPaymentStatus(false);
+		reservation.getTotal();
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
 		

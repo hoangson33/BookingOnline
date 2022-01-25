@@ -39,7 +39,7 @@
 											<option value="Can Tho">Can Tho</option>
 											<option value="Kien Giang">Kien Giang</option>
 											<option value="Ben Tre">Ben Tre</option>
-											<option value="Ben Tre">Quang Ninh</option>
+											<option value="Quang Ninh">Quang Ninh</option>
 										</select>
 									</div>
 									

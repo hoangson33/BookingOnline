@@ -423,17 +423,15 @@ input[type="text"] {
           <div class="item__price">
             <i style="color: #87CEFA" class="fa fa-usd">${infoRoom.total }</i> /Per night
           </div>
-          <div class="item__quantity">
-            ${infoRoom.account.phone }
-          </div>
+          
           <div class="item__description">
             <ul style="">
             	<li ><i style="color: #87CEFA" class="fa fa-sort-amount-asc"></i> ${infoRoom.guestAdult } Adult ${infoRoom.guestChildren } Children</li>
               <li ><i style="color: #87CEFA" class="fa fa-map-marker"></i> ${infoRoom.account.locationDetail }</li>
               <li><i style="color: #87CEFA" class="fa fa-clock-o"> </i> 24/7 support</li>
               <li><i style="color: #87CEFA" class="fa fa-plane"></i> Shuttle service from the airport</li>
-              <li>Smart tools for health and traveling and more</li>
-              <li>Share your games and achievements with your friends via Group Play</li>
+              <li><i style="color: #87CEFA" class="fa fa-plus"></i> Total days you stay at the hotel are<b style="color: #87CEFA"> ${totalNight } nights</b> </li>
+              <li>Subtotal : <i style="color: #87CEFA" class="fa fa-usd"></i> <b style="color: #87CEFA"> ${infoRoom.total * totalNight }</b></li>
             </ul>
 
           </div>
@@ -505,7 +503,8 @@ input[type="text"] {
         <s:input type="hidden" path="infoRoom.idRoom" value="${infoRoom.idRoom }"/>
         <s:input type="hidden" path="customerId" value="${account.idAcc }"/>
         <span>&nbsp;</span>
-        <button  class="btn action__submit" type="submit" >Confirm
+        <button  class="btn btn-success" type="submit" >
+        	<span style="color: white;">Confirm</span>
           <i class="fa fa-arrow-right"></i></button>
         
           <a href="${pageContext.request.contextPath }/customer/view-room?idRoom=${idRoom}" class="backBtn">Cancel !!!</a>
