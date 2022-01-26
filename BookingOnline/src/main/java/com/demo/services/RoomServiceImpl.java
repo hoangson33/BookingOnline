@@ -120,6 +120,17 @@ public class RoomServiceImpl implements RoomService {
 		return roomRepository.countRoomWaitApproval();
 	}
 
+	@Override
+	public InfoRoom findIdRoom(int idRoom) {
+	
+		return roomRepository.findIdRoom(idRoom);
+	}
+
+	@Override
+	public Iterable<InfoRoom> idRoomByIdAcc(String idAcc) {
+		return roomRepository.idRoomByIdAcc(idAcc);
+	}
+
 
 
 

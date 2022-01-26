@@ -252,8 +252,8 @@ function validateForm() {
 																placeholder="Email" />																								
 </div>
 <s:errors path="email" cssClass="format"></s:errors>
-  	   <p style="color: red;">${error}</p>
-                              <p style="color: red;">${errors}</p>
+  
+                         
 						    
 
 <div class="input-group mg-b-pro-edt">
@@ -320,7 +320,7 @@ function validateForm() {
 <div class="row">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="text-center custom-pro-edt-ds">
-
+	   <p style="color: red;">${error}</p>
 <div class="btn btn-ctl-bt waves-effect waves-light m-r-10" >
                         	<span>&nbsp;</span>
                             <input style="color: black;" type="submit" value="Submit" class="submit " id="submit" name="submit" />

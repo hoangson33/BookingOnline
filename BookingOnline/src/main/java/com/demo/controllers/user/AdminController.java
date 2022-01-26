@@ -79,6 +79,16 @@ public class AdminController implements ServletContextAware {
 	
 	@Autowired
 	private InfoRoomValidator infoRoomValidator;
+	
+	private int idReservation;
+
+	public int getIdReservation() {
+		return idReservation;
+	}
+
+	public void setIdReservation(int idReservation) {
+		this.idReservation = idReservation;
+	}
 
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Authentication authentication) {
@@ -197,7 +207,7 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value = "addAcc" , method = RequestMethod.POST)
 	public String addAcc(@ModelAttribute("account")@Valid Account account, BindingResult bindingResult,
-			ModelMap modelMap,@RequestParam("email") String email) {
+			ModelMap modelMap,@RequestParam("email") String email,@RequestParam("username") String username) {
 		accountValidator.validate(account, bindingResult);
 		if(bindingResult.hasErrors()) {
 			return "admin/account_add";
@@ -206,8 +216,8 @@ public class AdminController implements ServletContextAware {
 		System.out.println("email :" + email);
 		String idacc = accountService.findIdAccs(email);
 		System.out.println("idAcc : " + idacc);
-		
-			if(idacc == null) {
+		String idaccuser = accountService.findIdAccUser(username);
+			if(idacc == null && idaccuser == null) {
 			String idRole = roleService.findRoleByNameRole(account.getIdRole());
 			int idRole2 = Integer.parseInt(roleService.findRoleByNameRole(account.getIdRole()));
 			account.setIdAcc(account.getIdRole() + account.getName().replace(" ", ""));
@@ -222,8 +232,7 @@ public class AdminController implements ServletContextAware {
 		
 			accountService.save(account);
 			}else {
-				modelMap.put("error", "This email already exists !?");
-				modelMap.put("errors", "Re-enter another email !");
+				modelMap.put("error", "Username or Email already registered !");
 				return "admin/account_add";
 			}
 			return "redirect:/admin/account-management";
@@ -480,8 +489,11 @@ public class AdminController implements ServletContextAware {
 		modelMap.put("accountss", accountService.findByUsername(name));
 		System.out.println("name " + name);
 		
-		modelMap.put("reservation", reservationService.reserInfo2(idReservation));
+		setIdReservation(idReservation);
 		
+		modelMap.put("reservation", reservationService.reserInfo2(idReservation));
+		Reservation reservation =reservationService.reserInfo2(idReservation);
+		modelMap.put("listIdRooms", roomService.findRoomTrueOfAcc(reservation.getInfoRoom().getAccount().getIdAcc()));
 		modelMap.put("accounts", accountService.findByUsername(name));
 		modelMap.put("invoices", reservationService.reserInfo(idReservation));
 		ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(idReservation);
@@ -496,27 +508,63 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value = "editReservation", method = RequestMethod.POST )
 	public String editReservation(@ModelAttribute("reservation")@Valid Reservation reservation,BindingResult bindingResult,
-			Authentication authentication, ModelMap modelMap) {
+			Authentication authentication, ModelMap modelMap,@RequestParam("email")String email) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 		modelMap.put("accountss", accountService.findByUsername(name));
 		System.out.println("name " + name);
 		
+		
+		
 		reservationValidator.validate(reservation, bindingResult);
 		if(bindingResult.hasErrors()) {
 			
+			Reservation reservation2 =reservationService.reserInfo2(getIdReservation());
+			modelMap.put("listIdRooms", roomService.findRoomTrueOfAcc(reservation2.getInfoRoom().getAccount().getIdAcc()));
+			
+			modelMap.put("accounts", accountService.findByUsername(name));
+			modelMap.put("invoices", reservationService.reserInfo(reservation.getIdReservation()));
+			ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(reservation.getIdReservation());
+			modelMap.put("cancelledBy", reservationCancelByWho);
+			ReservationCancel reservationCancel = new ReservationCancel();
+			modelMap.put("reservationCancel", reservationCancel);
+			Reservation reservationCount = reservationService.reserInfo2(reservation.getIdReservation());
+			modelMap.put("countCancelled", reservationCancelService.countCancalledCustomer(reservationCount.getCustomerId()));
 			return "admin/reservation_edit";
 		}
 		
 		
+		System.out.println("email : " + email);
+		String idacc = accountService.findIdAccs(email);
 		
+		System.out.println("idAcc : " + idacc);
+
+		if(idacc != null) {
+			reservation.getTotal();
+			reservation.setCreated(new Date());
+			reservation.setStatus(true);
+			reservation.setUpdated(new Date());
+			reservationService.save(reservation);
+		}else {
+			Reservation reservation2 =reservationService.reserInfo2(getIdReservation());
+			modelMap.put("listIdRooms", roomService.findRoomTrueOfAcc(reservation2.getInfoRoom().getAccount().getIdAcc()));
+			modelMap.put("error", " Email does not exist or not registered!?");
+			modelMap.put("accounts", accountService.findByUsername(name));
+			modelMap.put("invoices", reservationService.reserInfo(reservation.getIdReservation()));
+			ReservationCancel reservationCancelByWho = reservationCancelService.existCancelled(reservation.getIdReservation());
+			modelMap.put("cancelledBy", reservationCancelByWho);
+			ReservationCancel reservationCancel = new ReservationCancel();
+			modelMap.put("reservationCancel", reservationCancel);
+			Reservation reservationCount = reservationService.reserInfo2(reservation.getIdReservation());
+			modelMap.put("countCancelled", reservationCancelService.countCancalledCustomer(reservationCount.getCustomerId()));
+			return "admin/reservation_edit";
+		}
+//		reservation.getTotal();
+//		reservation.setCreated(new Date());
+//		reservation.setStatus(true);
+//		reservation.setUpdated(new Date());
 		
-		
-		reservation.setCreated(new Date());
-		reservation.setStatus(true);
-		reservation.setUpdated(new Date());
-		
-		reservationService.save(reservation);
+	
 		return "redirect:/admin/reservation-management";
 	}
 	

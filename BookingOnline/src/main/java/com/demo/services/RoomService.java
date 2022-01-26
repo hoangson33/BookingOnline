@@ -49,4 +49,9 @@ public interface RoomService {
 	public Iterable<InfoRoom> reserInfoidAccEnter( String idAcc);
 	
 	public int countRoomWaitApproval();
+	
+	public InfoRoom findIdRoom( int idRoom);
+	
+	
+	public Iterable<InfoRoom> idRoomByIdAcc(String idAcc);
 }

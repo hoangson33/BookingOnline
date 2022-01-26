@@ -162,7 +162,12 @@ function validateForm() {
 	 
 			<span class="input-group-addon"><a href="${pageContext.request.contextPath }/admin/edit-room/${reservation.infoRoom.idRoom}"><i style="color: orange;" class="fa fa-building"
 																		aria-hidden="true"></i> Id_Room</a></span>
-			<s:input path="infoRoom.idRoom"  style="color: White;" type="text" class="form-control"  />
+																		
+			<s:select path="infoRoom.idRoom" class="form-control pro-edt-select form-control-primary">
+			<c:forEach var="idRooms" items="${listIdRooms }">
+			 <s:option value="${idRooms.idRoom }">${idRooms.idRoom }</s:option>
+			 </c:forEach>
+			</s:select>
 			</div>
 			
 			<div class="input-group mg-b-pro-edt">
@@ -177,7 +182,7 @@ function validateForm() {
 				<label class="color-22 playfair input-group-addon"  for="booking-checkin"><i style="color:orange;" class="fa fa-calendar"></i> CheckIn</label><s:input
 									class="form-control" name="checkIn" path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
 									/>
-									
+
 			</div>
 			<s:errors path="checkIn" cssClass="format"></s:errors>
 			<div class="input-group mg-b-pro-edt group checkout">
@@ -185,13 +190,13 @@ function validateForm() {
 									class="form-control" path="checkOut" type="text" id="booking-checkout" placeholder="MM/DD/YY"
 									/>
 			</div>
-	
+
 			<s:errors path="checkOut" cssClass="format"></s:errors>
 			
 		
 			</div>
 			</div>
-		
+			<s:input path="total" type="hidden" value="${reservation.total }"/>
 			
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="review-content-section">
@@ -206,8 +211,10 @@ function validateForm() {
 																		aria-hidden="true"></i> Email</span>
 			<s:input path="email" type="email" class="form-control" />
 
+                           
 			</div>
 		<s:errors path="email" cssClass="format"></s:errors>
+		<p style="color: red;">${error}</p>
 				<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Adult</span>
 			<s:input path="adult" type="number" class="form-control" />
@@ -255,7 +262,6 @@ function validateForm() {
 							
 							
 </button>
-
 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
 	<span style="color: white;">Cancel</span>
 							
@@ -626,6 +632,8 @@ function validateForm() {
 
 			</div>
 		<s:errors path="email" cssClass="format"></s:errors>
+		  	   <p style="color: red;">${erroremail}</p>
+                              <p style="color: red;">${errorsemail}</p>
 				<div class="input-group mg-b-pro-edt">
 			<span class="input-group-addon"><i style="color:green;"  aria-hidden="true"></i>Adult</span>
 			<s:input path="adult" type="number" class="form-control" />

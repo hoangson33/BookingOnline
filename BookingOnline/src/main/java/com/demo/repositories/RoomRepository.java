@@ -22,7 +22,8 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	@Query("from InfoRoom where status = true")
 	public Iterable<InfoRoom> findAllRoom();
 	
-
+	@Query("from InfoRoom where idRoom = :idRoom")
+	public InfoRoom findIdRoom(@Param("idRoom") int idRoom);
 
 	
 	@Query("select account.idAcc from InfoRoom where idRoom = :idRoom")
@@ -36,6 +37,9 @@ public interface RoomRepository extends CrudRepository<InfoRoom, Integer>{
 	
 	@Query("from InfoRoom where account.idAcc = :idAcc and status = true")
 	public Iterable<InfoRoom> roomInfoByIdAcc(@Param("idAcc") String idAcc);
+	
+	@Query("select idRoom from InfoRoom where account.idAcc = :idAcc and status = true")
+	public Iterable<InfoRoom> idRoomByIdAcc(@Param("idAcc") String idAcc);
 	
 	@Query("from InfoRoom where account.idAcc = :idAcc")
 	public Iterable<InfoRoom> roomInfoOfIdAcc(@Param("idAcc") String idAcc);

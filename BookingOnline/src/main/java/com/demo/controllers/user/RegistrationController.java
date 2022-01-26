@@ -89,7 +89,7 @@ public class RegistrationController {
 			account.setPassword(hash);
 			account.setAvatar("anhmacdinh.png");
 			
-			//registrationService.save(account);
+			registrationService.save(account);
 			}else {
 				modelMap.put("error", "Username or Email already registered !");
 			
