@@ -449,6 +449,7 @@ input[type="text"] {
         <div class="payment__types text-center">
           <div class="payment__type payment__type--cc active">
             <i class="icon icon-credit-card"></i>Cash</div>
+            <s:input path="paymentMethod" type="hidden" value="Cash"/>
           <div class="payment__type payment__type--paypal">
             <i class="icon icon-paypal"></i>Paypal</div>
         </div>

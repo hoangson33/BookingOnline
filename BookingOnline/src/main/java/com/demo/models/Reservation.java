@@ -56,6 +56,7 @@ public class Reservation implements java.io.Serializable {
 	private boolean status;
 	private boolean statusCancel;
 	private boolean paymentStatus;
+	private String paymentMethod;
 	private double total;
 	private Date created;
 	private Date updated;
@@ -67,7 +68,7 @@ public class Reservation implements java.io.Serializable {
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
 			int phone, int adult, int children, boolean status, boolean statusCancel, boolean paymentStatus,
-			double total, Date created, Date updated) {
+			String paymentMethod, double total, Date created, Date updated) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
 		this.checkIn = checkIn;
@@ -80,6 +81,7 @@ public class Reservation implements java.io.Serializable {
 		this.status = status;
 		this.statusCancel = statusCancel;
 		this.paymentStatus = paymentStatus;
+		this.paymentMethod = paymentMethod;
 		this.total = total;
 		this.created = created;
 		this.updated = updated;
@@ -87,7 +89,7 @@ public class Reservation implements java.io.Serializable {
 
 	public Reservation(InfoRoom infoRoom, String customerId, Date checkIn, Date checkOut, String name, String email,
 			int phone, int adult, int children, boolean status, boolean statusCancel, boolean paymentStatus,
-			double total, Date created, Date updated, Set<ReservationCancel> reservationCancels,
+			String paymentMethod, double total, Date created, Date updated, Set<ReservationCancel> reservationCancels,
 			Set<DetailBill> detailBills) {
 		this.infoRoom = infoRoom;
 		this.customerId = customerId;
@@ -101,6 +103,7 @@ public class Reservation implements java.io.Serializable {
 		this.status = status;
 		this.statusCancel = statusCancel;
 		this.paymentStatus = paymentStatus;
+		this.paymentMethod = paymentMethod;
 		this.total = total;
 		this.created = created;
 		this.updated = updated;
@@ -229,6 +232,15 @@ public class Reservation implements java.io.Serializable {
 
 	public void setPaymentStatus(boolean paymentStatus) {
 		this.paymentStatus = paymentStatus;
+	}
+	
+	@Column(name = "payment_method", nullable = false, length = 250)
+	public String getPaymentMethod() {
+		return this.paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 	@Column(name = "total", nullable = false, precision = 22, scale = 0)

@@ -180,7 +180,7 @@ function validateForm() {
 			
 			<div class="input-group mg-b-pro-edt group checkin">
 				<label class="color-22 playfair input-group-addon"  for="booking-checkin"><i style="color:orange;" class="fa fa-calendar"></i> CheckIn</label><s:input
-									class="form-control" name="checkIn" path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
+									class="form-control" path="checkIn" type="text" id="booking-checkin" placeholder="MM/DD/YY"
 									/>
 
 			</div>
@@ -252,15 +252,17 @@ function validateForm() {
 			
 
 <div class="text-center custom-pro-edt-ds">
+<input type="hidden"  name="checkCMNIN" value="${invoice.checkIn }"/>
+<input type="hidden" name="checkCMNOut" value="${invoice.checkOut }"/>
 <button type="submit"
+	
 								class="btn btn-success">
 								<span style="color: white;">Confirm</span>
 								<span>&nbsp;</span>
 								<s:input type="hidden" name="idReservation" path="idReservation" />
-								
+								<s:input type="hidden" path="paymentMethod" value="Cash" />
 								<s:input type="hidden" name="infoRoom.idRoom" path="infoRoom.idRoom" />
-							
-							
+								
 </button>
 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
 	<span style="color: white;">Cancel</span>
@@ -413,6 +415,8 @@ function validateForm() {
 			
 
 <div class="text-center custom-pro-edt-ds">
+<input type="hidden"  name="checkCMNINConfirmed" value="${invoice.checkIn }"/>
+<input type="hidden" name="checkCMNOutConfirmed" value="${invoice.checkOut }"/>
 <button type="submit"
 								class="btn btn-success">
 								<span style="color: white;">Confirmed ?</span>

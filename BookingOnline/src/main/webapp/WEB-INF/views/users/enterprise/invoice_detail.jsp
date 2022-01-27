@@ -256,7 +256,7 @@ body {
 				                <div class="d-flex justify-content-between align-items-center footer">
 				                	<s:input path="idReservation" type="hidden" value="${invoice.idReservation }"/>
 				                	<s:input path="infoRoom.idRoom" type="hidden" value="${invoice.infoRoom.idRoom }"/>
-				                	
+				                	<s:input path="paymentMethod" type="hidden" value="Cash"/>
 				                	<c:if test="${invoice.status != true && invoice.statusCancel == false}">
 				                	<div style="margin-left: 100px" class="col-md-3"><input  type="submit" class="form-control btn btn-success" value="Confirm"></div>
 				                    
@@ -410,6 +410,7 @@ body {
 				                	
 				                	<s:input path="idReservation" type="hidden" value="${invoice.idReservation }"/>
 				                	<s:input path="infoRoom.idRoom" type="hidden" value="${invoice.infoRoom.idRoom }"/>
+				                	<s:input path="paymentMethod" type="hidden" value="Cash"/>
 				                	<div style="margin-left: 100px" class="col-md-3"><input  type="button" class="form-control btn btn-warning" value="Happenning"></div>
 				                	<div style="margin-right: 100px" class="col-md-3"><input  type="submit" class="form-control btn btn-success" value="Payment completed ?"></div>
 				                	

@@ -68,7 +68,7 @@
   <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/demo.js"></script>
 
 
-
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -117,6 +117,7 @@
         <th data-field="name">Name</th>
         <th data-field="phone">Phone</th>
         <th data-field="status">Status</th>
+        <th data-field="paymentmethod">Payment Method</th>
         <th data-field="total">Total</th>
         <th data-field="updated">Date</th>
         <th data-field="actions" >Actions</th>
@@ -144,6 +145,7 @@
 			              <c:if test="${allroom.statusCancel != false && allroom.status != true}">
 			              <td><button type="button" class="btn btn-danger">Cancelled </button></td>
 			              </c:if>
+			<td><i style="color: green;" class="fa fa-money fa-2x"></i> ${allroom.paymentMethod }</td>               
 			<td>$${allroom.total }</td>              
 			              <td>${allroom.updated }</td>
           <td>
@@ -176,6 +178,7 @@
 			              <c:if test="${allroom.status == false && allroom.statusCancel == false}">
 			              <td><button type="button" class="btn btn-warning">Awaiting for approval</button></td>
 			              </c:if>
+			              <td><i style="color: green;" class="fa fa-money fa-2x"></i> ${allroom.paymentMethod }</td> 
 			              <td>$${allroom.total }</td>    
 			              <td>${allroom.updated }</td>
           <td>
@@ -216,6 +219,7 @@
   
 			              </td>
 		  </c:if>
+		  <td><i style="color: green;" class="fa fa-money fa-2x"></i> ${allroom.paymentMethod }</td> 
 		  <td>$${allroom.total }</td>    
 		  <td>${allroom.updated }</td>
 		
@@ -255,7 +259,8 @@
 			        
 			        </c:if>
 			        
-		</c:forEach>	        
+		</c:forEach>	      
+		<td><i style="color: green;" class="fa fa-money fa-2x"></i> ${allroom.paymentMethod }</td>   
 			<td>$${allroom.total }</td>            
 		  <td>${allroom.updated }</td>
 		

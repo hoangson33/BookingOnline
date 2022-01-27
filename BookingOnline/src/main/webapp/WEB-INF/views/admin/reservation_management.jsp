@@ -204,6 +204,8 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Status</th>
+                                    <th>Total</th>
+                                    <th>Payment Method</th>
                                     <th>Adult</th>
                                      <th>Chilrent</th>
                                       <th>Created</th>
@@ -216,7 +218,7 @@
                                 <tr>
                                     <td>${reva.idReservation }</td>
                                     <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
-                                    <td>${reva.customerId }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/editAcc/${reva.customerId}">${reva.customerId }</a></td>
                                     <td>${reva.checkIn }</td>
                                     <td>${reva.checkOut }</td>
                                     <td>${reva.name }</td>
@@ -225,6 +227,8 @@
                                        <c:if test="${reva.statusCancel != false && reva.status != true}">
 			              <td><button type="button" class="btn btn-danger" style="color: White;">Cancelled </button></td>
 			             				 </c:if>
+			             				 <td>$${reva.total }</td>
+			             				 <td style="color: green;">${reva.paymentMethod }</td>
                                        <td>${reva.adult }</td>
                                         <td>${reva.children }</td>
                                          <td>${reva.created }</td>
@@ -242,7 +246,7 @@
                                 <tr>
                                     <td>${reva.idReservation }</td>
                                     <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
-                                    <td>${reva.customerId }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/editAcc/${reva.customerId}">${reva.customerId }</a></td>
                                     <td>${reva.checkIn }</td>
                                     <td>${reva.checkOut }</td>
                                     <td>${reva.name }</td>
@@ -251,7 +255,8 @@
                                       <c:if test="${reva.status == false && reva.statusCancel == false}">
 			              <td><button type="button" class="btn btn-warning" style="color: White;">Awaiting for approval</button></td>
 			              </c:if>
-
+			              <td>$${reva.total }</td>
+									<td style="color: green;">${reva.paymentMethod }</td>
                                        <td>${reva.adult }</td>
                                         <td>${reva.children }</td>
                                          <td>${reva.created }</td>
@@ -270,7 +275,7 @@
                                 <tr>
                                     <td>${reva.idReservation }</td>
                                     <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
-                                    <td>${reva.customerId }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/editAcc/${reva.customerId}">${reva.customerId }</a></td>
                                     <td>${reva.checkIn }</td>
                                     <c:if test="${reva.checkOut < datenow && reva.paymentStatus == false && reva.status == true && reva.statusCancel == false}">
 							          <td style="color: red;">${reva.checkOut }<br>
@@ -286,7 +291,8 @@
                                      <c:if test="${reva.status == true && reva.statusCancel == false}">
 			              <td><button type="button" class="btn btn-warning" style="color: White;">Confirmed</button></td>
 		  </c:if>
-
+		  <td>$${reva.total }</td>
+										<td style="color: green;">${reva.paymentMethod }</td>
                                        <td>${reva.adult }</td>
                                         <td>${reva.children }</td>
                                          <td>${reva.created }</td>
@@ -307,7 +313,7 @@
                                 <tr>
                                     <td>${reva.idReservation }</td>
                                     <td><a href="${pageContext.request.contextPath }/admin/edit-room/${reva.infoRoom.idRoom}">${reva.infoRoom.idRoom }</a></td>
-                                    <td>${reva.customerId }</td>
+                                    <td><a href="${pageContext.request.contextPath }/admin/editAcc/${reva.customerId}">${reva.customerId }</a></td>
                                     <td>${reva.checkIn }</td>
                                     <td>${reva.checkOut }</td>
                                     <td>${reva.name }</td>
@@ -316,7 +322,8 @@
                                     <c:if test="${reva.status == true && reva.statusCancel == false && reva.paymentStatus == true}">
 			              <td><button type="button" class="btn btn-success" style="color: White;">Completed</button></td>
 		  </c:if>
-
+		  <td>$${reva.total }</td>
+										<td style="color: green;">${reva.paymentMethod }</td>
                                        <td>${reva.adult }</td>
                                         <td>${reva.children }</td>
                                          <td>${reva.created }</td>

@@ -668,8 +668,10 @@ public class CustomerController implements ServletContextAware{
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(false);
 		reservation.setPaymentStatus(false);
+		reservation.getPaymentMethod();
 		reservation.getTotal();
 		reservation.setUpdated(new Date());
+		
 		reservationService.save(reservation);
 		reservationCancelService.delete(idCancel);
 		return "redirect:/customer/invoice-detail?idReservation=" + reservation.getIdReservation();
@@ -693,6 +695,7 @@ public class CustomerController implements ServletContextAware{
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
 		reservation.setPaymentStatus(false);
+		reservation.getPaymentMethod();
 		reservation.getTotal();
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);

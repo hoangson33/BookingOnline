@@ -658,7 +658,7 @@ e[s]=e[s]||[],e.zaraz._preTrack=[],e.zaraz.track=(t,r)=>e.zaraz._preTrack.push([
 <i class="fa fa-angle-down"></i>
 </a>
 <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-<li><a href="register.html"><span class="fa fa-home author-log-ic"></span> Register</a>
+<li><a href="${pageContext.request.contextPath }/home/welcome"><span class="fa fa-home author-log-ic"></span>Main Page</a>
 </li>
 <li><a href="#"><span class="fa fa-user author-log-ic"></span> My Profile</a>
 </li>

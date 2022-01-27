@@ -369,7 +369,11 @@ public class EnterpriseController implements ServletContextAware {
 		
 		
 		infoRoom.setCreated(new Date());
-		infoRoom.setTotal(infoRoom.getPrice()-(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice())));
+		if(infoRoom.getSalePrice() == 0) {
+			infoRoom.setTotal(infoRoom.getPrice());
+		}else {
+			infoRoom.setTotal(infoRoom.getPrice()-(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice())));
+		}
 		infoRoom.setStatus(false);
 		roomService.save(infoRoom);
 		return "redirect:/enterprise/room-list";
@@ -443,7 +447,12 @@ public class EnterpriseController implements ServletContextAware {
 			}
 			
 			infoRoom.setCreated(new Date());
-			infoRoom.setTotal(infoRoom.getPrice()-(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice())));
+			if(infoRoom.getSalePrice() == 0) {
+				infoRoom.setTotal(infoRoom.getPrice());
+			}else {
+				infoRoom.setTotal(infoRoom.getPrice()-(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice())));
+			}
+			
 			infoRoom.setCheckIn(simpleDateFormat.parse(CheckIn)) ;
 			infoRoom.setCheckOut(simpleDateFormat.parse(CheckOut)) ;
 			infoRoom.setStatus(false);
@@ -660,6 +669,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setStatus(true);;
 		reservation.setStatusCancel(false);
 		reservation.setPaymentStatus(false);
+		reservation.setPaymentMethod(reservationOld.getPaymentMethod());
 		reservation.setTotal(reservationOld.getTotal());
 		reservation.setCreated(reservationOld.getCreated());
 		reservation.setUpdated(reservationOld.getUpdated());
@@ -702,6 +712,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setStatus(true);;
 		reservation.setStatusCancel(false);
 		reservation.setPaymentStatus(true);
+		reservation.setPaymentMethod(reservationOld.getPaymentMethod());
 		reservation.setTotal(reservationOld.getTotal());
 		reservation.setCreated(reservationOld.getCreated());
 		reservation.setUpdated(reservationOld.getUpdated());
@@ -732,6 +743,7 @@ public class EnterpriseController implements ServletContextAware {
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
 		reservation.setPaymentStatus(false);
+		reservation.getPaymentMethod();
 		reservation.getTotal();
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);

@@ -66,6 +66,8 @@
   <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/jquery.sharrre.js"></script>
   <script src="${pageContext.request.contextPath }/webapp/static/layout_room_management/js/demo/demo.js"></script>
 
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -100,6 +102,7 @@
         <th data-field="name">Name</th>
         <th data-field="phone">Phone</th>
         <th data-field="status">Status</th>
+        <th data-field="paymentmethod">Payment Method</th>
         <th data-field="total">Total</th>
         <th data-field="updated">Date</th>
         <th data-field="actions" >Actions</th>
@@ -125,6 +128,7 @@
 			              <c:if test="${reservationEnterpriseConfirm.statusCancel != false && reservationEnterpriseConfirm.status != true}">
 			              <td><button type="button" class="btn btn-danger">Cancelled </button></td>
 			              </c:if>
+			              <td><i style="color: green;" class="fa fa-money fa-2x"></i> ${reservationEnterpriseConfirm.paymentMethod }</td>
 			              <td>$${reservationEnterpriseConfirm.total }</td>
 			              <td>${reservationEnterpriseConfirm.updated }</td>
           <td>
@@ -154,6 +158,7 @@
 			              <c:if test="${reservationEnterpriseConfirm.status == false && reservationEnterpriseConfirm.statusCancel == false}">
 			              <td><button type="button" class="btn btn-warning">Awaiting for approval</button></td>
 			              </c:if>
+			              <td><i style="color: green;" class="fa fa-money fa-2x"></i> ${reservationEnterpriseConfirm.paymentMethod }</td>
 			              <td>$${reservationEnterpriseConfirm.total }</td>
 			              <td>${reservationEnterpriseConfirm.updated }</td>
           <td>
@@ -189,6 +194,7 @@
           <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false}">
 			              <td><button type="button" class="btn btn-success">Confirmed</button></td>
 		  </c:if>
+		  <td><i style="color: green;" class="fa fa-money fa-2x"></i> ${reservationEnterpriseConfirm.paymentMethod }</td>
 		  <td>$${reservationEnterpriseConfirm.total }</td>
 		  <td>${reservationEnterpriseConfirm.updated }</td>
 		
@@ -217,6 +223,7 @@
           <c:if test="${reservationEnterpriseConfirm.status == true && reservationEnterpriseConfirm.statusCancel == false && reservationEnterpriseConfirm.paymentStatus == true}">
 			              <td><button type="button" class="btn btn-success">Completed</button></td>
 		  </c:if>
+		  <td><i style="color: green;" class="fa fa-money fa-2x"></i> ${reservationEnterpriseConfirm.paymentMethod }</td>
 		  <td>$${reservationEnterpriseConfirm.total }</td>
 		  <td>${reservationEnterpriseConfirm.updated }</td>
 		

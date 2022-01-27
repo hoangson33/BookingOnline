@@ -81,6 +81,18 @@ public class AdminController implements ServletContextAware {
 	private InfoRoomValidator infoRoomValidator;
 	
 	private int idReservation;
+	
+	private double price;
+	
+	
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
 	public int getIdReservation() {
 		return idReservation;
@@ -423,6 +435,11 @@ public class AdminController implements ServletContextAware {
 		infoRoom.setExtraImg2(infoRoomOld.getExtraImg2());
 		infoRoom.setExtraImg3(infoRoomOld.getExtraImg3());
 		infoRoom.setCreated(infoRoom.getCreated());
+		if(infoRoom.getSalePrice() == 0) {
+			infoRoom.setTotal(infoRoom.getPrice());
+		}else {
+			infoRoom.setTotal(infoRoom.getPrice()-(discountPrice(infoRoom.getPrice(), infoRoom.getSalePrice())));
+		}
 		infoRoom.setStatus(true);
 		roomService.save(infoRoom);
 		return "redirect:/admin/room-list";
@@ -493,6 +510,8 @@ public class AdminController implements ServletContextAware {
 		
 		modelMap.put("reservation", reservationService.reserInfo2(idReservation));
 		Reservation reservation =reservationService.reserInfo2(idReservation);
+		setPrice(reservation.getInfoRoom().getPrice());
+		
 		modelMap.put("listIdRooms", roomService.findRoomTrueOfAcc(reservation.getInfoRoom().getAccount().getIdAcc()));
 		modelMap.put("accounts", accountService.findByUsername(name));
 		modelMap.put("invoices", reservationService.reserInfo(idReservation));
@@ -508,7 +527,8 @@ public class AdminController implements ServletContextAware {
 	
 	@RequestMapping(value = "editReservation", method = RequestMethod.POST )
 	public String editReservation(@ModelAttribute("reservation")@Valid Reservation reservation,BindingResult bindingResult,
-			Authentication authentication, ModelMap modelMap,@RequestParam("email")String email) {
+			Authentication authentication, ModelMap modelMap,@RequestParam("email")String email,
+			@RequestParam("checkCMNIN")String checkIn, @RequestParam("checkCMNOut")String checkOut) {
 		System.out.println("username " + authentication.getName());
 		String name = authentication.getName();
 		modelMap.put("accountss", accountService.findByUsername(name));
@@ -540,9 +560,19 @@ public class AdminController implements ServletContextAware {
 		System.out.println("idAcc : " + idacc);
 
 		if(idacc != null) {
-			reservation.getTotal();
-			reservation.setCreated(new Date());
-			reservation.setStatus(true);
+			double price = getPrice();
+			System.out.println("price " + price);
+			int checkin = Integer.parseInt(checkIn.replace("-","")) ;
+			int checkout = Integer.parseInt(checkOut.replace("-","")) ;
+			int totalNight = checkout - checkin;
+			System.out.println("checkInRoom " + checkIn.replace("-",""));
+			reservation.setStatus(true);;
+			reservation.setStatusCancel(false);
+			
+			reservation.setPaymentStatus(false);
+			double total = totalNight * price;
+			reservation.setTotal(total);
+			reservation.setCreated(new Date());;
 			reservation.setUpdated(new Date());
 			reservationService.save(reservation);
 		}else {
@@ -587,6 +617,8 @@ public class AdminController implements ServletContextAware {
 		reservation.getChildren();
 		reservation.setStatus(false);;
 		reservation.setStatusCancel(true);
+		reservation.getPaymentMethod();
+		reservation.getTotal();
 		reservation.setPaymentStatus(false);
 		reservation.setUpdated(new Date());
 		reservationService.save(reservation);
@@ -616,12 +648,21 @@ public class AdminController implements ServletContextAware {
 	
 	
 	@RequestMapping(value =  "completed-invoice", method = RequestMethod.POST)
-	public String completedInvoice(@ModelAttribute("reservation") Reservation reservation) throws MessagingException {
+	public String completedInvoice(@ModelAttribute("reservation") Reservation reservation,
+			@RequestParam("checkCMNINConfirmed")String checkIn, @RequestParam("checkCMNOutConfirmed")String checkOut) throws MessagingException {
 		Reservation reservationOld = reservationService.reserInfo2(reservation.getIdReservation());
-		
+		double price = getPrice();
+		System.out.println("price " + price);
+		int checkin = Integer.parseInt(checkIn.replace("-","")) ;
+		int checkout = Integer.parseInt(checkOut.replace("-","")) ;
+		int totalNight = checkout - checkin;
+		System.out.println("checkInRoom " + checkIn.replace("-",""));
 		reservation.setStatus(true);;
 		reservation.setStatusCancel(false);
 		reservation.setPaymentStatus(true);
+		reservation.setPaymentMethod("Cash");
+		double total = totalNight * price;
+		reservation.setTotal(total);
 		reservation.setCreated(reservationOld.getCreated());
 		reservation.setUpdated(reservationOld.getUpdated());
 		
@@ -637,6 +678,14 @@ public class AdminController implements ServletContextAware {
 		
 		return "redirect:/admin/reservation-management";
 	}
+	
+	public double discountPrice(double price, double disount) {
+		if(disount != 0) {
+			return (price*disount)/100;
+		}
+		return price;
+	}
+
 	
 	@Override
 	public void setServletContext(ServletContext servletContext) {
