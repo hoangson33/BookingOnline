@@ -164,15 +164,19 @@ type="java.lang.String"%>
 							
 							<s:authorize access="hasRole('ROLE_SUPERADMIN')">
 							<li><span class="avatar avatar-sm rounded-circle">
-				                    	<c:forEach var="account" items="${accounts }" >
+							
+				                 	<c:forEach var="account" items="${accounts }" >
 				                  <img alt="Image placeholder" src="${pageContext.request.contextPath }/webapp/assets/uploads/${account.avatar}">
 				                </c:forEach>				                
-				                </span><a href="#"> ${pageContext.request.userPrincipal.name }</a>
+				                </span>
+				                
+							
+							<li><a href="#">${pageContext.request.userPrincipal.name }</a>
 							<ul class="dropdown">
 							<li><a href="${pageContext.request.contextPath }/admin/index">Dashboard</a></li>
 							
 							<li><a href="${pageContext.request.contextPath }/login/logout">Logout</a></li>
-							</ul>
+								</ul></li>
 							</s:authorize>
 							
 						</ul>
