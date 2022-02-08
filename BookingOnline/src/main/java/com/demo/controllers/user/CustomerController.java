@@ -207,6 +207,7 @@ public class CustomerController implements ServletContextAware{
 		String name = authentication.getName();
 
 		modelMap.put("accounts", accountService.findByUsername(name));
+
 		return "users/customer/profile";
 	}
 	@RequestMapping(value =  "editCus/{id}", method = RequestMethod.GET)

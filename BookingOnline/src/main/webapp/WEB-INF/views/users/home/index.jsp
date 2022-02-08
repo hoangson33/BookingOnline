@@ -8,7 +8,19 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath }/webapp/static/layout_nav/css/owl-carousel.css">
 
-
+<script>
+function validateForm() {
+  let checkIn = document.forms["myForm"]["checkIn"].value;
+  let checkOut = document.forms["myForm"]["checkOut"].value;
+  if (checkIn == "") {
+    alert("checkIn must be filled out");
+    return false;
+  }else if (checkOut == "") {
+	    alert("checkOut must be filled out");
+	    return false;
+	  }
+}
+</script>
 <mt:layout_user title="Home">
 
 	<jsp:attribute name="content">
@@ -21,7 +33,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<form method="get" action="${pageContext.request.contextPath }/home/search-enterprise/{city}/{checkIn}/{checkOut}/{guestChildren}/{guestAdult}">
+						<form name="myForm" onsubmit="return validateForm()" method="get" action="${pageContext.request.contextPath }/home/search-enterprise/{city}/{checkIn}/{checkOut}/{guestChildren}/{guestAdult}">
 							<ul class="align-row-spacebetween">
 								<li>Check Availability</li>
 								<li class="align-row-center-center">
@@ -69,7 +81,7 @@
 									</li>
 								<li><button type="submit">CHECK AVAILABILITY</button></li>
 							</ul>
-						</form>
+						</form>			
 					</div>
 				</div>
 			</div>

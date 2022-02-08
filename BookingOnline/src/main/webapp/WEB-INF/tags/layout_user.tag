@@ -90,7 +90,7 @@ type="java.lang.String"%>
 							src="${pageContext.request.contextPath }/webapp/static/user/images/logo.png" class="custom-logo" alt="logo"></a>
 						<ul  class="menuzord-menu">
 						<c:if test="${pageContext.request.userPrincipal.name == null }">
-							<li  class="active"><a href="${pageContext.request.contextPath }/home/welcomeCustomer">Home ádasdasda</a>
+							<li  class="active"><a href="${pageContext.request.contextPath }/home/welcomeCustomer">Home</a>
 							<ul class="dropdown">
 									<li><a  href="${pageContext.request.contextPath }/home2/index"">Home-2</a></li>
 								</ul></li>
