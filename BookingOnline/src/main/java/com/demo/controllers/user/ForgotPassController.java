@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.models.Account;
 import com.demo.services.AccountService;
+import com.demo.services.RoleService;
 
 
 @Controller
@@ -22,6 +23,10 @@ import com.demo.services.AccountService;
 public class ForgotPassController {
 	@Autowired
 	JavaMailSender javaMailSender;
+	
+	@Autowired
+	private RoleService roleService;
+	
 	@Autowired
 	private AccountService accountService;
 	
@@ -71,6 +76,8 @@ public class ForgotPassController {
 				account.setAvatar(accountOld.getAvatar());
 				account.setDatecreated(accountOld.getDatecreated());
 				account.setIdRole(accountOld.getIdRole());
+				
+				account.getRoleses().add(roleService.find(Integer.parseInt(account.getIdRole())));
 				
 				
 				SimpleMailMessage msg = new SimpleMailMessage();

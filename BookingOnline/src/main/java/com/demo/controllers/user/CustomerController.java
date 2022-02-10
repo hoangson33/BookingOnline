@@ -606,7 +606,7 @@ public class CustomerController implements ServletContextAware{
 		modelMap.put("reservationOfCustomer", reservationService.reservationOfCustomer(account.getIdAcc()));
 		modelMap.put("datenow", new Date());
 		
-		modelMap.put("total", reservationService.totalOfCustomer(account.getIdAcc()));
+//		modelMap.put("total", reservationService.totalOfCustomer(account.getIdAcc()));
 
 		modelMap.put("guestRatings", guestRatingService.findRatingRoomById(account.getIdAcc()));
 		

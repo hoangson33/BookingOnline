@@ -54,7 +54,7 @@ public interface ReservationService {
 	
 	public void deleteById(int id);
 	
-	public int totalOfCustomer(String customerId);
+//	public int totalOfCustomer(String customerId);
 	
 	public int totalOfRoom(int idRoom);
 
